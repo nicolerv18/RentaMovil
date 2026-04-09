@@ -1,0 +1,129 @@
+
+
+
+.notification-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  min-height: 100vh;
+}
+
+.header-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  margin-bottom: 30px;
+}
+
+.header-page h1 {
+  color: white;
+  font-size: 36px;
+  margin: 0;
+}
+
+.header-page button {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* MAIN LAYOUT - Filtros | Línea | Contenido */
+.main-layout {
+  display: flex;
+  gap: 0;
+  flex: 1;
+  align-items: flex-start;
+}
+
+/* FILTROS - Left sidebar */
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  width: 350px;
+  flex-shrink: 0;
+  padding-top: 10px;
+}
+
+.filter-item {
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 25px;
+  color: #888;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+}
+
+.filter-item:hover {
+  color: #ffffff;
+}
+
+.filter-item.active {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  font-weight: 600;
+}
+
+/* LÍNEA VERTICAL */
+.line-vertical {
+  width: 2px;
+  background-color: #ffffff;
+  flex-shrink: 0;
+  margin: 0 35px;
+  min-height: 600px;
+}
+
+/* CONTENIDO - Right side */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 600px;
+  padding-right: 20px;
+}
+
+.notifications-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notifications-container h3 {
+  margin: 0 0 15px 0;
+  font-size: 25px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* NOTIFICACIONES */
+.notification {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.notification:last-child {
+  border-bottom: none;
+}
+
+.icon-notification {
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+.text {
+  color: #555;
+  font-size: 18px;
+  margin: 0;
+}

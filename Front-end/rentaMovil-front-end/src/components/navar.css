@@ -1,0 +1,70 @@
+.navbar {
+  margin: 10px auto;
+  width: 90%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 50px;
+  border-radius: 10px;
+  padding: 15px 40px;
+
+  background: white;
+  color: #0f172a;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+/*   position: fixed; */
+}
+
+
+.navbar a{
+  text-decoration: none;
+  color:#041135;
+}
+
+.navbar a:hover{
+  color: #2958d6;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Title{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:#041135;
+  font-size: 1.8rem;
+}
+
+.nav-links-container{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+
+/* ICONOS */
+nav svg {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+
+
+.icon{
+  font-size: 35px;
+}
+
+.icon:hover{
+  color: #2958d6;
+}

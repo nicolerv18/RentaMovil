@@ -1,0 +1,256 @@
+@startuml
+
+hide circle
+skinparam linetype ortho
+
+package "Security" {
+
+entity Person {
+  +person_id : INT <<PK>>
+  first_name : VARCHAR
+  last_name : VARCHAR
+  email : VARCHAR
+  phone : VARCHAR
+  branch_id : INT <<FK>>
+}
+
+entity User {
+  +user_id : INT <<PK>>
+  person_id : INT <<FK>>
+  username : VARCHAR
+  password_hash : VARCHAR
+  status : VARCHAR
+  last_login : DATETIME
+}
+
+entity Role {
+  +role_id : INT <<PK>>
+  name : VARCHAR
+  description : VARCHAR
+}
+
+entity Permission {
+  +permission_id : INT <<PK>>
+  name : VARCHAR
+  description : VARCHAR
+}
+
+entity Role_Permission {
+  +role_id : INT <<FK>>
+  +permission_id : INT <<FK>>
+}
+
+entity User_Role {
+  +user_id : INT <<FK>>
+  +role_id : INT <<FK>>
+}
+
+entity Audit {
+  +audit_id : INT <<PK>>
+  user_id : INT <<FK>>
+  action : VARCHAR
+  affected_table : VARCHAR
+  date : DATETIME
+  detail : VARCHAR
+}
+}
+
+package "Operational" {
+
+entity Branch {
+  +branch_id : INT <<PK>>
+  name : VARCHAR
+  address : VARCHAR
+  city : VARCHAR
+  phone : INT
+  shedules : VARCHAR
+
+}
+
+entity Vehicle {
+  +vehicle_id : INT <<PK>>
+  plate : VARCHAR
+  brand : VARCHAR
+  model : VARCHAR
+  year : INT
+  type : VARCHAR
+  status : VARCHAR
+  mileage : DOUBLE
+  price : DOUBLE
+  branch_id : INT <<FK>>
+}
+
+entity Asignation {
+  +asignation_id : INT <<PK>>
+  vehicle_id : INT <<FK>>
+  branch_id : INT <<FK>>
+  checkIn_date : DATE
+  checkOut_date : DATE
+}
+
+entity Location {
+  +location_id : INT <<PK>>
+  latitude : VARCHAR
+  longitude : VARCHAR
+  timestamp : VARCHAR
+  vehicle_id : INT <<FK>>
+}
+
+entity Route {
+  +route_id : INT <<PK>>
+  location_id : INT <<FK>>
+  distance : DOUBLE
+  estimated_time : DOUBLE
+  origin : VARCHAR
+  destination : VARCHAR
+
+}
+
+entity Vehicle_Status_History {
+  +history_id : INT <<PK>>
+  vehicle_id : INT <<FK>>
+  status : VARCHAR
+  start_date : DATE
+  end_date : DATE
+}
+
+entity Reservation {
+  +reservation_id : INT <<PK>>
+  client_id : INT <<FK>>
+  reservation_date : DATE
+  status : VARCHAR
+}
+
+entity Reservation_Detail {
+  +detail_id : INT <<PK>>
+  reservation_id : INT <<FK>>
+  vehicle_id : INT <<FK>>
+  ResponsibleName : VARCHAR
+  start_date : DATE
+  end_date : DATE
+  pickupTime : TIME
+  returnTime : TIME
+  pickupLocation : VARCHAR
+  returnLocation : VARCHAR
+  amountToPay : DOUBLE
+  totalValue : DOUBLE
+}
+entity Rental {
+  +rental_id : INT <<PK>>
+  reservation_id : INT <<FK>>
+  route_id : INT <<FK>>
+  location_id : INT <<FK>>
+  gps_id : INT <<FK>>
+  status : VARCHAR
+  start_date : DATE
+  end_date : DATE
+
+}
+entity Gps {
+  +gps_id : INT <<PK>>
+   serial: VARCHAR
+   model: VARCHAR
+   available: BOOLEAN 
+}
+
+entity Contract {
+  +contract_id : INT <<PK>>
+  start_date : DATE
+  end_date : DATE
+  reservation_id : INT <<FK>>
+  contract_date : DATE
+  terms : VARCHAR
+  amount : DOUBLE
+  description : VARCHAR
+}
+
+entity Vehicle_Maintenance {
+  +maintenance_id : INT <<PK>>
+  vehicle_id : INT <<FK>>
+  maintenance_type_id : INT <<FK>>
+  start_date : DATE
+  end_date : DATE
+  status : VARCHAR
+}
+
+entity Maintenance_Type {
+  +maintenance_type_id : INT <<PK>>
+  name : VARCHAR
+  description : VARCHAR
+}
+entity Insurance {
+  +insurance_id : INT <<PK>>
+  vehicle_id : INT <<FK>>
+  policy : VARCHAR
+  insurance : VARCHAR
+  start_date : DATE
+  end_date : DATE
+  status : VARCHAR
+}
+entity Notification {
+  +notification_id : INT <<PK>>
+  person_id : INT <<FK>>
+  message : VARCHAR
+  sent_date : DATETIME
+  is_read : BOOLEAN
+  reservation_id : INT <<FK>>
+  maintenance_id : INT <<FK>>
+  payment_id : INT <<FK>>
+  contract_id : INT <<FK>>
+  insurance_id : INT <<FK>>
+}
+
+}
+package "Commercial" {
+
+entity Payment_Method {
+  +method_id : INT <<PK>>
+  name : VARCHAR
+}
+
+entity Payment {
+  +payment_id : INT <<PK>>
+  reservation_id : INT <<FK>>
+  payment_date : DATE
+  amount : DOUBLE
+  method_id : INT <<FK>>
+}
+
+}
+
+Person ||--|| User
+User ||--{ User_Role
+Role ||--{ User_Role
+Role ||--{ Role_Permission
+Permission ||--{ Role_Permission
+User ||--{ Audit
+
+Branch ||--{ Vehicle
+Vehicle ||--{ Asignation
+Branch ||--{ Asignation
+Vehicle ||--{ Location
+Vehicle ||--{ Vehicle_Status_History
+Vehicle ||--{ Vehicle_Maintenance
+Maintenance_Type ||--{ Vehicle_Maintenance
+
+Rental ||--|| Gps
+Rental ||--{ Route
+Reservation ||--|| Rental
+Location ||--{ Route
+Contract ||--{ Notification
+Insurance ||--{ Notification
+Vehicle ||--|| Insurance
+Person ||--{ Reservation
+Reservation ||--{ Reservation_Detail
+Vehicle ||--{ Reservation_Detail
+Contract ||--|| Reservation
+Contract ||--{ Payment
+Person ||--{ Notification
+Reservation ||--{ Notification
+Vehicle_Maintenance ||--{ Notification
+
+Reservation ||--{ Payment
+Payment_Method ||--{ Payment
+Payment ||--{ Notification
+
+@enduml

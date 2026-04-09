@@ -1,0 +1,86 @@
+.icono-flecha {
+  width: 32px;
+  height: 33px;
+  transition: transform 0.3s;
+}
+
+.icono-flecha.rotade {
+  transform: rotate(180deg);
+}
+
+.filtrer-container {
+  position: relative;
+  width: 600px;
+  height: fit-content;
+  font-size: larger;
+  color: #000;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.nav-container {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-container li {
+  width: 100%;
+  position: relative;
+}
+
+.nav-container a {
+  display: flex;
+  padding: 15px;
+  white-space: nowrap;
+}
+
+.btn-filtrar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  cursor: pointer;
+  background: #fff;
+  height: 70px;
+  justify-content: center;
+  padding: 10px;
+  width: 80%;
+  border-radius: 8px;
+  color:#000;
+  border: none;
+  font-size: inherit;
+  user-select: none;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 80%;
+  min-width: 180px;
+  background: white;
+  display: none;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+}
+
+.nav-container li.active .dropdown {
+  display: block;
+}
+
+.dropdown li a {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown li a:hover {
+  background: #eee;
+}

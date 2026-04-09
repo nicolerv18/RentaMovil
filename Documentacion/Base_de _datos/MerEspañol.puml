@@ -1,0 +1,182 @@
+@startuml
+
+hide circle
+skinparam linetype ortho
+
+package "Seguridad" {
+
+entity Persona {
+  +id_persona : INT <<PK>>
+  nombres : VARCHAR
+  apellidos : VARCHAR
+  correo : VARCHAR
+  telefono : INT
+  id_sucursal : INT <<FK>>
+}
+
+entity Usuario {
+  +id_usuario : INT <<PK>>
+  id_persona : INT <<FK>>
+  username : VARCHAR
+  password_hash : VARCHAR
+  estado : VARCHAR
+  ultimo_login : DATETIME
+}
+
+entity Rol {
+  +id_rol : INT <<PK>>
+  nombre : VARCHAR
+  descripcion : VARCHAR
+}
+
+entity Permiso {
+  +id_permiso : INT <<PK>>
+  nombre : VARCHAR
+  descripcion : VARCHAR
+}
+
+entity Rol_Permiso {
+  +id_rol : INT <<FK>>
+  +id_permiso : INT <<FK>>
+}
+
+entity Usuario_Rol {
+  +id_usuario : INT <<FK>>
+  +id_rol : INT <<FK>>
+}
+
+entity Auditoria {
+  +id_auditoria : INT <<PK>>
+  id_usuario : INT <<FK>>
+  accion : VARCHAR
+  tabla_afectada : VARCHAR
+  fecha : DATETIME
+  detalle : VARCHAR
+}
+
+}
+
+package "Operacional" {
+
+entity Sucursal {
+  +id_sucursal : INT <<PK>>
+  nombre : VARCHAR
+  direccion : VARCHAR
+  ciudad : VARCHAR
+  telefono : INT
+}
+
+entity Vehiculo {
+  +id_vehiculo : INT <<PK>>
+  placa : VARCHAR
+  marca : VARCHAR
+  modelo : VARCHAR
+  anio : INT
+  tipo : VARCHAR
+  estado : VARCHAR
+  id_sucursal : INT <<FK>>
+}
+
+entity Ubicacion {
+  +id_ubicacion : INT <<PK>>
+  latitud : VARCHAR
+  longitud : VARCHAR
+  timestamp : VARCHAR
+  id_vehiculo : INT <<FK>>
+}
+
+entity Historial_estado_vehiculo {
+  +id_historial : INT <<PK>>
+  id_vehiculo : INT <<FK>>
+  estado : VARCHAR
+  fecha_inicio : DATE
+  fecha_fin : DATE
+}
+
+entity Reserva {
+  +id_reserva : INT <<PK>>
+  id_cliente : INT <<FK>>
+  fecha_reserva : DATE
+  estado : VARCHAR
+}
+
+entity Detalle_reserva {
+  +id_detalle : INT <<PK>>
+  id_reserva : INT <<FK>>
+  id_vehiculo : INT <<FK>>
+  fecha_inicio : DATE
+  fecha_fin : DATE
+  valor : DOUBLE
+}
+
+entity Mantenimiento_vehiculo {
+  +id_mantenimiento : INT <<PK>>
+  id_vehiculo : INT <<FK>>
+  id_tipo_mantenimiento : INT <<FK>>
+  fecha_inicio : DATE
+  fecha_fin : DATE
+  estado : VARCHAR
+}
+
+entity Tipo_mantenimiento {
+  +id_tipo_mantenimiento : INT <<PK>>
+  nombre : VARCHAR
+  descripcion : VARCHAR
+}
+
+entity Notificacion {
+  +id_notificacion : INT <<PK>>
+  id_persona : INT <<FK>>
+  mensaje : VARCHAR
+  fecha_envio : DATETIME
+  leido : BOOLEAN
+  id_reserva : INT <<FK>>
+  id_mantenimiento : INT <<FK>>
+  id_pago : INT <<FK>>
+}
+
+}
+
+package "Comercial" {
+
+entity Metodo_pago {
+  +id_metodo : INT <<PK>>
+  nombre : VARCHAR
+}
+
+entity Pago {
+  +id_pago : INT <<PK>>
+  id_reserva : INT <<FK>>
+  fecha_pago : DATE
+  monto : DOUBLE
+  id_metodo : INT <<FK>>
+}
+
+}
+
+Persona ||--|| Usuario
+Usuario ||--{ Usuario_Rol
+Rol ||--{ Usuario_Rol
+Rol ||--{ Rol_Permiso
+Permiso ||--{ Rol_Permiso
+Usuario ||--{ Auditoria
+
+Sucursal ||--{ Vehiculo
+Vehiculo ||--{ Ubicacion
+Vehiculo ||--{ Historial_estado_vehiculo
+Vehiculo ||--{ Mantenimiento_vehiculo
+Tipo_mantenimiento ||--{ Mantenimiento_vehiculo
+
+Persona ||--{ Reserva
+Reserva ||--{ Detalle_reserva
+Vehiculo ||--{ Detalle_reserva
+
+Persona ||--{ Notificacion
+Reserva ||--{ Notificacion
+Mantenimiento_vehiculo ||--{ Notificacion
+
+Reserva ||--{ Pago
+Metodo_pago ||--{ Pago
+Pago ||--{ Notificacion
+
+@enduml

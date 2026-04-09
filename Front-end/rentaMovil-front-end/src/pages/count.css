@@ -1,0 +1,108 @@
+    .containerC{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+
+    }
+    .cardC{
+        margin-top: 30px;
+        background-color: white;
+        width: 70%;
+        border-radius: 10px;
+        text-align: center;
+        align-items: center;
+        position: relative;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        padding-top: 80px;
+    }
+    .email{
+
+        color: #000;
+        font-family: 'poppins', sans-serif;
+    }
+
+    .date{
+            color: #000;
+            font-family: 'poppins', sans-serif;
+    }
+    .card-h2{
+        color: #000000;
+    }
+
+    .price {
+    font-weight: bold;
+    }
+    .img{
+    width: 150px;
+    height: 150px;
+    display: block;
+    object-fit: cover;
+    margin-top: -80px;
+    border-radius: 50%;
+
+
+}
+    label{
+        color: #1f2937;
+        margin: 5px;
+        font-family: 'poppins', sans-serif;
+    }
+
+
+.formC{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+    .form-labelC{
+        display: block; /*Centar los labels, hace que las columnas se centren*/
+        text-align: start;
+        margin-left: 20px;
+        margin-top: 8px;
+    }
+
+    input{
+        border-radius: 10px;
+        background-color: aliceblue;
+        width: 250px;
+        height: 15px;
+        padding: 8px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        color: #000;
+    }
+
+    .buttonC{
+        font-size: 75%;
+        grid-column: span 3;
+        background-color: #041135;
+        border-radius: 10px;
+        height: 30px;
+        width: 200px;
+        justify-self: left;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        cursor: pointer;
+    }
+
+    .icon-btn{
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+.actions{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+}

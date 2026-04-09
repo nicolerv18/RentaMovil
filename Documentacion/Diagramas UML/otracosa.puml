@@ -1,0 +1,90 @@
+@startuml
+''
+interface Observador {
+    +actualizar(mensaje: String)
+}
+
+interface Sujeto {
+    +agregarObservador(o: Observador)
+    +eliminarObservador(o: Observador)
+    +notificar(mensaje: String)
+}
+
+interface Iterador{
+    +hasNext() : boolean
+    +next() : object
+
+}
+
+interface Agregado {
+    +crearIterador() : Iterador
+}
+
+class IteradorMantenimientos {
+    -mantenimientos : List<Mantenimiento>
+    -posicion : int
+    +hasNext() : boolean
+    +next() : Mantenimiento
+}
+class Notificaciones {
+    -observadores: List<Observador>
+    +agregarObservador(o: Observador)
+    +eliminarObservador(o: Observador)
+    +notificar(mensaje: String)
+}
+
+
+class Vehiculo {
+    -marca : String
+    -modelo : String
+    -placa : String
+    -anio : int
+    -tipoCombustible : String
+    -estado : String
+    -kilometraje : double
+    -precio : double
+    -mantenimientos: List <Mantenimiento>
+    +agregarMatenimiento(: mantenimiento)
+}
+
+class Mantenimiento {
+    -fechaInicio : Date
+    -fechaFin : Date
+    -estado : String
+    -tipoMantenimiento : String
+    +cambiarEstado()
+    + notificarCambio()
+}
+
+class Administrador {
+    -nombreUsuario : String
+    -correo : String
+    -telefono : String
+    -contraseña : String
+    -tipoUsuario : String
+    +actualizar(message: String)
+
+}
+class Seguro{
+    -fechaVencimiento
+    - vehiculo
+    -notificaciones : Notificaciones
+    +actualizarPago()
+    +notificarVencimiento()
+}
+
+
+Vehiculo "1" o-- "0..*" Mantenimiento: tiene
+
+Notificaciones ..|> Sujeto
+Administrador ..|> Observador
+Vehiculo ..|> Agregado
+IteradorMantenimientos ..|> Iterador
+Vehiculo --> IteradorMantenimientos : crea
+
+Vehiculo *--- Seguro
+Mantenimiento o-- Notificaciones : notifica
+Seguro o-- Notificaciones : notifica
+
+
+@enduml

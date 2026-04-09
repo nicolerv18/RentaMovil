@@ -1,0 +1,195 @@
+@startuml
+'Observer(Objetos: Vehiculo, reserva / sujetos: Administrador, Cliente *Los observadores, cliente y administrador, se les envia notficicaciones sobre el estado de la reserva y el vehiculo*) - iterator(we dont know) - command(..)- singleton(Para poder generar solo una instancia por cada vez q se cree un objeto en la clase notificacion. Ademas de crear una unica instancia para las reservas y vehiculos.) - strategy(Se necesitan para en el tiempo de ejecucion se le pueda ofrecer al cliente una serie de estrategias de pago.)- factory-method()- prototype -state'
+interface Observador {
+    +actualizar(mensaje: String)
+}
+
+interface Sujeto {
+    +agregarObservador(o: Observador)
+    +eliminarObservador(o: Observador)
+    +notificar(mensaje: String)
+}
+
+
+class Notificaciones {
+    -observadores: List<Observador>
+    +agregarObservador(o: Observador)
+    +eliminarObservador(o: Observador)
+    +notificar(mensaje: String)
+}
+class Administrador{
+    +actualizar(message: String)
+
+}
+class Cliente{
+    +actualizar(message: String)
+}
+class Vehiculo {
+    -marca : String
+    -modelo : String
+    -placa : String
+    -anio : int
+    -tipoCombustible : String
+    -estado : String
+    -kilometraje : double
+    -precio : double
+    -mantenimientos: List <Mantenimiento>
+    +agregarMatenimiento(: mantenimiento)
+}
+
+class Mantenimiento {
+    -fechaInicio : Date
+    -fechaFin : Date
+    -estado : String
+    -tipoMantenimiento : String
+    +cambiarEstado()
+    + notificarCambio()
+}
+
+class Sucursal {
+    -nombre : String
+    -direccion : String
+    -ciudad : String
+    -telefono : String
+    -horarios : String
+    -Vehiculos List <Vehiculo>
+    +agregarVehiculo()
+}
+
+class Usuario {
+    -nombreUsuario : String
+    -correo : String
+    -telefono : String
+    -contraseña : String
+    -tipoUsuario : String
+    +actualizar(message: String)
+
+}
+class Seguro{
+    -fechaVencimiento
+    - vehiculo
+    -notificaciones : Notificaciones
+    +actualizarPago()
+    +notificarVencimiento()
+}
+class GPS {
+    -latitud : double
+    - longitud : double
+    +obtenerUbicacionActual(): String
+    +registrarRuta(ruta: Ruta)
+}
+
+class Ruta {
+    -origen: String
+    -destino: String
+    -recorrido: List<String>
+    -tiempoTotal: float
+}
+
+class Alquiler {
+    -fechaInicio: Date
+    -fechaFin: Date
+    -cliente: Cliente
+    -vehiculo: Vehiculo
+    -ruta: List <Ruta>
+    -notificaciones : Notificaciones
+    +notificarInicioAlquiler()
+    +notificarFinAlquiler()
+    +agregarRuta()
+}
+
+class Reserva {
+    - cliente : Cliente
+    - vehiculo : Vehiculo
+    -nombreResponsable : String
+    -fechaInicio : Date
+    -fechaFin : Date
+    -lugarRetiro : String
+    -lugarDevolucion : String
+    -horaRetiro : String
+    -horaDevolucion : String
+    -valorTotal : double
+    -notificaciones : Notificaciones
+    +calcularValorTotal()
+    + notificarProximaRserva()
+}
+
+class Contrato {
+    -fechaContrato : Date
+    -estadoVehiculoSalida : String
+    -estadoVehiculoRegreso : String
+    -condiciones : String
+    -montoAPagar : double
+}
+
+
+class Pago {
+    -fechaPago : Date
+    -monto : double
+    +realizarPago()
+}
+
+interface MetodoPago {
+    +pagar(monto : double)
+}
+
+class TarjetaCredito implements MetodoPago {
+    +pagar(monto : double)
+}
+
+class TarjetaDebito implements MetodoPago {
+    +pagar(monto : double)
+}
+interface Comando {
+    +ejecutar()
+}
+
+class Invocador {
+    -historial : List<Comando>
+    +ejecutarComando(c: Comando)
+}
+
+
+class CrearReservaCommand {
+    -reserva : Reserva
+    +ejecutar()
+}
+
+class CancelarReservaCommand {
+    -reserva : Reserva
+    +ejecutar()
+}
+Pago --> MetodoPago : utiliza
+
+Vehiculo "1" o-- "0..*" Mantenimiento: tiene
+Sucursal "1" o-- "0..*" Vehiculo : almacena
+Cliente "1" <-- "0..*" Reserva : realiza
+Reserva "1" --> "1" Vehiculo : reserva
+Reserva "1" *-- "1" Contrato : genera
+Contrato "1" *-- "1" Pago : incluye
+GPS "1" o-- "1" Vehiculo : rastrea
+Usuario <|--- Cliente
+Usuario <|--- Administrador
+Notificaciones ..|> Sujeto
+Administrador ..|> Observador
+Cliente ..|> Observador
+
+Alquiler o-- Cliente
+Alquiler o--- Vehiculo
+Alquiler o-- Ruta
+GPS <-- Ruta
+Vehiculo *--- Seguro
+Mantenimiento o-- Notificaciones : notifica
+Seguro o-- Notificaciones : notifica
+Reserva o-- Notificaciones : notifica
+Alquiler o-- Notificaciones : notifica
+
+
+
+Comando <|.. CrearReservaCommand
+Comando <|.. CancelarReservaCommand
+CrearReservaCommand --> Reserva
+CancelarReservaCommand --> Reserva
+
+Invocador --> Comando
+@enduml esta si es

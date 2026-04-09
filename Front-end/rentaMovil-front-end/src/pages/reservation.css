@@ -1,0 +1,101 @@
+    .containerR{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+
+    }
+    .cardR{
+        margin-top: 100px;
+        background-color: white;
+        width: 90%;
+        border-radius: 10px;
+        text-align: center;
+        align-items: center;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .card-headerR{
+        padding-top: 140px;
+        position: relative;
+        margin-bottom: 10px
+    }
+
+
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0);
+    opacity: 1;
+    cursor: pointer;
+    }
+    .time{
+
+        color: #000;
+        font-family: 'poppins', sans-serif;
+    }
+
+    .date{
+            color: #000;
+            font-family: 'poppins', sans-serif;
+    }
+    .card-h2{
+        color: #000;
+        margin-top: 80px;
+    }
+
+    .price {
+    font-weight: bold;
+    margin-bottom: 20px;
+    }
+    .img-car{
+        width: 520px;
+        position: absolute;
+        top: -120px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+    }
+    label{
+        color: #1f2937;
+        margin: 5px;
+        font-family: 'poppins', sans-serif;
+    }
+
+    .form-grid{
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        gap: 10px;
+        text-align: left;
+    }
+
+    .form-label{
+        display: block; /*Centar los labels, hace que las columnas se centren*/
+        text-align: start;
+        margin-left: 20px;
+        margin-top: 8px;
+    }
+
+    input{
+        border-radius: 10px;
+        background-color: aliceblue;
+        width: 250px;
+        height: 15px;
+        padding: 8px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        color: #000;
+    }
+
+    button{
+        font-size: 100%;
+        grid-column: span 3;
+        background-color: #041135;
+        border-radius: 10px;
+        height: 50px;
+        width: 210px;
+        justify-self: center;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        cursor: pointer;
+    }
