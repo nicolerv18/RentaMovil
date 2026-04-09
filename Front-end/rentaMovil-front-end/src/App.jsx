@@ -3,8 +3,6 @@ import './App.css'
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Reservation from  './pages/Reservation';
 import Count from './pages/Count';

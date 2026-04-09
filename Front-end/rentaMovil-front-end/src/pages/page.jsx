@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import ButtonBack from "../components/buttonBack";
 import ImgMapa from "../assets/MapaNeivaPago.png";
+import Nabvar from "../components/navbar";
+import Footer from "../components/footer";
 
 function Pago() {
   const navigate = useNavigate();
   
   return (
+  <>
+    <Nabvar />
     <div>
       {/* HEADER */}
       <div className="header-page">
@@ -21,12 +25,10 @@ function Pago() {
         <h1>Pago</h1>
       </div>
     </div>
-
-
-
-
     </div>
-  ); 
+    <Footer />
+  </>
+  );
 }
 
 
