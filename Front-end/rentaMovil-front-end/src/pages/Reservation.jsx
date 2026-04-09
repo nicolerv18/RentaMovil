@@ -1,8 +1,12 @@
 import './reservation.css'
 import carro from '../assets/carro.png'
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 
 function Reservation() {
 return(
+    <>
+    <Navbar />
     <div className='containerR'>
     <div className='cardR'>
     <div className='card-headerR'>
@@ -39,6 +43,8 @@ return(
     </div>
     </div>
     </div>
+    <Footer />
+    </>
     
 );
 }

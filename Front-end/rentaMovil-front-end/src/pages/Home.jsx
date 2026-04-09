@@ -1,7 +1,7 @@
 import NavbarTwo from "../components/NavbarTwo";
 import '../pages/Home.css';
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import  CartVehicule from "../components/CartVehicule"
 import Filtrer from "../components/Filtrer";
 import Banner  from "../components/Banner";
@@ -9,6 +9,7 @@ import img from "../assets/carts/mustang.jpg";
 import img1 from "../assets/img/img1.png"
 import img2 from "../assets/img/img2.png"
 import img3 from "../assets/img/img3.webp"
+
 
 function Home(){
     return (
@@ -37,7 +38,7 @@ function Home(){
         </section>
         <Footer/>
 
-        </> 
+        </>
     )
 }
 
