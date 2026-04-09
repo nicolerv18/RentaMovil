@@ -1,9 +1,13 @@
 import './count.css'
 import login from '../assets/login.png'
 import {FaEdit, FaMoon} from "react-icons/fa";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function Count() {
 return(
+    <>
+    <Navbar />
     <div className='containerC'>
     <div className='cardC'>
     <div className="actions">
@@ -30,6 +34,8 @@ return(
     </div>
     </div>
     </div>
+    <Footer />
+    </>
     
 );
 }
