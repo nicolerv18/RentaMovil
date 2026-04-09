@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import ButtonBack from "../components/buttonBack";
+import ButtonBack from "../components/ButtonBack";
 import ImgMapa from "../assets/MapaNeivaPago.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-function Pago() {
+
+function Payment() {
   const navigate = useNavigate();
   
   return (
@@ -14,7 +15,7 @@ function Pago() {
       {/* HEADER */}
       <div className="header-page">
         <ButtonBack onClick={() => navigate(-1)} />
-        <h1>Pago</h1>
+        <h1>Payment</h1>
       </div>
     {/* MAIN CONTENT */}
     <div className="container">
@@ -22,7 +23,7 @@ function Pago() {
         <img src={ImgMapa} alt="Mapa" className="map-image" />
       </div>
       <div className="right-section">
-        <h1>Pago</h1>
+        <h1>Payment</h1>
       </div>
     </div>
     </div>
@@ -34,4 +35,4 @@ function Pago() {
 
 
 
-export default Pago;
+export default Payment;

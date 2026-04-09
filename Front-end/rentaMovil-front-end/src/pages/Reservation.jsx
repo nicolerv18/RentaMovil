@@ -1,4 +1,4 @@
-import './reservation.css'
+import './Reservation.css'
 import carro from '../assets/carro.png'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';

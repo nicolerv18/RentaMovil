@@ -1,4 +1,4 @@
-import './navar.css'
+import './Navbar.css'
 import { Link } from "react-router-dom";
 import {FaCar} from "react-icons/fa";
 import {MdPerson} from "react-icons/md";
@@ -13,10 +13,10 @@ function Navbar(){
             </div>
 
             <nav className='nav-links-container'>
-                <Link to="/home">Inicio</Link>
-                <Link to="/notification">Notificaciones</Link>
-                <Link to="/reservation">Reservación</Link>
-                <Link to="/count"><MdPerson className='icon user-icon'/></Link>
+                <Link to="/Home">Inicio</Link>
+                <Link to="/Notification">Notificaciones</Link>
+                <Link to="/Reservation">Reservación</Link>
+                <Link to="/Count"><MdPerson className='icon user-icon'/></Link>
             </nav>
 
         </header>
