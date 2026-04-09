@@ -2,8 +2,8 @@ import "./notification.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ButtonBack from "../components/buttonBack";
-import Nabvar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Notification() {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ function Notification() {
 
   return (
     <>
-    <Nabvar />
+    <Navbar />
     <div className="notification-page">
       {/* HEADER */}
       <div className="header-page">

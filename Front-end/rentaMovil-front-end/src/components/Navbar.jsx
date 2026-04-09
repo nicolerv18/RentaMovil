@@ -8,7 +8,7 @@ function Navbar(){
         <header className='navbar'>
 
             <div className='logo-container'>
-                <h1 className='Title'>RentaMovilsss</h1>
+                <h1 className='Title'>RentaMovil</h1>
                 <FaCar className='icon'/>
             </div>
 

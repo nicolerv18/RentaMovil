@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import ButtonBack from "../components/buttonBack";
 import ImgMapa from "../assets/MapaNeivaPago.png";
-import Nabvar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Pago() {
   const navigate = useNavigate();
   
   return (
   <>
-    <Nabvar />
+    <Navbar />
     <div>
       {/* HEADER */}
       <div className="header-page">
