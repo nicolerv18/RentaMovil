@@ -6,7 +6,7 @@
     }
     .cardR{
         margin-top: 100px;
-        background-color: white;
+        background-color: var(--card-bg);
         width: 90%;
         border-radius: 10px;
         text-align: center;
