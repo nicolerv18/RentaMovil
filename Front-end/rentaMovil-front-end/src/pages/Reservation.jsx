@@ -2,8 +2,15 @@ import './Reservation.css'
 import carro from '../assets/carro.png'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 function Reservation() {
+  const navigate = useNavigate();
+
+  const Pago = () => {
+    navigate('/Payment');
+  };
+
 return(
     <>
     <Navbar />
@@ -39,7 +46,7 @@ return(
     <label className='form-label' htmlFor="nombre">Hora de entrega:</label>
     <input  className="time" type="time" placeholder='Nombre' />
     </div>
-    <button>Alquilar</button>
+    <button onClick={Pago}>Alquilar</button>
     </div>
     </div>
     </div>
