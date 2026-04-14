@@ -41,12 +41,6 @@
   gap: 8px;
 }
 
-.Title{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 1.8rem;
-  color:  var( --textNavabar);
-}
-
 .nav-links-container{
   display: flex;
   align-items: center;
@@ -61,16 +55,16 @@
 
 /* ICONOS */
 nav svg {
-  font-size: 20px;
   cursor: pointer;
 }
 
 
 .icon{
-  font-weight: 100px;
   color: var( --button);
+  width: 30px;
+  height: 30px;
 }
 
 .icon:hover{
-  color: var(--accent);
+  color: rgb(135, 216, 145);
 }

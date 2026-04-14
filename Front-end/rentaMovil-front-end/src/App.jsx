@@ -15,8 +15,7 @@ import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    // Leer el estado guardado en localStorage
-    const saved = localStorage.getItem('darkMode');
+    const saved = localStorage.getItem('darkMode'); //hace que al recargar la pagina no se reinice a modo claro, guardandolo en el localStorage del navegador, y al cargar la pagina se lee ese valor para establecer el estado inicial de darkMode. Si no hay un valor guardado, se establece como false (modo claro).
     return saved ? JSON.parse(saved) : false;
   });
   

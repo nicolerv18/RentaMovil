@@ -97,12 +97,12 @@ footer {
 
 /* BOTTOM */
 .footer-bottom {
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid rgb(255, 255, 255);
   margin-top: 40px;
   padding-top: 15px;
   text-align: center;
   font-size: 13px;
-  color: #94a3b8;
+  color: #ffffff;
 }
 
 /* RESPONSIVE */
