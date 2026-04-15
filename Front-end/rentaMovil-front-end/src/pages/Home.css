@@ -9,18 +9,19 @@
 
 }
 
-.card-vehicule-container{
-    display: grid;
-    grid-template-columns: repeat(2, 400px);
-    gap: 25px;
-    padding: 100px 25px;
-}   
+
+.card-vehicule-container {
+  display: grid;
+grid-template-columns: repeat(2, 464px);
+  gap: 40px;
+  padding: 19px 25px;
+}
 
 .sildebar-containner {
-  display: flex;
+display: flex;
   flex-direction: column;
-  gap: 16px;
-  right: 172px;
+  gap: 13px;
+  right: 67px;
   position: sticky;
   top: 40px;
 }
