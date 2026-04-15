@@ -1,4 +1,4 @@
-import './count.css'
+import './Count.css'
 import login from '../assets/login.png'
 import {FaEdit, FaMoon} from "react-icons/fa";
 import Navbar from '../components/Navbar';

@@ -1,7 +1,7 @@
 import NavbarTwo from "../components/NavbarTwo";
 import '../pages/Home.css';
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import  CartVehicule from "../components/CartVehicule"
 import Filtrer from "../components/Filtrer";
 import Banner  from "../components/Banner";

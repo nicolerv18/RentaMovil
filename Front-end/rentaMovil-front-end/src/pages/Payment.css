@@ -1,0 +1,176 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  background-color: #e5e5e5;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.left-section {
+  width: 35%;
+  background-color: #8fb3c9;
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.map-image {
+  width: 70%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.Details-ubi-1{
+  color: black;
+  font-size: 22px;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-weight: 500;
+}
+
+.Details-ubi-2{
+  color: black;
+  font-size: 22px;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 80px;
+  font-weight: 500;
+}
+
+.right-section {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.resumen-section {
+  padding: 10px 20px;
+}
+
+.resumen-section h2 {
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.resumen-item p {
+  margin: 5px 0;
+  font-size: 28px;
+  color: #000000cd;
+  font-weight: 400;
+}
+
+.total-section {
+  padding-top: 12px;
+  margin-top: 10px;
+}
+
+.total-section h3 {
+    padding-top: 15px;
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.total-price {
+    
+  margin: 5px 0 0 0;
+  font-size: 28px;
+  font-weight: 400;
+  color: #000000ad ;
+}
+
+.monto-section {
+    
+  padding: 10px 20px;
+}
+
+.monto-section h3 {
+    padding-top: 15px;
+  margin: 0 0 5px 0;
+  font-size: 26px;
+  font-weight: 700;
+    color: #000000;
+}
+
+.monto-desc {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  color: #888;
+  color: #00000076;
+}
+
+.monto-input select {
+  padding: 10px 18px;
+  border: 1px solid #aaa;
+  border-radius: 40px;
+  font-size: 18px;
+  color: #777777;
+  width: 150px;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232563eb' d='M6 9L1 4h10z'/%3E%3C/svg%3E") no-repeat right 18px center;
+  cursor: pointer;
+  font-weight: 600;
+  padding-right: 35px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.monto-input select:focus {
+  outline: none;
+  border: 1px solid #555;
+}
+
+.monto-input select option {
+  background-color: white;
+  color: #333;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.responsable-section {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #000000;
+}
+
+.responsable-section h3 {
+    padding-top: 5px;
+  margin: 0 0 6px 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.responsable-section input {
+  width: 100%;
+  padding: 18px 35px;
+  border: 1px solid #aaa;
+  border-radius: 40px;
+  border-bottom: 1px solid #aaa;
+  font-size: 16px;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.responsable-section input::placeholder {
+  color: #aaa;
+}
+
+.responsable-section input:focus {
+  outline: none;
+  border-bottom: 1px solid #555;
+}
