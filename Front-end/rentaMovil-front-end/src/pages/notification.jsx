@@ -1,9 +1,9 @@
-import "./notification.css";
+import "./Notification.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ButtonBack from "../components/buttonBack";
-import Nabvar from "../components/navbar";
-import Footer from "../components/footer";
+import ButtonBack from "../components/ButtonBack";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Notification() {
   const navigate = useNavigate();
@@ -12,25 +12,42 @@ function Notification() {
   const todasNotificaciones = [
     { id: 1, tipo: "reserva", texto: "Tu reserva fue confirmada" },
     { id: 2, tipo: "cancelada", texto: "Tu reserva fue cancelada" },
-    { id: 3, tipo: "recordatorio", texto: "Recordatorio: Tu reserva vence en 2 días" },
+    {
+      id: 3,
+      tipo: "recordatorio",
+      texto: "Recordatorio: Tu reserva vence en 2 días",
+    },
     { id: 4, tipo: "reserva", texto: "Tu reserva fue confirmada" },
     { id: 5, tipo: "cancelada", texto: "Tu reserva fue cancelada" },
-    { id: 6, tipo: "recordatorio", texto: "Recordatorio: Tu reserva vence en 2 días" },
+    {
+      id: 6,
+      tipo: "recordatorio",
+      texto: "Recordatorio: Tu reserva vence en 2 días",
+    },
     { id: 7, tipo: "reserva", texto: "Tu reserva fue confirmada" },
     { id: 8, tipo: "cancelada", texto: "Tu reserva fue cancelada" },
-    { id: 9, tipo: "recordatorio", texto: "Recordatorio: Tu reserva vence en 2 días" },
+    {
+      id: 9,
+      tipo: "recordatorio",
+      texto: "Recordatorio: Tu reserva vence en 2 días",
+    },
     { id: 10, tipo: "reserva", texto: "Tu reserva fue confirmada" },
     { id: 11, tipo: "cancelada", texto: "Tu reserva fue cancelada" },
-    { id: 12, tipo: "recordatorio", texto: "Recordatorio: Tu reserva vence en 2 días" },
+    {
+      id: 12,
+      tipo: "recordatorio",
+      texto: "Recordatorio: Tu reserva vence en 2 días",
+    },
   ];
 
-  const notificacionesFiltradas = filtro === "todos" 
-    ? todasNotificaciones 
-    : todasNotificaciones.filter(n => n.tipo === filtro);
+  const notificacionesFiltradas =
+    filtro === "todos"
+      ? todasNotificaciones
+      : todasNotificaciones.filter((n) => n.tipo === filtro);
 
   return (
     <>
-    <Nabvar />
+    <Navbar />
     <div className="notification-page">
       {/* HEADER */}
       <div className="header-page">

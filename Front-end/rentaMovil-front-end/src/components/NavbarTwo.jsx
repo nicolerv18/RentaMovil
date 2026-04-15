@@ -1,5 +1,5 @@
 import ReactDOM from "https://esm.sh/react-dom@18.2.0/client"
-import '../components/navber.css'
+import '../components/NavbarTwo.css'
 
 function NavbarTwo(){
     return (

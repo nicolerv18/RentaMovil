@@ -1,4 +1,4 @@
-import "./containerText.css";
+import "./ContainerText.css";
 
 const ContainerText = ({ title, children }) => {
   return (

@@ -9,8 +9,8 @@ return (
         <div className="footer-links">
         <h3>Enlaces</h3>
     <div className="links">
-        <Link to="/">Inicio</Link>
-        <Link to="/notification">Notificaciones</Link>
+        <Link to="/Home">Inicio</Link>
+        <Link to="/Notification">Notificaciones</Link>
         <Link to="/Count">Cuenta</Link>
 
     </div>
