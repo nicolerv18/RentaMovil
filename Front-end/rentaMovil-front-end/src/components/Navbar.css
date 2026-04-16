@@ -10,33 +10,35 @@
   border-radius: 10px;
   padding: 15px 40px;
 
-  background: white;
-  color: #0f172a;
+  background: var(--navbar);
+  color: var(--icon);
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 
-/*   position: fixed; */
+}
+.Title{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.8rem;
+  color:  var( --textNavabar);
+}
+
+.Title-hover{
+  color: var(--accent);
 }
 
 
 .navbar a{
   text-decoration: none;
-  color:#041135;
+  color: var( --textNavabar);
 }
 
 .navbar a:hover{
-  color: #2958d6;
+  color: var(--accent);
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.Title{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color:#041135;
-  font-size: 1.8rem;
 }
 
 .nav-links-container{
@@ -50,21 +52,17 @@
   gap: 30px;
 }
 
-
-/* ICONOS */
 nav svg {
-  font-size: 20px;
   cursor: pointer;
 }
 
 
-
-
-
 .icon{
-  font-size: 35px;
+  color: var( --button);
+  width: 30px;
+  height: 30px;
 }
 
 .icon:hover{
-  color: #2958d6;
+  color: rgb(135, 216, 145);
 }

@@ -2,7 +2,11 @@ import './Reservation.css'
 import carro from '../assets/carro.png'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+
 import { useNavigate } from 'react-router-dom';
+
+import { Link } from "react-router-dom";
+
 
 function Reservation() {
   const navigate = useNavigate();
@@ -22,31 +26,31 @@ return(
     <p className='price'>$13,2444</p>
     </div>
     <div className='form-grid'>
-    <div>
+    <div className='form-group'>
     <label className='form-label' htmlFor="nombre">Elegir fecha de inicio:</label>
     <input  className="date" type="date" placeholder='Nombre' />
     </div>
-    <div>
+    <div className='form-group'>
     <label className='form-label' htmlFor="nombre"> Elegir Lugar de retiro: </label>
     <input type="text" placeholder='Nombre' />
     </div>
-    <div>
+    <div className='form-group'>
     <label className='form-label' htmlFor="nombre">Hora de retiro:</label>
     <input className='time' type="time" placeholder='Nombre' />
     </div>
-        <div>
+        <div className='form-group'>
     <label className='form-label' htmlFor="nombre">Elegir fecha de fin:</label>
     <input  className="date" type="date" placeholder='Nombre' />
     </div>
-        <div>
+        <div className='form-group'>
     <label className='form-label' htmlFor="nombre">Elegir lugar de entrega:</label>
     <input type="text" placeholder='Nombre' />
     </div>
-        <div>
+        <div className='form-group'>
     <label className='form-label' htmlFor="nombre">Hora de entrega:</label>
     <input  className="time" type="time" placeholder='Nombre' />
     </div>
-    <button onClick={Pago}>Alquilar</button>
+    <Link to="/Payment"><button className='buttonR'>Alquilar</button></Link>
     </div>
     </div>
     </div>

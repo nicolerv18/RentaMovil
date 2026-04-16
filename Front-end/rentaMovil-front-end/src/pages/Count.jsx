@@ -1,18 +1,28 @@
 import './Count.css'
 import login from '../assets/login.png'
-import {FaEdit, FaMoon} from "react-icons/fa";
+import {FaLanguage, FaEdit, FaGlobe, FaMoon, FaSun} from "react-icons/fa";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import {Link, useNavigate} from 'react-router-dom';
+import ButtonBack from "../components/ButtonBack";
 
-function Count() {
+
+function Count( {darkMode, setDarkMode} ) {
+    const navigate = useNavigate();
 return(
     <>
     <Navbar />
     <div className='containerC'>
     <div className='cardC'>
+    <div className="header-page">
+        <ButtonBack onClick={() => navigate(-1)} />
+    </div>
     <div className="actions">
     <button className="icon-btn"><FaEdit /></button>
-    <button className="icon-btn"><FaMoon /></button>
+<button className="icon-btn" onClick={() => setDarkMode(!darkMode)}>
+    {darkMode ? <FaSun /> : <FaMoon />}
+</button>
+<button className='icon-btn'> <FaGlobe/></button>
 </div>
     <div className='formC'>
     <div>
@@ -30,7 +40,14 @@ return(
     <label className='form-labelC' htmlFor="nombre">Correo Electronico:</label>
     <input className='email' type="email" placeholder='Correo Electronico' />
     </div>
-    <button className='buttonC'>Modificar Contraseña</button>
+    <div>
+    <label className='form-labelC' htmlFor="nombre">Contraseña:</label>
+    <input className='email' type="password" placeholder='Contraseña' />
+    </div>
+    <Link to='/ChangePassword' className='linkC'>
+    Modificar Contraseña
+    </Link>
+    
     </div>
     </div>
     </div>

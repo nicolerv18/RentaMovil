@@ -1,51 +1,54 @@
     .containerC{
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 0 16px;
 
     }
     .cardC{
-        margin-top: 30px;
-        background-color: white;
-        width: 70%;
-        border-radius: 10px;
-        text-align: center;
-        align-items: center;
-        position: relative;
-        margin-bottom: 30px;
-        display: flex;
-        flex-direction: column;
-        padding-top: 80px;
+    margin-top: 30px;
+    background-color: var(--card-bg);
+    width: min(100%, 520px);
+    border-radius: 24px;
+    border:var(--border);
+    text-align: center;
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 32px 40px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
     }
     .email{
 
-        color: #000;
+        color: var(--text);
         font-family: 'poppins', sans-serif;
     }
 
     .date{
-            color: #000;
+            color: var(--text);
             font-family: 'poppins', sans-serif;
     }
     .card-h2{
-        color: #000000;
+        color: var(--text-h);
     }
 
     .price {
     font-weight: bold;
+    color: var(--accent);
     }
     .img{
     width: 150px;
     height: 150px;
     display: block;
     object-fit: cover;
-    margin-top: -80px;
+    margin-top: -50px;
     border-radius: 50%;
 
 
 }
     label{
-        color: #1f2937;
+        color: var(--text);
         margin: 5px;
         font-family: 'poppins', sans-serif;
     }
@@ -57,37 +60,47 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    margin-bottom: 20px;
 }
 
     .form-labelC{
-        display: block; /*Centar los labels, hace que las columnas se centren*/
-        text-align: start;
-        margin-left: 20px;
-        margin-top: 8px;
+    display: block;
+    text-align: start;
+    width: 100%;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--text-h);
+    font-weight: 500;
+    margin-left: 20px;
     }
 
     input{
-        border-radius: 10px;
-        background-color: aliceblue;
-        width: 250px;
-        height: 15px;
-        padding: 8px;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        color: #000;
+    width: 400px;
+    height: 48px;
+    padding: 14px 46px 14px 16px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    box-sizing: border-box;
+    outline: none;
+    background-color: var(--bg-dark-input);
+    color: var(--text);
+    }
+    .linkC{
+        color: var(--accent);
+        text-decoration: underline;
+        font-size: 0.90rem;
+        font-family: 'poppins', sans-serif;
+        cursor: pointer;
+        margin-top: -15px;
+        margin-bottom: 30px;
+        transition: color 0.2s ease;
+        margin-right: 220px;
+        
     }
 
-    .buttonC{
-        font-size: 75%;
-        grid-column: span 3;
-        background-color: #041135;
-        border-radius: 10px;
-        height: 30px;
-        width: 200px;
-        justify-self: left;
-        margin-top: 10px;
-        margin-bottom: 30px;
-        cursor: pointer;
+    .linkC:hover{
+        color: var(--accent);
+        text-decoration: underline;
     }
 
     .icon-btn{
@@ -98,6 +111,7 @@
     align-items: center;
     justify-content: center;
     padding: 0;
+    background-color: var(--button);
 }
 .actions{
     position: absolute;
