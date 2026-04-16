@@ -1,8 +1,8 @@
-import './count.css'
-import login from '../../../assets/img/Login1.png'
+import '../pages/Count.css';
+import login from '../../../assets/login.png';
 import {FaEdit, FaMoon} from "react-icons/fa";
-import Navbar from '../../../shared/components/layout/Navbar.jsx';
-import Footer from '../../../shared/components/layout/Footer.jsx';
+import Navbar from "../../../shared/components/layout/Navbar";
+import Footer from '../../../shared/components/layout/Footer';
 
 function Count() {
 return(

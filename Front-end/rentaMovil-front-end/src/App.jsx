@@ -1,5 +1,5 @@
-
 import './App.css'
+
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ const Reservation = lazy(() => import('./features/booking/pages/Reservation.jsx'
 const Count = lazy(() => import('./features/auth/pages/Count.jsx'))
 const Notification = lazy(() => import('./features/notification/pages/notification.jsx'))
 const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'))
+
 
 function App() {
   return (
@@ -27,4 +28,5 @@ function App() {
   )
 }
 
-export default App
+export default App;
+
