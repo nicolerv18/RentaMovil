@@ -75,29 +75,24 @@ function ChangePassword() {
         setLoading(true);
 
         try {
-            // ============================================
-            // TODO: CAMBIAR CUANDO BACKEND ESTÉ LISTO
-            // ============================================
-            // 1. Reemplaza "http://tu-backend.com/api/auth/change-password" 
+
+            // 1. Reemplaza "http://tu-backend.com/api/auth/change-password"
             //    con tu URL real del backend (ej: http://localhost:3001/api/auth/change-password)
             // 2. Si tu backend requiere token, descomenta la línea de Authorization
-            // ============================================
             
             const response = await fetch("http://tu-backend.com/api/auth/change-password", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     // DESCOMENTA ESTA LÍNEA SI TU BACKEND REQUIERE AUTENTICACIÓN:
-                    // "Authorization": `Bearer ${localStorage.getItem("token")}` 
+                    // "Authorization": `Bearer ${localStorage.getItem("token")}`
                 },
-                // ============================================
                 // ESTRUCTURA QUE SE ENVÍA AL BACKEND:
                 // {
                 //   "currentPassword": "MiContraseña123#",
                 //   "newPassword": "NuevaContraseña123#",
                 //   "confirmPassword": "NuevaContraseña123#"
                 // }
-                // ============================================
                 body: JSON.stringify({
                     currentPassword: currentPassword,
                     newPassword: password,

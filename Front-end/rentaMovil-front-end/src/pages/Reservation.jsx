@@ -2,6 +2,7 @@ import './Reservation.css'
 import carro from '../assets/carro.png'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Link } from "react-router-dom";
 
 function Reservation() {
 return(
@@ -39,7 +40,7 @@ return(
     <label className='form-label' htmlFor="nombre">Hora de entrega:</label>
     <input  className="time" type="time" placeholder='Nombre' />
     </div>
-    <button>Alquilar</button>
+    <Link to="/Payment"><button className='buttonR'>Alquilar</button></Link>
     </div>
     </div>
     </div>

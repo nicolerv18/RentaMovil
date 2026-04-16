@@ -1,6 +1,6 @@
 .buttonBack {
   background-color: #2c3e5000;
-  color: white;
+  color: var(--button);
   padding: 10px 18px;
   border: none;
   border-radius: 8px;
@@ -8,11 +8,6 @@
   cursor: pointer;
   display: inline-flex;
   gap: 6px;
-  transition: all 0.3s ease;
   transform: translate(-820px, 10px);
+  margin-top: -40px;
 }
-
-.buttonBack:hover {
-  background-color: #34495e;
-}
-

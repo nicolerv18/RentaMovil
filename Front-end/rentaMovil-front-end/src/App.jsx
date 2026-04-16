@@ -27,11 +27,6 @@ function App() {
   return (
     
     <BrowserRouter>
-      {/* Navegación */}
-      <nav>
-        <Link to="/payment">Payment</Link>
-      </nav>
-
       {/* Rutas */}
       <Routes>
         <Route path="/" element={<Login />} />

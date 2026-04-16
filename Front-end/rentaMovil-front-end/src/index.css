@@ -1,23 +1,26 @@
 :root {
   /* Colores de texto */
-  --text: #37474F;
+  --text: #0a0a0a;
   --text-h: #37474F;
   --textNavabar: #FFFFFF;
   --textFooter: #FFFFFF;
+  --text-btn: #FFFFFF;
+  --placeholder: #9ca3af;
 
   /* Fondos */
   --bg: #F5F7FA;
   --card-bg: #FFFFFF;
-  --navbar: #1565C0;
+  --navbar: #3a4453;
 
-  --primary: #1E88E5; 
-  --primary-dark: #1565C0;
+  --primary: #2D7FF9;
+  --primary-dark: #3F8CFF;
   --success: #00C853;
 
   /* Iconos */
   --icon: #37474F;
 
   /* Botones */
+  --buttonLoading: #A5D6A7;
   --button:#00C853;
   --button-success: #00C853;
 
@@ -63,6 +66,8 @@
   /* Colores de texto */
   --text: #9ca3af;
   --text-h: #f3f4f6;
+  --text-btn: #2a2828;
+  --placeholder: #9ca3af;
 
   /* Fondos */
   --bg: #020617;
