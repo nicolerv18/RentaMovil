@@ -1,5 +1,5 @@
 import "./Filtrer.css";
-import flecha from "../assets/img/flecha.png";
+import flecha from "../../../assets/img/flecha.png";
 import { FaCar } from "react-icons/fa";
 import { useState } from "react";
 

@@ -1,14 +1,14 @@
-import './Reservation.css'
-import carro from '../assets/carro.png'
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import './reservation.css'
+import carro from '../../../assets/carts/mustang.jpg'
+import Navbar from '../../../shared/components/layout/Navbar.jsx';
+import Footer from '../../../shared/components/layout/Footer.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function Reservation() {
   const navigate = useNavigate();
 
   const Pago = () => {
-    navigate('/Payment');
+    navigate('/payment');
   };
 
 return(

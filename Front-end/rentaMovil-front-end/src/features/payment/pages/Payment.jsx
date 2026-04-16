@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import ButtonBack from "../components/ButtonBack";
+import ButtonBack from "../shared/components/ButtonBack";
 import ImgMapa from "../assets/MapaNeivaPago.png";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../shared/components/Navbar";
+import Footer from "../shared/components/Footer";
 import "./Payment.css";
 
 

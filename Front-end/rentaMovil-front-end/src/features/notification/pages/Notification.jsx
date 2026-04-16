@@ -1,9 +1,9 @@
-import "./Notification.css";
+import "./notification.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ButtonBack from "../components/ButtonBack";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import ButtonBack from "../../../shared/components/buttonBack.jsx";
+import Navbar from "../../../shared/components/layout/Navbar.jsx";
+import Footer from "../../../shared/components/layout/Footer.jsx";
 
 function Notification() {
   const navigate = useNavigate();
