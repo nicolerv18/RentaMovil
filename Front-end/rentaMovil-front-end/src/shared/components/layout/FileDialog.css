@@ -1,0 +1,18 @@
+.file-dialog {
+font-family: inherit;
+  background-color: aliceblue;
+  width: 210%;
+  max-width: 559px;
+  aspect-ratio: 17 / 11;
+  border: 2px dashed #bbb;
+  right: 753px;
+  left: 64px;
+  margin: 241px;
+}
+.conainer-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
