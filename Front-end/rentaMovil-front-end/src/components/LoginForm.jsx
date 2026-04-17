@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import "./LoginForm.css";
 import Quotes from './Quotes';
 
-function LoginForm({onSubmit}){   
-
+function LoginForm({onSubmit}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -27,12 +27,33 @@ function LoginForm({onSubmit}){
             setLoading(false);
         }
     };
-    return( 
+    return(
         <section className="login">
         <form className='login-form' onSubmit={handleSubmit} aria-live='polite'>
-            <label htmlFor="email">Correo electrónico</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='username' required /> 
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='current-password' required/>
+            <div className="form-group">
+                <label htmlFor="email">Correo electrónico</label>
+                <input 
+                    id="email"
+                    type="email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    autoComplete='username' 
+                    placeholder="tu@email.com"
+                    required 
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="password">Contraseña</label>
+                <input 
+                    id="password"
+                    type="password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    autoComplete='current-password'
+                    placeholder="••••••••"
+                    required
+                />
+            </div>
             {error && <div className='login-error' role='alert'>{error}</div>} 
             <Link to="/home" className='register-link'>¿No tienes cuenta? Regístrate</Link>
             <button className='email-btn' type="submit" disabled={loading}>
@@ -45,6 +66,5 @@ function LoginForm({onSubmit}){
     )
 
 }
-   
-    
+
 export default LoginForm;
