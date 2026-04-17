@@ -9,10 +9,6 @@ function VehicleForm() {
                 <form className={style['form-container']}>
                     <h2>Registre un nuevo vehículo</h2>
                     <div className={style['vehicle-form-input']}>
-                        <label htmlFor="name">Nombre:</label>
-                        <input type="text" placeholder="Nombre"/> 
-                    </div>
-                    <div className={style['vehicle-form-input']}>
                         <label htmlFor="plate">Placa:</label>
                         <input type="text" placeholder="Placa"/> 
                     </div>

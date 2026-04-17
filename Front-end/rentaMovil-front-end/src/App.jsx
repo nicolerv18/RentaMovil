@@ -10,6 +10,7 @@ const Count = lazy(() => import('./features/auth/pages/Count.jsx'))
 const Notification = lazy(() => import('./features/notification/pages/notification.jsx'))
 const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'))
 const RegisterVehicle = lazy(() => import('./features/admin/vehicles/pages/RegisterVehicle.jsx'))
+const Maintenance = lazy(() => import('./features/admin/maintenance/pages/Maintenance.jsx'))
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/notification" element={<Notification />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
+          <Route path="/Maintenance" element={<Maintenance />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

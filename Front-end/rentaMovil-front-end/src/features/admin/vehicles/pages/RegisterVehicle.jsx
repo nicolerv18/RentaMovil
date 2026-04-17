@@ -6,14 +6,14 @@ import style from'./RegisterVehicle.module.css';
 function RegisterVehicle() {
     return (
         <>
-        <div className={style.container}> 
+  
             <Navbar/>
             <VehicleForm />
             <div className={style.fileDialogs}>
                 <FileDialog />
             </div>
             <Footer/>
-        </div>
+
         </>
     );
 }
