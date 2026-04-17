@@ -5,7 +5,7 @@ import Banner  from "../../../shared/components/layout/Banner.jsx";
 import img1 from "../../../assets/img/img1.png"
 import login1 from "../../../assets/img/Login1.png"
 import login2 from "../../../assets/img/Login2.jpg"
-import login3 from "../../../assets/img/Login3.avif"
+import login3 from "../../../assets/img/Login3.jpg"
 import './Login.css';
 
 function Login(){

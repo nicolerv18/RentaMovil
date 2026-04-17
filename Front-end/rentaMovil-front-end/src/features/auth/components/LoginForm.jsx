@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
-import Quotes from './Quotes';
+import Quotes from '../../../shared/components/Quotes';
 
 function LoginForm({ onSubmit }) {
     const [email, setEmail] = useState('');

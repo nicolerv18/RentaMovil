@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./Quotes.css";
+import "../components/layout/Quotes.css";
 function Quotes() {
     const quotes = [
         "Confía en tu viaje. Confía en Rentamovil.",
