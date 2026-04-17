@@ -59,7 +59,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 15px;
     margin-bottom: 20px;
 }
 
@@ -76,9 +76,9 @@
 
     input{
     width: 400px;
-    height: 48px;
+    height: 38px;
     padding: 14px 46px 14px 16px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     box-sizing: border-box;
     outline: none;
@@ -91,7 +91,7 @@
         font-size: 0.90rem;
         font-family: 'poppins', sans-serif;
         cursor: pointer;
-        margin-top: -15px;
+        margin-top: 15px;
         margin-bottom: 30px;
         transition: color 0.2s ease;
         margin-right: 220px;
@@ -111,12 +111,14 @@
     align-items: center;
     justify-content: center;
     padding: 0;
+    border-radius: 10px;
     background-color: var(--button);
+    margin-top: 10px;
 }
 .actions{
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 15px;
     display: flex;
     gap: 8px;
 }

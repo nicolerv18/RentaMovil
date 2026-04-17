@@ -17,26 +17,15 @@ function Count({ darkMode, setDarkMode }) {
                 <div className='cardC'>
 
                     {/* HEADER */}
-                    <div className="header-page">
-                        <ButtonBack onClick={() => navigate(-1)} />
-                    </div>
-
-                    {/* ACCIONES */}
-                    <div className="actions">
-                        <button className="icon-btn">
-                            <FaEdit />
-                        </button>
-
-                        <button
-                            className="icon-btn"
-                            onClick={() => setDarkMode(!darkMode)}
-                        >
-                            {darkMode ? <FaSun /> : <FaMoon />}
-                        </button>
-
-                        <button className='icon-btn'>
-                            <FaGlobe />
-                        </button>
+                        <div className="header-page">
+                            <ButtonBack onClick={() => navigate(-1)} />
+                        </div>
+                        <div className="actions">
+                        <button className="icon-btn"><FaEdit /></button>
+                    <button className="icon-btn" onClick={() => setDarkMode(!darkMode)}>
+                        {darkMode ? <FaSun /> : <FaMoon />}
+                    </button>
+                    <button className='icon-btn'> <FaGlobe/></button>
                     </div>
 
                     {/* FORM */}
@@ -50,25 +39,25 @@ function Count({ darkMode, setDarkMode }) {
                         {/* NOMBRE */}
                         <div className='form-groupC'>
                             <label className='form-labelC'>Nombre:</label>
-                            <input type="text" placeholder='Nombre' />
+                            <input type="text" placeholder='Juanito Pérez' />
                         </div>
 
                         {/* TELÉFONO */}
                         <div className='form-groupC'>
                             <label className='form-labelC'>Teléfono:</label>
-                            <input type="text" placeholder='Teléfono' />
+                            <input type="text" placeholder='3145556' />
                         </div>
 
                         {/* EMAIL */}
                         <div className='form-groupC'>
                             <label className='form-labelC'>Correo Electrónico:</label>
-                            <input type="email" placeholder='Correo Electrónico' />
+                            <input type="email" placeholder='juanito@example.com' />
                         </div>
 
                         {/* PASSWORD */}
                         <div className='form-groupC'>
                             <label className='form-labelC'>Contraseña:</label>
-                            <input type="password" placeholder='Contraseña' />
+                            <input type="password" placeholder='********' />
                         </div>
 
                         {/* LINK */}
