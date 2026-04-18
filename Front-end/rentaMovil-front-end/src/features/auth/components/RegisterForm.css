@@ -29,8 +29,6 @@
 
   background: var(--card-bg);
   color: var(--text);
-
-  transition: 0.2s;
 }
 
 .register-form input::placeholder {
