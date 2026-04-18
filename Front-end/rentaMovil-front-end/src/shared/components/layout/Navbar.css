@@ -70,7 +70,55 @@ nav svg {
   height: 30px;
   margin-top: 5px;
 }
-
+.menu-toggle {
+  display: none;
+}
 .icon:hover{
   color: rgb(135, 216, 145);
+}
+@media (max-width: 768px) {
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    position: relative;
+  }
+
+  /* BOTÓN MENÚ */
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* LINKS ocultos por defecto */
+  .nav-links-container {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 90%;
+    background: var(--navbar);
+    color: var(--accent);
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 20px;
+
+    transform: translateY(-300%);
+    transition: 0.3s ease;
+    z-index: 100;
+  }
+  .icon-FaBars{
+    color: var(--accent);
+  }
+  
+  /* cuando está activo */
+  .nav-links-container.active {
+    transform: translateY(0);
+    color: var(--accent);
+  }
 }

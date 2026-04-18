@@ -2,7 +2,10 @@ import './Home.css';
 import Navbar from "../../../shared/components/layout/Navbar.jsx";
 import Footer from "../../../shared/components/layout/Footer.jsx";
 import  CartVehicule from "../components/CartVehicule"
-import Filtrer from "../components/Filtrer";
+import FiltrerBrand from "../components/FiltrerBrand";
+import FiltrerPrice from "../components/FiltrerPrice";
+import FiltrerType from "../components/FiltrerType";
+import FiltrerModel from '../components/FiltrerModel.jsx';
 import Banner  from "../../../shared/components/layout/Banner.jsx";
 import img from "../../../assets/carts/car1.jpg";
 import img1 from "../../../assets/img/img1.png"
@@ -37,7 +40,10 @@ function Home(){
           </div>
 
           <aside className="sidebar-container">
-            <Filtrer/>
+            <FiltrerBrand/>
+            <FiltrerPrice/>
+            <FiltrerModel/>
+            <FiltrerType/>
           </aside>
 
         </section>

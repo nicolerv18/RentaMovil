@@ -1,6 +1,6 @@
 import "./Filtrer.css";
 import flecha from "../../../assets/img/flecha.png";
-import { FaCar } from "react-icons/fa";
+import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
 
 function Filtrer() {
@@ -11,19 +11,20 @@ function Filtrer() {
       <ul className="nav-container">
         <li className={open ? "active" : ""}>
           <button className="btn-filtrar" onClick={() => setOPen(!open)}>
-            RentaMovil <FaCar className="icon2" />
-            Filtrar{" "}
-            <img
+            Marca <FaCar className="icon2" />{" "}
+            <FaArrowAltCircleDown
               src={flecha}
               alt=""
               className={`icono-flecha ${open ? "rotade" : ""}`}
             />
           </button>
           <ul className="dropdown">
-            <li><a>Categoria</a></li>
-            <li><a>Año</a></li>
-            <li><a>Precio</a></li>
-            <li><a>Combustible</a></li>
+            <li><a>Swift</a></li>
+            <li><a>Twingo</a></li>
+            <li><a>Honda</a></li>
+            <li><a>Renault</a></li>
+            <li><a>Chevrolet</a></li>
+            <li><a>Mazda</a></li>
           </ul>
         </li>
       </ul>
