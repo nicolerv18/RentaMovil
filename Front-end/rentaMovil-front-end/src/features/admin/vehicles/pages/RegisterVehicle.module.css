@@ -1,10 +1,10 @@
 .fileDialogs{
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-position: absolute;
-top: 0px;
-right: 121px;
-margin: 0;      
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0px;
+    right: 121px;
+    margin: 0;      
 }   

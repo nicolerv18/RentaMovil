@@ -1,29 +1,49 @@
 .maintenance-form{
     display: grid;
-    grid-template-columns: 1fr 311px; /* izquierda contenido, derecha filtro */
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 181px;
     padding: 20px;
 }
-.maintenance-container{
-  display: flex;
-  flex-direction: column;
-  width: 1194px;
-  padding: 60px;
-  border-radius: 10px;
-  background-color: var(--card-bg);
-  margin: 63px 0 32px 100px;
-}
-.maintenance-form-input{
-color: #1f2937;
-  font-family: 'poppins', sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  padding: 10px;
-  max-width: 293px;
 
+.maintenance-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    padding: 60px;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    margin: 63px auto;
 }
+.maintenance-form-left{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.maintenance-form-right{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.maintenance-form-observations{
+    gap: 15px;
+    padding: 10px;
+    max-width: 100%;
+}
+
+
+.maintenance-form-input{
+    color: #1f2937;
+    font-family: 'poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 64%;
+    padding: 10px;
+     max-width: 100%;
+}
+
 .maintenance-form input {
     border-radius: 36px;
     background-color: aliceblue;
@@ -36,21 +56,46 @@ color: #1f2937;
     box-sizing: border-box;
 }
 
-.maintenance-form h2 {
-font-size: 31px;
+.maintenance-container h2 {
+  font-size: 24px;
   line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 1px auto 19px;
+  margin: 0px 343px 34px;
 }
 
-.maintenance-container button {
-    background: rgba(230, 225, 225, 0.55);
-    border: 1px solid #425b7c;
+.maintenance-form-buttons {
     color: black;
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between;
     font-size: 12px;
     padding: 8px 12px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+}
+.maintenance-form-buttons button{
+    padding: 12px 20px; 
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
 
+    min-width: 120px;
+}
+.error-message {
+    color: red;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+@media (max-width: 768px) {
+    .maintenance-form {
+        grid-template-columns: 1fr;
+    }
+
+    .maintenance-form-observations,
+    .maintenance-form-buttons {
+        grid-column: span 1;
+    }
 }
