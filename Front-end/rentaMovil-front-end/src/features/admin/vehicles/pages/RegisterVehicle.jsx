@@ -6,10 +6,10 @@ import style from'./RegisterVehicle.module.css';
 function RegisterVehicle() {
     return (
         <>
-  
             <Navbar/>
-            <VehicleForm />
             <div className={style.fileDialogs}>
+            <VehicleForm />
+
                 <FileDialog />
             </div>
             <Footer/>

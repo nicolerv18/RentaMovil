@@ -7,6 +7,11 @@
     background-color: var(--card-bg);
     margin: 63px 0 32px 100px;
 }
+.vehicle-form h2{
+    font-size: 24px;
+    color: #1f2937;
+    font-family: 'poppins', sans-serif;
+}
 .form-container {
     display: flex;
     flex-direction: column;
@@ -39,6 +44,13 @@
     cursor: pointer;
     margin-right: auto;
     margin-left: auto;
+}
+.error-message {
+    color: red;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
 }
 
 .vehicle-form button :hover {
