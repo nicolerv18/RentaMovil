@@ -11,6 +11,7 @@ import img from "../../../assets/carts/car1.jpg";
 import img1 from "../../../assets/img/img1.png"
 import img2 from "../../../assets/img/img2.jpg"
 import img3 from "../../../assets/img/img3.webp"
+import FilterCalendar from '../components/FilterCalendar.jsx';
 
 
 
@@ -22,8 +23,8 @@ function Home(){
             <div className="banner-container">
                 <Banner
                   imgs={[img1, img2, img3]}
-                  text="Disfruta la libertad de moverte cuando quieras con vehículos cómodos, seguros y en excelente estado..."
                 />
+                <FilterCalendar/>
             </div>
         </div>
         <section className="home-container">

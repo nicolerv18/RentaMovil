@@ -1,6 +1,7 @@
 import "./Footer.css";
-import { FaCar } from "react-icons/fa";
+import { FaCar, FaInstagram, FaWhatsapp, FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 
 function Footer() {
 return (
@@ -20,6 +21,11 @@ return (
                 <FaCar className="icon2" />
                 RentaMovil
             </h2>
+            <div className="social-icons">
+                <FaInstagram className="icon"/>
+                <FaWhatsapp className="icon" />
+                <FaTiktok className="icon" />
+            </div>
             <p>Tu plataforma de alquiler de vehículos</p>
             </div>
         <div className="footer-contact">

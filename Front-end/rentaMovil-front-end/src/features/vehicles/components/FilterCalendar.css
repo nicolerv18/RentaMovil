@@ -1,0 +1,94 @@
+.filter-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    flex-direction: row;
+    align-items: flex-end;
+    transform: translateX(-50%);
+    background: var(--input);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 20px;
+    width: 90%;
+    max-width: 700px;
+    z-index: 10;
+    opacity: 90%;
+    overflow: visible;
+}
+
+.field {
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+    position: relative;
+}
+
+.sucursal-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    background: var(--input);
+    border-radius: 10px;
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    padding: 4px;
+    list-style: none;
+    margin: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 9999;
+    overflow: visible;
+}
+
+.sucursal-dropdown li {
+    padding: 9px 12px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--placeholder);
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.sucursal-dropdown li:hover {
+    background: color-mix(in srgb, var(--button) 10%, transparent);
+    color: var(--button);
+}
+
+.label-filter {
+    font-family: 'poppins', sans-serif;
+    font-size: 12px;
+    opacity: 80%;
+}
+
+.input-container {
+    padding: 10px;
+    border: 1px solid #e3d1d1;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    background-color: var(--input);
+    color: var(--placeholder);
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0);
+    opacity: 1;
+    color: var(--placeholder);
+    cursor: pointer;
+}
+
+.btn-search {
+    background: var(--button);
+    color: var(--text-btn);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
