@@ -4,11 +4,13 @@ import MaintenanceForm from "../components/MaintenanceForm";
 
 function Maintenance() {
     return (
+
         <>
             <Navbar />
             <MaintenanceForm />
             <Footer />
         </>
+
     );
 }
 export default Maintenance;

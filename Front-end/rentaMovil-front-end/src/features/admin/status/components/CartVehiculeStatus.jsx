@@ -1,4 +1,5 @@
 import style from'../components/CartVehiculeStatus.module.css'
+
 function CartVehiculeStatus({name,text,state,plate,img,ubication}){
     return(
     <div className = {style["card-vehicule"]}>
