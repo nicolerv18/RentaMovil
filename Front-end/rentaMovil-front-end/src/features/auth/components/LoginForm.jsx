@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import Quotes from './Quotes';
+import Quotes from '../../../shared/components/Quotes.jsx';
+import '../components/LoginForm.css';
 
 function LoginForm({onSubmit}){   
 
@@ -28,17 +29,26 @@ function LoginForm({onSubmit}){
         }
     };
     return( 
-        <section className="login">
+        <section className="login-container">
         <form className='login-form' onSubmit={handleSubmit} aria-live='polite'>
-            <label htmlFor="email">Correo electrónico</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='username' required /> 
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='current-password' required/>
-            {error && <div className='login-error' role='alert'>{error}</div>} 
+           <div className='login-form-input'>
+                <label htmlFor="email">Correo electrónico</label>
+                <input type="email" placeholder='Correo electrónico' value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='username' required /> 
+            </div>
+           <div className='login-form-input'>
+            <label htmlFor="password">Contraseña</label>
+            <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='current-password' required/>
+            
+            <Link to="/home" className='password-link'>¿Olvidaste tu contraseña?</Link>
             <Link to="/home" className='register-link'>¿No tienes cuenta? Regístrate</Link>
+            </div>        
+            {error && <div className='login-error' role='alert'>{error}</div>}
+            
+
             <button className='email-btn' type="submit" disabled={loading}>
                 {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
             </button>
-            </form>
+        </form>
             <Quotes />
         </section>
 

@@ -8,10 +8,10 @@ return (
     <div className="footer-container">
         <div className="footer-links">
         <h3>Enlaces</h3>
-    <div className="links">
-        <Link to="/Home">Inicio</Link>
-        <Link to="/Notification">Notificaciones</Link>
-        <Link to="/Count">Cuenta</Link>
+        <div className="links">
+        <Link to="/home">Inicio</Link>
+        <Link to="/notification">Notificaciones</Link>
+        <Link to="/count">Cuenta</Link>
 
     </div>
         </div>

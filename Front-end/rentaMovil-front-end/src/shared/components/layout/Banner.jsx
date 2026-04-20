@@ -1,4 +1,4 @@
-    import '../components/Banner.css'
+    import './Banner.css'
 
     function Banner({imgs,text}){
         return(
