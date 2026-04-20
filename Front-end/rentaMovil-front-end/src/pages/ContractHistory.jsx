@@ -15,7 +15,6 @@ export default function ContractHistory() {
   });
   const navigate = useNavigate();
 
-  // Sample contract data
   const [contracts] = useState([
     {
       id: 1,
