@@ -1,6 +1,7 @@
 import "./AdminPanel.css";
-import flecha from "../assets/img/flecha.png";
+import flecha from "../../../../assets/img/flecha.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AdminPanel() {
   const [open, setOpen] = useState(false);

@@ -1,0 +1,59 @@
+.vehicle-form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    margin: 63px 0 32px 100px;
+}
+.vehicle-form h2{
+    font-size: 24px;
+    color: #1f2937;
+    font-family: 'poppins', sans-serif;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.vehicle-form-input {
+    color: #1f2937;
+    font-family: 'poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.vehicle-form input {
+    border-radius: 36px;
+    background-color: aliceblue;
+    width: 100%;
+    max-width: 100%;
+    height: 35px;
+    padding: 8px;
+    margin-bottom: 10px;
+    color: #000;
+    box-sizing: border-box;
+}
+
+.vehicle-form button {
+    border-radius: 20px;
+    height: 50px;
+    width: 210px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-right: auto;
+    margin-left: auto;
+}
+.error-message {
+    color: red;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.vehicle-form button :hover {
+    background-color: #007BFF;
+    color: white;
+}

@@ -1,15 +1,15 @@
-import NavbarTwo from "../components/NavbarTwo";
-import '../pages/Home.css';
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import  CartVehicule from "../components/CartVehicule"
-import Filtrer from "../components/Filtrer";
-import Banner  from "../components/Banner";
-import img from "../assets/carts/mustang.jpg";
-import img1 from "../assets/img/img1.png"
-import img2 from "../assets/img/img2.png"
-import img3 from "../assets/img/img3.webp"
-import AdminPanel from "../components/AdminPanel";
+import NavbarTwo from "../../../shared/components/layout/NavbarTwo";
+import '../../../styles/Home.css';
+import Navbar from "../../../shared/components/layout/Navbar";
+import Footer from "../../../shared/components/layout/Footer";
+import CartVehicule from "../../../features/vehicles/components/CartVehicule"
+import Filtrer from "../../../features/vehicles/components/Filtrer";
+import Banner from "../../../shared/components/layout/Banner";
+import img from "../../../assets/carts/mustang.jpg";
+import img1 from "../../../assets/img/img1.png"
+import img2 from "../../../assets/img/img2.png"
+import img3 from "../../../assets/img/img3.webp"
+import AdminPanel from "../Components/AdminPanel";
 
 
 function Home(){

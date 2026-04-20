@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../../../shared/components/layout/Navbar';
+import Footer from '../../../shared/components/layout/Footer';
 import { useNavigate } from 'react-router-dom';
 import './ContractHistory.css';
 

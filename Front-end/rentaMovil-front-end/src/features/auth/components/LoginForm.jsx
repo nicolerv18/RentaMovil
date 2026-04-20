@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Quotes from '../../../shared/components/Quotes.jsx';
-import '../components/LoginForm.css';
+import './LoginForm.css';
 
 function LoginForm({onSubmit}){   
 

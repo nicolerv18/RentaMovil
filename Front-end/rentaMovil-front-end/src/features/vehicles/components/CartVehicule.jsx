@@ -1,4 +1,4 @@
-import '../components/CartVehicule.css'
+import './CartVehicule.css'
 import { useNavigate } from 'react-router-dom';
 
 function CartVehicule({img,name,age,price}){

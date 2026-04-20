@@ -25,19 +25,21 @@
     transform: scale(1.05);
 }
 
-.img-car-vehicule{
+.img-car-vehicule{ 
     width: 200px;  
     border-radius: 8px;
-
 }
+
 .text-vehicule{
     text-align: left;
     align-items: center;
 }
+
 .name-car-vehicule{
     margin: 10px 0;
     font-size: 18px;
 }
+
 .price-vehicule{
     margin: 5px;
     font-size: 20px;

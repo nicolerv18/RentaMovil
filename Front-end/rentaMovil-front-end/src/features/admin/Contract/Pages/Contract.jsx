@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../../shared/components/layout/Navbar";
+import Footer from "../../../shared/components/layout/Footer";
 import "./Contract.css";
 import { useNavigate } from "react-router-dom";
 
