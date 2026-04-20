@@ -6,6 +6,8 @@ import Reservation from  './pages/Reservation';
 import Count from './pages/Count';
 import Notification from "./pages/Notification";
 import Payment from "./pages/Payment";
+import Contract from "./pages/Contract";
+import ContractHistory from "./pages/ContractHistory";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/Count" element={<Count/>} />
         <Route path="/Notification" element={<Notification/>} />
         <Route path="/Payment" element={<Payment/>} />
+        <Route path="/Contract" element={<Contract/>} />
+        <Route path="/ContractHistory" element={<ContractHistory/>} />
       </Routes>
 
     </BrowserRouter>
