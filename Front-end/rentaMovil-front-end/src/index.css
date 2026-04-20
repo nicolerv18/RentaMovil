@@ -87,6 +87,8 @@
 
   /* Otros colores */
   --border: #ffffff;
+  ---border-card:#0f172a;
+  --border-input:rgb(52, 56, 75);
   --code-bg: #1f2028;
   --accent: #c084fc;
   --accent-bg: rgba(192, 132, 252, 0.15);

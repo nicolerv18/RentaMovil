@@ -65,7 +65,7 @@
 
 .input-container {
     padding: 10px;
-    border: 1px solid #e3d1d1;
+    border: 1px solid var(--border-input);
     border-radius: 8px;
     width: 100%;
     font-size: 16px;
