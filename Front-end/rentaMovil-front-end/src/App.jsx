@@ -8,6 +8,8 @@ import Notification from "./pages/Notification";
 import Payment from "./pages/Payment";
 import Contract from "./pages/Contract";
 import ContractHistory from "./pages/ContractHistory";
+import HomeAdmin from "./pages/HomeAdmin";
+
 
 function App() {
   return (
@@ -22,8 +24,10 @@ function App() {
         <Route path="/Count" element={<Count/>} />
         <Route path="/Notification" element={<Notification/>} />
         <Route path="/Payment" element={<Payment/>} />
+
         <Route path="/Contract" element={<Contract/>} />
         <Route path="/ContractHistory" element={<ContractHistory/>} />
+        <Route path="/HomeAdmin" element={<HomeAdmin/>} />
       </Routes>
 
     </BrowserRouter>

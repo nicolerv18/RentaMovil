@@ -1,0 +1,182 @@
+/* Botón Hamburguesa */
+.btn-admin {
+  position: fixed;
+  top: 170px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #000000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-admin:hover {
+  background-color: #7a9fb8;
+  transform: scale(1.05);
+}
+
+.btn-admin.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+}
+
+.hamburger-lines span {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Panel Administrativo */
+.admin-panel {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 350px;
+  height: 100vh;
+  background: linear-gradient(180deg, #d4d4d4 0%, #c0c0c0 100%);
+  padding: 30px 20px;
+  transition: right 0.4s ease;
+  z-index: 999;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.admin-panel.active {
+  right: 0;
+}
+
+.admin-panel h2 {
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-family: 'Georgia', serif;
+}
+
+.admin-section {
+  margin-bottom: 15px;
+}
+
+.admin-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  padding: 20px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #999;
+}
+
+.admin-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding-right: 20px;
+}
+
+.admin-icon {
+  font-size: 28px;
+  margin-right: 12px;
+}
+
+.admin-item p {
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  flex: 1;
+}
+
+.admin-item .icono-flecha {
+  width: 16px;
+  height: 16px;
+  filter: invert(0.3);
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+
+/* Subsecciones */
+.admin-subsection {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 10px 15px 10px 50px;
+  animation: slideDown 0.8s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-subitem {
+  display: block;
+  padding: 8px 0;
+  color: #000000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.admin-subitem:hover {
+  color: #2563eb;
+  padding-left: 5px;
+}
+
+/* Overlay para cerrar panel */
+.admin-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-panel {
+    width: 300px;
+    right: -300px;
+  }
+
+  .btn-admin {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .admin-item p {
+    font-size: 16px;
+  }
+}
