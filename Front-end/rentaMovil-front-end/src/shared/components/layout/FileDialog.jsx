@@ -14,67 +14,52 @@ para verificar que se esta capturando correctamente el archivo seleccionado por 
 lo que se hace acontinuacion es considerado como una mala practica :v
 */
 
-function FileDialog() {
+function FileDialog({onFileChange, file}) {
    /*  const [file, setFile] = useState() */ // estado para almacenar el archivo seleccionado
     const [preview, setPreview] = useState(null) // estado para almacenar la url de la imagen seleccionada
   
     const onDrop =  useCallback ( acceptedFiles  =>  {   
         //se encarga de manejar el evento de selcion de el archivo
-        const file = acceptedFiles[0] // se obtiene el primer archivo seleccionado por el usuario
-        if (file) { 
-            setPreview(URL.createObjectURL(file)) // se crea una url para mostrar la imagen seleccionada por el usuario
+        const selectedFile = acceptedFiles[0] // se obtiene el primer archivo seleccionado por el usuario
+        if (selectedFile) { 
+            setPreview(URL.createObjectURL(selectedFile)) // se crea una url para mostrar la imagen seleccionada por el usuario
+            onFileChange(selectedFile); 
         }
-    },  [] ) 
+    },  [onFileChange] )//aca se anade onFileChange a las dependenciasaaaa     
     
-    const  { getRootProps , getInputProps , isDragActive, acceptedFiles }  =  useDropzone ( { onDrop } )//
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
     
-    const handleChanfeImage = () => {
-        setPreview(null) // se limpia la url de la imagen seleccionada por el usuario
+    const handleChangeImage = () => {
+        setPreview(null); // se limpia la url de la imagen seleccionada por el usuario
+        if (typeof onFileChange === 'function') onFileChange(null); // notifica que se quito el archivo
     }
-// para capturar los datos, toca capturar el evento de envio de el formulario
-    const handleSubmit = async event => {
-        event.preventDefault()// esto es para evitar que se recargue la pagina cuando se envie el formulario
-        const formData = new FormData() // se crea un objeto de tipo FormData para enviar el archivo al backend
-        formData.append('file', acceptedFiles[0]) // se agrega el archivo al objeto FormData con la clave 'file'
-        formData.append('upload_preset', 'dav32erzro') // se agrega el preset de claudinary para que se pueda subir la imagen a la nube
-        formData.append('api_key', '172463377995151') // se agrega la api key de claudinary para que se pueda autenticar la solicitud
-        
-        const res = await fetch('https://api.cloudinary.com/v1_1/dz6ohgjub/image/upload', {
-            method: 'POST',
-            body: formData
-        });
-
-    const data = await res.json()
-    console.log(data) // aqui se muestra la respuesta de claudinary en la consola, la cual contiene la url de la imagen subida a la nube
-}
 
 
 
 return (
     <>
-        <div  { ... getRootProps ( ) } className="file-dialog">
-            <form onSubmit={handleSubmit}>
+        <div {...getRootProps()} className="file-dialog">
+            <div>
                 {preview ? ( /* si hay una imagen , muestra la imagen y el boton para cambiarla  */
                     <div className="preview-container">
                         <img src={preview} alt="preview" />
                         <div className='preview-buttons'>
-                            <button type='button' onClick={handleChanfeImage}>Cambiar Imagen</button>
-                            <button type="submit">Subir</button>
+                            <button type='button' onClick={handleChangeImage}>Cambiar Imagen</button>
                         </div>
                         <p><AiOutlineDashboard /> Asegúrate de que la imagen sea nítida y muestre el vehículo completo. Esto agiliza el proceso de validación.</p>
                     </div>
-                ):(// si no hay una imagen, muestra el area de dropzone para seleccionar una imagen
-                    < div  className='preview-container'>
-                        <input {...getInputProps ( ) } /> 
-                        {isDragActive ? ( 
+                ) : ( // si no hay una imagen, muestra el area de dropzone para seleccionar una imagen
+                    <div className='preview-container'>
+                        <input {...getInputProps()} />
+                        {isDragActive ? (
                             <p>Suelta la imagen aquí...</p>
-                        ) : ( 
+                        ) : (
                             <p>Arrastra la imagen aquí o haz clic para seleccionar una imagen<BiImageAdd /></p>
-                            )}
-                        </ div >
+                        )}
+                    </div>
                 )}
-            </form>
-        </ div >     
+            </div>
+        </div>
     </>
     )
 }

@@ -7,10 +7,41 @@ import FileDialog from "../../../../shared/components/layout/FileDialog";
 
 function VehicleForm() {
 
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset, setError, clearErrors } = useForm();
     const [mos, setmos] = useState(false);
-    function insert(data) {
+    const [vehicleFile, setVehicleFile] = useState(null); // esto verificará el estado del fileDialog
+
+    const handleFileChange = (file) => {
+        setVehicleFile(file);
+        if (file) clearErrors('vehicleImage');
+    }
+    
+    async function insert(data) {
+        if (!vehicleFile) {
+            setError('vehicleImage', { type: 'required', message: 'Este apartado es obligatorio' });
+            return;
+        }
+
+        // ejemplo: subir imagen a Cloudinary antes de resetear el formulario
+        try {
+            const formData = new FormData();
+            formData.append('file', vehicleFile);
+            formData.append('upload_preset', 'dav32erzro');
+            formData.append('api_key', '172463377995151');
+
+            const res = await fetch('https://api.cloudinary.com/v1_1/dz6ohgjub/image/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const uploadResult = await res.json();
+            data.image = uploadResult.secure_url || uploadResult.url;
+            console.log('Formulario listo para enviar:', data);
+        } catch (err) {
+            console.error('Error subiendo imagen:', err);
+        }
+
         setmos(true);
+        setVehicleFile(null);
         reset();
         setTimeout(() => setmos(false), 2200);//esto programa que dentro de 2200 cambie el estato de stmos a false 
     }
@@ -68,8 +99,9 @@ function VehicleForm() {
                             </div>
                         </div>
 
-                        <div className={style.fileDialogs}>
-                            <FileDialog />
+                        <div className={style.fileDialogs}> 
+                            <FileDialog onFileChange={handleFileChange} file={vehicleFile} />
+                            {errors.vehicleImage && (<p className={style['error-message']}><AiOutlineDashboard />{errors.vehicleImage?.message}</p>)}
                         </div>
                     </div>
                     <button className="save" type="submit">Guardar el vehículo</button>
