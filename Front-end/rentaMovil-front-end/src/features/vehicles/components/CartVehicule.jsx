@@ -4,15 +4,38 @@ import { useNavigate } from 'react-router-dom';
 function CartVehicule({img,name,age,price}){
     const navigate = useNavigate();
     return(
-    <div className="card-vehicule">
-        <img className="img-car-vehicule" src={img} alt={name} /> 
-        <div className="text-vehicule"> 
-        <h3 className="name-car-vehicule">{name}</h3>
-        <p>{age}</p>
-        <p className='price-vehicule'>${price}día</p>
-        <button className="btn-vhehicule" onClick={() => navigate("/payment")}>Alquilar</button>
-        </div>
+<div className="card-vehicule">
+    
+    {/* IZQUIERDA - IMAGEN */}
+    <div className="car-img">
+        <img src={img} alt={name} />
     </div>
+
+    {/* CENTRO - INFO */}
+    <div className="car-info">
+        <h3>{name}</h3>
+        <p className="car-type">Mini similar</p>
+
+        <div className="features">
+            <span>Gasolina</span>
+            <span>5 puertas</span>
+            <span>⚙️ Manual</span>
+            <span>∞ Km libre</span>
+        </div>
+
+        <p className="location">
+            📍 Aeropuerto, Bogotá
+        </p>
+    </div>
+
+    {/* DERECHA - PRECIO */}
+    <div className="car-price">
+        <p className="price">${price}</p>
+        <span className="free">Cancelación gratis</span>
+        <button>Continuar</button>
+    </div>
+
+</div>
     )
 }
 export default CartVehicule;

@@ -1,10 +1,8 @@
 import "./AdminPanel.css";
 import flecha from "../../../../assets/img/flecha.png";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function AdminPanel() {
-  const [open, setOpen] = useState(false);
+function AdminPanel({ open, onClose }) {
   const [expandedSection, setExpandedSection] = useState(null);
 
   const toggleSection = (section) => {
@@ -12,15 +10,7 @@ function AdminPanel() {
   };
 
   return (
-    <div className="admin-panel-container">
-      <button className={`btn-admin ${open ? 'hidden' : ''}`} onClick={() => setOpen(!open)}>
-        <span className="hamburger-lines">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </button>
-
+    <div>
       <aside className={`admin-panel ${open ? "active" : ""}`}>
         <h2>Panel Administrativo</h2>
         
@@ -93,7 +83,7 @@ function AdminPanel() {
         </div>
       </aside>
 
-      {open && <div className="admin-overlay" onClick={() => setOpen(false)}></div>}
+      {open && <div className="admin-overlay" onClick={onClose}></div>}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import "./notification.css";
+import "./Notification.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ButtonBack from "../../../shared/components/buttonBack.jsx";
@@ -68,7 +68,7 @@ function Notification() {
             className={`filter-item ${filtro === "reserva" ? "active" : ""}`}
             onClick={() => setFiltro("reserva")}
           >
-            Reservas
+            Reservasssss
           </div>
           <div
             className={`filter-item ${filtro === "cancelada" ? "active" : ""}`}

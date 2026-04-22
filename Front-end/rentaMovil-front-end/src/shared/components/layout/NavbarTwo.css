@@ -2,19 +2,56 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
+  background: var(--navbar);
+  color: var(--icon);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   width: 90%;
   height: 50px;
   justify-self: center;
   padding: 15px 40px;
-  border-radius: 20px;
-  margin-top: 10px;
-   
-    clip-path: polygon(0 0, 100% 0, 45% 100%, 0 100%); 
+  border-radius: 10px;
+  margin: 10px auto;
+  clip-path: polygon(0 0, 100% 0, 40% 100%, 0 100%);
 }
 
 .logo{
-    color:#007bff;
+    color:var( --textNavabar);
     font-weight: bold;
     font-family: Arial, sans-serif;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Title{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.8rem;
+  color:  var( --textNavabar);
+}
+
+.Title-hover{
+  color: var(--accent);
+}
+
+
+.navbar a{
+  text-decoration: none;
+  color: var( --textNavabar);
+}
+
+.navbar a:hover{
+  color: var(--accent);
+}
+
+
+.icon{
+  color: var( --button);
+  width: 30px;
+  height: 30px;
+}
+
+.icon:hover{
+  color: rgb(135, 216, 145);
 }

@@ -1,9 +1,8 @@
 import "./Footer.css";
-import { FaCar, FaInstagram, FaWhatsapp, FaTiktok } from "react-icons/fa";
+import { FaCar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-
-function Footer() {
+function FooterTwo() {
 return (
     <footer>
     <div className="footer-container">
@@ -11,8 +10,6 @@ return (
         <h3>Enlaces</h3>
         <div className="links">
         <Link to="/home">Inicio</Link>
-        <Link to="/notification">Notificaciones</Link>
-        <Link to="/count">Cuenta</Link>
 
     </div>
         </div>
@@ -21,11 +18,6 @@ return (
                 <FaCar className="icon2" />
                 RentaMovil
             </h2>
-            <div className="social-icons">
-                <FaInstagram className="icon"/>
-                <FaWhatsapp className="icon" />
-                <FaTiktok className="icon" />
-            </div>
             <p>Tu plataforma de alquiler de vehículos</p>
             </div>
         <div className="footer-contact">
@@ -42,4 +34,4 @@ return (
 );
 }
 
-export default Footer;
+export default FooterTwo;

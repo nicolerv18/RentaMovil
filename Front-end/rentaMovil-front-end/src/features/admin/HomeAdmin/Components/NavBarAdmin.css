@@ -56,6 +56,20 @@ nav svg {
   cursor: pointer;
 }
 
+.nav-admin-link {
+  text-decoration: none;
+  color: var(--textNavabar);
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.nav-admin-link:hover,
+.nav-admin-link.nav-admin-active {
+  color: var(--accent);
+}
+
 
 .icon{
   color: var( --button);
