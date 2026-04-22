@@ -1,7 +1,7 @@
 import "./HomeAdmin.css";
 
-import NavBarAdmin from "../Components/NavBarAdmin";
-import Footer from "../../../../shared/components/layout/Footer";
+import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
+import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
 import CartVehicule from "../../../../features/vehicles/components/CartVehicule"
 import FiltrerBrand from "../../../../features/vehicles/components/FiltrerBrand";
 import FiltrerPrice from "../../../../features/vehicles/components/FiltrerPrice";
@@ -52,7 +52,7 @@ function Home(){
 
         </section>
 
-        <Footer/>
+        <FooterAdmin/>
         </>
     )
 }

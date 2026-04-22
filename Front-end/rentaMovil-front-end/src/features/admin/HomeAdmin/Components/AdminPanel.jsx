@@ -1,6 +1,7 @@
 import "./AdminPanel.css";
 import flecha from "../../../../assets/img/flecha.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AdminPanel({ open, onClose }) {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -25,8 +26,8 @@ function AdminPanel({ open, onClose }) {
           </div>
           {expandedSection === 'vehiculo' && (
             <div className="admin-subsection">
-              <a href="#" className="admin-subitem">• Agregar Vehiculo</a>
-              <a href="#" className="admin-subitem">• Consultar Estado</a>
+              <Link to="/RegisterVehicle" className="admin-subitem" onClick={onClose}>• Agregar Vehiculo</Link>
+              <Link to="/CheckStatus" className="admin-subitem" onClick={onClose}>• Consultar Estado</Link>
             </div>
           )}
         </div>
@@ -42,8 +43,8 @@ function AdminPanel({ open, onClose }) {
           </div>
           {expandedSection === 'localizacion' && (
             <div className="admin-subsection">
-              <a href="#" className="admin-subitem">• Mapa</a>
-              <a href="#" className="admin-subitem">• Historial Rutas</a>
+              <Link to="/Mapa" className="admin-subitem" onClick={onClose}>• Mapa</Link>
+              <Link to="/HistorialRutas" className="admin-subitem" onClick={onClose}>• Historial Rutas</Link>
             </div>
           )}
         </div>
@@ -59,8 +60,8 @@ function AdminPanel({ open, onClose }) {
           </div>
           {expandedSection === 'mantenimiento' && (
             <div className="admin-subsection">
-              <a href="#" className="admin-subitem">• Nuevo Mantenimiento</a>
-              <a href="#" className="admin-subitem">• Historial Mantenimiento</a>
+              <Link to="/Maintenance" className="admin-subitem" onClick={onClose}>• Nuevo Mantenimiento</Link>
+              <Link to="/Maintenance" className="admin-subitem" onClick={onClose}>• Historial Mantenimiento</Link>
             </div>
           )}
         </div>
@@ -76,8 +77,8 @@ function AdminPanel({ open, onClose }) {
           </div>
           {expandedSection === 'contratos' && (
             <div className="admin-subsection">
-              <a href="#" className="admin-subitem">• Nuevo Contrato</a>
-              <a href="#" className="admin-subitem">• Historial Contratos</a>
+              <Link to="/Contract" className="admin-subitem" onClick={onClose}>• Nuevo Contrato</Link>
+              <Link to="/ContractHistory" className="admin-subitem" onClick={onClose}>• Historial Contratos</Link>
             </div>
           )}
         </div>

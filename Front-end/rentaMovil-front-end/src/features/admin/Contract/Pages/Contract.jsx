@@ -1,74 +1,100 @@
-import Navbar from "../../../shared/components/layout/Navbar";
-import Footer from "../../../shared/components/layout/Footer";
+import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
+import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
 import "./Contract.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Contract() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Navbar />
-      <div className="contract-container">
-        <h1 className="contract-title">Crear nuevo contrato</h1>
-        
-        <div className="contract-form">
-          {/* Sección Izquierda - Cliente */}
-          <div className="form-section left-section">
-            <div className="form-group">
-              <select className="form-select">
-                <option>Ingrese o seleccione un cliente</option>
-              </select>
-              <a href="#" className="register-link">Registre un nuevo cliente aqui.</a>
-            </div>
+    <div className="contract">
+      <NavBarAdmin />
 
-            <div className="form-group">
-              <input type="date" placeholder="Fecha inicio del contrato" className="form-input" />
-            </div>
+      <div className="contract-wrapper">
+        <h1 className="contract-title">Nuevo contrato</h1>
+        <p className="contract-subtitle">Completa los datos del cliente y el vehículo</p>
 
-            <div className="form-group">
-              <input type="text" placeholder="" className="form-input" />
-            </div>
-
-            <div className="form-group">
-              <label>Observaciones:</label>
-              <textarea placeholder="" className="form-textarea"></textarea>
-            </div>
+        {/* Cliente */}
+        <div className="contract-card">
+          <div className="contract-card-header">
+            <span className="card-dot-cliente"></span>
+            <span>Cliente</span>
           </div>
-
-          {/* Sección Derecha - Vehículo */}
-          <div className="form-section right-section">
-            <div className="form-group">
-              <select className="form-select">
-                <option>Ingrese o seleccione un vehiculo</option>
+          <div className="contract-card-body">
+            <div className="field full-width">
+              <label>Seleccionar cliente</label>
+              <select>
+                <option value="">— Elige un cliente —</option>
               </select>
-              <a href="#" className="register-link">Registre un nuevo vehiculo aqui.</a>
+              <Link to="/RegisterClient" className="field-hint">+ Registrar nuevo cliente</Link>
             </div>
 
-            <div className="form-group">
-              <input type="date" placeholder="Fecha fin del contrato" className="form-input" />
+            <div className="field">
+              <label>Fecha de inicio</label>
+              <input type="date" />
             </div>
 
-            <div className="form-group">
-              <input type="text" placeholder="" className="form-input" />
+            <div className="field">
+              <label>Valor del contrato</label>
+              <input type="text" placeholder="$ 0.00" />
             </div>
 
-            <div className="form-group">
-              <label>Observaciones:</label>
-              <textarea placeholder="" className="form-textarea"></textarea>
+            <div className="field full-width">
+              <label>Observaciones</label>
+              <textarea placeholder="Notas adicionales..."></textarea>
             </div>
           </div>
         </div>
 
-        {/* Botones de acción */}
+        {/* Vehículo */}
+        <div className="contract-card">
+          <div className="contract-card-header">
+            <span className="card-dot-vehiculo" style={{ background: 'var(--button)' }}></span>
+            <span>Vehículo</span>
+          </div>
+          <div className="contract-card-body">
+            <div className="field full-width">
+              <label>Seleccionar vehículo</label>
+              <select>
+                <option value="">— Elige un vehículo —</option>
+              </select>
+              <Link to="/RegisterVehicle" className="field-hint">+ Registrar nuevo vehículo</Link>
+            </div>
+
+            <div className="field">
+              <label>Fecha de fin</label>
+              <input type="date" />
+            </div>
+
+            <div className="field">
+              <label>Placa</label>
+              <input type="text" placeholder="Ej: ABC-123" />
+            </div>
+
+            <div className="field full-width">
+              <label>Observaciones</label>
+              <textarea placeholder="Notas adicionales..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        {/* Acciones */}
         <div className="contract-actions">
-          <button className="btn btn-secondary">Historial de contratos</button>
-          <button className="btn btn-primary">Crear contrato</button>
-          <button className="btn btn-tertiary" onClick={() => navigate(-1)}>regresar</button>
+          <button className="btn-contract btn-back" onClick={() => navigate(-1)}>
+            Regresar
+          </button>
+          <button className="btn-contract btn-history" onClick={() => navigate('/ContractHistory')}>
+            Historial de contratos
+          </button>
+          <button className="btn-contract btn-create">
+            Crear contrato
+          </button>
         </div>
       </div>
-      <Footer />
-    </>
+
+      <FooterAdmin />
+    </div>
   );
 }
 

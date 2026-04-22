@@ -10,7 +10,7 @@ return (
         <div className="footer-links">
         <h3>Enlaces</h3>
         <div className="links">
-        <Link to="/home">Inicio</Link>
+        <Link to="/HomeAdmin">Inicio</Link>
         <Link to="/notification">Notificaciones</Link>
         <Link to="/count">Cuenta</Link>
 

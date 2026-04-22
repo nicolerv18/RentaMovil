@@ -4,7 +4,7 @@ import {FaCar} from "react-icons/fa";
 import {MdPerson} from "react-icons/md";
 import {FaBars} from "react-icons/fa";
 import { useState } from 'react';
-import AdminPanel from './AdminPanel.jsx';
+import AdminPanel from '../../../features/admin/HomeAdmin/Components/AdminPanel.jsx';
 
 function Navbar(){
     const [menuOpen, setMenuOpen] = useState(false);
@@ -24,7 +24,7 @@ function Navbar(){
                 </div>
 
                 <nav className={`nav-links-container ${menuOpen ? "active" : ""}`}>
-                    <Link to="/Home">Inicio</Link>
+                    <Link to="/HomeAdmin">Inicio</Link>
                     <Link to="/Notification">Notificaciones</Link>
                     <Link to="/Reservation">Reservación</Link>
                     <span
