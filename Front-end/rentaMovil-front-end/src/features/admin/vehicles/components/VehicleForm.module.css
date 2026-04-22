@@ -1,7 +1,8 @@
 .vehicle-form {
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 100%;
+    max-width: 500px;
     padding: 40px;
     border-radius: 10px;
     background-color: var(--card-bg);
@@ -53,7 +54,29 @@
     gap: 0px;
 }
 
-.vehicle-form button :hover {
+.vehicle-form button:hover {
     background-color: #007BFF;
     color: white;
+}
+.container-container{
+        display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap; 
+}
+.vechicle-containerfor{
+        flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+.fileDialogs {
+min-width: 655px;
+  max-width: -6px;
+  position: absolute;
+  left: 52%;
+}
+
+.vehicule-animation{
+    top: 200px;
 }

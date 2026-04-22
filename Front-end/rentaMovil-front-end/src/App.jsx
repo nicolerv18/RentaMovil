@@ -28,6 +28,7 @@ function App() {
           <Route path="/Maintenance" element={<Maintenance />} />
           <Route path="/CheckStatus" element={<CheckStatus />} />
         </Routes>
+        
       </Suspense>
     </BrowserRouter>
   )

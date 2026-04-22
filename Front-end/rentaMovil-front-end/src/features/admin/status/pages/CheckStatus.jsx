@@ -5,7 +5,7 @@ import CartVehiculeStatus from "../components/CartVehiculeStatus";
 import FiltrerStatus from "../components/FiltrerStatus";
 import { useState } from "react"
 import  FleetChart  from "../components/FleetChart";
-
+import Animation from "../../../../shared/components/layout/Animation";
 function checkStatus(){
 
     const [query, setSearch] = useState("");// Estado para almacenar el valor del input de búsqueda
@@ -21,6 +21,8 @@ function checkStatus(){
     .filter((v) => filterState === "Todos" || v.state === filterState) // Filtrar los vehículos según el estado seleccionado en el filtro
     .filter((v) => v.name.toLowerCase().includes(query.toLowerCase()) || v.plate.toLowerCase().includes(query.toLowerCase()) )// Filtrar los vehículos según el query de búsqueda
 
+    
+
     return(
         <>
         <Navbar />
@@ -31,7 +33,7 @@ function checkStatus(){
                 ))}
             </div>
             <FleetChart vehicles={vehciles} />
-
+            <Animation/>
         <Footer />
         </>
     )
