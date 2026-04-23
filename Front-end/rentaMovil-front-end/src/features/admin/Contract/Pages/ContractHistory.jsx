@@ -1,15 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
 import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
 import { useNavigate } from "react-router-dom";
 import "./ContractHistory.css";
-import Flecha from "../../../../assets/img/flecha.png";
+import { TiArrowDown } from "react-icons/ti";
 import Lupa from "../../../../assets/img/lupa.png";
+
 
 export default function ContractHistory() {
   const [searchTerm, setSearchTerm] = useState("");
   // Guarda lo que escribe el usuario en el buscador
   const [activeFilter, setActiveFilter] = useState(null);
+  //Esta seccion es para que los filtros se cierren al hacer click fuera de ellos, para eso usamos useRef para referenciar el contenedor de los filtros y un eventListener para detectar clicks fuera de ese contenedor y cerrar los dropdowns
+  const filtersRef = useRef(null);
+    useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      filtersRef.current &&
+      !filtersRef.current.contains(event.target)
+    ) {
+      setActiveFilter(null);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
   // Guarda qué filtro está desplegado
   const [selectedFilters, setSelectedFilters] = useState({
     fecha: null,
@@ -85,6 +104,7 @@ export default function ContractHistory() {
     },
   ]);
 
+
   const getUniqueValues = (key) => [...new Set(contracts.map((c) => c[key]))];
   // Obtiene valores unicos para filtros
 
@@ -146,7 +166,7 @@ export default function ContractHistory() {
         </div>
 
         {/* Filtros */}
-        <div className="ch-filters">
+        <div className="ch-filters" ref={filtersRef}>
           {["fecha", "cliente", "vehiculo", "estado"].map((key) => (
             <div className="ch-filter-wrap" key={key}>
               <button
@@ -154,7 +174,7 @@ export default function ContractHistory() {
                 onClick={() => handleFilterClick(key)} //Boton de filtro
               >
                 <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
-                <img src={Flecha} alt="Flecha" className="ch-filter-arrow" />
+                <TiArrowDown className="ch-filter-arrow" />
               </button>
               {activeFilter === key && (
                 <div className="ch-dropdown">

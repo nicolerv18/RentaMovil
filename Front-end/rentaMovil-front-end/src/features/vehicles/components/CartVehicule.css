@@ -5,11 +5,12 @@
     width: 100%;
     max-width: 800px;
     background: var(--card-bg);
-    border: 1px solid var(---border-card);
+    border: 1px solid var(--border-card);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     transition: 0.3s;
+    border-left: 5px solid #00C853;
 }
 
 .card-vehicule:hover {

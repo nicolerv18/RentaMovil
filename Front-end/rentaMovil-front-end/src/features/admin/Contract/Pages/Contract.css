@@ -220,3 +220,13 @@
     text-align: center;
   }
 }
+/* Icono calendario en inputs date (esto me ayudo ia porque no podia cambiar el color del calendario en los inputs)*/
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0);
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}

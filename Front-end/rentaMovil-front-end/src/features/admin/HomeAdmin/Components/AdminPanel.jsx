@@ -1,8 +1,11 @@
 import "./AdminPanel.css";
-import flecha from "../../../../assets/img/flecha.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { TiArrowSortedDown } from "react-icons/ti";
+import { FaCar } from "react-icons/fa";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { FaTools } from "react-icons/fa";
+import { LiaFileContractSolid } from "react-icons/lia";
 function AdminPanel({ open, onClose }) {
   const [expandedSection, setExpandedSection] = useState(null);
 
@@ -17,10 +20,9 @@ function AdminPanel({ open, onClose }) {
         
         <div className="admin-section">
           <div className="admin-item" onClick={() => toggleSection('vehiculo')}>
-            <span className="admin-icon">*</span>
+            <span className="admin-icon"><FaCar /></span>
             <p>Vehiculo</p>
-            <img
-              src={flecha}
+            <TiArrowSortedDown
               className={`icono-flecha ${expandedSection === 'vehiculo' ? 'rotated' : ''}`}
             />
           </div>
@@ -34,10 +36,9 @@ function AdminPanel({ open, onClose }) {
 
         <div className="admin-section">
           <div className="admin-item" onClick={() => toggleSection('localizacion')}>
-            <span className="admin-icon">*</span>
+            <span className="admin-icon"><FaMapMarkedAlt /></span>
             <p>Localizacion</p>
-            <img
-              src={flecha}
+            <TiArrowSortedDown
               className={`icono-flecha ${expandedSection === 'localizacion' ? 'rotated' : ''}`}
             />
           </div>
@@ -51,10 +52,9 @@ function AdminPanel({ open, onClose }) {
 
         <div className="admin-section">
           <div className="admin-item" onClick={() => toggleSection('mantenimiento')}>
-            <span className="admin-icon">*</span>
+            <span className="admin-icon"><FaTools /></span>
             <p>Mantenimiento</p>
-            <img
-              src={flecha}
+            <TiArrowSortedDown
               className={`icono-flecha ${expandedSection === 'mantenimiento' ? 'rotated' : ''}`}
             />
           </div>
@@ -68,10 +68,9 @@ function AdminPanel({ open, onClose }) {
 
         <div className="admin-section">
           <div className="admin-item" onClick={() => toggleSection('contratos')}>
-            <span className="admin-icon">*</span>
+            <span className="admin-icon"><LiaFileContractSolid /></span>
             <p>Contratos</p>
-            <img
-              src={flecha}
+            <TiArrowSortedDown
               className={`icono-flecha ${expandedSection === 'contratos' ? 'rotated' : ''}`}
             />
           </div>

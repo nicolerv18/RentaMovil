@@ -39,6 +39,7 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 25px;
     padding: 0;
+    
 }
 
 .sidebar-container {

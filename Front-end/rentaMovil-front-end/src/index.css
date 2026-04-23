@@ -6,7 +6,10 @@
   --textFooter: #FFFFFF;
   --text-btn: #FFFFFF;
   --placeholder: #9ca3af;
-
+  --filterContract: #1d4ed8;
+  --filterContractOpacity: #0034c2;
+  --NBtext: #000000;
+  --adminP : #070707;
   /* Fondos */
   --bg: #F5F7FA;
   --card-bg: #FFFFFF;
@@ -73,7 +76,11 @@
   --text-h: #f3f4f6;
   --text-btn: #2a2828;
   --placeholder: #9ca3af;
+  --filterContract: rgb(156, 57, 255);
+  --filterContractOpacity: rgb(134, 21, 247);
+  --NBtext: #ffffff;
 
+  --adminP : #464646;
   /* Fondos */
   --bg: #020617;
   --card-bg: #0f172a;
