@@ -1,4 +1,5 @@
 import './App.css'
+import 'leaflet/dist/leaflet.css';
 
 import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'

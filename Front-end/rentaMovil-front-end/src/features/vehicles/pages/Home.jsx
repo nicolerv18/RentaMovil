@@ -32,7 +32,7 @@ function Home(){
           <div className="main-column">
             <div className="card-vehicule-container">
               <CartVehicule name="MustangGT 500" age="2020" price="140.000" img={img} />
-              <CartVehicule name="MustangGT 500" age="2020" price="140.000" img={img} />
+              <CartVehicule name="Swift 500" age="2020" price="140.000" img={img} />
               <CartVehicule name="MustangGT 500" age="2020" price="140.000" img={img} />
               <CartVehicule name="MustangGT 500" age="2020" price="140.000" img={img} />
               <CartVehicule name="MustangGT 500" age="2020" price="140.000" img={img} />

@@ -7,11 +7,11 @@
   --text-btn: #FFFFFF;
   --placeholder: #9ca3af;
 
+
   /* Fondos */
   --bg: #F5F7FA;
   --card-bg: #FFFFFF;
   --navbar: #1d4ed8;
-
   --primary: #2D7FF9;
   --primary-dark: #3F8CFF;
   --success: #00C853;
@@ -39,7 +39,7 @@
   /* Extras */
   --code-bg: #F5F7FA;
   --social-bg: rgba(245, 247, FA, 0.6);
-  --input:  #F5F7FA;
+  --input:  #f5f7fa;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,

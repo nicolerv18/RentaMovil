@@ -1,8 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import "./FilterCalendar.css";
 
-function FilterCalendar() {
+function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
+
   const today = new Date().toISOString().split("T")[0];
+
+  const getCurrentTime = () => {
+    const now = new Date();
+    return now.toTimeString().slice(0, 5);
+  };
+  const getTomorrow = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split("T")[0];
+  };
 
   const branches = [
     "Bogotá - Centro",
@@ -15,13 +26,31 @@ function FilterCalendar() {
   const [query, setQuery] = useState("");
   const [sugerencias, setSugerencias] = useState([]);
   const [seleccionado, setSeleccionado] = useState("");
-  const [hora, setHora] = useState("");
-  const [fecha, setFecha] = useState("");
+
+  const [hora, setHora] = useState(getCurrentTime());
+  const [date, setDate] = useState(today);
+  const [dateReturn, setDateReturn] = useState(getTomorrow());
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const wrapperRef = useRef(null);
+  const [errorSucursal, setErrorSucursal] = useState("");
 
+  const wrapperRef = useRef(null);
+    const [errorFecha, setErrorFecha] = useState("");
+      useEffect(() => {
+        if (date && dateReturn) {
+            if (dateReturn < date) {
+                setErrorFecha("La fecha de entrega no puede ser anterior a la de recogida");
+            } else {
+                setErrorFecha("");
+            }
+        }
+    }, [date, dateReturn]);
+
+  
+
+  // cerrar dropdown
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -32,10 +61,20 @@ function FilterCalendar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // enviar fechas al padre (Reservation)
+  useEffect(() => {
+    setPickupDate && setPickupDate(date);
+  }, [date]);
+
+  useEffect(() => {
+    setReturnDate && setReturnDate(dateReturn);
+  }, [dateReturn]);
+
   const handleChange = (e) => {
     const value = e.target.value;
     setQuery(value);
     setSeleccionado("");
+    setErrorSucursal("");
     setError("");
     setSuccess("");
 
@@ -54,7 +93,6 @@ function FilterCalendar() {
     setQuery(sucursal);
     setSeleccionado(sucursal);
     setSugerencias([]);
-    setError("");
   };
 
   const validarHora = (hora) => {
@@ -63,79 +101,105 @@ function FilterCalendar() {
     return h >= 8 && h <= 18;
   };
 
-  const handleSubmit =  async () => {
-    /*
-    const results = await fetch(`/api/cars?sucursal=${seleccionado}&fecha=${fecha}&hora=${hora}`);
-    const data = await results.json();*/
-    setError("");
-    setSuccess("");
+const handleSubmit = () => {
+  setErrorSucursal("");
+  setError("");
+  setSuccess("");
 
-    if (!seleccionado) {
-      setError("Selecciona una sucursal válida de la lista");
-      return;
-    }
-    if (!fecha) {
-      setError("Selecciona una fecha");
-      return;
-    }
-    if (!validarHora(hora)) {
-      setError("Hora inválida — selecciona entre 8:00 y 18:00");
-      return;
-    }
-    console.log({ sucursal: seleccionado, fecha, hora });
-  };
+  if (!seleccionado) {
+    setErrorSucursal("Sucursal no válida");
+    return;
+  }
 
+  if (!validarHora(hora)) {
+    setError("Hora inválida (8:00 - 18:00)");
+    return;
+  }
+
+  setSuccess("Búsqueda realizada");
+};
   return (
-  <form className="filter-overlay" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+    <form
+      className={`filter ${variant}`}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+    >
 
-    <div className="field" ref={wrapperRef}>
-      <label className="label-filter">Lugar de recogida</label>
-      <input
-        className="input-container"
-        value={query}
-        onChange={handleChange}
-        placeholder="Ej: Bogotá..."
-        autoComplete="off"
-        required
-      />
-      {sugerencias.length > 0 && (
-        <ul className="sucursal-dropdown">
-          {sugerencias.map((s, i) => (
-            <li key={i} onMouseDown={(e) => e.preventDefault()} onClick={() => handleSelect(s)}>
-              {s}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      <div className="field" ref={wrapperRef}>
+        <label className="label-filter">Lugar de Entrega</label>
+        <input
+          className={`input-container ${errorSucursal ? "inputInvalid" : ""}`}
+          value={query}
+          onChange={handleChange}
+          placeholder="Ej: Bogotá..."
+          autoComplete="off"
+          required
+        />
+              {errorSucursal && <p className="error">{errorSucursal}</p>}
+        {sugerencias.length > 0 && (
+          <ul className="sucursal-dropdown">
+            {sugerencias.map((s, i) => (
+              <li
+                key={i}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => handleSelect(s)}
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className="field">
+        <label className="label-filter">Fecha de entrega</label>
+        <input
+          type="date"
+          className={`input-container ${errorFecha ? "inputInvalid" : ""}`}
+          min={today}
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+        {errorFecha && (<div className="message-error"> {errorFecha}</div>)}
 
-    <div className="field">
-      <label className="label-filter">Fecha</label>
-      <input
-        type="date"
-        className="input-container"
-        min={today}
-        value={fecha}
-        onChange={(e) => setFecha(e.target.value)}
-        required
-      />
-    </div>
+      </div>
+      <div className="field">
+        <label className="label-filter">Hora de entrega</label>
+        <input
+          type="time"
+          className="input-container"
+          value={hora}
+          onChange={(e) => setHora(e.target.value)}
+        />
+      </div>
+      <div className="field">
+        <label className="label-filter">Fecha de devolución</label>
+        <input
+          type="date"
+          className="input-container"
+          min={date}
+          value={dateReturn}
+          onChange={(e) => setDateReturn(e.target.value)}
+        />
+      </div>
+      <div className="field">
+        <label className="label-filter">Hora de devolución</label>
+        <input
+          type="time"
+          className="input-container"
+          value={hora}
+          onChange={(e) => setHora(e.target.value)}
+        />
+      </div>
+      <button type="submit" className="btn-search">
+        Buscar
+      </button>
 
-    <div className="field">
-      <label className="label-filter">Hora</label>
-      <input
-        type="time"
-        className="input-container"
-        value={hora}
-        onChange={(e) => setHora(e.target.value)}
-        required
-      />
-    </div>
-
-    <button type="submit" className="btn-search">Buscar</button>
-
-  </form>
-);
+      {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>}
+    </form>
+  );
 }
 
 export default FilterCalendar;
