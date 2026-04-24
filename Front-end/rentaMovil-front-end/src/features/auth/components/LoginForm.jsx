@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import Quotes from '../../../shared/components/Quotes.jsx';
-import '../components/LoginForm.css';
+import "./LoginForm.css";
+import Quotes from '../../../shared/components/Quotes';
 
-function LoginForm({onSubmit}){   
-
+function LoginForm({onSubmit}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -28,33 +27,44 @@ function LoginForm({onSubmit}){
             setLoading(false);
         }
     };
-    return( 
-        <section className="login-container">
+    return(
+        <section className="login">
         <form className='login-form' onSubmit={handleSubmit} aria-live='polite'>
-           <div className='login-form-input'>
+            <div className="form-group">
                 <label htmlFor="email">Correo electrónico</label>
-                <input type="email" placeholder='Correo electrónico' value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='username' required /> 
+                <input 
+                    id="email"
+                    type="email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    autoComplete='username' 
+                    placeholder="tu@email.com"
+                    required 
+                />
             </div>
-           <div className='login-form-input'>
-            <label htmlFor="password">Contraseña</label>
-            <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='current-password' required/>
-            
-            <Link to="/home" className='password-link'>¿Olvidaste tu contraseña?</Link>
+            <div className="form-group">
+                <label htmlFor="password">Contraseña</label>
+                <input 
+                    id="password"
+                    type="password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    autoComplete='current-password'
+                    placeholder="••••••••"
+                    required
+                />
+            </div>
+            {error && <div className='login-error' role='alert'>{error}</div>} 
             <Link to="/home" className='register-link'>¿No tienes cuenta? Regístrate</Link>
-            </div>        
-            {error && <div className='login-error' role='alert'>{error}</div>}
-            
-
             <button className='email-btn' type="submit" disabled={loading}>
                 {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
             </button>
-        </form>
+            </form>
             <Quotes />
         </section>
 
     )
 
 }
-   
-    
+
 export default LoginForm;

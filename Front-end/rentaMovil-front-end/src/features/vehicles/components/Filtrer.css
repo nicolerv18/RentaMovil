@@ -2,18 +2,21 @@
   width: 32px;
   height: 33px;
   transition: transform 0.3s;
+  color: var(--accent);
 }
 
 .icono-flecha.rotade {
   transform: rotate(180deg);
 }
 
+
+
 .filtrer-container {
   position: relative;
-  width: 600px;
+  width: 320px;
   height: fit-content;
   font-size: larger;
-  color: #000;
+  color: var(--text);
   border-radius: 8px;
   background: transparent;
 }
@@ -23,12 +26,15 @@
   display: flex;
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin-top: 20px;
+  
 }
 
 .nav-container li {
   width: 100%;
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-container a {
@@ -41,27 +47,27 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 15px;
   cursor: pointer;
-  background: #fff;
   height: 70px;
   justify-content: center;
   padding: 10px;
   width: 80%;
   border-radius: 8px;
-  color:#000;
+  color : var(--text);
+  background-color: var(--filter);
   border: none;
   font-size: inherit;
   user-select: none;
 }
 
 .dropdown {
-  position: absolute;
+  max-height: 0;
+  overflow: hidden;
   top: 100%;
   left: 0;
   width: 80%;
   min-width: 180px;
-  background: white;
+  background: var(--card-bg);
   display: none;
   border-radius: 8px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -73,6 +79,7 @@
 
 .nav-container li.active .dropdown {
   display: block;
+  max-height: 300px; /* suficiente para mostrar todos los elementos */
 }
 
 .dropdown li a {
@@ -82,5 +89,12 @@
 }
 
 .dropdown li a:hover {
-  background: #eee;
+  background: var(--accent-hover);
+}
+
+@media (max-width: 900px) {
+  .filtrer-container {
+    width: 100%;
+    margin: 0;
+  }
 }

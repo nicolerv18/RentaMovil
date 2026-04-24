@@ -1,7 +1,83 @@
-.banner-container {
-width: 38%;
-  max-width: 98%;
-  margin: 24px auto;
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  background: var(--bg);
+  overflow: hidden;
+  padding: 20px;
 }
 
+.btn{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 10;
+}
 
+/* FORMULARIO */
+.login-form-container {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.auth-toggle-btn {
+  position: relative;
+  align-self: center;
+  margin-bottom: 0;
+  padding: 12px 24px;
+  background: var(--button);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  z-index: 10;
+}
+
+.auth-toggle-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.auth-toggle-btn:active {
+  transform: translateY(-1px);
+}
+
+.auth-toggle-btn.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.auth-toggle-btn.active:hover {
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .login-container {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .login-form-container {
+    max-width: 100%;
+  }
+
+  .auth-toggle-btn {
+    padding: 10px 18px;
+    font-size: 12px;
+  }
+}

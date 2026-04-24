@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../components/layout/Quotes.css";
 function Quotes() {
     const quotes = [
         "Confía en tu viaje. Confía en Rentamovil.",
@@ -18,6 +19,6 @@ function Quotes() {
         setQuote(quotes[randomIndex]);
     },[]);
 
-    return <p>{quote}</p>;
+    return <p className='quote'>{quote}</p>;
 }
 export default Quotes;

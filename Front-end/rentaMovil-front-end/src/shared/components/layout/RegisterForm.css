@@ -1,0 +1,178 @@
+/* CONTENEDOR PRINCIPAL */
+.register {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.btn{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 10;
+}
+
+/* FORMULARIO (GRID PRO) */
+.register-form {
+  width: 100%;
+  max-width: 5000px;
+
+  display: flex;
+  gap: 20px;
+  background: var(--card-bg);
+  padding: 35px;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  animation: slideInUp 0.6s ease-out;
+  transition: transform 0.3s ease;
+}
+
+/* EFECTO HOVER TARJETA */
+.register-form:hover {
+  transform: translateY(-3px);
+}
+
+/* GRUPO DE CAMPOS */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  gap: 6px;
+}
+
+/* LABELS */
+.register-form label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* INPUTS */
+.register-form input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+
+  font-size: 14px;
+  background: #f9fafb;
+  color: #1f2937;
+
+  transition: all 0.25s ease;
+}
+
+.register-form input:focus {
+  outline: none;
+  background: white;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
+  transform: translateY(-1px);
+}
+
+.register-form input::placeholder {
+  color: #9ca3af;
+}
+
+/* CAMPOS QUE OCUPAN TODO */
+.register-form .form-group:nth-child(5),
+.register-form .form-group:nth-child(6),
+.register-form .form-group:nth-child(7) {
+  grid-column: span 2;
+}
+
+/* ERROR */
+.register-error {
+  grid-column: span 2;
+
+  padding: 10px 14px;
+  background: #fee2e2;
+  border-left: 4px solid #dc2626;
+  border-radius: 8px;
+
+  color: #991b1b;
+  font-size: 13px;
+  font-weight: 500;
+
+  animation: shake 0.3s ease-in-out;
+}
+
+/* LINK */
+.register-link {
+  grid-column: span 2;
+
+  text-align: center;
+  font-size: 13px;
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+
+  margin-top: -5px;
+}
+
+.register-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* BOTÓN */
+.register-btn {
+  grid-column: span 2;
+
+  padding: 12px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.register-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+.register-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ANIMACIONES */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .register-form {
+    grid-template-columns: 1fr;
+    padding: 25px 18px;
+  }
+
+  .register-btn,
+  .register-link,
+  .register-error {
+    grid-column: span 1;
+  }
+}

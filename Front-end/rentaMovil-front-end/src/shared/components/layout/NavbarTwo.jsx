@@ -1,11 +1,17 @@
 import ReactDOM from "https://esm.sh/react-dom@18.2.0/client"
-import '../layout/NavbarTwo.css'
+import { FaCar } from "react-icons/fa";
+import './NavbarTwo.css';
 
 function NavbarTwo(){
     return (
     <nav className="nav-navbarCard">
-        <h2 className="logo">RentaMovil</h2>
-    </nav>)
+        <div className="logo-container">
+            <h2 className="Title">RentaMovil</h2>
+            <FaCar className='icon'/>
+        </div>
+    </nav>
+    
+)
 
 }
 export default NavbarTwo;
