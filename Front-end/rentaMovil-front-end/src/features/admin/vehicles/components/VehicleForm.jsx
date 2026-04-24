@@ -1,7 +1,7 @@
 import style from './VehicleForm.module.css';
 import { AiOutlineDashboard } from "react-icons/ai";
 import { useForm } from 'react-hook-form';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import Animation from '../../../../shared/components/layout/Animation';
 import FileDialog from "../../../../shared/components/layout/FileDialog";
 
@@ -9,7 +9,8 @@ function VehicleForm() {
     const { register, formState: { errors }, handleSubmit, reset, setError, clearErrors } = useForm();
     const [mos, setmos] = useState(false);
     const [vehicleFile, setVehicleFile] = useState(null); // esto verificará el estado del fileDialog
-    const [isLoading, setIsLoading] = useState(false);// agrega un etado de carga 
+    const [isLoading, setIsLoading] = useState(false);// agrega un estado de carga 
+
     const handleFileChange = (file) => {
         setVehicleFile(file);
         if (file) clearErrors('vehicleImage');
@@ -34,10 +35,8 @@ function VehicleForm() {
             });
             const uploadResult = await res.json();
             data.image = uploadResult.secure_url || uploadResult.url;
-
             console.log('Formulario listo para enviar:', data);
             setmos(true);//arranca la animacion 
-
             setTimeout(() => {
                 setmos(false)
                 setVehicleFile(null);
@@ -57,28 +56,24 @@ function VehicleForm() {
                         <div className={style["vechicle-containerfor"]}>
                             <h2>Registre un nuevo vehículo</h2>
                             <div className={style['vehicle-form-input']}>
-
                                 <label htmlFor="plate">Placa:</label>
                                 <input type="text" placeholder="Placa ej: ABC123"
                                     {...register("plate", {
-                                        required: true,
-                                        pattern: /^[A-Z]{3}[0-9]{2}[A-Z0-9]?$/,
-                                        // esto es para que se vuelvan las letras a mayuscula automaticamente:
-                                        onChange: (e) => {
-                                            e.target.value = e.target.value.toUpperCase()
-                                        }
-                                    }
-                                    )} />
-                                {errors.plate?.type === "required" &&
+                                        required: "La placa es obligatoria.",
+                                        pattern: {
+                                            value: /^[A-Z]{3}[0-9]{2}[A-Z0-9]?$/,
+                                            message: "Formato inválido. Carro: ABC123"
+                                        },
+                                        onChange: (e) => { e.target.value = e.target.value.toUpperCase() }
+                                    })} />
+
+                                {errors.plate && (
                                     <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> La placa es obligatoria.
+                                        <AiOutlineDashboard /> {errors.plate.message}
                                     </p>
-                                }
-                                {errors.plate?.type === "pattern" &&
-                                    <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> Formato invalido, usa el siguiente formato : 3 letras + 3 numeros (ABC123)
-                                    </p>
-                                }
+
+                                )}
+
                             </div>
                             <div className={style['vehicle-form-input']}>
                                 <label htmlFor="brand">Marca:</label>
@@ -127,7 +122,7 @@ function VehicleForm() {
                                 <label htmlFor="model">Modelo:</label>
                                 <input
                                     type="text"
-                                    placeholder="Modelo"
+                                    placeholder="Ej: Volkswagen Gol, Crolla, Tesla Model 3... "
                                     {...register("model", {
                                         required: "El modeolo es obligatorio",
                                         minLength: { value: 2, message: "El modelo debe tener al menos 2 caracteres." },
@@ -144,7 +139,6 @@ function VehicleForm() {
                                     </p>
                                 )}
                             </div>
-
                             <div className={style['vehicle-form-input']}>
                                 <label htmlFor="type">Tipo de vehículo:</label>
                                 <select
@@ -152,8 +146,7 @@ function VehicleForm() {
                                         required: "Debes seleccionar el tipo de vehículo.",
                                         validate: value => value !== "" || "Debes seleccionar el tipo de vehículo."
                                     })}
-                                    defaultValue=""
-                                >
+                                    defaultValue="">
                                     <option value="" disabled>Selecciona un tipo...</option>
                                     <optgroup label="Automóviles">
                                         <option value="Sedán">Sedán</option>
@@ -170,14 +163,12 @@ function VehicleForm() {
                                         <option value="Furgón">Furgón</option>
                                     </optgroup>
                                 </select>
-
                                 {errors.vehicleType && (
                                     <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> {errors.fuelType.message}
+                                        <AiOutlineDashboard /> {errors.vehicleType.message}
                                     </p>
                                 )}
                             </div>
-
                             <div className={style['vehicle-form-input']}>
                                 <label htmlFor="fuelType">Tipo de combustible:</label>
                                 <select
@@ -185,8 +176,7 @@ function VehicleForm() {
                                         required: "Debes seleccionar el tipo de combustible.",
                                         validate: value => value !== "" || "Debes seleccionar el tipo de combustible."
                                     })}
-                                    defaultValue=""
-                                >
+                                    defaultValue="">
                                     <option value="" disabled>Selecciona un tipo...</option>
                                     <option value="Gasolina">Gasolina</option>
                                     <option value="Diésel">Diésel</option>
@@ -195,15 +185,12 @@ function VehicleForm() {
                                     <option value="Gas natural">Gas natural</option>
                                     <option value="Gas propano">Gas propano (GLP)</option>
                                 </select>
-
                                 {errors.fuelType && (
                                     <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> {errors.vehicleType.message}
+                                        <AiOutlineDashboard /> {errors.fuelType.message}
                                     </p>
                                 )}
-
                             </div>
-
                             <div className={style['vehicle-form-input']}>
                                 <label htmlFor="location">Ubicación:</label>
                                 <input
@@ -226,7 +213,6 @@ function VehicleForm() {
                                 )}
                             </div>
                         </div>
-
                         <div className={style.fileDialogs}>
                             <FileDialog onFileChange={handleFileChange} file={vehicleFile} />
                             {errors.vehicleImage && (<p className={style['error-message']}><AiOutlineDashboard />{errors.vehicleImage?.message}</p>)}
