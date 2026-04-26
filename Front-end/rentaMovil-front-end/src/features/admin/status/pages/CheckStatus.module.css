@@ -1,0 +1,36 @@
+.card-check {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    max-width: 1200px;
+    margin:0 auto;
+    align-items: flex-start;
+}
+
+.card-container-left {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 20px;
+    width: 340px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;          /* se queda fijo mientras scrolleas las cards */
+}
+
+.card-container-right {
+    flex: 1;            /* ocupa todo el espacio restante */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+@media (max-width: 768px) {
+    .card-check {
+        flex-direction: column;
+    }
+
+    .card-container-left {
+        width: 100%;      /* deja de ser 340px fijo */
+        position: static; /* quita el sticky en móvil */
+    }
+}

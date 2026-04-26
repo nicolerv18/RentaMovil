@@ -1,10 +1,9 @@
 .fleet-chart-container{
 display: flex;
   align-items: center;
-  gap: 16px;
-  background-color: #0000006b;
+  gap: 30px;
   width: 29%;
-  height: 127px;
+  height: 200px;
 }
 
 .fleet-chart-chart{

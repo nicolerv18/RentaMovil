@@ -20,7 +20,7 @@
 .car-img {
     height: 120px;
     display: flex;
-    align-items: center;
+    align-items: center;    
     justify-content: center;
 }
 .car-img img {
@@ -85,27 +85,7 @@
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.img-car-vehicule{ 
-    width: 200px;  
-    border-radius: 8px;
-}
 
-.text-vehicule{
-    text-align: left;
-    align-items: center;
-}
-
-.name-car-vehicule{
-    margin: 10px 0;
-    font-size: 18px;
-}
-
-.price-vehicule{
-    margin: 5px;
-    font-size: 20px;
-}
-=======
 
 /*TABLET*/
 @media (max-width: 1024px) {
@@ -150,4 +130,4 @@
         max-width: 250px;
     }
 }
->>>>>>> feature/style-menu
+
