@@ -13,13 +13,13 @@ const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'))
 const ChangePassword = lazy(() => import('./features/auth/pages/ChangePassword.jsx'))
 
 function App() {
-const [darkMode, setDarkMode] = useState(
-  localStorage.getItem("darkMode") === "true"
-);
-useEffect(() => {
-  document.documentElement.classList.toggle("dark", darkMode);
-  localStorage.setItem("darkMode", darkMode);
-}, [darkMode]);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("Theme") || "ligth"
+  );
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <BrowserRouter>
@@ -35,8 +35,8 @@ useEffect(() => {
             path="/count"
             element={
               <Count
-                darkMode={darkMode}
-                setDarkMode={setDarkMode}
+                theme={theme}
+                setTheme={setTheme}
               />
             }
           />

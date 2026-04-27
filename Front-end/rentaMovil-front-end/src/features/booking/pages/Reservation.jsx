@@ -152,7 +152,7 @@ function Reservation() {
                                 <h4>TOTAL: $403.000</h4>
 
                                 <div>
-                                    <label>Monto a pagar</label>
+                                    <label className='labelR'>Monto a pagar</label>
                                     <select value={opcion} onChange={e => setOpcion(e.target.value)}>
                                         <option value="1">30%</option>
                                         <option value="2">50%</option>
@@ -162,7 +162,7 @@ function Reservation() {
                                     </select>
                                 </div>
 
-                                <label>Responsable de Reserva</label>
+                                <label className='labelR'>Responsable de Reserva</label>
                                 <input
                                     type="text"
                                     placeholder='Nombre'
@@ -171,7 +171,7 @@ function Reservation() {
                                     required
                                 />
 
-                                <label>Fecha de nacimiento</label>
+                                <label className='labelR'>Fecha de nacimiento</label>
                                 <input
                                     type="date"
                                     value={birthDate}
@@ -179,9 +179,9 @@ function Reservation() {
                                     className={errorEdad ? "inputInvalidP" : ""}
                                     required
                                 />
-                                {errorEdad && <p style={{ color: "red" }}>{errorEdad}</p>}
+                                {errorEdad && <p className='error2'>{errorEdad}</p>}
 
-                                <label>Nº Documento de identidad</label>
+                                <label className='labelR'>Nº Documento de identidad</label>
                                 <input
                                     type="text"
                                     placeholder='12345'
@@ -190,7 +190,7 @@ function Reservation() {
                                     required
                                 />
 
-                                <label>Telefono</label>
+                                <label className='labelR'>Telefono</label>
                                 <input type="text" placeholder='###' required />
 
                                 <button type="submit">Alquilar</button>
