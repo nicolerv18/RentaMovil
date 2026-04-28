@@ -19,7 +19,7 @@
 .car-img {
     height: 120px;
     display: flex;
-    align-items: center;
+    align-items: center;    
     justify-content: center;
 }
 .car-img img {
@@ -85,6 +85,7 @@
 }
 
 
+
 /*TABLET*/
 @media (max-width: 1024px) {
     .card-vehicule {
@@ -128,3 +129,4 @@
         max-width: 250px;
     }
 }
+
