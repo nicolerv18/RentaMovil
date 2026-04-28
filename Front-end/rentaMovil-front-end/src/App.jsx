@@ -41,7 +41,7 @@ function App() {
             }
           />
 
-          <Route path="/notification" element={<Notification />} />
+          <Route path="/Notification" element={<Notification />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/ChangePassword" element={<ChangePassword />} />
 

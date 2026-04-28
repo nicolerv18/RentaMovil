@@ -4,6 +4,7 @@ import { useState } from "react";
 import ButtonBack from "../../../shared/components/buttonBack.jsx";
 import Navbar from "../../../shared/components/layout/Navbar.jsx";
 import Footer from "../../../shared/components/layout/Footer.jsx";
+import {  FaEnvelopeOpen } from "react-icons/fa";
 
 function Notification() {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ function Notification() {
             className={`filter-item ${filtro === "reserva" ? "active" : ""}`}
             onClick={() => setFiltro("reserva")}
           >
-            Reservasssss
+            Reservas
           </div>
           <div
             className={`filter-item ${filtro === "cancelada" ? "active" : ""}`}
@@ -93,7 +94,7 @@ function Notification() {
             <h3>Recibidas</h3>
             {notificacionesFiltradas.map((notification) => (
               <div key={notification.id} className="notification">
-                <span className="icon-notification">👤</span>
+                <span className="icon-btn"> <FaEnvelopeOpen/> </span>
                 <p className="text">{notification.texto}</p>
               </div>
             ))}

@@ -1,26 +1,29 @@
-
-
-
+/* =========================
+   PAGE
+========================= */
 .notification-page {
-  padding: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  background-color: transparent;
   min-height: 100vh;
+  background: var(--bg);
 }
 
+/* =========================
+   HEADER
+========================= */
 .header-page {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
-  margin-bottom: 30px;
+  height: 70px;
+  margin-bottom: 20px;
 }
 
 .header-page h1 {
-  color: white;
-  font-size: 36px;
+  color: var(--text-h);
+  font-size: 28px;
   margin: 0;
 }
 
@@ -31,99 +34,131 @@
   transform: translateY(-50%);
 }
 
-/* MAIN LAYOUT - Filtros | Línea | Contenido */
+/* =========================
+   LAYOUT
+========================= */
 .main-layout {
   display: flex;
-  gap: 0;
   flex: 1;
-  align-items: flex-start;
+  gap: 20px;
 }
 
-/* FILTROS - Left sidebar */
+/* =========================
+   FILTROS
+========================= */
 .filter-section {
   display: flex;
   flex-direction: column;
-  gap: 45px;
-  width: 350px;
-  flex-shrink: 0;
-  padding-top: 10px;
+  gap: 18px;
+  width: 240px;
 }
 
 .filter-item {
-  padding: 8px 0;
+  font-size: 16px;
+  color: var(--text-h);
   cursor: pointer;
-  font-size: 25px;
-  color: #888;
-  transition: all 0.3s ease;
-  border-bottom: 2px solid transparent;
-  background: none;
-  border: none;
-  text-align: left;
-  font-family: inherit;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
 .filter-item:hover {
-  color: #ffffff;
+  background: var(--accent-bg);
+  color: var(--text);
 }
 
 .filter-item.active {
-  color: #ffffff;
-  border-bottom: 2px solid #ffffff;
-  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 500;
 }
 
-/* LÍNEA VERTICAL */
+/* =========================
+   LÍNEA
+========================= */
 .line-vertical {
-  width: 2px;
-  background-color: #ffffff;
-  flex-shrink: 0;
-  margin: 0 35px;
-  min-height: 600px;
+  width: 1px;
+  background-color: var(--border);
 }
 
-/* CONTENIDO - Right side */
+/* =========================
+   CONTENIDO
+========================= */
 .content {
   flex: 1;
-  overflow-y: auto;
   max-height: 600px;
-  padding-right: 20px;
+  overflow-y: auto;
+  padding-right: 8px;
 }
 
+/* =========================
+   CARD CONTENEDORA
+========================= */
 .notifications-container {
-  background-color: #ffffff;
-  border-radius: 8px;
+  background: var(--card-bg);
+  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 .notifications-container h3 {
-  margin: 0 0 15px 0;
-  font-size: 25px;
-  color: #333;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: var(--text-h);
 }
 
-/* NOTIFICACIONES */
+/* =========================
+   NOTIFICACIÓN
+========================= */
 .notification {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.notification:last-child {
-  border-bottom: none;
+.notification:hover {
+  background: var(--accent-bg);
+  transform: translateY(-2px);
 }
 
-.icon-notification {
-  font-size: 25px;
-  flex-shrink: 0;
+/* =========================
+   ICONO
+========================= */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-bg);
+  color: var(--accent);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 16px;
 }
 
+/* =========================
+   TEXTO
+========================= */
 .text {
-  color: #555;
-  font-size: 18px;
+  color: var(--text);
+  font-size: 14px;
   margin: 0;
+  line-height: 1.4;
+}
+
+/* =========================
+   SCROLL BONITO
+========================= */
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
 }

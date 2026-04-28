@@ -22,7 +22,6 @@ function Navbar(){
                 <nav className={`nav-links-container ${open ? "active" : ""}`}>
                 <Link to="/Home">Inicio</Link>
                 <Link to="/Notification">Notificaciones</Link>
-                <Link to="/Reservation">Reservación</Link>
                 <Link to="/Count"><MdPerson className='icon-user'/></Link>
             </nav>
 
