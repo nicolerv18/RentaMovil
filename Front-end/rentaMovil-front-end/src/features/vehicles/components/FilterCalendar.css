@@ -79,7 +79,7 @@
 /* INPUT */
 .input-container {
     padding: 10px;
-    border: 1px solid var(--input);
+    border: 1px solid var(--border);
     border-radius: 8px;
     width: 100%;
     font-size: 16px;
@@ -88,7 +88,7 @@
     font-family: 'poppins', sans-serif;
 }
 input{
-    background-color: var(--input);
+    background-color: var(--card-bg);
 }
 .inputInvalid {
     border-bottom: 2px solid red;

@@ -1,7 +1,7 @@
 import '../pages/Count.css';
 import { useState, useEffect } from "react";
 import login from '../../../assets/login.png';
-import { FaEdit, FaMoon, FaSun, FaGlobe, FaSave, FaThemeco, FaAccessibleIcon, FaArtstation, FaSpotify, FaBorderStyle } from "react-icons/fa";
+import { FaEdit, FaMoon, FaSun, FaGlobe, FaSave} from "react-icons/fa";
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
 import { Link, useNavigate } from 'react-router-dom';
@@ -159,6 +159,7 @@ return (
                             className="inputC"
                             type="password"
                             value={user.password}
+                            readOnly
                         />
                     </div>
 
@@ -174,80 +175,46 @@ return (
             </div>
         </div>
         {showThemeModal && (
-            <div 
-                className="modal-overlay"
-                onClick={() => setShowThemeModal(false)}
-            >
-                <div
-                    className="modal-content"
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    <h3>Selecciona un tema</h3>
-                    <div className="theme-cards">
-                        <button
-                            type="button"
-                            className={`theme-card ${theme === "light" ? "active" : ""}`}
-                            aria-pressed={theme === "light"}
-                            onClick={() => {
-                                setTheme("light");
-                                setShowThemeModal(false);
-                            }}
-                        >
-                            <div className="preview light-preview"></div>
-                            <p>Claro</p>
-                        </button>
+    <div className="modal-overlay" onClick={() => setShowThemeModal(false)}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <p className="modal-title">Selecciona un tema</p>
+            <p className="modal-subtitle">Elige cómo quieres ver la app</p>
 
-                        <button
-                            type="button"
-                            className={`theme-card ${theme === "dark" ? "active" : ""}`}
-                            aria-pressed={theme === "dark"}
-                            onClick={() => {
-                                setTheme("dark");
-                                setShowThemeModal(false);
-                            }}
-                        >
-                            <div className="preview dark-preview"></div>
-                            <p>Oscuro</p>
-                        </button>
-
-                        <button
-                            type="button"
-                            className={`theme-card ${theme === "blue" ? "active" : ""}`}
-                            aria-pressed={theme === "blue"}
-                            onClick={() => {
-                                setTheme("blue");
-                                setShowThemeModal(false);
-                            }}
-                        >
-                            <div className="preview blue-preview"></div>
-                            <p>Azul</p>
-                        </button>
-
-                        <button
-                            type="button"
-                            className={`theme-card ${theme === "purple" ? "active" : ""}`}
-                            aria-pressed={theme === "purple"}
-                            onClick={() => {
-                                setTheme("purple");
-                                setShowThemeModal(false);
-                            }}
-                        >
-                            <div className="preview purple-preview"></div>
-                            <p>Morado</p>
-                        </button>
-
-                    </div>
-
-                    <button 
-                        className="close-btn"
-                        onClick={() => setShowThemeModal(false)}
+            <div className="theme-grid">
+                {[
+                    { id: "skylight",  label: "Modo azul claro",   desc: "Fondo blanco, texto oscuro" },
+                    { id: "light",   label: "Modo amarrillo claro",  desc: "Fondo negro, acentos morados" },
+                    { id: "dark",   label: "Azul",    desc: "Fondo azul suave, acentos navy" },
+                    { id: "darkPurple", label: "Morado",  desc: "Fondo lila suave, acentos violeta" },
+                ].map(({ id, label, desc }) => (
+                    <button
+                        key={id}
+                        type="button"
+                        className={`theme-card ${theme === id ? "active" : ""}`}
+                        onClick={() => { setTheme(id); setShowThemeModal(false); }}
                     >
-                        Cerrar
+                        <div className={`theme-preview preview-${id}`}>
+                            <divc className="space" ></divc>
+                        </div>
+                        <div className="theme-card-info">
+                            <p className="theme-name">{label}</p>
+                            <p className="theme-desc">{desc}</p>
+                        </div>
                     </button>
-                </div>
+                ))}
             </div>
-        )}
 
+            <div className="modal-actions">
+                <button className="close-btn" onClick={() => setShowThemeModal(false)}>
+                    Cancelar
+                </button >
+                <button className="close-btn" onClick={() => setShowThemeModal(true)}>
+                    Aplicar
+                </button>
+            </div>
+        </div>
+    </div>
+)}
         <Footer />
     </>
 );

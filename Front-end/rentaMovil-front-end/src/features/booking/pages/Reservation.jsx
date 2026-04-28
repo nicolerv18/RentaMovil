@@ -165,7 +165,7 @@ function Reservation() {
                                 <label className='labelR'>Responsable de Reserva</label>
                                 <input
                                     type="text"
-                                    placeholder='Nombre'
+                                    placeholder='Nombre y apellidos completos'
                                     value={nameR}
                                     onChange={(e) => setNameR(e.target.value)}
                                     required

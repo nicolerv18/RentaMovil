@@ -2,7 +2,7 @@
   width: 32px;
   height: 33px;
   transition: transform 0.3s;
-  color: var(--accent);
+  color: var(--button);
 }
 
 .icono-flecha.rotade {
@@ -54,7 +54,7 @@
   width: 80%;
   border-radius: 8px;
   color : var(--text);
-  background-color: var(--filter);
+  background-color: var(--card-bg);
   border: none;
   font-size: inherit;
   user-select: none;

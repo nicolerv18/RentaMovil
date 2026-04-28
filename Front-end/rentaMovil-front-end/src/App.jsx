@@ -14,10 +14,10 @@ const ChangePassword = lazy(() => import('./features/auth/pages/ChangePassword.j
 
 function App() {
   const [theme, setTheme] = useState(
-    localStorage.getItem("Theme") || "ligth"
+    localStorage.getItem("theme") || "light1"
   );
   useEffect(() => {
-    document.body.className = theme;
+    document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
 

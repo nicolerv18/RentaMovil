@@ -1,4 +1,4 @@
-:root {
+:root.skylight {
   /* Colores de texto */
   --text: #0a0a0a;
   --text-h: #37474F;
@@ -39,7 +39,7 @@
   /* Extras */
   --code-bg: #F5F7FA;
   --social-bg: rgba(245, 247, FA, 0.6);
-  --input:  #f5f7fa;
+  --input:  #f4f4f4;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
@@ -61,7 +61,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root.ligth {
+:root.light {
   /* Colores de texto */
   --text: #0a0a0a;
   --text-h: #37474F;
@@ -74,9 +74,9 @@
   /* Fondos */
   --bg: #F5F7FA;
   --card-bg: #FFFFFF;
-  --navbar: #d5d81d;
-  --primary: #f9de2d;
-  --primary-dark: #ffec3f;
+  --navbar:  #217d47;
+  --primary:  #217d47;
+  --primary-dark:  #217d47;
   --success: #00C853;
   --filter: #ffffff;
   --border-filter: #cfd8dc;
@@ -87,14 +87,14 @@
 
   /* Botones */
   --buttonLoading: #A5D6A7;
-  --button:#00C853;
+  --button: #217d47;
   --button-success: #00C853;
 
   /* Bordes y detalles */
   --border: rgba(55, 71, 79, 0.12);
 
   /* Accentos */
-  --accent:  #00C853;
+  --accent:  #e7d351;
   --accent-bg: rgba(30, 136, 229, 0.10);
   --accent-border: rgba(30, 136, 229, 0.35);
   --accent-hover: rgba(70, 229, 30, 0.25);
@@ -131,69 +131,129 @@
 }
 
 :root.dark {
-  /* Colores de texto */
-  --text: #9ca3af;
-  --text-h: #f3f4f6;
-  --text-btn: #2a2828;
+ /* Colores de texto */
+  --text: #ffffff;
+  --text-h: #aeb1b3;
+  --textNavabar: #FFFFFF;
+  --textFooter: #FFFFFF;
+  --text-btn: #FFFFFF;
   --placeholder: #9ca3af;
 
+
   /* Fondos */
-  --bg: #020617;
+  --bg:  #020617;
   --card-bg: #0f172a;
-  --navbar: #0f172a;
-  --bg-dark-input: rgba(255, 255, 255, 0.04);
-  --filter:#0f172a;
-  --input:#0f172a;
+  --navbar:#0f172a;
+  --primary: #2D7FF9;
+  --primary-dark: #3F8CFF;
+  --success: #00C853;
+  --filter: #ffffff;
+  --border-filter: #cfd8dc;
 
   /* Iconos */
-  --icon: #e4e4e4;
+  --icon: #37474F;
 
-  /* Otros colores */
-  --border: #ffffff;
-  ---border-card:#0f172a;
-  --border-input:rgb(52, 56, 75);
-  --code-bg: #1f2028;
-  --accent: #c084fc;
-  --accent-bg: rgba(192, 132, 252, 0.15);
-  --accent-border: rgba(192, 132, 252, 0.5);
-  --accent-hover: rgba(192, 132, 252, 0.5);
-  --social-bg: rgba(47, 48, 58, 0.5);
+
+  /* Botones */
+  --buttonLoading: #A5D6A7;
+  --button:#00C853;
+  --button-success: #00C853;
+
+  /* Bordes y detalles */
+  --border: rgba(246, 248, 253, 0.223);
+
+  /* Accentos */
+  --accent:  #00C853;
+  --accent-bg: rgba(30, 136, 229, 0.10);
+  --accent-border: rgba(30, 136, 229, 0.35);
+  --accent-hover: rgba(70, 229, 30, 0.25);
+
+  /* Extras */
+  --code-bg: #F5F7FA;
+  --social-bg: rgba(245, 247, FA, 0.6);
+  --input:  #0f172a;
+
   --shadow:
-    rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
-    rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :root.darkPurple {
-  /* Colores de texto */
-  --text: #9ca3af;
-  --text-h: #f3f4f6;
-  --text-btn: #2a2828;
+ /* Colores de texto */
+  --text: #ffffff;
+  --text-h: #aeb1b3;
+  --textNavabar: #FFFFFF;
+  --textFooter: #FFFFFF;
+  --text-btn: #FFFFFF;
   --placeholder: #9ca3af;
 
+
   /* Fondos */
-  --bg: #020617;
-  --card-bg: #0f172a;
-  --navbar: #0f172a;
-  --bg-dark-input: rgba(255, 255, 255, 0.04);
-  --filter:#0f172a;
-  --input:#0f172a;
+  --bg:  #212225;
+  --card-bg: #2d2e33;
+  --navbar:#217d47;
+  --primary: #2D7FF9;
+  --primary-dark: #3F8CFF;
+  --success: #00C853;
+  --filter: #ffffff;
+  --border-filter: #cfd8dc;
 
   /* Iconos */
-  --icon: #e4e4e4;
+  --icon: #37474F;
 
-  /* Otros colores */
-  --border: #ffffff;
-  ---border-card:#0f172a;
-  --border-input:rgb(52, 56, 75);
-  --code-bg: #1f2028;
-  --accent: #c084fc;
-  --accent-bg: rgba(192, 132, 252, 0.15);
-  --accent-border: rgba(192, 132, 252, 0.5);
-  --accent-hover: rgba(192, 132, 252, 0.5);
-  --social-bg: rgba(47, 48, 58, 0.5);
+
+  /* Botones */
+  --buttonLoading: #A5D6A7;
+  --button:#217d47;
+  --button-success: #00C853;
+
+  /* Bordes y detalles */
+  --border: rgba(246, 248, 253, 0.223);
+
+  /* Accentos */
+  --accent:   #ffffff;
+  --accent-bg: rgba(30, 136, 229, 0.10);
+  --accent-border: rgba(30, 136, 229, 0.35);
+  --accent-hover: rgba(70, 229, 30, 0.25);
+
+  /* Extras */
+  --code-bg: #F5F7FA;
+  --social-bg: rgba(245, 247, FA, 0.6);
+  --input:  #2d2e33;
+
   --shadow:
-    rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
-    rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
