@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import style from '../components/CartVehiculeStatus.module.css'
 
 function CardVehiculeStatus({ name, text, state, plate, img, ubication, onVerMas }) {
@@ -39,9 +39,8 @@ segun el estado de este :v es decir, si nuestro estado es alterado, automaticame
                     Ver más
                 </button>
             </div>
-=======
-import style from'./CartVehiculeStatus.module.css'
->>>>>>> feature-Menu-Admin
+
+
 
         </div>
     )

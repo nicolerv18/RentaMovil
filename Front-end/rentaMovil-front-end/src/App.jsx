@@ -1,85 +1,68 @@
-import "./App.css";
-import "leaflet/dist/leaflet.css";
-import React, { Suspense, lazy, useState, useEffect } from "react";
+import './App.css'
+import 'leaflet/dist/leaflet.css';
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Auth
-const Login = lazy(() => import("./features/auth/pages/Login"));
-const Count = lazy(() => import("./features/auth/pages/Count"));
-const ChangePassword = lazy(
-  () => import("./features/auth/pages/ChangePassword"),
-);
+import Login from "./features/auth/pages/Login";
+import Count from "./features/auth/pages/Count";
+import ChangePassword from "./features/auth/pages/ChangePassword";
 
 // Vehicles
-const Home = lazy(() => import("./features/vehicles/pages/Home"));
+import Home from "./features/vehicles/pages/Home";
 
 // Booking
-const Reservation = lazy(() => import("./features/booking/pages/Reservation"));
+import Reservation from "./features/booking/pages/Reservation";
 
 // Payment
-const Payment = lazy(() => import("./features/payment/pages/Payment"));
+import Payment from "./features/payment/pages/Payment";
 
 // Notification
-const Notification = lazy(() => import("./features/notification/pages/Notification"),
-);
+import Notification from "./features/notification/pages/Notification";
 
 // Admin - Vehicles
-const RegisterVehicle = lazy(() => import("./features/admin/vehicles/pages/RegisterVehicle"),
-);
+import RegisterVehicle from "./features/admin/vehicles/pages/RegisterVehicle";
 
 // Admin - Maintenance
-const Maintenance = lazy(
-  () => import("./features/admin/maintenance/pages/Maintenance"),
-);
+import Maintenance from "./features/admin/maintenance/pages/Maintenance";
 
 // Admin - Status
-const CheckStatus = lazy(
-  () => import("./features/admin/status/pages/CheckStatus"),
-);
+import CheckStatus from "./features/admin/status/pages/CheckStatus";
 
 // Admin - Contract
-const Contract = lazy(() => import("./features/admin/Contract/Pages/Contract"));
-const ContractHistory = lazy(
-  () => import("./features/admin/Contract/Pages/ContractHistory"),
-);
+import Contract from "./features/admin/Contract/Pages/Contract";
+import ContractHistory from "./features/admin/Contract/Pages/ContractHistory";
 
 // Admin - HomeAdmin
-const HomeAdmin = lazy(
-  () => import("./features/admin/HomeAdmin/Pages/HomeAdmin"),
-);
+import HomeAdmin from "./features/admin/HomeAdmin/Pages/HomeAdmin";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("darkMode") === "true",
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light1"
   );
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-    localStorage.setItem("darkMode", darkMode);
-  }, [darkMode]);
+    document.documentElement.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/Reservation" element={<Reservation />} />
-          <Route
-            path="/Count"
-            element={<Count darkMode={darkMode} setDarkMode={setDarkMode} />}
-          />
-          <Route path="/Notification" element={<Notification />} />
-          <Route path="/Payment" element={<Payment />} />
-          <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
-          <Route path="/Maintenance" element={<Maintenance />} />
-          <Route path="/CheckStatus" element={<CheckStatus />} />
-          <Route path="/Contract" element={<Contract />} />
-          <Route path="/ContractHistory" element={<ContractHistory />} />
-          <Route path="/HomeAdmin" element={<HomeAdmin />} />
-          <Route path="/ChangePassword" element={<ChangePassword />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/Reservation" element={<Reservation />} />
+        <Route path="/Count" element={<Count theme={theme} setTheme={setTheme} />} />
+        <Route path="/Notification" element={<Notification />} />
+        <Route path="/Payment" element={<Payment />} />
+        <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
+        <Route path="/Maintenance" element={<Maintenance />} />
+        <Route path="/CheckStatus" element={<CheckStatus />} />
+        <Route path="/Contract" element={<Contract />} />
+        <Route path="/ContractHistory" element={<ContractHistory />} />
+        <Route path="/HomeAdmin" element={<HomeAdmin />} />
+        <Route path="/ChangePassword" element={<ChangePassword />} />
+      </Routes>
     </BrowserRouter>
   );
 }
