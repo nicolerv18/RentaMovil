@@ -20,7 +20,9 @@
 
   /* Iconos */
   --icon: #37474F;
-
+ /* modal themes */
+  --card: white;
+  --border-Card: rgba(84, 84, 84, 0.732);
 
   /* Botones */
   --buttonLoading: #A5D6A7;
@@ -40,6 +42,16 @@
   --code-bg: #F5F7FA;
   --social-bg: rgba(245, 247, FA, 0.6);
   --input:  #f4f4f4;
+  --modal-text: #040404;
+  --modal-title:  #1d4ed8;
+  --modal-subtext: #242527;
+  --modal-card-bg: #ffffff;
+  --modal-card-text: #111827;
+  --modal-card-border: #929395;
+  --modal-button:  #1d4ed8;
+  --modal-button-text: #ffffff;
+  --modal-hover: #3262e5bf;
+  --modal-bg:white;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
@@ -103,6 +115,18 @@
   --code-bg: #F5F7FA;
   --social-bg: rgba(245, 247, FA, 0.6);
   --input:  #f5f7fa;
+    --card: white;
+  --border-Card: rgba(84, 84, 84, 0.732);
+    --modal-text: #040404;
+  --modal-title: #218b4d;
+  --modal-subtext: #242527;
+  --modal-card-bg: #ffffff;
+  --modal-card-text: #111827;
+  --modal-card-border: #929395;
+  --modal-button: #217d47;
+  --modal-button-text: #ffffff;
+  --modal-hover: #2f8352e0;
+  --modal-bg:white; 
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
@@ -172,6 +196,19 @@
   --code-bg: #F5F7FA;
   --social-bg: rgba(245, 247, FA, 0.6);
   --input:  #0f172a;
+    --card: white;
+  --border-Card: rgba(84, 84, 84, 0.732);
+  --text-card: #0000;
+  --modal-text: #fff7f7;
+  --modal-title:  #6dea4a;
+  --modal-subtext: #ffffff;
+  --modal-card-bg:  #0f172a;
+  --modal-card-text: #f6f7fa;
+  --modal-card-border: #929395;
+  --modal-button:  #4b9835;
+  --modal-button-text: #ffffff;
+  --modal-hover: #6dea4a70;
+  --modal-bg: #0f172a;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
@@ -235,6 +272,16 @@
   --code-bg: #F5F7FA;
   --social-bg: rgba(245, 247, FA, 0.6);
   --input:  #2d2e33;
+    --modal-text: #040404;
+  --modal-title:  #6dea4a;
+  --modal-subtext: #fafafa;
+  --modal-card-bg:  #2d2e33;
+  --modal-card-text: #ffffff;
+  --modal-card-border: #d1d5db;
+  --modal-button:  #4b9835;
+  --modal-button-text: #ffffff;
+  --modal-hover:  #4b9835;
+  --modal-bg: #2d2e33;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,

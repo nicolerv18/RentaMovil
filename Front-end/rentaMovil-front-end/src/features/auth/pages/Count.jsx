@@ -1,7 +1,7 @@
 import '../pages/Count.css';
 import { useState, useEffect } from "react";
 import login from '../../../assets/login.png';
-import { FaEdit, FaMoon, FaSun, FaGlobe, FaSave} from "react-icons/fa";
+import { FaEdit, FaMoon, FaSun, FaGlobe, FaSave, FaTimes} from "react-icons/fa";
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
 import { Link, useNavigate } from 'react-router-dom';
@@ -178,7 +178,6 @@ return (
     <div className="modal-overlay" onClick={() => setShowThemeModal(false)}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <p className="modal-title">Selecciona un tema</p>
-            <p className="modal-subtitle">Elige cómo quieres ver la app</p>
 
             <div className="theme-grid">
                 {[
@@ -191,10 +190,9 @@ return (
                         key={id}
                         type="button"
                         className={`theme-card ${theme === id ? "active" : ""}`}
-                        onClick={() => { setTheme(id); setShowThemeModal(false); }}
+                        onClick={() => { setTheme(id) }}
                     >
                         <div className={`theme-preview preview-${id}`}>
-                            <divc className="space" ></divc>
                         </div>
                         <div className="theme-card-info">
                             <p className="theme-name">{label}</p>
@@ -208,8 +206,8 @@ return (
                 <button className="close-btn" onClick={() => setShowThemeModal(false)}>
                     Cancelar
                 </button >
-                <button className="close-btn" onClick={() => setShowThemeModal(true)}>
-                    Aplicar
+                <button className="btn-times" onClick={() =>  setShowThemeModal(false)}>
+                <FaTimes/>
                 </button>
             </div>
         </div>
