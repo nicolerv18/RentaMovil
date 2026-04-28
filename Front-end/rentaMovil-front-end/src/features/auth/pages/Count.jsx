@@ -1,5 +1,6 @@
-import '../pages/Count.css';
+
 import { useState, useEffect } from "react";
+import './Count.css';
 import login from '../../../assets/login.png';
 import { FaEdit, FaMoon, FaSun, FaGlobe, FaSave, FaTimes} from "react-icons/fa";
 import Navbar from "../../../shared/components/layout/Navbar";

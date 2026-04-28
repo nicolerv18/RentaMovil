@@ -1,5 +1,5 @@
 import React from 'react';
-import "./ButtonBack.css";
+import "./buttonBack.css";
 import {FaArrowLeft} from "react-icons/fa";
 const ButtonBack = ({ onClick, type = 'button' }) => {
     return(

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from "../components/FiltrerStatus.module.css"
+import style from "./FiltrerStatus.module.css"
 import { ImSearch } from "react-icons/im";
 function FiltrerStatus({ query, setSearch, filterState, setFilterState }) {
     const states = ["Todos", "Disponible", "En mantenimiento", "En uso", "Reservado"];// Array de estados para el filtro, se puede modificar según los estados reales de los vehículos

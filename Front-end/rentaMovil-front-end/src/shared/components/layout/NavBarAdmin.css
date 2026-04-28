@@ -1,0 +1,138 @@
+.navbar {
+  margin: 10px auto;
+  width: 90%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 60px;
+  border-radius: 10px;
+  padding: 15px 40px;
+
+  background: var(--navbar);
+  color: var(--icon);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+}
+.Title{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.8rem;
+  color:  var( --textNavabar);
+}
+
+.Title-hover{
+  color: var(--accent);
+}
+
+
+.navbar a{
+  text-decoration: none;
+  color: var( --textNavabar);
+}
+
+.navbar a:hover{
+  color: var(--accent);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links-container{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+nav svg {
+  cursor: pointer;
+}
+
+.nav-admin-link {
+  text-decoration: none;
+  color: var(--textNavabar);
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.nav-admin-link:hover,
+.nav-admin-link.nav-admin-active {
+  color: var(--accent);
+}
+
+
+.icon{
+  color: var( --button);
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+}
+
+.icon-user{
+  color: var( --button);
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+}
+.menu-toggle {
+  display: none;
+}
+.icon:hover{
+  color: rgb(135, 216, 145);
+}
+@media (max-width: 768px) {
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    position: relative;
+  }
+
+  /* BOTÓN MENÚ */
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* LINKS ocultos por defecto */
+  .nav-links-container {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 90%;
+    background: var(--navbar);
+    color: var(--accent);
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 20px;
+
+    transform: translateY(-300%);
+    transition: 0.3s ease;
+    z-index: 100;
+  }
+  .icon-FaBars{
+    color: var(--accent);
+  }
+  
+  /* cuando está activo */
+  .nav-links-container.active {
+    transform: translateY(0);
+    color: var(--accent);
+  }
+}
