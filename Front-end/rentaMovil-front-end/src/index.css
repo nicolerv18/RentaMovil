@@ -56,6 +56,10 @@
   --modal-button-text: #ffffff;
   --modal-hover: #3262e5bf;
   --modal-bg:white;
+  --notification: #c4cdcd;
+  --background: #4b9835;
+  --hover:  #d8dbe3 ;
+  --iconEmail: #ffffff;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
@@ -130,7 +134,11 @@
   --modal-button: #217d47;
   --modal-button-text: #ffffff;
   --modal-hover: #2f8352e0;
-  --modal-bg:white; 
+  --modal-bg:white;
+  --notification: #d3d4e0;
+  --background: #4b9835;
+  --hover:  #ede29b ;
+  --iconEmail: #ffffff;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
@@ -215,6 +223,10 @@
   --modal-button-text: #ffffff;
   --modal-hover: #6dea4a70;
   --modal-bg: #0f172a;
+  --notification: #343a68;
+  --background: #4b9835;
+  --hover:  #2d2e33 ;
+  --iconEmail: #ffffff;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,
@@ -278,7 +290,7 @@
   --code-bg: #F5F7FA;
   --social-bg: rgba(245, 247, FA, 0.6);
   --input:  #2d2e33;
-    --modal-text: #040404;
+    --modal-text: #eeecec;
   --modal-title:  #6dea4a;
   --modal-subtext: #fafafa;
   --modal-card-bg:  #2d2e33;
@@ -288,6 +300,10 @@
   --modal-button-text: #ffffff;
   --modal-hover:  #4b9835;
   --modal-bg: #2d2e33;
+  --notification: #5f6067;
+  --background: #4b9835;
+  --hover:  #2d2e33 ;
+  --iconEmail: #ffffff;
 
   --shadow:
     rgba(0, 0, 0, 0.10) 0 10px 15px -3px,

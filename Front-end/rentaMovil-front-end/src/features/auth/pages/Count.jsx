@@ -17,13 +17,8 @@ function Count({ theme, setTheme }) {
   const { t, i18n } = useTranslation();
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showLangModal, setShowLangModal] = useState(false);
-
-  const handleSave = () => {
-    localStorage.setItem("user", JSON.stringify(user));
-    setIsEditing(false);
-  };
-
   const [isEditing, setIsEditing] = useState(false);
+  const [image, setImage] = useState(login);
   const [user, setUser] = useState({
     nombre: "",
     telefono: "",
@@ -45,7 +40,10 @@ function Count({ theme, setTheme }) {
     }
   }, []);
 
-  const [image, setImage] = useState(login);
+  const handleSave = () => {
+    localStorage.setItem("user", JSON.stringify(user));
+    setIsEditing(false);
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -86,13 +84,11 @@ function Count({ theme, setTheme }) {
               {isEditing ? <FaSave /> : <FaEdit />}
             </button>
 
-            <button
-              className="icon-btn"
-              onClick={() => setShowThemeModal(true)}
-            >
+            <button className="icon-btn" onClick={() => setShowThemeModal(true)}>
               <FaMoon />
             </button>
 
+            {/* Botón idioma ahora funcional (v2 lo tenía sin onClick) */}
             <button className="icon-btn" onClick={() => setShowLangModal(true)}>
               <FaGlobe />
             </button>
@@ -162,9 +158,7 @@ function Count({ theme, setTheme }) {
             </Link>
 
             <p className="status">
-              {isEditing
-                ? t("count.modoEdicion")
-                : t("count.perfilActualizado")}
+              {isEditing ? t("count.modoEdicion") : t("count.perfilActualizado")}
             </p>
           </div>
         </div>
@@ -177,26 +171,10 @@ function Count({ theme, setTheme }) {
             <p className="modal-title">{t("count.seleccionaTema")}</p>
             <div className="theme-grid">
               {[
-                {
-                  id: "skylight",
-                  label: "Modo azul claro",
-                  desc: "Fondo blanco, texto oscuro",
-                },
-                {
-                  id: "light",
-                  label: "Modo amarillo claro",
-                  desc: "Fondo negro, acentos morados",
-                },
-                {
-                  id: "dark",
-                  label: "Azul",
-                  desc: "Fondo azul suave, acentos navy",
-                },
-                {
-                  id: "darkPurple",
-                  label: "Morado",
-                  desc: "Fondo lila suave, acentos violeta",
-                },
+                { id: "skylight", label: "Modo azul claro",     desc: "Fondo blanco, texto oscuro" },
+                { id: "light",    label: "Modo amarillo claro",  desc: "Fondo negro, acentos morados" },
+                { id: "dark",     label: "Azul",                 desc: "Fondo azul suave, acentos navy" },
+                { id: "darkPurple", label: "Morado",             desc: "Fondo lila suave, acentos violeta" },
               ].map(({ id, label, desc }) => (
                 <button
                   key={id}
@@ -213,16 +191,10 @@ function Count({ theme, setTheme }) {
               ))}
             </div>
             <div className="modal-actions">
-              <button
-                className="close-btn"
-                onClick={() => setShowThemeModal(false)}
-              >
+              <button className="close-btn" onClick={() => setShowThemeModal(false)}>
                 {t("count.cancelar")}
               </button>
-              <button
-                className="btn-times"
-                onClick={() => setShowThemeModal(false)}
-              >
+              <button className="btn-times" onClick={() => setShowThemeModal(false)}>
                 <FaTimes />
               </button>
             </div>
@@ -230,22 +202,17 @@ function Count({ theme, setTheme }) {
         </div>
       )}
 
-      {/* ── Modal Idioma ── */}
+      {/* ── Modal Idioma (solo existía en v1) ── */}
       {showLangModal && (
         <div className="modal-overlay" onClick={() => setShowLangModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <p className="modal-title">{t("count.seleccionaIdioma")}</p>
             <div className="theme-grid">
               {[
-                { id: "es", label: "Español", flag: espanish, desc: "Spanish" },
-                { id: "en", label: "English", flag: english, desc: "Inglés" },
-                { id: "fr", label: "Français", flag: french, desc: "Francés" },
-                {
-                  id: "pt",
-                  label: "Português",
-                  flag: portuguese,
-                  desc: "Portugués",
-                },
+                { id: "es", label: "Español",   flag: espanish,   desc: "Spanish"   },
+                { id: "en", label: "English",   flag: english,    desc: "Inglés"    },
+                { id: "fr", label: "Français",  flag: french,     desc: "Francés"   },
+                { id: "pt", label: "Português", flag: portuguese, desc: "Portugués" },
               ].map(({ id, label, flag, desc }) => (
                 <button
                   key={id}
@@ -264,16 +231,10 @@ function Count({ theme, setTheme }) {
               ))}
             </div>
             <div className="modal-actions">
-              <button
-                className="close-btn"
-                onClick={() => setShowLangModal(false)}
-              >
+              <button className="close-btn" onClick={() => setShowLangModal(false)}>
                 {t("count.cancelar")}
               </button>
-              <button
-                className="btn-times"
-                onClick={() => setShowLangModal(false)}
-              >
+              <button className="btn-times" onClick={() => setShowLangModal(false)}>
                 <FaTimes />
               </button>
             </div>

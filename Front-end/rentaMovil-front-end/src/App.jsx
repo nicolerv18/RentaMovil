@@ -1,40 +1,41 @@
 import './App.css'
 import 'leaflet/dist/leaflet.css';
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { Suspense, lazy, useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Auth
-import Login from "./features/auth/pages/Login";
-import Count from "./features/auth/pages/Count";
-import ChangePassword from "./features/auth/pages/ChangePassword";
+const Login = lazy(() => import('./features/auth/pages/Login.jsx'));
+const Count = lazy(() => import('./features/auth/pages/Count.jsx'));
+const ChangePassword = lazy(() => import('./features/auth/pages/ChangePassword.jsx'));
 
 // Vehicles
-import Home from "./features/vehicles/pages/Home";
+const Home = lazy(() => import('./features/vehicles/pages/Home.jsx'));
 
 // Booking
-import Reservation from "./features/booking/pages/Reservation";
+const Reservation = lazy(() => import('./features/booking/pages/Reservation.jsx'));
+const HistorialReservation = lazy(() => import('./features/booking/HistorialReservation.jsx'));
 
 // Payment
-import Payment from "./features/payment/pages/Payment";
+const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'));
 
 // Notification
-import Notification from "./features/notification/pages/Notification";
+const Notification = lazy(() => import('./features/notification/pages/Notification.jsx'));
 
 // Admin - Vehicles
-import RegisterVehicle from "./features/admin/vehicles/pages/RegisterVehicle";
+const RegisterVehicle = lazy(() => import('./features/admin/vehicles/pages/RegisterVehicle.jsx'));
 
 // Admin - Maintenance
-import Maintenance from "./features/admin/maintenance/pages/Maintenance";
+const Maintenance = lazy(() => import('./features/admin/maintenance/pages/Maintenance.jsx'));
 
 // Admin - Status
-import CheckStatus from "./features/admin/status/pages/CheckStatus";
+const CheckStatus = lazy(() => import('./features/admin/status/pages/CheckStatus.jsx'));
 
 // Admin - Contract
-import Contract from "./features/admin/Contract/Pages/Contract";
-import ContractHistory from "./features/admin/Contract/Pages/ContractHistory";
+const Contract = lazy(() => import('./features/admin/Contract/Pages/Contract.jsx'));
+const ContractHistory = lazy(() => import('./features/admin/Contract/Pages/ContractHistory.jsx'));
 
 // Admin - HomeAdmin
-import HomeAdmin from "./features/admin/HomeAdmin/Pages/HomeAdmin";
+const HomeAdmin = lazy(() => import('./features/admin/HomeAdmin/Pages/HomeAdmin.jsx'));
 
 function App() {
   const [theme, setTheme] = useState(
@@ -48,21 +49,35 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Reservation" element={<Reservation />} />
-        <Route path="/Count" element={<Count theme={theme} setTheme={setTheme} />} />
-        <Route path="/Notification" element={<Notification />} />
-        <Route path="/Payment" element={<Payment />} />
-        <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
-        <Route path="/Maintenance" element={<Maintenance />} />
-        <Route path="/CheckStatus" element={<CheckStatus />} />
-        <Route path="/Contract" element={<Contract />} />
-        <Route path="/ContractHistory" element={<ContractHistory />} />
-        <Route path="/HomeAdmin" element={<HomeAdmin />} />
-        <Route path="/ChangePassword" element={<ChangePassword />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          {/* Auth */}
+          <Route path="/" element={<Login />} />
+          <Route path="/count" element={<Count theme={theme} setTheme={setTheme} />} />
+          <Route path="/ChangePassword" element={<ChangePassword />} />
+
+          {/* Vehicles */}
+          <Route path="/home" element={<Home />} />
+
+          {/* Booking */}
+          <Route path="/reservation" element={<Reservation />} />
+          <Route path="/HistorialReservation" element={<HistorialReservation />} />
+
+          {/* Payment */}
+          <Route path="/payment" element={<Payment />} />
+
+          {/* Notification */}
+          <Route path="/Notification" element={<Notification />} />
+
+          {/* Admin */}
+          <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
+          <Route path="/Maintenance" element={<Maintenance />} />
+          <Route path="/CheckStatus" element={<CheckStatus />} />
+          <Route path="/Contract" element={<Contract />} />
+          <Route path="/ContractHistory" element={<ContractHistory />} />
+          <Route path="/HomeAdmin" element={<HomeAdmin />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

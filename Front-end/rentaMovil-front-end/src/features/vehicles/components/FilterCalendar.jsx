@@ -11,6 +11,7 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
     const now = new Date();
     return now.toTimeString().slice(0, 5);
   };
+
   const getTomorrow = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -28,31 +29,27 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
   const [query, setQuery] = useState("");
   const [sugerencias, setSugerencias] = useState([]);
   const [seleccionado, setSeleccionado] = useState("");
-
   const [hora, setHora] = useState(getCurrentTime());
   const [date, setDate] = useState(today);
   const [dateReturn, setDateReturn] = useState(getTomorrow());
-
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
   const [errorSucursal, setErrorSucursal] = useState("");
+  const [errorFecha, setErrorFecha] = useState("");
 
   const wrapperRef = useRef(null);
-    const [errorFecha, setErrorFecha] = useState("");
-      useEffect(() => {
-        if (date && dateReturn) {
-            if (dateReturn < date) {
-                setErrorFecha(t("filterCalendar.errorDate"));
-            } else {
-                setErrorFecha("");
-            }
-        }
-    }, [date, dateReturn]);
 
-  
+  useEffect(() => {
+    if (date && dateReturn) {
+      if (dateReturn < date) {
+        setErrorFecha(t("filterCalendar.errorDate"));
+      } else {
+        setErrorFecha("");
+      }
+    }
+  }, [date, dateReturn]);
 
-  // cerrar dropdown
+  // Cerrar dropdown al hacer click fuera
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -63,7 +60,7 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // enviar fechas al padre (Reservation)
+  // Enviar fechas al padre (Reservation)
   useEffect(() => {
     setPickupDate && setPickupDate(date);
   }, [date]);
@@ -103,23 +100,24 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
     return h >= 8 && h <= 18;
   };
 
-const handleSubmit = () => {
-  setErrorSucursal("");
-  setError("");
-  setSuccess("");
+  const handleSubmit = () => {
+    setErrorSucursal("");
+    setError("");
+    setSuccess("");
 
-  if (!seleccionado) {
-    setErrorSucursal(t("filterCalendar.errorBranch"));
-    return;
-  }
+    if (!seleccionado) {
+      setErrorSucursal(t("filterCalendar.errorBranch"));
+      return;
+    }
 
-  if (!validarHora(hora)) {
-    setError(t("filterCalendar.errorHour"));
-    return;
-  }
+    if (!validarHora(hora)) {
+      setError(t("filterCalendar.errorHour"));
+      return;
+    }
 
-  setSuccess(t("filterCalendar.success"));
-};
+    setSuccess(t("filterCalendar.success"));
+  };
+
   return (
     <form
       className={`filter ${variant}`}
@@ -128,7 +126,6 @@ const handleSubmit = () => {
         handleSubmit();
       }}
     >
-
       <div className="field" ref={wrapperRef}>
         <label className="label-filter">{t("filterCalendar.deliveryLocation")}</label>
         <input
@@ -139,7 +136,7 @@ const handleSubmit = () => {
           autoComplete="off"
           required
         />
-              {errorSucursal && <p className="error">{errorSucursal}</p>}
+        {errorSucursal && <p className="error">{errorSucursal}</p>}
         {sugerencias.length > 0 && (
           <ul className="sucursal-dropdown">
             {sugerencias.map((s, i) => (
@@ -154,6 +151,7 @@ const handleSubmit = () => {
           </ul>
         )}
       </div>
+
       <div className="field">
         <label className="label-filter">{t("filterCalendar.deliveryDate")}</label>
         <input
@@ -163,9 +161,9 @@ const handleSubmit = () => {
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-        {errorFecha && (<div className="message-error"> {errorFecha}</div>)}
-
+        {errorFecha && <div className="message-error">{errorFecha}</div>}
       </div>
+
       <div className="field">
         <label className="label-filter">{t("filterCalendar.deliveryHour")}</label>
         <input
@@ -175,6 +173,7 @@ const handleSubmit = () => {
           onChange={(e) => setHora(e.target.value)}
         />
       </div>
+
       <div className="field">
         <label className="label-filter">{t("filterCalendar.returnDate")}</label>
         <input
@@ -185,6 +184,7 @@ const handleSubmit = () => {
           onChange={(e) => setDateReturn(e.target.value)}
         />
       </div>
+
       <div className="field">
         <label className="label-filter">{t("filterCalendar.returnHour")}</label>
         <input
@@ -194,8 +194,9 @@ const handleSubmit = () => {
           onChange={(e) => setHora(e.target.value)}
         />
       </div>
+
       <button type="submit" className="btn-search">
-        Buscar
+        {t("filterCalendar.search")}
       </button>
 
       {error && <p className="error">{error}</p>}
