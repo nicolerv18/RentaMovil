@@ -13,7 +13,7 @@ i18n
     lng: 'es',           // idioma por defecto
     fallbackLng: 'es',   // si falla, cae a español
     interpolation: {
-      escapeValue: false  // React ya protege contra XSS
+      escapeValue: false
     }
   });
 
