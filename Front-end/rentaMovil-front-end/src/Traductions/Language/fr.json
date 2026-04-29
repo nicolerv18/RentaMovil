@@ -1,0 +1,150 @@
+{
+    "navbar": {
+      "linkInit": "Accueil",
+      "linkNotifications": "Notifications",
+      "linkReservation": "Réservation",
+      "linkPanelAdmin": "Administration"
+    },
+    "footer": {
+      "contact": "Contact",
+      "links": "Liens",
+      "paragraph": "Votre plateforme de location de véhicules",
+      "description": "© 2026 RentaMovil - Tous droits réservés",
+      "linkInit": "Accueil",
+      "linkNotifications": "Notifications",
+      "linkCount": "Compte"
+    },
+    "filterCalendar": {
+      "branch1": "Bogotá - Centre",
+      "branch2": "Bogotá - Nord",
+      "branch3": "Medellín - El Poblado",
+      "branch4": "Cali - Sud",
+      "branch5": "Barranquilla - Centre",
+      "errorDate": "La date de retour ne peut pas être antérieure à la date de prise en charge",
+      "errorBranch": "Agence invalide",
+      "errorHour": "Heure invalide (8:00 - 18:00)",
+      "success": "Recherche effectuée",
+      "deliveryLocation": "Lieu de prise en charge",
+      "deliveryDate": "Date de prise en charge",
+      "deliveryHour": "Heure de prise en charge",
+      "returnDate": "Date de retour",
+      "returnHour": "Heure de retour"
+    },
+    "cartVehicule": {
+      "gasoline": "Essence",
+      "doors": "Portes",
+      "driving": "⚙️ Manuel",
+      "kmLimit": "∞ Km limite",
+      "location": "📍 Aéroport, Bogotá",
+      "cancellation": "Annulation gratuite",
+      "continue": "Continuer"
+    },
+    "filtersHome": {
+      "brand": "Marque",
+      "model": "Modèle",
+      "price": "Prix",
+      "type": "Type de véhicule",
+      "typeElectric": "Électrique",
+      "typeGasoline": "Essence",
+      "typeHybrid": "Hybride",
+      "typeDiesel": "Diesel"
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "login": {
+    "createAccount": "Créer un compte",
+    "iniciarSesion": "Se connecter"
+  },
+  "loginForm": {
+    "errorFields": "Remplissez tous les champs",
+    "emailInvalid": "Entrez un email valide",
+    "errorAuthentication": "Erreur d'authentification",
+    "email": "Email",
+    "password": "Mot de passe",
+    "emailPlaceholder": "votre@email.com",
+    "passwordPlaceholder": "••••••••",
+    "submitting": "Connexion...",
+    "submit": "Se connecter",
+    "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "error": "Erreur"
+  },
+  "register": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "phone": "Téléphone",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+
+    "firstNamePlaceholder": "Prénom",
+    "lastNamePlaceholder": "Nom",
+    "phonePlaceholder": "3001234567",
+    "usernamePlaceholder": "utilisateur123",
+    "emailPlaceholder": "votre@email.com",
+    "passwordPlaceholder": "••••••••",
+
+    "submit": "Créer un compte",
+    "submitting": "Création du compte...",
+
+    "haveAccount": "Vous avez déjà un compte ? Connectez-vous",
+
+    "errorFields": "Remplissez tous les champs",
+    "emailInvalid": "Entrez un email valide",
+    "phoneInvalid": "Téléphone invalide (10 chiffres)",
+    "passwordShort": "Le mot de passe doit contenir au moins 6 caractères",
+    "passwordMatch": "Les mots de passe ne correspondent pas",
+    "errorCreate": "Erreur lors de la création du compte"
+  },
+  "quotes": {
+    "quote1": "Faites confiance à votre voyage. Faites confiance à Rentamovil.",
+    "quote2": "Votre aventure commence en un clic. Rentamovil, votre compagnon de voyage.",
+    "quote3": "Explorez le monde à votre rythme avec Rentamovil.",
+    "quote4": "Voyagez sans limites, louez avec Rentamovil.",
+    "quote5": "Où que vous vouliez aller, Rentamovil vous y emmène.",
+    "quote6": "Louez facilement, voyagez heureux avec Rentamovil.",
+    "quote7": "Votre voyage, votre style. Rentamovil le rend possible."
+  },
+
+  "count": {
+    "nombre": "Nom",
+    "telefono": "Téléphone",
+    "correo": "Email",
+    "password": "Mot de passe",
+    "modificarPassword": "Modifier le mot de passe",
+    "modoEdicion": "Mode édition activé",
+    "perfilActualizado": "Profil mis à jour",
+    "cambiarFoto": "Changer la photo",
+    "seleccionaTema": "Sélectionnez un thème",
+    "seleccionaIdioma": "Sélectionnez une langue",
+    "cancelar": "Annuler"
+  }
+
+
+
+
+
+
+}

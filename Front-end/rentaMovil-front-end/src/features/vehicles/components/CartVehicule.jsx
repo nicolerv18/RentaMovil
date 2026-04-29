@@ -2,8 +2,11 @@
 import Reservation from '../../booking/pages/Reservation';
 import './CartVehicule.css'
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
 
 function CartVehicule({img,name,age,price}){
+    const {t} = useTranslation();
     const navigate = useNavigate();
     return(
 <div className="card-vehicule">
@@ -18,10 +21,10 @@ function CartVehicule({img,name,age,price}){
         <p className="car-type">Mini similar</p>
 
         <div className="features">
-            <span>Gasolina</span>
-            <span>5 puertas</span>
-            <span>⚙️ Manual</span>
-            <span>∞ Km libre</span>
+            <span>{t('cartVehicule.gasoline')}</span>
+            <span>{t('cartVehicule.doors')}</span>
+            <span>{t('cartVehicule.driving')}</span>
+            <span>{t('cartVehicule.kmLimit')}</span>
         </div>
 
         <p className="location">
@@ -31,8 +34,8 @@ function CartVehicule({img,name,age,price}){
     {/* DERECHA - PRECIO */}
     <div className="car-price">
         <p className="price">${price}</p>
-        <span className="free">Cancelación gratis</span>
-        <button onClick={() => navigate("/Reservation")}>Continuar</button>
+        <span className="free">{t('cartVehicule.cancellation')}</span>
+        <button onClick={() => navigate("/Reservation")}>{t('cartVehicule.continue')}</button>
     </div>
 
 </div>

@@ -12,10 +12,12 @@ import img1 from "../../../assets/img/img1.png"
 import img2 from "../../../assets/img/img2.jpg"
 import img3 from "../../../assets/img/img3.webp"
 import FilterCalendar from '../components/FilterCalendar.jsx';
+import { useTranslation } from "react-i18next";
 
 
 
 function Home(){
+    const { t } = useTranslation();
     return (
         <>
         <Navbar/>

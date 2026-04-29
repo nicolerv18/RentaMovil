@@ -2,8 +2,10 @@ import "./Filtrer.css";
 import flecha from "../../../assets/img/flecha.png";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Filtrer() {
+  const {t} = useTranslation();
   const [open, setOPen] = useState(false);
 
   return (
@@ -11,7 +13,7 @@ function Filtrer() {
       <ul className="nav-container">
         <li className={open ? "active" : ""}>
           <button className="btn-filtrar" onClick={() => setOPen(!open)}>
-            Tipo Vehiculo <FaCar className="icon2" />{" "}
+            {t('filtersHome.type')} <FaCar className="icon2" />{" "}
             <FaArrowAltCircleDown
               src={flecha}
               alt=""
@@ -19,10 +21,10 @@ function Filtrer() {
             />
           </button>
           <ul className="dropdown">
-            <li><a>Eléctrico</a></li>
-            <li><a>Gasolina</a></li>
-            <li><a>Diesel</a></li>
-            <li><a>Hybrido</a></li>
+            <li><a>{t('filtersHome.typeElectric')}</a></li>
+            <li><a>{t('filtersHome.typeGasoline')}</a></li>
+            <li><a>{t('filtersHome.typeDiesel')}</a></li>
+            <li><a>{t('filtersHome.typeHybrid')}</a></li>
           </ul>
         </li>
       </ul>

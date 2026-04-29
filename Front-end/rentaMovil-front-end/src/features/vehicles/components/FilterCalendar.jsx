@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import "./FilterCalendar.css";
+import { useTranslation } from "react-i18next";
 
 function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
+  const { t } = useTranslation();
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -16,11 +18,11 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
   };
 
   const branches = [
-    "Bogotá - Centro",
-    "Bogotá - Norte",
-    "Medellín - Poblado",
-    "Cali - Sur",
-    "Barranquilla - Centro",
+    t("filterCalendar.branch1"),
+    t("filterCalendar.branch2"),
+    t("filterCalendar.branch3"),
+    t("filterCalendar.branch4"),
+    t("filterCalendar.branch5"),
   ];
 
   const [query, setQuery] = useState("");
@@ -41,7 +43,7 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
       useEffect(() => {
         if (date && dateReturn) {
             if (dateReturn < date) {
-                setErrorFecha("La fecha de entrega no puede ser anterior a la de recogida");
+                setErrorFecha(t("filterCalendar.errorDate"));
             } else {
                 setErrorFecha("");
             }
@@ -107,16 +109,16 @@ const handleSubmit = () => {
   setSuccess("");
 
   if (!seleccionado) {
-    setErrorSucursal("Sucursal no válida");
+    setErrorSucursal(t("filterCalendar.errorBranch"));
     return;
   }
 
   if (!validarHora(hora)) {
-    setError("Hora inválida (8:00 - 18:00)");
+    setError(t("filterCalendar.errorHour"));
     return;
   }
 
-  setSuccess("Búsqueda realizada");
+  setSuccess(t("filterCalendar.success"));
 };
   return (
     <form
@@ -128,7 +130,7 @@ const handleSubmit = () => {
     >
 
       <div className="field" ref={wrapperRef}>
-        <label className="label-filter">Lugar de Entrega</label>
+        <label className="label-filter">{t("filterCalendar.deliveryLocation")}</label>
         <input
           className={`input-container ${errorSucursal ? "inputInvalid" : ""}`}
           value={query}
@@ -153,7 +155,7 @@ const handleSubmit = () => {
         )}
       </div>
       <div className="field">
-        <label className="label-filter">Fecha de entrega</label>
+        <label className="label-filter">{t("filterCalendar.deliveryDate")}</label>
         <input
           type="date"
           className={`input-container ${errorFecha ? "inputInvalid" : ""}`}
@@ -165,7 +167,7 @@ const handleSubmit = () => {
 
       </div>
       <div className="field">
-        <label className="label-filter">Hora de entrega</label>
+        <label className="label-filter">{t("filterCalendar.deliveryHour")}</label>
         <input
           type="time"
           className="input-container"
@@ -174,7 +176,7 @@ const handleSubmit = () => {
         />
       </div>
       <div className="field">
-        <label className="label-filter">Fecha de devolución</label>
+        <label className="label-filter">{t("filterCalendar.returnDate")}</label>
         <input
           type="date"
           className="input-container"
@@ -184,7 +186,7 @@ const handleSubmit = () => {
         />
       </div>
       <div className="field">
-        <label className="label-filter">Hora de devolución</label>
+        <label className="label-filter">{t("filterCalendar.returnHour")}</label>
         <input
           type="time"
           className="input-container"

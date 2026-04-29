@@ -1,0 +1,124 @@
+{
+  "navbar": {
+    "linkInit": "Inicio",
+    "linkNotifications": "Notificaciones",
+    "linkReservation": "Reservación",
+    "linkPanelAdmin": "Administración"
+  },
+  "footer": {
+    "contact": "Contacto",
+    "links": "Enlaces",
+    "paragraph": "Tu plataforma de alquiler de vehículos",
+    "description": "© 2026 RentaMovil - Todos los derechos reservados",
+    "linkInit": "Inicio",
+    "linkNotifications": "Notificaciones",
+    "linkCount": "Cuenta"
+  },
+  "filterCalendar": {
+    "branch1": "Bogota - Centro",
+    "branch2": "Bogota - Norte",
+    "branch3": "Medellin - Poblado",
+    "branch4": "Cali - Sur",
+    "branch5": "Barranquilla - Centro",
+    "errorDate": "La fecha de entrega no puede ser anterior a la de recogida",
+    "errorBranch": "Sucursal no válida",
+    "errorHour": "Hora inválida (8:00 - 18:00)",
+    "success": "Búsqueda realizada",
+    "deliveryLocation": "Lugar de entrega",
+    "deliveryDate": "Fecha de entrega",
+    "deliveryHour": "Hora de entrega",
+    "returnDate": "Fecha de devolución",
+    "returnHour": "Hora de devolución"
+  },
+  "cartVehicule": {
+    "gasoline" : "Gasolina",
+    "doors": "Puertas",
+    "driving": "⚙️ Manual",
+    "kmLimit": "∞ Km límite",
+    "location": "📍 Aeropuerto, Bogotá",
+    "cancellation": "Cancelacion gratis",
+    "continue": "Continuar"
+  },
+  "filtersHome":{
+    "brand": "Marca",
+    "model": "Modelo",
+    "price": "Precio",
+    "type": "Tipo Vehiculo",
+    "typeElectric": "Eléctrico",
+    "typeGasoline": "Gasolina",
+    "typeHybrid": "Híbrido",
+    "typeDiesel": "Diesel"
+  },
+
+
+
+
+
+  "login": {
+    "createAccount": "Crear cuenta",
+    "iniciarSesion": "Iniciar sesión"
+  },
+  "loginForm": {
+    "errorFields": "Rellena todos los campos",
+    "emailInvalid": "Introduce un email válido",
+    "errorAuthentication": "Error de autenticacion",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "emailPlaceholder": "tu@email.com",
+    "passwordPlaceholder": "••••••••",
+    "submitting": "Iniciando sesión...",
+    "submit": "Iniciar sesión",
+    "noAccount": "¿No tienes cuenta? Regístrate",
+    "error": "Error"
+  },
+  "register": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "phone": "Teléfono",
+    "username": "Usuario",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+
+    "firstNamePlaceholder": "Nombre",
+    "lastNamePlaceholder": "Apellido",
+    "phonePlaceholder": "3001234567",
+    "usernamePlaceholder": "usuario123",
+    "emailPlaceholder": "tu@email.com",
+    "passwordPlaceholder": "••••••••",
+
+    "submit": "Crear cuenta",
+    "submitting": "Creando cuenta...",
+
+    "haveAccount": "¿Ya tienes cuenta? Inicia sesión",
+
+    "errorFields": "Rellena todos los campos",
+    "emailInvalid": "Introduce un email válido",
+    "phoneInvalid": "Teléfono inválido (10 dígitos)",
+    "passwordShort": "La contraseña debe tener al menos 6 caracteres",
+    "passwordMatch": "Las contraseñas no coinciden",
+    "errorCreate": "Error al crear la cuenta"
+  },
+  "quotes": {
+    "quote1": "Confía en tu viaje. Confía en Rentamovil.",
+    "quote2": "Tu aventura comienza con un clic. Rentamovil, tu compañero de viaje.",
+    "quote3": "Explora el mundo a tu ritmo con Rentamovil.",
+    "quote4": "Viaja sin límites, alquila con Rentamovil.",
+    "quote5": "Donde quieras ir, Rentamovil te lleva.",
+    "quote6": "Alquila fácil, viaja feliz con Rentamovil.",
+    "quote7": "Tu viaje, tu estilo. Rentamovil lo hace posible."
+  },
+  "count": {
+    "nombre": "Nombre",
+    "telefono": "Teléfono",
+    "correo": "Correo Electrónico",
+    "password": "Contraseña",
+    "modificarPassword": "Modificar Contraseña",
+    "modoEdicion": "Modo edición activado",
+    "perfilActualizado": "Perfil actualizado",
+    "cambiarFoto": "Cambiar foto",
+    "seleccionaTema": "Selecciona un tema",
+    "seleccionaIdioma": "Selecciona un idioma",
+    "cancelar": "Cancelar"
+  }
+}

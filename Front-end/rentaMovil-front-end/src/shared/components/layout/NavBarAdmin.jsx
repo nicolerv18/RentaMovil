@@ -5,8 +5,10 @@ import {MdPerson} from "react-icons/md";
 import {FaBars} from "react-icons/fa";
 import { useState } from 'react';
 import AdminPanel from '../../../features/admin/HomeAdmin/Components/AdminPanel.jsx';
+import { useTranslation } from "react-i18next";
 
 function Navbar(){
+    const { t } = useTranslation();
     const [menuOpen, setMenuOpen] = useState(false);
     const [adminOpen, setAdminOpen] = useState(false);
 
@@ -24,14 +26,14 @@ function Navbar(){
                 </div>
 
                 <nav className={`nav-links-container ${menuOpen ? "active" : ""}`}>
-                    <Link to="/HomeAdmin">Inicio</Link>
-                    <Link to="/Notification">Notificaciones</Link>
-                    <Link to="/Reservation">Reservación</Link>
+                    <Link to="/HomeAdmin">{t("navbar.linkInit")}</Link>
+                    <Link to="/Notification">{t("navbar.linkNotifications")}</Link>
+                    <Link to="/Reservation">{t("navbar.linkReservation")}</Link>
                     <span
                         className={`nav-admin-link ${adminOpen ? "nav-admin-active" : ""}`}
                         onClick={() => setAdminOpen(!adminOpen)}
                     >
-                        Administración
+                        {t("navbar.linkPanelAdmin")}
                     </span>
                     <Link to="/Count"><MdPerson className='icon-user'/></Link>
                 </nav>

@@ -4,8 +4,10 @@ import {FaCar} from "react-icons/fa";
 import {MdPerson} from "react-icons/md";
 import {FaBars} from "react-icons/fa";
 import { useState } from 'react';
+import { useTranslation } from "react-i18next";
 
 function Navbar(){
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
 
     return (
@@ -20,8 +22,8 @@ function Navbar(){
             </div>
 
                 <nav className={`nav-links-container ${open ? "active" : ""}`}>
-                <Link to="/Home">Inicio</Link>
-                <Link to="/Notification">Notificaciones</Link>
+                <Link to="/Home">{t("navbar.linkInit")}</Link>
+                <Link to="/Notification">{t("navbar.linkNotifications")}</Link>
                 <Link to="/Count"><MdPerson className='icon-user'/></Link>
             </nav>
 

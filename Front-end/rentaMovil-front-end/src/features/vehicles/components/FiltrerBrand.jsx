@@ -2,8 +2,11 @@ import "./Filtrer.css";
 import flecha from "../../../assets/img/flecha.png";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 
 function Filtrer() {
+  const {t} = useTranslation();
   const [open, setOPen] = useState(false);
 
   return (
@@ -11,7 +14,7 @@ function Filtrer() {
       <ul className="nav-container">
         <li className={open ? "active" : ""}>
           <button className="btn-filtrar" onClick={() => setOPen(!open)}>
-            Marca <FaCar className="icon2" />{" "}
+            {t('filtersHome.brand')} <FaCar className="icon2" />{" "}
             <FaArrowAltCircleDown
               src={flecha}
               alt=""

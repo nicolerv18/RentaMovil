@@ -244,6 +244,12 @@
         margin-bottom: 6px;
         border: 1px solid rgba(0, 0, 0, 0.1);
     }
+    .lang-flag{
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
     .preview-skylight {
         background: linear-gradient(90deg,
