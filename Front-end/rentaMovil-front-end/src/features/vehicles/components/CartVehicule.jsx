@@ -6,8 +6,6 @@ function CartVehicule({img,name,age,price}){
     const navigate = useNavigate();
     return(
 <div className="card-vehicule">
-    
-    {/* IZQUIERDA - IMAGEN */}
     <div className="car-img">
         <img src={img} alt={name} />
     </div>
@@ -27,7 +25,6 @@ function CartVehicule({img,name,age,price}){
             📍 Aeropuerto, Bogotá
         </p>
     </div>
-    {/* DERECHA - PRECIO */}
     <div className="car-price">
         <p className="price">${price}</p>
         <span className="free">Cancelación gratis</span>

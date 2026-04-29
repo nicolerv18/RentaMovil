@@ -3,6 +3,7 @@ import 'leaflet/dist/leaflet.css';
 
 import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import HistorialReservation from './features/booking/HistorialReservation.jsx';
 
 const Login = lazy(() => import('./features/auth/pages/Login.jsx'))
 const Home = lazy(() => import('./features/vehicles/pages/Home.jsx'))
@@ -11,6 +12,7 @@ const Count = lazy(() => import('./features/auth/pages/Count.jsx'))
 const Notification = lazy(() => import('./features/notification/pages/Notification.jsx'))
 const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'))
 const ChangePassword = lazy(() => import('./features/auth/pages/ChangePassword.jsx'))
+
 
 function App() {
   const [theme, setTheme] = useState(
@@ -44,6 +46,7 @@ function App() {
           <Route path="/Notification" element={<Notification />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/ChangePassword" element={<ChangePassword />} />
+          <Route path="/HistorialReservation" element={<HistorialReservation/>}/>
 
         </Routes>
       </Suspense>

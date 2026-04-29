@@ -1,0 +1,200 @@
+.historial-page {
+  padding: 30px;
+}
+
+/* TITULO */
+.title {
+  color: var(--button);
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+/* CONTENEDOR */
+.cards-container {
+  margin: 20px;
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+}
+
+/* CARD */
+.card-reserva {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  width: 65%;
+  transition: all 0.25s ease;
+}
+
+.card-reserva:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* CONTENIDO */
+.card-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* IMAGEN */
+.img-historial {
+  width: 200px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.car-name{
+  margin-bottom: 10px;
+}
+.car-img:hover {
+  transform: scale(1.05);
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -20px;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 17px;
+  color: var(--accent);
+}
+
+/* STATUS */
+.status {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.activa {
+  background: #d4f5d4;
+  color: #1a7f1a;
+}
+
+.status.cancelada {
+  background: #ffd6d6;
+  color: #a80000;
+}
+
+.status.pagada {
+  background: #d6e4ff;
+  color: #1a4ed8;
+}
+
+/* TEXTO */
+.card-body p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* BOTON */
+.btn-container {
+  display: flex;
+  justify-content: start;
+  margin-top: 12px;
+}
+
+.btn-cancel {
+  width: 20%;
+  background: linear-gradient(135deg, #ff4d4d, #d60000);
+  color: var(--textNavabar);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-cancel:hover {
+  transform: scale(1.05);
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* MODAL CONTENT */
+.modal-content {
+  background: var(--modal-bg);
+  color: var(--modal-text);
+  width: 380px;
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  animation: fadeIn 0.2s ease;
+}
+
+/* ANIMACION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* BOTONES MODAL */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff4d4d, #d60000);
+  color: var(--textNavabar);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-danger:hover {
+  transform: scale(1.05);
+}
+
+.btn-negative {
+  background-color: var(--button);
+  color: var(--textNavabar);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-negative:hover {
+  transform: scale(1.05);
+}
