@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./FilterCalendar.css";
 
 function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
-
+  
   const today = new Date().toISOString().split("T")[0];
 
   const getCurrentTime = () => {
