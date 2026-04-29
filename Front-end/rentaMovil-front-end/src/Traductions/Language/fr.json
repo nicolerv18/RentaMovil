@@ -28,7 +28,8 @@
       "deliveryDate": "Date de prise en charge",
       "deliveryHour": "Heure de prise en charge",
       "returnDate": "Date de retour",
-      "returnHour": "Heure de retour"
+      "returnHour": "Heure de retour",
+      "search": "Rechercher"
     },
     "cartVehicule": {
       "gasoline": "Essence",

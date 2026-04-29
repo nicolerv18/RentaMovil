@@ -195,7 +195,7 @@ const handleSubmit = () => {
         />
       </div>
       <button type="submit" className="btn-search">
-        Buscar
+        {t("filterCalendar.search")}
       </button>
 
       {error && <p className="error">{error}</p>}
