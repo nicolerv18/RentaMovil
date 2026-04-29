@@ -22,9 +22,15 @@ return (
                 RentaMovil
             </h2>
             <div className="social-icons">
-                <FaInstagram className="icon"/>
-                <FaWhatsapp className="icon" />
-                <FaTiktok className="icon" />
+                <a   href="https://www.instagram.com"  target="_blank" rel="noopener noreferrer">
+                <button className="btn-redes"><FaInstagram className="icon"/></button>
+                </a>
+                <a href="https://web.whatsapp.com/"  target="_blank" rel="noopener noreferrer">
+                <button className="btn-redes"><FaWhatsapp className="icon" /></button>
+                </a>
+                <a href="https://www.tiktok.com/en/"  target="_blank" rel="noopener noreferrer">
+                <button className="btn-redes"><FaTiktok className="icon" /></button>
+                </a>
             </div>
             <p>Tu plataforma de alquiler de vehículos</p>
             </div>

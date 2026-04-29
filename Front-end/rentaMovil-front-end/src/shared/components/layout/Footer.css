@@ -99,7 +99,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
   margin-top: 10px;
 }
 .footer-brand .icon {
@@ -130,4 +130,9 @@ footer {
     gap: 30px;
   }
 
+}
+
+.btn-redes{
+  background-color: transparent;
+  border: none;
 }

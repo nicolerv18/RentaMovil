@@ -256,9 +256,9 @@
 
     .preview-light {
         background: linear-gradient(90deg,
-                #F5F7FA 0% 30%,
+                #217d47 0% 30%,
                 #fff 30% 32%,
-                #217d47 32% 65%,
+                #e2e2e2 32% 65%,
                 #fff 65% 67%,
                 #e7d351 67% 100%);
     }
@@ -300,6 +300,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 20px;
     }
 
     .close-btn {

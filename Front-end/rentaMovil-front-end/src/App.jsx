@@ -8,7 +8,7 @@ const Login = lazy(() => import('./features/auth/pages/Login.jsx'))
 const Home = lazy(() => import('./features/vehicles/pages/Home.jsx'))
 const Reservation = lazy(() => import('./features/booking/pages/Reservation.jsx'))
 const Count = lazy(() => import('./features/auth/pages/Count.jsx'))
-const Notification = lazy(() => import('./features/notification/pages/notification.jsx'))
+const Notification = lazy(() => import('./features/notification/pages/Notification.jsx'))
 const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'))
 const ChangePassword = lazy(() => import('./features/auth/pages/ChangePassword.jsx'))
 

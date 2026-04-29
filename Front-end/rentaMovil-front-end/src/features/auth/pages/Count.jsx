@@ -5,14 +5,14 @@ import { FaEdit, FaMoon, FaSun, FaGlobe, FaSave, FaTimes} from "react-icons/fa";
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import ButtonBack from '../../../shared/components/buttonBack';
+import ButtonBack from '../../../shared/components/buttonBack.jsx';
 
 function Count({ theme, setTheme }) {
     const navigate = useNavigate();
     const [showThemeModal, setShowThemeModal] = useState(false);
 /* const handleSave = async () => {
     try {
-        console.log("Datos a guardar:", user);
+        console.log("Datos a guardar:", user);  
         /*
         await fetch("TU_API", {
             method: "PUT",
@@ -206,9 +206,9 @@ return (
                 <button className="close-btn" onClick={() => setShowThemeModal(false)}>
                     Cancelar
                 </button >
-                <button className="btn-times" onClick={() =>  setShowThemeModal(false)}>
-                <FaTimes/>
-                </button>
+                <button className="close-btn" onClick={() => setShowThemeModal(false)}>
+                    Aplicar
+                </button >
             </div>
         </div>
     </div>
