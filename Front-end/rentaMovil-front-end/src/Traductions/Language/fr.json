@@ -1,78 +1,73 @@
 {
-    "navbar": {
-      "linkInit": "Accueil",
-      "linkNotifications": "Notifications",
-      "linkReservation": "Réservation",
-      "linkPanelAdmin": "Administration"
-    },
-    "footer": {
-      "contact": "Contact",
-      "links": "Liens",
-      "paragraph": "Votre plateforme de location de véhicules",
-      "description": "© 2026 RentaMovil - Tous droits réservés",
-      "linkInit": "Accueil",
-      "linkNotifications": "Notifications",
-      "linkCount": "Compte"
-    },
-    "filterCalendar": {
-      "branch1": "Bogotá - Centre",
-      "branch2": "Bogotá - Nord",
-      "branch3": "Medellín - El Poblado",
-      "branch4": "Cali - Sud",
-      "branch5": "Barranquilla - Centre",
-      "errorDate": "La date de retour ne peut pas être antérieure à la date de prise en charge",
-      "errorBranch": "Agence invalide",
-      "errorHour": "Heure invalide (8:00 - 18:00)",
-      "success": "Recherche effectuée",
-      "deliveryLocation": "Lieu de prise en charge",
-      "deliveryDate": "Date de prise en charge",
-      "deliveryHour": "Heure de prise en charge",
-      "returnDate": "Date de retour",
-      "returnHour": "Heure de retour",
-      "search": "Rechercher"
-    },
-    "cartVehicule": {
-      "gasoline": "Essence",
-      "doors": "Portes",
-      "driving": "⚙️ Manuel",
-      "kmLimit": "∞ Km limite",
-      "location": "📍 Aéroport, Bogotá",
-      "cancellation": "Annulation gratuite",
-      "continue": "Continuer"
-    },
-    "filtersHome": {
-      "brand": "Marque",
-      "model": "Modèle",
-      "price": "Prix",
-      "type": "Type de véhicule",
-      "typeElectric": "Électrique",
-      "typeGasoline": "Essence",
-      "typeHybrid": "Hybride",
-      "typeDiesel": "Diesel"
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "navbar": {
+    "linkInit": "Accueil",
+    "linkNotifications": "Notifications",
+    "linkReservation": "Réservation",
+    "linkPanelAdmin": "Administration"
+  },
+  "footer": {
+    "contact": "Contact",
+    "links": "Liens",
+    "paragraph": "Votre plateforme de location de véhicules",
+    "description": "© 2026 RentaMovil - Tous droits réservés",
+    "linkInit": "Accueil",
+    "linkNotifications": "Notifications",
+    "linkCount": "Compte"
+  },
+  "filterCalendar": {
+    "branch1": "Bogotá - Centre",
+    "branch2": "Bogotá - Nord",
+    "branch3": "Medellín - El Poblado",
+    "branch4": "Cali - Sud",
+    "branch5": "Barranquilla - Centre",
+    "errorDate": "La date de retour ne peut pas être antérieure à la date de prise en charge",
+    "errorBranch": "Agence invalide",
+    "errorHour": "Heure invalide (8:00 - 18:00)",
+    "success": "Recherche effectuée",
+    "deliveryLocation": "Lieu de prise en charge",
+    "deliveryDate": "Date de prise en charge",
+    "deliveryHour": "Heure de prise en charge",
+    "returnDate": "Date de retour",
+    "returnHour": "Heure de retour",
+    "search": "Rechercher"
+  },
+  "cartVehicule": {
+    "gasoline": "Essence",
+    "doors": "Portes",
+    "driving": "⚙️ Manuel",
+    "kmLimit": "∞ Km limite",
+    "location": "📍 Aéroport, Bogotá",
+    "cancellation": "Annulation gratuite",
+    "continue": "Continuer",
+    "type": "Mini similaire"
+  },
+  "filtersHome": {
+    "brand": "Marque",
+    "model": "Modèle",
+    "price": "Prix",
+    "type": "Type de véhicule",
+    "typeElectric": "Électrique",
+    "typeGasoline": "Essence",
+    "typeHybrid": "Hybride",
+    "typeDiesel": "Diesel"
+  },
+  "reservation": {
+    "ErrorDate": "La date de retour ne peut pas être antérieure à la date de retrait",
+    "ErrorAge:": "Vous devez être majeur",
+    "selectDates": "Vous devez sélectionner des dates",
+    "changeLocation": "Changer de lieu",
+    "summary": "Résumé",
+    "days": "Jours x 403.000 $",
+    "sure": "Assurance tous risques",
+    "total": "Total : 403.000 $",
+    "amountToPay": "Montant à payer",
+    "responsible": "Responsable de la réservation",
+    "placeholderResponsible": "Nom et prénoms complets",
+    "dateOfBirth": "Date de naissance",
+    "document": "N° de document d'identité",
+    "phone": "Téléphone",
+    "submit": "Louer"
+  },
 
   "login": {
     "createAccount": "Créer un compte",
@@ -142,10 +137,4 @@
     "seleccionaIdioma": "Sélectionnez une langue",
     "cancelar": "Annuler"
   }
-
-
-
-
-
-
 }

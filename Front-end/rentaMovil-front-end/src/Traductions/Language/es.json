@@ -32,15 +32,16 @@
     "search": "Buscar"
   },
   "cartVehicule": {
-    "gasoline" : "Gasolina",
+    "gasoline": "Gasolina",
     "doors": "Puertas",
     "driving": "⚙️ Manual",
     "kmLimit": "∞ Km límite",
     "location": "📍 Aeropuerto, Bogotá",
     "cancellation": "Cancelacion gratis",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "type": "Mini similar"
   },
-  "filtersHome":{
+  "filtersHome": {
     "brand": "Marca",
     "model": "Modelo",
     "price": "Precio",
@@ -50,10 +51,23 @@
     "typeHybrid": "Híbrido",
     "typeDiesel": "Diesel"
   },
-
-
-
-
+  "reservation": {
+    "ErrorDate": "La fecha de entrega no puede ser anterior a la de recogida",
+    "ErrorAge:": "Debes ser mayor de edad",
+    "selectDates": "Debes seleccionar fechas",
+    "changeLocation": "Cambiar ubicación",
+    "summary": "Resumen",
+    "days": "Días x $403.000",
+    "sure": "Seguro todo riesgo",
+    "total": "Total: $403.000",
+    "amountToPay": "Monto a pagar",
+    "responsible": "Responsable de la Reserva",
+    "placeholderResponsible": "Nombre y apellidos completos",
+    "dateOfBirth": "Fecha de nacimiento",
+    "document": "Nº Documento de identidad",
+    "phone": "Teléfono",
+    "submit": "Alquilar"
+  },
 
   "login": {
     "createAccount": "Crear cuenta",
