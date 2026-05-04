@@ -62,7 +62,7 @@
     "total": "Total: $403.000",
     "amountToPay": "Amount to pay",
     "responsible": "Person Responsible for the Reservation",
-    "placeholderResponsible": "Full name and surname",
+    "placeholderResponsible": "Full name and lastname",
     "dateOfBirth": "Date of birth",
     "document": "ID Document Number",
     "phone": "Phone",
@@ -135,5 +135,9 @@
     "seleccionaTema": "Select a theme",
     "seleccionaIdioma": "Select a language",
     "cancelar": "Cancel"
+  },
+  "payment": {
+    
+  
   }
 }

@@ -135,5 +135,10 @@
     "seleccionaTema": "Selecciona un tema",
     "seleccionaIdioma": "Selecciona un idioma",
     "cancelar": "Cancelar"
+  },
+  "payment": {
+    "payTitle": "Confirmar Pago"
+    
+  
   }
 }

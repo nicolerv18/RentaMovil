@@ -3,70 +3,116 @@ import ButtonBack from "../../../shared/components/buttonBack";
 import ImgMapa from '../../../assets/MapaNeivaPago.png';
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
-
 import "./Payment.css";
-
+import { useTranslation } from "react-i18next";
 
 function Payment() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  return (
-  <>
-    <Navbar />
-    <div>
-      {/* HEADER */}
-      <div className="header-page">
-        <ButtonBack onClick={() => navigate(-1)} />
-        <h1>Payment</h1>
-      </div>
-    {/* MAIN CONTENT */}
-    <div className="container">
-      <div className="left-section">
-        <img src={ImgMapa} alt="Mapa" className="map-image" />
-        <div className="Details-ubi-1">
-          <p>12/07/26 10:00 AM</p>
-          <p>Descripcion de ubicacion</p>
-        </div>
-        <div className="Details-ubi-2">
-          <p>13/07/26 07:00 pm</p>
-          <p>Descripcion de ubicacion 2 </p>
-        </div>
-      </div>
-      <div className="right-section">
-        <div className="resumen-section">
-          <h2>Resumen</h2>
-          <div className="resumen-item">
-            <p>3 Dias X $403.000</p>
-            <p>Seguro todo riesgo</p>
-          </div>
-          <div className="total-section">
-            <h3>TOTAL</h3>
-            <p className="total-price">$ 403.000</p>
-          </div>
-        </div>
 
-        <div className="monto-section">
-          <h3>Monto a pagar</h3>
-          <p className="monto-desc">recuerde que debe ser mas del 30% del pago total</p>
-          <div className="monto-input">
-            <select defaultValue="30">
-              <option value="30">30%</option>
-              <option value="50">50%</option>
-              <option value="70">70%</option>
-              <option value="100">100%</option>
-            </select>
+  return (
+    <>
+      <Navbar />
+
+      <div className="pay-page">
+        <div className="pay-wrapper">
+
+          {/* Header */}
+          <div className="pay-header">
+            <ButtonBack onClick={() => navigate(-1)} />
+            <div className="pay-header-text">
+              <h1 className="pay-title">Confirmar pago</h1>
+              <p className="pay-subtitle">Revisa los detalles antes de continuar</p>
+            </div>
+          </div>
+
+          <div className="pay-grid">
+
+            {/* ── Columna izquierda: mapa + ubicaciones ── */}
+            <div className="pay-left">
+              <div className="pay-map-card">
+                <img src={ImgMapa} alt="Mapa" className="pay-map-img" />
+                <div className="pay-locations">
+                  <div className="pay-loc">
+                    <span className="pay-loc-dot start"></span>
+                    <div>
+                      <p className="pay-loc-date">12/07/26 · 10:00 AM</p>
+                      <p className="pay-loc-desc">Descripción de ubicación</p>
+                    </div>
+                  </div>
+                  <div className="pay-loc-line"></div>
+                  <div className="pay-loc">
+                    <span className="pay-loc-dot end"></span>
+                    <div>
+                      <p className="pay-loc-date">13/07/26 · 07:00 PM</p>
+                      <p className="pay-loc-desc">Descripción de ubicación 2</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Columna derecha: detalles ── */}
+            <div className="pay-right">
+
+              {/* Resumen */}
+              <div className="pay-card">
+                <div className="pay-card-header">
+                  <span className="pay-card-dot" style={{ background: 'var(--navbar)' }}></span>
+                  <span>Resumen</span>
+                </div>
+                <div className="pay-card-body">
+                  <div className="pay-resumen-row">
+                    <p className="pay-resumen-label">3 Días × $403.000</p>
+                    <p className="pay-resumen-value">$1.209.000</p>
+                  </div>
+                  <div className="pay-resumen-row">
+                    <p className="pay-resumen-label">Seguro todo riesgo</p>
+                    <p className="pay-resumen-value">Incluido</p>
+                  </div>
+                  <div className="pay-total-row">
+                    <p className="pay-total-label">TOTAL</p>
+                    <p className="pay-total-value">$403.000</p>
+                  </div>
+                </div>
+              </div>
+
+
+              {/* Responsable */}
+              <div className="pay-card">
+                <div className="pay-card-header">
+                  <span className="pay-card-dot" style={{ background: 'var(--accent)' }}></span>
+                  <span>Responsable de la reserva</span>
+                </div>
+                <div className="pay-card-body pay-fields">
+                  <div className="pay-field">
+                    <label className="pay-field-label">Nombre</label>
+                    <input type="text" className="pay-input" placeholder="Tu nombre completo" />
+                  </div>
+                  <div className="pay-field">
+                    <label className="pay-field-label">Ciudad</label>
+                    <input type="text" className="pay-input" placeholder="Ciudad de residencia" />
+                  </div>
+                  <div className="pay-field">
+                    <label className="pay-field-label">Dirección</label>
+                    <input type="text" className="pay-input" placeholder="Dirección de entrega" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Botón pagar */}
+              <button className="pay-btn">
+                Confirmar y pagar
+              </button>
+
+            </div>
           </div>
         </div>
-        <div className="responsable-section">
-          <h3>Responsable Reserva</h3>
-          <input type="text" placeholder="Nombre" />
-          <input type="text" placeholder="Ciudad" />
-          <input type="text" placeholder="Direccion" />
-        </div>
       </div>
-    </div>
-    </div>
-    <Footer />
-  </>
+
+      <Footer />
+    </>
   );
 }
+
 export default Payment;
