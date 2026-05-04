@@ -137,7 +137,39 @@
     "cancelar": "Cancel"
   },
   "payment": {
-    
-  
+    "payTitle": "Confirm Payment",
+    "paySubtitle": "Review the details before continuing",
+    "desc-location": "Location description",
+    "desc-location2": "Location description 2",
+    "summary": "3 Days x 403.000",
+    "sure": "All-risk insurance",
+    "include": "Included",
+    "total": "TOTAL",
+    "responsible": "Person Responsible for the Reservation",
+    "name": "Name",
+    "placeholderName": "Your full name",
+    "city": "City",
+    "placeholderCity": "City of residence",
+    "adrress": "Address",
+    "placeholderAddress": "Delivery address",
+    "confirm": "Confirm and pay"
+  },
+  "buttonBack": {
+    "label": "Back"
+  },
+  "adminPanel": {
+    "title": "Administration Panel",
+    "vehicle": "Vehicle",
+    "ve-agg": "Add vehicle",
+    "ve-state": "Check Status",
+    "location": "Location",
+    "loc-map": "Map",
+    "loc-routes": "Route history",
+    "maintenance": "Maintenance",
+    "man-new": "Register maintenance",
+    "man-history": "Maintenance history",
+    "contracts": "Contracts",
+    "con-new": "New contract",
+    "con-history": "Contract history"
   }
 }

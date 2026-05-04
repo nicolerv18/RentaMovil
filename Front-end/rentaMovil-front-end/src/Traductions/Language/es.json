@@ -137,8 +137,39 @@
     "cancelar": "Cancelar"
   },
   "payment": {
-    "payTitle": "Confirmar Pago"
-    
-  
+    "payTitle": "Confirmar Pago",
+    "paySubtitle" : "Revisa los detalles antes de continuar",
+    "desc-location": "Descripcion de ubicación",
+    "desc-location2": "Descripcion de ubicación 2",
+    "summary": "3 Dias x 403.000",
+    "sure": "Seguro todo riesgo",
+    "include": "Incluido",
+    "total": "TOTAL",
+    "responsible": "Responsable de la Reserva",
+    "name" : "Nombre",
+    "placeholderName": "Tu nombre completo",
+    "city": "Ciudad",
+    "placeholderCity": "Ciudad de residencia",
+    "adrress": "Dirección",
+    "placeholderAddress": "Dirección de entrega",
+    "confirm": "Confirmar y pagar"
+  },
+  "buttonBack": {
+    "label": "Regresar"
+  },
+    "adminPanel": {
+    "title": "Panel de Administración",
+    "vehicle": "Vehiculo",
+    "ve-agg": "Agregar vehiculo",
+    "ve-state": "Consultar Estado",
+    "location": "Ubicación",
+    "loc-map": "Mapa",
+    "loc-routes": "Historial de rutas",
+    "maintenance": "Mantenimiento",
+    "man-new": "Registrar mantenimiento",
+    "man-history": "Historial de mantenimientos",
+    "contracts": "Contratos",
+    "con-new": "Nuevo contrato",
+    "con-history": "Historial de contratos"
   }
 }
