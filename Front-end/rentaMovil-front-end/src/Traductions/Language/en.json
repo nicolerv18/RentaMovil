@@ -1,119 +1,143 @@
-{   "navbar": {
-      "linkInit": "Home",
-      "linkNotifications": "Notifications",
-      "linkReservation": "Reservation",
-      "linkPanelAdmin": "Administration"
-    },
-    "footer": {
-      "contact": "Contact",
-      "links": "Links",
-      "paragraph": "Your vehicle rental platform",
-      "description": "© 2026 RentaMovil - All rights reserved",
-      "linkInit": "Home",
-      "linkNotifications": "Notifications",
-      "linkCount": "Account"
-    },
-    "filterCalendar": {
-      "branch1": "Bogotá - Downtown",
-      "branch2": "Bogotá - North",
-      "branch3": "Medellín - El Poblado",
-      "branch4": "Cali - South",
-      "branch5": "Barranquilla - Downtown",
-      "errorDate": "Return date cannot be earlier than pickup date",
-      "errorBranch": "Invalid branch",
-      "errorHour": "Invalid time (8:00 - 18:00)",
-      "success": "Search completed",
-      "deliveryLocation": "Pickup location",
-      "deliveryDate": "Pickup date",
-      "deliveryHour": "Pickup time",
-      "returnDate": "Return date",
-      "returnHour": "Return time"
-    },
-    "cartVehicule": {
-      "gasoline": "Gasoline",
-      "doors": "Doors",
-      "driving": "⚙️ Manual",
-      "kmLimit": "∞ Km limit",
-      "location": "📍 Airport, Bogotá",
-      "cancellation": "Free cancellation",
-      "continue": "Continue"
-    },
-    "filtersHome": {
-      "brand": "Brand",
-      "model": "Model",
-      "price": "Price",
-      "type": "Vehicle Type",
-      "typeElectric": "Electric",
-      "typeGasoline": "Gasoline",
-      "typeHybrid": "Hybrid",
-      "typeDiesel": "Diesel"
-    },
+{
+  "navbar": {
+    "linkInit": "Home",
+    "linkNotifications": "Notifications",
+    "linkReservation": "Reservation",
+    "linkPanelAdmin": "Administration"
+  },
+  "footer": {
+    "contact": "Contact",
+    "links": "Links",
+    "paragraph": "Your vehicle rental platform",
+    "description": "© 2026 RentaMovil - All rights reserved",
+    "linkInit": "Home",
+    "linkNotifications": "Notifications",
+    "linkCount": "Account"
+  },
+  "filterCalendar": {
+    "branch1": "Bogotá - Downtown",
+    "branch2": "Bogotá - North",
+    "branch3": "Medellín - El Poblado",
+    "branch4": "Cali - South",
+    "branch5": "Barranquilla - Downtown",
+    "errorDate": "Return date cannot be earlier than pickup date",
+    "errorBranch": "Invalid branch",
+    "errorHour": "Invalid time (8:00 - 18:00)",
+    "success": "Search completed",
+    "deliveryLocation": "Pickup location",
+    "deliveryDate": "Pickup date",
+    "deliveryHour": "Pickup time",
+    "returnDate": "Return date",
+    "returnHour": "Return time",
+    "search": "Search"
+  },
+  "cartVehicule": {
+    "gasoline": "Gasoline",
+    "doors": "Doors",
+    "driving": "⚙️ Manual",
+    "kmLimit": "∞ Km limit",
+    "location": "📍 Airport, Bogotá",
+    "cancellation": "Free cancellation",
+    "continue": "Continue",
+    "type": "Similar mini"
+  },
+  "filtersHome": {
+    "brand": "Brand",
+    "model": "Model",
+    "price": "Price",
+    "type": "Vehicle Type",
+    "typeElectric": "Electric",
+    "typeGasoline": "Gasoline",
+    "typeHybrid": "Hybrid",
+    "typeDiesel": "Diesel"
+  },
+  "reservation": {
+    "ErrorDate": "Return date cannot be earlier than pickup date",
+    "ErrorAge:": "You must be of legal age",
+    "selectDates": "You must select dates",
+    "changeLocation": "Change location",
+    "summary": "Summary",
+    "days": "Days x $403.000",
+    "sure": "All-risk insurance",
+    "total": "Total: $403.000",
+    "amountToPay": "Amount to pay",
+    "responsible": "Person Responsible for the Reservation",
+    "placeholderResponsible": "Full name and lastname",
+    "dateOfBirth": "Date of birth",
+    "document": "ID Document Number",
+    "phone": "Phone",
+    "submit": "Rent"
+  },
 
-   "login": {
-      "createAccount": "Create account",
-      "iniciarSesion": "Sign in"
-    },
-    "loginForm": {
-      "errorFields": "Fill in all fields",
-      "emailInvalid": "Enter a valid email",
-      "errorAuthentication": "Authentication error",
-      "email": "Email",
-      "password": "Password",
-      "emailPlaceholder": "your@email.com",
-      "passwordPlaceholder": "••••••••",
-      "submitting": "Signing in...",
-      "submit": "Sign in",
-      "noAccount": "Don't have an account? Sign up",
-      "error": "Error"
-    },
-    "register": {
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "phone": "Phone",
-      "username": "Username",
-      "email": "Email",
-      "password": "Password",
-      "confirmPassword": "Confirm Password",
+  "login": {
+    "createAccount": "Create account",
+    "iniciarSesion": "Sign in"
+  },
+  "loginForm": {
+    "errorFields": "Fill in all fields",
+    "emailInvalid": "Enter a valid email",
+    "errorAuthentication": "Authentication error",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "your@email.com",
+    "passwordPlaceholder": "••••••••",
+    "submitting": "Signing in...",
+    "submit": "Sign in",
+    "noAccount": "Don't have an account? Sign up",
+    "error": "Error"
+  },
+  "register": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
 
-      "firstNamePlaceholder": "First name",
-      "lastNamePlaceholder": "Last name",
-      "phonePlaceholder": "3001234567",
-      "usernamePlaceholder": "username123",
-      "emailPlaceholder": "your@email.com",
-      "passwordPlaceholder": "••••••••",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "phonePlaceholder": "3001234567",
+    "usernamePlaceholder": "username123",
+    "emailPlaceholder": "your@email.com",
+    "passwordPlaceholder": "••••••••",
 
-      "submit": "Create account",
-      "submitting": "Creating account...",
+    "submit": "Create account",
+    "submitting": "Creating account...",
 
-      "haveAccount": "Already have an account? Sign in",
+    "haveAccount": "Already have an account? Sign in",
 
-      "errorFields": "Fill in all fields",
-      "emailInvalid": "Enter a valid email",
-      "phoneInvalid": "Invalid phone (10 digits)",
-      "passwordShort": "Password must be at least 6 characters",
-      "passwordMatch": "Passwords do not match",
-      "errorCreate": "Error creating account"
-    },
-    "quotes": {
-      "quote1": "Trust your journey. Trust Rentamovil.",
-      "quote2": "Your adventure begins with a click. Rentamovil, your travel companion.",
-      "quote3": "Explore the world at your own pace with Rentamovil.",
-      "quote4": "Travel without limits, rent with Rentamovil.",
-      "quote5": "Wherever you want to go, Rentamovil takes you.",
-      "quote6": "Rent easily, travel happily with Rentamovil.",
-      "quote7": "Your trip, your style. Rentamovil makes it possible."
-    },
-    "count": {
-      "nombre": "Name",
-      "telefono": "Phone",
-      "correo": "Email",
-      "password": "Password",
-      "modificarPassword": "Change Password",
-      "modoEdicion": "Edit mode activated",
-      "perfilActualizado": "Profile updated",
-      "cambiarFoto": "Change photo",
-      "seleccionaTema": "Select a theme",
-      "seleccionaIdioma": "Select a language",
-      "cancelar": "Cancel"
-    }
+    "errorFields": "Fill in all fields",
+    "emailInvalid": "Enter a valid email",
+    "phoneInvalid": "Invalid phone (10 digits)",
+    "passwordShort": "Password must be at least 6 characters",
+    "passwordMatch": "Passwords do not match",
+    "errorCreate": "Error creating account"
+  },
+  "quotes": {
+    "quote1": "Trust your journey. Trust Rentamovil.",
+    "quote2": "Your adventure begins with a click. Rentamovil, your travel companion.",
+    "quote3": "Explore the world at your own pace with Rentamovil.",
+    "quote4": "Travel without limits, rent with Rentamovil.",
+    "quote5": "Wherever you want to go, Rentamovil takes you.",
+    "quote6": "Rent easily, travel happily with Rentamovil.",
+    "quote7": "Your trip, your style. Rentamovil makes it possible."
+  },
+  "count": {
+    "nombre": "Name",
+    "telefono": "Phone",
+    "correo": "Email",
+    "password": "Password",
+    "modificarPassword": "Change Password",
+    "modoEdicion": "Edit mode activated",
+    "perfilActualizado": "Profile updated",
+    "cambiarFoto": "Change photo",
+    "seleccionaTema": "Select a theme",
+    "seleccionaIdioma": "Select a language",
+    "cancelar": "Cancel"
+  },
+  "payment": {
+    
+  
   }
+}

@@ -1,124 +1,140 @@
-{"navbar": {
-      "linkInit": "Início",
-      "linkNotifications": "Notificações",
-      "linkReservation": "Reserva",
-      "linkPanelAdmin": "Administração"
-    },
-    "footer": {
-      "contact": "Contato",
-      "links": "Links",
-      "paragraph": "Sua plataforma de aluguel de veículos",
-      "description": "© 2026 RentaMovil - Todos os direitos reservados",
-      "linkInit": "Início",
-      "linkNotifications": "Notificações",
-      "linkCount": "Conta"
-    },
-    "filterCalendar": {
-      "branch1": "Bogotá - Centro",
-      "branch2": "Bogotá - Norte",
-      "branch3": "Medellín - El Poblado",
-      "branch4": "Cali - Sul",
-      "branch5": "Barranquilla - Centro",
-      "errorDate": "A data de devolução não pode ser anterior à de retirada",
-      "errorBranch": "Sucursal inválida",
-      "errorHour": "Hora inválida (8:00 - 18:00)",
-      "success": "Busca realizada",
-      "deliveryLocation": "Local de retirada",
-      "deliveryDate": "Data de retirada",
-      "deliveryHour": "Hora de retirada",
-      "returnDate": "Data de devolução",
-      "returnHour": "Hora de devolução"
-    },
-    "cartVehicule": {
-      "gasoline": "Gasolina",
-      "doors": "Portas",
-      "driving": "⚙️ Manual",
-      "kmLimit": "∞ Km limite",
-      "location": "📍 Aeroporto, Bogotá",
-      "cancellation": "Cancelamento grátis",
-      "continue": "Continuar"
-    },
-    "filtersHome": {
-      "brand": "Marca",
-      "model": "Modelo",
-      "price": "Preço",
-      "type": "Tipo de veículo",
-      "typeElectric": "Elétrico",
-      "typeGasoline": "Gasolina",
-      "typeHybrid": "Híbrido",
-      "typeDiesel": "Diesel"
-    },
+{
+  "navbar": {
+    "linkInit": "Início",
+    "linkNotifications": "Notificações",
+    "linkReservation": "Reserva",
+    "linkPanelAdmin": "Administração"
+  },
+  "footer": {
+    "contact": "Contato",
+    "links": "Links",
+    "paragraph": "Sua plataforma de aluguel de veículos",
+    "description": "© 2026 RentaMovil - Todos os direitos reservados",
+    "linkInit": "Início",
+    "linkNotifications": "Notificações",
+    "linkCount": "Conta"
+  },
+  "filterCalendar": {
+    "branch1": "Bogotá - Centro",
+    "branch2": "Bogotá - Norte",
+    "branch3": "Medellín - El Poblado",
+    "branch4": "Cali - Sul",
+    "branch5": "Barranquilla - Centro",
+    "errorDate": "A data de devolução não pode ser anterior à de retirada",
+    "errorBranch": "Sucursal inválida",
+    "errorHour": "Hora inválida (8:00 - 18:00)",
+    "success": "Busca realizada",
+    "deliveryLocation": "Local de retirada",
+    "deliveryDate": "Data de retirada",
+    "deliveryHour": "Hora de retirada",
+    "returnDate": "Data de devolução",
+    "returnHour": "Hora de devolução",
+    "search": "Procurar"
+  },
+  "cartVehicule": {
+    "gasoline": "Gasolina",
+    "doors": "Portas",
+    "driving": "⚙️ Manual",
+    "kmLimit": "∞ Km limite",
+    "location": "📍 Aeroporto, Bogotá",
+    "cancellation": "Cancelamento grátis",
+    "continue": "Continuar",
+    "type": "Mini semelhante"
+  },
+  "filtersHome": {
+    "brand": "Marca",
+    "model": "Modelo",
+    "price": "Preço",
+    "type": "Tipo de veículo",
+    "typeElectric": "Elétrico",
+    "typeGasoline": "Gasolina",
+    "typeHybrid": "Híbrido",
+    "typeDiesel": "Diesel"
+  },
+  "reservation": {
+    "ErrorDate": "A data de entrega não pode ser anterior à data de recolha",
+    "ErrorAge:": "Você deve ser maior de idade",
+    "selectDates": "Você deve selecionar as datas",
+    "changeLocation": "Alterar localização",
+    "summary": "Resumo",
+    "days": "Dias x $403.000",
+    "sure": "Seguro de todos os riscos",
+    "total": "Total: $403.000",
+    "amountToPay": "Valor a pagar",
+    "responsible": "Responsável pela reserva",
+    "placeholderResponsible": "Nome e sobrenome completos",
+    "dateOfBirth": "Data de nascimento",
+    "document": "Nº do documento de identidade",
+    "phone": "Telefone",
+    "submit": "Alugar"
+  },
 
-  
-  
-  
-  
   "login": {
-      "createAccount": "Criar conta",
-      "iniciarSesion": "Entrar"
-    },
-    "loginForm": {
-      "errorFields": "Preencha todos os campos",
-      "emailInvalid": "Insira um email válido",
-      "errorAuthentication": "Erro de autenticação",
-      "email": "Email",
-      "password": "Senha",
-      "emailPlaceholder": "seu@email.com",
-      "passwordPlaceholder": "••••••••",
-      "submitting": "Entrando...",
-      "submit": "Entrar",
-      "noAccount": "Não tem uma conta? Cadastre-se",
-      "error": "Erro"
-    },
-    "register": {
-      "firstName": "Nome",
-      "lastName": "Sobrenome",
-      "phone": "Telefone",
-      "username": "Usuário",
-      "email": "Email",
-      "password": "Senha",
-      "confirmPassword": "Confirmar senha",
+    "createAccount": "Criar conta",
+    "iniciarSesion": "Entrar"
+  },
+  "loginForm": {
+    "errorFields": "Preencha todos os campos",
+    "emailInvalid": "Insira um email válido",
+    "errorAuthentication": "Erro de autenticação",
+    "email": "Email",
+    "password": "Senha",
+    "emailPlaceholder": "seu@email.com",
+    "passwordPlaceholder": "••••••••",
+    "submitting": "Entrando...",
+    "submit": "Entrar",
+    "noAccount": "Não tem uma conta? Cadastre-se",
+    "error": "Erro"
+  },
+  "register": {
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "phone": "Telefone",
+    "username": "Usuário",
+    "email": "Email",
+    "password": "Senha",
+    "confirmPassword": "Confirmar senha",
 
-      "firstNamePlaceholder": "Nome",
-      "lastNamePlaceholder": "Sobrenome",
-      "phonePlaceholder": "3001234567",
-      "usernamePlaceholder": "usuario123",
-      "emailPlaceholder": "seu@email.com",
-      "passwordPlaceholder": "••••••••",
+    "firstNamePlaceholder": "Nome",
+    "lastNamePlaceholder": "Sobrenome",
+    "phonePlaceholder": "3001234567",
+    "usernamePlaceholder": "usuario123",
+    "emailPlaceholder": "seu@email.com",
+    "passwordPlaceholder": "••••••••",
 
-      "submit": "Criar conta",
-      "submitting": "Criando conta...",
+    "submit": "Criar conta",
+    "submitting": "Criando conta...",
 
-      "haveAccount": "Já tem uma conta? Entrar",
+    "haveAccount": "Já tem uma conta? Entrar",
 
-      "errorFields": "Preencha todos os campos",
-      "emailInvalid": "Insira um email válido",
-      "phoneInvalid": "Telefone inválido (10 dígitos)",
-      "passwordShort": "A senha deve ter pelo menos 6 caracteres",
-      "passwordMatch": "As senhas não coincidem",
-      "errorCreate": "Erro ao criar conta"
-    },
-    "quotes": {
-      "quote1": "Confie na sua jornada. Confie na Rentamovil.",
-      "quote2": "Sua aventura começa com um clique. Rentamovil, seu companheiro de viagem.",
-      "quote3": "Explore o mundo no seu ritmo com a Rentamovil.",
-      "quote4": "Viaje sem limites, alugue com a Rentamovil.",
-      "quote5": "Para onde quiser ir, a Rentamovil te leva.",
-      "quote6": "Alugue fácil, viaje feliz com a Rentamovil.",
-      "quote7": "Sua viagem, seu estilo. A Rentamovil torna isso possível."
-    },
+    "errorFields": "Preencha todos os campos",
+    "emailInvalid": "Insira um email válido",
+    "phoneInvalid": "Telefone inválido (10 dígitos)",
+    "passwordShort": "A senha deve ter pelo menos 6 caracteres",
+    "passwordMatch": "As senhas não coincidem",
+    "errorCreate": "Erro ao criar conta"
+  },
+  "quotes": {
+    "quote1": "Confie na sua jornada. Confie na Rentamovil.",
+    "quote2": "Sua aventura começa com um clique. Rentamovil, seu companheiro de viagem.",
+    "quote3": "Explore o mundo no seu ritmo com a Rentamovil.",
+    "quote4": "Viaje sem limites, alugue com a Rentamovil.",
+    "quote5": "Para onde quiser ir, a Rentamovil te leva.",
+    "quote6": "Alugue fácil, viaje feliz com a Rentamovil.",
+    "quote7": "Sua viagem, seu estilo. A Rentamovil torna isso possível."
+  },
 
-    "count": {
-      "nombre": "Nome",
-      "telefono": "Telefone",
-      "correo": "Email",
-      "password": "Senha",
-      "modificarPassword": "Alterar senha",
-      "modoEdicion": "Modo de edição ativado",
-      "perfilActualizado": "Perfil atualizado",
-      "cambiarFoto": "Alterar foto",
-      "seleccionaTema": "Selecione um tema",
-      "seleccionaIdioma": "Selecione um idioma",
-      "cancelar": "Cancelar"
-    }
+  "count": {
+    "nombre": "Nome",
+    "telefono": "Telefone",
+    "correo": "Email",
+    "password": "Senha",
+    "modificarPassword": "Alterar senha",
+    "modoEdicion": "Modo de edição ativado",
+    "perfilActualizado": "Perfil atualizado",
+    "cambiarFoto": "Alterar foto",
+    "seleccionaTema": "Selecione um tema",
+    "seleccionaIdioma": "Selecione um idioma",
+    "cancelar": "Cancelar"
   }
+}
