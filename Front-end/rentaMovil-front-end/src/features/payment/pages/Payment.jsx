@@ -21,8 +21,8 @@ function Payment() {
           <div className="pay-header">
             <ButtonBack onClick={() => navigate(-1)} />
             <div className="pay-header-text">
-              <h1 className="pay-title">Confirmar pago</h1>
-              <p className="pay-subtitle">Revisa los detalles antes de continuar</p>
+              <h1 className="pay-title">{t("payment.payTitle")}</h1>
+              <p className="pay-subtitle">{t("payment.paySubtitle")}</p>
             </div>
           </div>
 
@@ -37,7 +37,7 @@ function Payment() {
                     <span className="pay-loc-dot start"></span>
                     <div>
                       <p className="pay-loc-date">12/07/26 · 10:00 AM</p>
-                      <p className="pay-loc-desc">Descripción de ubicación</p>
+                      <p className="pay-loc-desc">{t("payment.desc-location")}</p>
                     </div>
                   </div>
                   <div className="pay-loc-line"></div>
@@ -45,7 +45,7 @@ function Payment() {
                     <span className="pay-loc-dot end"></span>
                     <div>
                       <p className="pay-loc-date">13/07/26 · 07:00 PM</p>
-                      <p className="pay-loc-desc">Descripción de ubicación 2</p>
+                      <p className="pay-loc-desc">{t("payment.desc-location2")}</p>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@ function Payment() {
               <div className="pay-card">
                 <div className="pay-card-header">
                   <span className="pay-card-dot" style={{ background: 'var(--navbar)' }}></span>
-                  <span>Resumen</span>
+                  <span>{t("payment.summary")}</span>
                 </div>
                 <div className="pay-card-body">
                   <div className="pay-resumen-row">
@@ -67,11 +67,11 @@ function Payment() {
                     <p className="pay-resumen-value">$1.209.000</p>
                   </div>
                   <div className="pay-resumen-row">
-                    <p className="pay-resumen-label">Seguro todo riesgo</p>
-                    <p className="pay-resumen-value">Incluido</p>
+                    <p className="pay-resumen-label">{t("payment.sure")}</p>
+                    <p className="pay-resumen-value">{t("payment.include")}</p>
                   </div>
                   <div className="pay-total-row">
-                    <p className="pay-total-label">TOTAL</p>
+                    <p className="pay-total-label">{t("payment.total")}</p>
                     <p className="pay-total-value">$403.000</p>
                   </div>
                 </div>
@@ -82,27 +82,27 @@ function Payment() {
               <div className="pay-card">
                 <div className="pay-card-header">
                   <span className="pay-card-dot" style={{ background: 'var(--accent)' }}></span>
-                  <span>Responsable de la reserva</span>
+                  <span>{t("payment.responsible")}</span>
                 </div>
                 <div className="pay-card-body pay-fields">
                   <div className="pay-field">
-                    <label className="pay-field-label">Nombre</label>
-                    <input type="text" className="pay-input" placeholder="Tu nombre completo" />
+                    <label className="pay-field-label">{t("payment.name")}</label>
+                    <input type="text" className="pay-input" placeholder={t("payment.placeholderName")} />
                   </div>
                   <div className="pay-field">
-                    <label className="pay-field-label">Ciudad</label>
-                    <input type="text" className="pay-input" placeholder="Ciudad de residencia" />
+                    <label className="pay-field-label">{t("payment.city")}</label>
+                    <input type="text" className="pay-input" placeholder={t("payment.placeholderCity")} />
                   </div>
                   <div className="pay-field">
-                    <label className="pay-field-label">Dirección</label>
-                    <input type="text" className="pay-input" placeholder="Dirección de entrega" />
+                    <label className="pay-field-label">{t("payment.adrress")}</label>
+                    <input type="text" className="pay-input" placeholder={t("payment.placeholderAddress")} />
                   </div>
                 </div>
               </div>
 
               {/* Botón pagar */}
               <button className="pay-btn">
-                Confirmar y pagar
+                {t("payment.confirm")}
               </button>
 
             </div>

@@ -136,5 +136,41 @@
     "seleccionaTema": "Sélectionnez un thème",
     "seleccionaIdioma": "Sélectionnez une langue",
     "cancelar": "Annuler"
+  },
+  "payment": {
+    "payTitle": "Confirmer le paiement",
+    "paySubtitle": "Vérifiez les détails avant de continuer",
+    "desc-location": "Description de l'emplacement",
+    "desc-location2": "Description de l'emplacement 2",
+    "summary": "3 Jours x 403.000",
+    "sure": "Assurance tous risques",
+    "include": "Inclus",
+    "total": "TOTAL",
+    "responsible": "Responsable de la réservation",
+    "name": "Nom",
+    "placeholderName": "Votre nom complet",
+    "city": "Ville",
+    "placeholderCity": "Ville de résidence",
+    "adrress": "Adresse",
+    "placeholderAddress": "Adresse de livraison",
+    "confirm": "Confirmer et payer"
+  },
+  "buttonBack": {
+    "label": "Retour"
+  },
+  "adminPanel": {
+    "title": "Panneau d'administration",
+    "vehicle": "Véhicule",
+    "ve-agg": "Ajouter un véhicule",
+    "ve-state": "Consulter l'état",
+    "location": "Emplacement",
+    "loc-map": "Carte",
+    "loc-routes": "Historique des itinéraires",
+    "maintenance": "Maintenance",
+    "man-new": "Enregistrer une maintenance",
+    "man-history": "Historique des maintenances",
+    "contracts": "Contrats",
+    "con-new": "Nouveau contrat",
+    "con-history": "Historique des contrats"
   }
 }
