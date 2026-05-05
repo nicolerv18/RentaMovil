@@ -138,7 +138,7 @@
   },
   "payment": {
     "payTitle": "Confirmar Pago",
-    "paySubtitle" : "Revisa los detalles antes de continuar",
+    "paySubtitle": "Revisa los detalles antes de continuar",
     "desc-location": "Descripcion de ubicación",
     "desc-location2": "Descripcion de ubicación 2",
     "summary": "3 Dias x 403.000",
@@ -146,7 +146,7 @@
     "include": "Incluido",
     "total": "TOTAL",
     "responsible": "Responsable de la Reserva",
-    "name" : "Nombre",
+    "name": "Nombre",
     "placeholderName": "Tu nombre completo",
     "city": "Ciudad",
     "placeholderCity": "Ciudad de residencia",
@@ -157,7 +157,7 @@
   "buttonBack": {
     "label": "Regresar"
   },
-    "adminPanel": {
+  "adminPanel": {
     "title": "Panel de Administración",
     "vehicle": "Vehiculo",
     "ve-agg": "Agregar vehiculo",
@@ -171,5 +171,123 @@
     "contracts": "Contratos",
     "con-new": "Nuevo contrato",
     "con-history": "Historial de contratos"
+  },
+  "changePassword": {
+    "caracters": "Al menos 8 caracteres",
+    "specialCaracters": "Al menos un carácter especial (#, @, etc)",
+    "uppercase": "Al menos una letra mayúscula",
+    "errorPassword": "Error al cambiar la contraseña",
+    "successPassword": "Contraseña cambiada con éxito",
+    "errorRequest": "Error en la solicitud",
+    "title": "Cambiar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar nueva contraseña",
+    "invalid": "Las contraseñas no coinciden",
+    "saving": "Guardando...",
+    "save": "Guardar cambios"
+  },
+  "vehicleForm": {
+    "title": "Registrar un nuevo vehículo",
+    "plate": "Placa",
+    "requiredPlate": "La placa es obligatoria",
+    "placeholderPlate": "Placa ejemplo: ABC123",
+    "invalidPlate": "Formato invalido. Carro: ABC123",
+    "brand": "Marca",
+    "requiredBrand": "La marca es obligatoria",
+    "placeholderBrand": "Ejemplo: Toyota, Chevrolet, Renault....",
+    "minLenghtBrand": "La marca debe tener al menos 2 caracteres",
+    "maxLenghtBrand": "La marca no puede tener más de 30 caracteres",
+    "ivalidBrand": "La marca solo puede contener letras, números y guiones.",
+    "model": "Modelo",
+    "requiredModel": "El modelo es obligatorio",
+    "placeholderModel": "Ejemplo: Volkswagen Gol, Renault Sandero, Toyota Corolla....",
+    "minLenghtModel": "El modelo debe tener al menos 2 caracteres",
+    "maxLenghtModel": "El modelo no puede tener más de 30 caracteres",
+    "invalidModel": "El modelo solo puede contener letras, números y guiones.",
+    "Type": "Tipo de vehículo",
+    "requiredType": "Debes seleccionar un tipo de vehículo",
+    "disabledType": "Selecciona un tipo...",
+    "labelType1": "Automoviles",
+    "labelType2": "Carga",
+    "cargaType1": "Truck",
+    "cargaType2": "Tracto Truck",
+    "cargaType3": "Furgoneta",
+    "FuelType": "Tipo de combustible",
+    "requiredFuelType": "Debes seleccionar el tipo de combustible",
+    "disabledFuelType": "Selecciona un tipo...",
+    "fuelType1": "Gasolina",
+    "fuelType2": "Diesel",
+    "fuelType3": "Híbrido",
+    "fuelType4": "Eléctrico",
+    "fuelType5": "Gas natural",
+    "fuelType6": "Gas propano",
+    "location": "Ubicación",
+    "placeholderLocation": "Ejemplo: Bogotá, Medellín, Cali...",
+    "requiredLocation": "La ubicación es obligatoria",
+    "minLenghtLocation": "La ubicación debe tener al menos 2 caracteres",
+    "maxLenghtLocation": "La ubicación no puede tener más de 100 caracteres",
+    "invalidLocation": "La ubicación contiene caracteres no permitidos",
+    "saving": "Guardando...",
+    "save": "Guardar vehículo",
+    "imgp": "Asegúrate de que la imagen sea nítida y muestre el vehículo completo. Esto agiliza el proceso de validación.",
+    "imgp2": "Suelta la imagen aquí...",
+    "imgp3": "Arrastra la imagen aquí o haz clic para seleccionar una imagen",
+    "changeImage": "Cambiar imagen"
+  },
+  "contractHistory": {
+  "title": "Historial de contratos",
+  "searchPlaceholder": "Buscar por cliente o vehículo",
+  "clearFilters": "Limpiar",
+  "viewDetail": "Ver detalle",
+  "noContracts": "No se encontraron contratos.",
+  "back": "Regresar",
+  "newContract": "+ Nuevo contrato",
+  "filters": {
+    "fecha": "Fecha",
+    "cliente": "Cliente",
+    "vehiculo": "Vehículo",
+    "estado": "Estado"
+  },
+  "modal": {
+    "contractNumber": "Contrato #{{id}}",
+    "vehicle": "Vehículo",
+    "date": "Fecha",
+    "duration": "Duración",
+    "value": "Valor",
+    "description": "Descripción",
+    "close": "Cerrar"
   }
+},
+"contract": {
+  "title": "Nuevo contrato",
+  "subtitle": "Completa los datos del cliente y el vehículo",
+  "client": {
+    "sectionTitle": "Cliente",
+    "selectLabel": "Seleccionar cliente",
+    "selectPlaceholder": "— Elige un cliente —",
+    "registerLink": "+ Registrar nuevo cliente",
+    "startDate": "Fecha de inicio",
+    "contractValue": "Valor del contrato",
+    "contractValuePlaceholder": "$ 0.00",
+    "observations": "Observaciones",
+    "observationsPlaceholder": "Notas adicionales..."
+  },
+  "vehicle": {
+    "sectionTitle": "Vehículo",
+    "selectLabel": "Seleccionar vehículo",
+    "selectPlaceholder": "— Elige un vehículo —",
+    "registerLink": "+ Registrar nuevo vehículo",
+    "endDate": "Fecha de fin",
+    "plate": "Placa",
+    "platePlaceholder": "Ej: ABC-123",
+    "observations": "Observaciones",
+    "observationsPlaceholder": "Notas adicionales..."
+  },
+  "actions": {
+    "back": "Regresar",
+    "history": "Historial de contratos",
+    "create": "Crear contrato"
+  }
+}
 }
