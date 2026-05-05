@@ -4,12 +4,13 @@ import carro from '../../../assets/carro.png';
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import FilterCalendar from '../../vehicles/components/FilterCalendar';
 import MapComponent from './components/MapComponents';
 import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
 
 const DefaultIcon = L.icon({
     iconUrl: markerIcon,
@@ -19,9 +20,14 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 function Reservation() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const {img , name, price, branch} = location.state || {};
+    if (!name) {
+return <p>No hay vehículo seleccionado</p>;
+}
 
     const [opcion, setOpcion] = useState('');
-    const [location, setLocation] = useState(null);
+    const [maplocation, setMapLocation] = useState(null);
     const [nameR, setNameR] = useState("");
     const [document, setDocument] = useState("");
     const [birthDate, setBirthDate] = useState("");
@@ -115,20 +121,21 @@ function Reservation() {
 
                     <div className="leftR">
                         <div className="card-car">
-                            <img className="img-car" src={carro} alt="carro" />
-                            <h2>Toyota 4x4</h2>
-                            <p className="price">$13,2444</p>
+                            <img className="img-car" src={img} alt={name} />
+                            <h2>{name}</h2>
+                            <p className="price">${price}</p>
                         </div>
 
                         <div className="card-location">
+                            <p>{branch}</p>
                             <p><b>Cambiar ubicación</b></p>
 
                             <MapComponent
-                                location={location}
-                                setLocation={setLocation}
+                                maplocationlocation={maplocation}
+                                setMapLocation={setMapLocation}
                             />
 
-                            {location && (
+                            {maplocation && (
                                 <p>
                                     Lat: {location[0].toFixed(4)} <br />
                                     Lng: {location[1].toFixed(4)}

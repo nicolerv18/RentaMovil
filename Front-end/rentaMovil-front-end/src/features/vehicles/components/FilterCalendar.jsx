@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import "./FilterCalendar.css";
 import { useTranslation } from "react-i18next";
+import { branches } from "../data/branches";
 
-function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
+function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setReturnDate }) {
   const { t } = useTranslation();
 
   const today = new Date().toISOString().split("T")[0];
@@ -17,14 +18,6 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split("T")[0];
   };
-
-  const branches = [
-    t("filterCalendar.branch1"),
-    t("filterCalendar.branch2"),
-    t("filterCalendar.branch3"),
-    t("filterCalendar.branch4"),
-    t("filterCalendar.branch5"),
-  ];
 
   const [query, setQuery] = useState("");
   const [sugerencias, setSugerencias] = useState([]);
@@ -49,7 +42,6 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
     }
   }, [date, dateReturn]);
 
-  // Cerrar dropdown al hacer click fuera
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -100,23 +92,27 @@ function FilterCalendar({ variant = "overlay", setPickupDate, setReturnDate }) {
     return h >= 8 && h <= 18;
   };
 
-  const handleSubmit = () => {
-    setErrorSucursal("");
-    setError("");
-    setSuccess("");
+const handleSubmit = () => {
+  setErrorSucursal("");
+  setError("");
+  setSuccess("");
 
-    if (!seleccionado) {
-      setErrorSucursal(t("filterCalendar.errorBranch"));
-      return;
-    }
+  if (!seleccionado) {
+    setErrorSucursal(t("filterCalendar.errorBranch"));
+    return;
+  }
 
-    if (!validarHora(hora)) {
-      setError(t("filterCalendar.errorHour"));
-      return;
-    }
+  if (!validarHora(hora)) {
+    setError(t("filterCalendar.errorHour"));
+    return;
+  }
 
-    setSuccess(t("filterCalendar.success"));
-  };
+  onSearch({
+    branch: seleccionado,
+    startDate: date,
+    endDate: dateReturn
+  });
+};
 
   return (
     <form
