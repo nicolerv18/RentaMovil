@@ -21,7 +21,7 @@ public class User {
     private Person person;
 
     private String username;
-    private String password;
+    private String pa   
     private String status;
 
     @Column(name = "last_login")
