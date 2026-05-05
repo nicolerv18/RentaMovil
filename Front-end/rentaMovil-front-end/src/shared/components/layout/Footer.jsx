@@ -34,7 +34,7 @@ return (
                 <button className="btn-redes"><FaTiktok className="icon" /></button>
                 </a>
             </div>
-            <p>{t("footer.brandDescription")}</p>
+            <p>{t("footer.paragraph")}</p>
             </div>
         <div className="footer-contact">
         <h3>{t("footer.contact")}</h3>

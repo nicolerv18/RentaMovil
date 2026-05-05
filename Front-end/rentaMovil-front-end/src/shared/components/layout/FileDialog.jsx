@@ -3,6 +3,7 @@ import './FileDialog.css'
 import { useDropzone } from 'react-dropzone'
 import { BiImageAdd } from "react-icons/bi";
 import { AiOutlineDashboard } from "react-icons/ai";
+import { useTranslation } from 'react-i18next';
 
 /* 
 voy a utilizar un servicio de la nube el cual va a ser claudinary, 
@@ -15,6 +16,7 @@ lo que se hace acontinuacion es considerado como una mala practica :v
 */
 
 function FileDialog({ onFileChange, file }) {
+    const { t } = useTranslation();
     /*  const [file, setFile] = useState() */ // estado para almacenar el archivo seleccionado
     const [preview, setPreview] = useState(null) // estado para almacenar la url de la imagen seleccionada
 
@@ -50,17 +52,17 @@ function FileDialog({ onFileChange, file }) {
                         <div className="preview-container">
                             <img src={preview} alt="preview" />
                             <div className='preview-buttons'>
-                                <button type='button' onClick={handleChangeImage}>Cambiar Imagen</button>
+                                <button type='button' onClick={handleChangeImage}>{t('vehicleForm.changeImage')}</button>
                             </div>
-                            <p><AiOutlineDashboard /> Asegúrate de que la imagen sea nítida y muestre el vehículo completo. Esto agiliza el proceso de validación.</p>
+                            <p><AiOutlineDashboard /> {t('vehicleForm.imgp')}</p>
                         </div>
                     ) : ( // si no hay una imagen, muestra el area de dropzone para seleccionar una imagen
                         <div className='preview-container'>
                             <input {...getInputProps()} />
                             {isDragActive ? (
-                                <p>Suelta la imagen aquí...</p>
+                                <p>{t('vehicleForm.imgp2')}</p>
                             ) : (
-                                <p>Arrastra la imagen aquí o haz clic para seleccionar una imagen<BiImageAdd /></p>
+                                <p>{t('vehicleForm.imgp3')}<BiImageAdd /></p>
                             )}
                         </div>
                     )}
