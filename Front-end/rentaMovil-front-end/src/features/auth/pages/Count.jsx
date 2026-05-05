@@ -18,27 +18,26 @@ function Count({ theme, setTheme }) {
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showLangModal, setShowLangModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [image, setImage] = useState(login);
-  const [user, setUser] = useState({
-    nombre: "",
-    telefono: "",
-    email: "",
-    password: "",
-  });
-
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    } else {
-      setUser({
+const [user, setUser] = useState(() => {
+  const saved = localStorage.getItem("user");
+  return saved
+    ? JSON.parse(saved)
+    : {
         nombre: "Sharik Rojas",
         telefono: "3145556",
         email: "sha@example.com",
         password: "123456",
-      });
-    }
-  }, []);
+      };
+});
+
+const [image, setImage] = useState(() => {
+  const saved = localStorage.getItem("user");
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    return parsed.image || login;
+  }
+  return login;
+});
 
   const handleSave = () => {
     localStorage.setItem("user", JSON.stringify(user));
