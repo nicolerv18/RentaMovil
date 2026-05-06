@@ -13,8 +13,8 @@ const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'))
 const RegisterVehicle = lazy(() => import('./features/admin/vehicles/pages/RegisterVehicle.jsx'))
 const Maintenance = lazy(() => import('./features/admin/maintenance/pages/Maintenance.jsx'))
 const CheckStatus = lazy(() => import('./features/admin/status/pages/CheckStatus.jsx'))
-
-const ChangePassword = lazy(() => import('./features/auth/pages/ChangePassword.jsx'))
+const ChangePassword = lazy(() => import('./features/auth/pages/Register.jsx'))
+const Register = lazy(() => import('./features/auth/pages/Register.jsx'))
 
 function App() {
   const [theme, setTheme] = useState(
@@ -44,7 +44,7 @@ function App() {
               />
             }
           />
-
+          <Route path="/Register" element={<Register />} />
           <Route path="/Notification" element={<Notification />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/RegisterVehicle" element={<RegisterVehicle />} />

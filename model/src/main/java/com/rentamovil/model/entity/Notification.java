@@ -1,7 +1,11 @@
-package  com.rentamovil.entity;
+package  com.rentamovil.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import com.rentamovil.model.entity.Person;
+import com.rentamovil.model.entity.Reservation;
+import com.rentamovil.model.entity.Payment;
+
 
 @Data
 @NoArgsConstructor

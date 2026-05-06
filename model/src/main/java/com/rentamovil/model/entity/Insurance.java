@@ -1,29 +1,33 @@
-package  com.rentamovil.entity;
+package  com.rentamovil.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "vehicle_status_history")
-public class VehicleStatusHistory {
+@Table(name = "insurance")
+public class Insurance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long historyId;
+    private Long insuranceId;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    @OneToOne
+    @JoinColumn(name = "vehicle_id", unique = true)
     private Vehicle vehicle;
 
-    private String status;
+    private String policy;
+
+    @Column(name = "insurance")
+    private String insuranceCompany;
 
     @Column(name = "start_date")
     private LocalDate startDate;
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    private String status;
 }

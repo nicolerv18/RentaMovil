@@ -1,4 +1,5 @@
-package  com.rentamovil.entity;
+package  com.rentamovil.model.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -7,26 +8,22 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "vehicle_maintenance")
-public class VehicleMaintenance {
+@Table(name = "vehicle_status_history")
+public class VehicleStatusHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long maintenanceId;
+    private Long historyId;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
-    @ManyToOne
-    @JoinColumn(name = "maintenance_type_id")
-    private MaintenanceType maintenanceType;
+    private String status;
 
     @Column(name = "start_date")
     private LocalDate startDate;
 
     @Column(name = "end_date")
     private LocalDate endDate;
-
-    private String status;
 }
