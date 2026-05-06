@@ -2,7 +2,6 @@
   padding: 30px;
 }
 
-/* TITULO */
 .title {
   color: var(--button);
   text-align: center;
@@ -10,7 +9,6 @@
   margin-bottom: 10px;
 }
 
-/* CONTENEDOR */
 .cards-container {
   margin: 20px;
   display: grid;
@@ -18,7 +16,6 @@
   justify-items: center;
 }
 
-/* CARD */
 .card-reserva {
   background: var(--card-bg);
   padding: 20px;
@@ -33,14 +30,12 @@
   box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
-/* CONTENIDO */
 .card-content {
   display: flex;
   gap: 20px;
   align-items: center;
 }
 
-/* IMAGEN */
 .img-historial {
   width: 200px;
   height: 110px;
@@ -74,7 +69,6 @@
   color: var(--accent);
 }
 
-/* STATUS */
 .status {
   padding: 5px 12px;
   border-radius: 12px;
@@ -97,14 +91,13 @@
   color: #1a4ed8;
 }
 
-/* TEXTO */
 .card-body p {
   margin: 0;
   font-size: 14px;
   color: var(--text);
 }
 
-/* BOTON */
+
 .btn-container {
   display: flex;
   justify-content: start;
@@ -126,7 +119,6 @@
   transform: scale(1.05);
 }
 
-/* MODAL */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -138,7 +130,6 @@
   z-index: 9999;
 }
 
-/* MODAL CONTENT */
 .modal-content {
   background: var(--modal-bg);
   color: var(--modal-text);
@@ -152,7 +143,6 @@
   animation: fadeIn 0.2s ease;
 }
 
-/* ANIMACION */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -164,7 +154,6 @@
   }
 }
 
-/* BOTONES MODAL */
 .modal-actions {
   display: flex;
   justify-content: center;

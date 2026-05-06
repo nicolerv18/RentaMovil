@@ -23,9 +23,9 @@
     }
         .header-page {
         position: absolute;
-        top: 12px;
-        left: 12px;
         z-index: 1;
+        top: -55px;
+        display: flex;
         }
 
     .form-image {
@@ -158,7 +158,7 @@
         text-decoration: underline;
     }
 
-    .icon-btn {
+    .icon-btnC {
         width: 40px;
         height: 40px;
         font-size: 16px;
@@ -166,8 +166,11 @@
         align-items: center;
         justify-content: center;
         padding: 0;
-        border-radius: 10px;
+        border-radius: 20px;
         background-color: var(--button);
+        color: var(--text-btn);
+        border: none;
+        cursor: pointer;
         margin-top: 10px;
     }
 
@@ -251,11 +254,11 @@
         border: 1px solid rgba(0, 0, 0, 0.1);
     }
     .lang-flag{
-  width: 35px;
-  height: 35px;
-  object-fit: cover;
-  border-radius: 50%;
-}
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+        border-radius: 50%;
+        }
 
     .preview-skylight {
         background: linear-gradient(90deg,

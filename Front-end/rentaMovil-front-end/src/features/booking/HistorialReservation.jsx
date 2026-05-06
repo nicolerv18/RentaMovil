@@ -81,7 +81,7 @@ function HistorialReservation() {
           {reservas.map((r) => (
           <div key={r.id} className="card-reserva">
             <div className="card-header">
-              <h4 className="btn-modal"><FaBell/></h4>
+              <h4><FaBell/></h4>
               <span className={`status ${r.status}`}>
                 {r.status}
               </span>

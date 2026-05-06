@@ -72,23 +72,22 @@ const [image, setImage] = useState(() => {
       <div className="containerC">
         <div className="cardC">
           <div className="header-page">
-            <ButtonBack onClick={() => navigate(-1)} />
+            <ButtonBack onClick={() => navigate(-1)} variant="overlay" />
           </div>
-
           <div className="actions">
             <button
-              className="icon-btn"
+              className="icon-btnC"
               onClick={isEditing ? handleSave : () => setIsEditing(true)}
             >
               {isEditing ? <FaSave /> : <FaEdit />}
             </button>
 
-            <button className="icon-btn" onClick={() => setShowThemeModal(true)}>
+            <button className="icon-btnC" onClick={() => setShowThemeModal(true)}>
               <FaMoon />
             </button>
 
             {/* Botón idioma ahora funcional (v2 lo tenía sin onClick) */}
-            <button className="icon-btn" onClick={() => setShowLangModal(true)}>
+            <button className="icon-btnC" onClick={() => setShowLangModal(true)}>
               <FaGlobe />
             </button>
           </div>

@@ -148,7 +148,7 @@ const notificacionesFiltradas =
         <div className="main-layout">
           <div className="filter-section">
             <div className="header-page">
-              <ButtonBack onClick={() => navigate(-1)} />
+              <ButtonBack onClick={() => navigate(-1)} variant="normal" />
             </div>
             <div className="Bell">
               <h4> <FaBell className="iconBell"/> {noLeidas} sin leer</h4>
