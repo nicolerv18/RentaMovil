@@ -1,79 +1,73 @@
 {
     "navbar": {
-      "linkInit": "Accueil",
-      "linkNotifications": "Notifications",
-      "linkReservation": "Réservation",
-      "linkPanelAdmin": "Administration"
-    },
-    "footer": {
-      "contact": "Contact",
-      "links": "Liens",
-      "paragraph": "Votre plateforme de location de véhicules",
-      "description": "© 2026 RentaMovil - Tous droits réservés",
-      "linkInit": "Accueil",
-      "linkNotifications": "Notifications",
-      "linkCount": "Compte"
-    },
-    "filterCalendar": {
-      "branch1": "Bogotá - Centre",
-      "branch2": "Bogotá - Nord",
-      "branch3": "Medellín - El Poblado",
-      "branch4": "Cali - Sud",
-      "branch5": "Barranquilla - Centre",
-      "errorDate": "La date de retour ne peut pas être antérieure à la date de prise en charge",
-      "errorBranch": "Agence invalide",
-      "errorHour": "Heure invalide (8:00 - 18:00)",
-      "success": "Recherche effectuée",
-      "deliveryLocation": "Lieu de prise en charge",
-      "deliveryDate": "Date de prise en charge",
-      "deliveryHour": "Heure de prise en charge",
-      "returnDate": "Date de retour",
-      "returnHour": "Heure de retour",
-      "search" : "rechercher"
-    },
-    "cartVehicule": {
-      "gasoline": "Essence",
-      "doors": "Portes",
-      "driving": "⚙️ Manuel",
-      "kmLimit": "∞ Km limite",
-      "location": "📍 Aéroport, Bogotá",
-      "cancellation": "Annulation gratuite",
-      "continue": "Continuer"
-    },
-    "filtersHome": {
-      "brand": "Marque",
-      "model": "Modèle",
-      "price": "Prix",
-      "type": "Type de véhicule",
-      "typeElectric": "Électrique",
-      "typeGasoline": "Essence",
-      "typeHybrid": "Hybride",
-      "typeDiesel": "Diesel"
-    },
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "linkInit": "Accueil",
+    "linkNotifications": "Notifications",
+    "linkReservation": "Réservation",
+    "linkPanelAdmin": "Administration"
+  },
+  "footer": {
+    "contact": "Contact",
+    "links": "Liens",
+    "paragraph": "Votre plateforme de location de véhicules",
+    "description": "© 2026 RentaMovil - Tous droits réservés",
+    "linkInit": "Accueil",
+    "linkNotifications": "Notifications",
+    "linkCount": "Compte"
+  },
+  "filterCalendar": {
+    "branch1": "Bogotá - Centre",
+    "branch2": "Bogotá - Nord",
+    "branch3": "Medellín - El Poblado",
+    "branch4": "Cali - Sud",
+    "branch5": "Barranquilla - Centre",
+    "errorDate": "La date de retour ne peut pas être antérieure à la date de prise en charge",
+    "errorBranch": "Agence invalide",
+    "errorHour": "Heure invalide (8:00 - 18:00)",
+    "success": "Recherche effectuée",
+    "deliveryLocation": "Lieu de prise en charge",
+    "deliveryDate": "Date de prise en charge",
+    "deliveryHour": "Heure de prise en charge",
+    "returnDate": "Date de retour",
+    "returnHour": "Heure de retour",
+    "search": "Rechercher"
+  },
+  "cartVehicule": {
+    "gasoline": "Essence",
+    "doors": "Portes",
+    "driving": "⚙️ Manuel",
+    "kmLimit": "∞ Km limite",
+    "location": "📍 Aéroport, Bogotá",
+    "cancellation": "Annulation gratuite",
+    "continue": "Continuer",
+    "type": "Mini similaire"
+  },
+  "filtersHome": {
+    "brand": "Marque",
+    "model": "Modèle",
+    "price": "Prix",
+    "type": "Type de véhicule",
+    "typeElectric": "Électrique",
+    "typeGasoline": "Essence",
+    "typeHybrid": "Hybride",
+    "typeDiesel": "Diesel"
+  },
+  "reservation": {
+    "ErrorDate": "La date de retour ne peut pas être antérieure à la date de retrait",
+    "ErrorAge:": "Vous devez être majeur",
+    "selectDates": "Vous devez sélectionner des dates",
+    "changeLocation": "Changer de lieu",
+    "summary": "Résumé",
+    "days": "Jours x 403.000 $",
+    "sure": "Assurance tous risques",
+    "total": "Total : 403.000 $",
+    "amountToPay": "Montant à payer",
+    "responsible": "Responsable de la réservation",
+    "placeholderResponsible": "Nom et prénoms complets",
+    "dateOfBirth": "Date de naissance",
+    "document": "N° de document d'identité",
+    "phone": "Téléphone",
+    "submit": "Louer"
+  },
 
   "login": {
     "createAccount": "Créer un compte",
@@ -142,11 +136,167 @@
     "seleccionaTema": "Sélectionnez un thème",
     "seleccionaIdioma": "Sélectionnez une langue",
     "cancelar": "Annuler"
+  },
+  "payment": {
+    "payTitle": "Confirmer le paiement",
+    "paySubtitle": "Vérifiez les détails avant de continuer",
+    "desc-location": "Description de l'emplacement",
+    "desc-location2": "Description de l'emplacement 2",
+    "summary": "3 Jours x 403.000",
+    "sure": "Assurance tous risques",
+    "include": "Inclus",
+    "total": "TOTAL",
+    "responsible": "Responsable de la réservation",
+    "name": "Nom",
+    "placeholderName": "Votre nom complet",
+    "city": "Ville",
+    "placeholderCity": "Ville de résidence",
+    "adrress": "Adresse",
+    "placeholderAddress": "Adresse de livraison",
+    "confirm": "Confirmer et payer"
+  },
+  "buttonBack": {
+    "label": "Retour"
+  },
+  "adminPanel": {
+    "title": "Panneau d'administration",
+    "vehicle": "Véhicule",
+    "ve-agg": "Ajouter un véhicule",
+    "ve-state": "Consulter l'état",
+    "location": "Emplacement",
+    "loc-map": "Carte",
+    "loc-routes": "Historique des itinéraires",
+    "maintenance": "Maintenance",
+    "man-new": "Enregistrer une maintenance",
+    "man-history": "Historique des maintenances",
+    "contracts": "Contrats",
+    "con-new": "Nouveau contrat",
+    "con-history": "Historique des contrats"
+  },
+  "changePassword": {
+    "caracters": "Au moins 8 caractères",
+    "specialCaracters": "Au moins un caractère spécial (#, @, etc)",
+    "uppercase": "Au moins une lettre majuscule",
+    "errorPassword": "Erreur lors du changement de mot de passe",
+    "successPassword": "Mot de passe changé avec succès",
+    "errorRequest": "Erreur de requête",
+    "title": "Changer le mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le nouveau mot de passe",
+    "invalid": "Les mots de passe ne correspondent pas",
+    "saving": "Enregistrement...",
+    "save": "Enregistrer les modifications"
+  },
+  "vehicleForm": {
+    "title": "Enregistrer un nouveau véhicule",
+    "plate": "Plaque",
+    "requiredPlate": "La plaque est obligatoire",
+    "placeholderPlate": "Exemple de plaque : ABC123",
+    "invalidPlate": "Format invalide. Voiture : ABC123",
+
+    "brand": "Marque",
+    "requiredBrand": "La marque est obligatoire",
+    "placeholderBrand": "Exemple : Toyota, Chevrolet, Renault...",
+    "minLenghtBrand": "La marque doit contenir au moins 2 caractères",
+    "maxLenghtBrand": "La marque ne peut pas dépasser 30 caractères",
+    "ivalidBrand": "La marque ne peut contenir que des lettres, des chiffres et des tirets",
+
+    "model": "Modèle",
+    "requiredModel": "Le modèle est obligatoire",
+    "placeholderModel": "Exemple : Volkswagen Gol, Renault Sandero, Toyota Corolla...",
+    "minLenghtModel": "Le modèle doit contenir au moins 2 caractères",
+    "maxLenghtModel": "Le modèle ne peut pas dépasser 30 caractères",
+    "invalidModel": "Le modèle ne peut contenir que des lettres, des chiffres et des tirets",
+
+    "Type": "Type de véhicule",
+    "requiredType": "Vous devez sélectionner un type de véhicule",
+    "disabledType": "Sélectionnez un type...",
+    "labelType1": "Voitures",
+    "labelType2": "Cargo",
+    "cargaType1": "Camion",
+    "cargaType2": "Camion tracteur",
+    "cargaType3": "Fourgonnette",
+
+    "FuelType": "Type de carburant",
+    "requiredFuelType": "Vous devez sélectionner un type de carburant",
+    "disabledFuelType": "Sélectionnez un type...",
+    "fuelType1": "Essence",
+    "fuelType2": "Diesel",
+    "fuelType3": "Hybride",
+    "fuelType4": "Électrique",
+    "fuelType5": "Gaz naturel",
+    "fuelType6": "Gaz propane",
+
+    "location": "Localisation",
+    "placeholderLocation": "Exemple : Bogotá, Medellín, Cali...",
+    "requiredLocation": "La localisation est obligatoire",
+    "minLenghtLocation": "La localisation doit contenir au moins 2 caractères",
+    "maxLenghtLocation": "La localisation ne peut pas dépasser 100 caractères",
+    "invalidLocation": "La localisation contient des caractères invalides",
+
+    "saving": "Enregistrement...",
+    "save": "Enregistrer le véhicule",
+
+    "imgp": "Assurez-vous que l'image est nette et montre l'intégralité du véhicule. Cela accélère le processus de validation.",
+    "imgp2": "Déposez l'image ici...",
+    "imgp3": "Faites glisser l'image ici ou cliquez pour sélectionner une image",
+    "changeImage": "Changer l'image"
+  },
+   "contractHistory": {
+      "title": "Historique des contrats",
+      "searchPlaceholder": "Rechercher par client ou véhicule",
+      "clearFilters": "Effacer",
+      "viewDetail": "Voir les détails",
+      "noContracts": "Aucun contrat trouvé.",
+      "back": "Retour",
+      "newContract": "+ Nouveau contrat",
+      "filters": {
+        "fecha": "Date",
+        "cliente": "Client",
+        "vehiculo": "Véhicule",
+        "estado": "Statut"
+      },
+      "modal": {
+        "contractNumber": "Contrat #{{id}}",
+        "vehicle": "Véhicule",
+        "date": "Date",
+        "duration": "Durée",
+        "value": "Valeur",
+        "description": "Description",
+        "close": "Fermer"
+      }
+   },
+    "contract": {
+      "title": "Nouveau contrat",
+      "subtitle": "Remplissez les informations du client et du véhicule",
+      "client": {
+        "sectionTitle": "Client",
+        "selectLabel": "Sélectionner un client",
+        "selectPlaceholder": "— Choisissez un client —",
+        "registerLink": "+ Enregistrer un nouveau client",
+        "startDate": "Date de début",
+        "contractValue": "Valeur du contrat",
+        "contractValuePlaceholder": "$ 0.00",
+        "observations": "Observations",
+        "observationsPlaceholder": "Notes supplémentaires..."
+      },
+      "vehicle": {
+        "sectionTitle": "Véhicule",
+        "selectLabel": "Sélectionner un véhicule",
+        "selectPlaceholder": "— Choisissez un véhicule —",
+        "registerLink": "+ Enregistrer un nouveau véhicule",
+        "endDate": "Date de fin",
+        "plate": "Plaque",
+        "platePlaceholder": "Ex : ABC-123",
+        "observations": "Observations",
+        "observationsPlaceholder": "Notes supplémentaires..."
+      },
+      "actions": {
+        "back": "Retour",
+        "history": "Historique des contrats",
+        "create": "Créer un contrat"
+      }
+    }
   }
 
-
-
-
-
-
-}
