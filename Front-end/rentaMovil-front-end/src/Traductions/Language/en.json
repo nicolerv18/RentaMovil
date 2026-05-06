@@ -115,6 +115,17 @@
       "cambiarFoto": "Change photo",
       "seleccionaTema": "Select a theme",
       "seleccionaIdioma": "Select a language",
-      "cancelar": "Cancel"
+      "cancelar": "Cancel",
+      "LabelTema1": "Light blue mode",
+      "descripcionTema1": "White background, royal blue accents",
+
+      "LabelTema2": "Light green mode",
+      "descripcionTema2": "White background, yellow accents",
+
+      "LabelTema3": "Dark blue mode",
+      "descripcionTema3": "Night blue background, navy accents",
+
+      "LabelTema4": "Dark green mode",
+      "descripcionTema4": "Dark green background, light accents"
     }
-  }
+    }

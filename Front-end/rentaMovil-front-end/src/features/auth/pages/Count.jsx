@@ -170,9 +170,9 @@ const [image, setImage] = useState(() => {
             <div className="theme-grid">
               {[
                 { id: "skylight", label: "Modo azul claro",     desc: "Fondo blanco, texto oscuro" },
-                { id: "light",    label: "Modo amarillo claro",  desc: "Fondo negro, acentos morados" },
-                { id: "dark",     label: "Azul",                 desc: "Fondo azul suave, acentos navy" },
-                { id: "darkPurple", label: "Morado",             desc: "Fondo lila suave, acentos violeta" },
+                { id: "light",    label: "Modo Verde claro",  desc: "Fondo blanco, acentos amarillos" },
+                { id: "dark",     label: "Azul Oscuro" ,                 desc: "Fondo azul noche, acentos navy" },
+                { id: "darkPurple", label: "Verde Oscuro",             desc: "Fondo verde oscuro, acentos claros" },
               ].map(({ id, label, desc }) => (
                 <button
                   key={id}

@@ -13,6 +13,7 @@ import img3 from "../../../assets/img/img3.webp";
 import FilterCalendar from '../components/FilterCalendar.jsx';
 import { useState, useEffect } from 'react';
 import { getCars } from '../data/carsService.js';
+import { FaSearch, FaSearchengin, FaSearchPlus } from 'react-icons/fa';
 
 function Home() {
   const [cars, setCars]               = useState([]);
@@ -59,7 +60,7 @@ function Home() {
         <div className="main-column">
           <div className="card-vehicule-container">
             {visibleCars.length === 0 ? (
-              <p>No hay vehículos disponibles</p>
+              <p className='notFound'>No hay vehículos disponibles <FaSearch/></p>
             ) : (
               visibleCars.map(car => (
                 <CartVehicule

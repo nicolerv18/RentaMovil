@@ -120,6 +120,14 @@
     "cambiarFoto": "Cambiar foto",
     "seleccionaTema": "Selecciona un tema",
     "seleccionaIdioma": "Selecciona un idioma",
-    "cancelar": "Cancelar"
+    "cancelar": "Cancelar",
+    "LabelTema1" : "Modo azul claro",
+    "descripcionTema1" :"Fondo blanco, acentos azul rey",
+    "LabelTema2" : "Modo verde claro",
+    "descripcionTema2" :"Fondo blanco, acentos amarillos" ,
+    "LabelTema3" : "Modo azul oscuro",
+    "descripcionTema3" :"Fondo azul noche, acentos navy" ,
+    "LabelTema4" : "Modo verde oscuro",
+    "descripcionTema4" :"Fondo verde oscuro, acentos claros"
   }
 }

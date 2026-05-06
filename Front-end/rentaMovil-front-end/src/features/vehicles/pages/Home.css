@@ -81,3 +81,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+.notFound{
+  color: var(--accent);
+  justify-self: center;
+  margin-top: 60px;
+}
