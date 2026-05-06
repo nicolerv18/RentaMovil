@@ -1,10 +1,9 @@
 import './Reservation.css'
 
-import carro from '../../../assets/carro.png';
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import FilterCalendar from '../../vehicles/components/FilterCalendar';
 import MapComponent from './components/MapComponents';
 import L from 'leaflet';
@@ -21,9 +20,15 @@ L.Marker.prototype.options.icon = DefaultIcon;
 function Reservation() {
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const location = useLocation();
+    const { img, name, price, branch } = location.state || {};
+
+    if (!name) {
+        return <p>No hay vehículo seleccionado</p>;
+    }
 
     const [opcion, setOpcion] = useState('');
-    const [location, setLocation] = useState(null);
+    const [mapLocation, setMapLocation] = useState(null);
     const [nameR, setNameR] = useState("");
     const [document, setDocument] = useState("");
     const [birthDate, setBirthDate] = useState("");
@@ -31,17 +36,16 @@ function Reservation() {
     const [returnDate, setReturnDate] = useState("");
     const [errorFecha, setErrorFecha] = useState("");
     const [errorEdad, setErrorEdad] = useState("");
-    const rentalDays= () => {
+
+    const rentalDays = () => {
         if (!pickupDate || !returnDate) return 0;
-        const init =  new Date (pickupDate);
-        const end = new Date (returnDate);
-        const diference = end- init;
-         const days = Math.ceil(diference / (1000 * 60 * 60 * 24));
-        return days +1 ;
-
-    }
+        const init = new Date(pickupDate);
+        const end = new Date(returnDate);
+        const diference = end - init;
+        const days = Math.ceil(diference / (1000 * 60 * 60 * 24));
+        return days + 1;
+    };
     const days = rentalDays();
-
 
     useEffect(() => {
         if (pickupDate && returnDate) {
@@ -55,17 +59,13 @@ function Reservation() {
 
     const validarEdad = (fecha) => {
         if (!fecha) return false;
-
         const hoy = new Date();
         const nacimiento = new Date(fecha);
-
         let edad = hoy.getFullYear() - nacimiento.getFullYear();
         const mes = hoy.getMonth() - nacimiento.getMonth();
-
         if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
             edad--;
         }
-
         return edad >= 18;
     };
 
@@ -80,22 +80,18 @@ function Reservation() {
     }, [birthDate]);
 
     const Pago = () => {
-
         if (!pickupDate || !returnDate) {
             alert(t('reservation.selectDates'));
             return;
         }
-
         if (errorFecha) {
             alert(errorFecha);
             return;
         }
-
         if (errorEdad) {
             alert(errorEdad);
             return;
         }
-
         navigate('/Payment');
     };
 
@@ -117,23 +113,24 @@ function Reservation() {
 
                     <div className="leftR">
                         <div className="card-car">
-                            <img className="img-car" src={carro} alt="carro" />
-                            <h2>Toyota 4x4</h2>
-                            <p className="price">$13,2444</p>
+                            <img className="img-car" src={img} alt={name} />
+                            <h2>{name}</h2>
+                            <p className="price">${price}</p>
                         </div>
 
                         <div className="card-location">
-                            <p><b>{t('reservation.changeLocation')}</b></p>
+                            <p>{branch}</p>
+
 
                             <MapComponent
-                                location={location}
-                                setLocation={setLocation}
+                                location={mapLocation}
+                                setLocation={setMapLocation}
                             />
 
-                            {location && (
+                            {mapLocation && (
                                 <p>
-                                    Lat: {location[0].toFixed(4)} <br />
-                                    Lng: {location[1].toFixed(4)}
+                                    Lat: {mapLocation[0].toFixed(4)} <br />
+                                    Lng: {mapLocation[1].toFixed(4)}
                                 </p>
                             )}
                         </div>
@@ -147,7 +144,6 @@ function Reservation() {
                                     Pago();
                                 }}
                             >
-
                                 <h3>{t('reservation.summary')}</h3>
                                 <p>{days} {t('reservation.days')}</p>
                                 <p>{t('reservation.sure')}</p>
@@ -198,7 +194,6 @@ function Reservation() {
                                 <button type="submit">{t('reservation.submit')}</button>
 
                             </form>
-
                         </div>
                     </div>
 

@@ -7,11 +7,12 @@
 }
 
 .header-page {
-  position: relative;
+  position: static;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: start;
   height: 70px;
+
 }
 
 .header-page h1 {

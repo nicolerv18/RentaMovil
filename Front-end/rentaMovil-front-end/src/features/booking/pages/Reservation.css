@@ -115,26 +115,18 @@ select{
         padding: 12px;
     }
 
-    /* imagen más controlada */
-    .img-car {
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-    }
 
-    /* formulario abajo */
     .rightR {
         margin-top: 10px;
     }
 
-    /* inputs bien en mobile */
+
     input,
     select {
         width: 100%;
         font-size: 15px;
     }
 
-    /* botón más usable */
     .card-summary button {
         height: 50px;
         font-size: 16px;
