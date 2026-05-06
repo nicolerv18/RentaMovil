@@ -14,7 +14,7 @@ function CartVehicule({img,name,age,price, branch}){
     {/* CENTRO - INFO */}
     <div className="car-info">
         <h3>{name}</h3>
-        <p className="car-type">Mini similar</p>
+        <p className="car-type">{t('cartVehicule.type')}</p>
 
         <div className="features">
             <span>{t('cartVehicule.gasoline')}</span>

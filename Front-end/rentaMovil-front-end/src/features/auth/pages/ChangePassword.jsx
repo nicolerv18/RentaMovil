@@ -3,8 +3,10 @@ import {  FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
+import { useTranslation } from "react-i18next";
 
 function ChangePassword() {
+    const { t } = useTranslation();
 
     // ============================================
     // ESTADOS DEL FORMULARIO
@@ -56,15 +58,15 @@ function ChangePassword() {
 
     const rules = [
         {
-            label: "Al menos 8 caracteres.",
+            label: t('changePassword.caracters'),
             valid: password.length >= 8
         },
         {
-            label: "Al menos un carácter especial (#, @, etc)",
+            label: t('changePassword.specialCaracters'),
             valid: /[#@!$%^&*-.]/.test(password)
         },
         {
-            label: "Al menos una letra mayúscula.",
+            label: t('changePassword.uppercase'),
             valid: /[A-Z]/.test(password)
         }
     ];
@@ -103,19 +105,19 @@ function ChangePassword() {
             // Si la respuesta no es ok (200-299)
             if (!response.ok) {
                 const data = await response.json();
-                throw new Error(data.message || "Error al cambiar la contraseña");
+                throw new Error(data.message || t("changePassword.errorPassword"));
             }
 
             const data = await response.json();
-            alert("Contraseña cambiada exitosamente");
-            
+            alert(t("changePassword.successPassword"));
+
             // Limpiar formulario después de cambio exitoso
             setCurrentPassword("");
             setPassword("");
             setConfirmPassword("");
 
         } catch (err) {
-            setError(err.message || "Error en la solicitud");
+            setError(err.message || t("changePassword.errorRequest"));
             console.error("Error:", err);
         } finally {
             setLoading(false);
@@ -130,11 +132,11 @@ function ChangePassword() {
                 <div className='cardP'>
                     <div className='formP'>
 
-                        <h2 className='form-labelP-title'>Cambiar Contraseña</h2>
+                        <h2 className='form-labelP-title'>{t("changePassword.title")}</h2>
                         {error && <p className="errorMessageP invalidP">{error}</p>}
                         <div className="inputGroupP">
                             <label className='form-labelP' htmlFor='currentPassword'>
-                                Contraseña actual:
+                                {t('changePassword.currentPassword')}
                             </label>
                             <input
                                 id='currentPassword'
@@ -146,7 +148,7 @@ function ChangePassword() {
                         </div>
                         <div className="inputGroupP">
                             <label className='form-labelP' htmlFor='newPassword'>
-                                Nueva contraseña:
+                                {t('changePassword.newPassword')}
                             </label>
 
                             <div className="inputWrapperP">
@@ -181,7 +183,7 @@ function ChangePassword() {
                         </ul>
                         <div className="inputGroupP">
                             <label className='form-labelP' htmlFor='confirmPassword'>
-                                Confirmar nueva contraseña:
+                                {t('changePassword.confirmPassword')}
                             </label>
 
                             <div className="inputWrapperP">
@@ -205,7 +207,7 @@ function ChangePassword() {
                             </div>
                             {confirmPassword.length > 0 && !passwordsMatch && (
                                 <p className="errorMessageP invalidP">
-                                    Las contraseñas no coinciden
+                                    {t('changePassword.invalid')}
                                 </p>
                             )}
                         </div>
@@ -216,7 +218,7 @@ function ChangePassword() {
                             disabled={!isValid || loading}
                             onClick={handleChangePassword}
                         >
-                            {loading ? "Guardando..." : "Guardar cambios"}
+                            {loading ? t('changePassword.saving') : t('changePassword.save')}
                         </button>
 
                     </div>
