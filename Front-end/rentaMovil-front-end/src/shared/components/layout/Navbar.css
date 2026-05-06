@@ -1,18 +1,13 @@
 .navbar {
   margin: 10px auto;
   width: 90%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   height: 60px;
   border-radius: 10px;
   padding: 15px 40px;
-
-  
   background: var(--navbar);
-  color: var(--icon);
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 
 }
@@ -55,18 +50,19 @@
 
 nav svg {
   cursor: pointer;
+  color: var(--accent) !important;
 }
 
 
-.icon{
-  color: var( --accent);
+.iconCar{
+  color: var(--accent);
   width: 30px;
   height: 30px;
   margin-top: -5px;
 }
 
 .icon-user{
-  color: var( --accent);
+  color: var(--accent);
   width: 30px;
   height: 30px;
   margin-top: 5px;
