@@ -52,6 +52,10 @@
 }
 
 @media (max-width: 900px) {
+
+  .banner-container{
+    display: none;
+  }
   .home-container {
     grid-template-columns: 1fr;
     padding: 0;
@@ -59,9 +63,6 @@
   .banner-wrapper {
     margin-bottom: 20px;
     width: 100%;
-  }
-  .banner-container {
-    height: 300px;
   }
   .main-column {
     padding: 0;

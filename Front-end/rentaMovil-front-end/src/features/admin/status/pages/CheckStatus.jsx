@@ -1,4 +1,4 @@
-import Navbar from "../../../../shared/components/layout/Navbar";
+import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
 import Footer from '../../../../shared/components/layout/Footer';
 import img from "../../../../assets/carts/viejo.JPG"
 import CartVehiculeStatus from "../components/CartVehiculeStatus";
@@ -26,7 +26,7 @@ function checkStatus() {
 
     return (
         <>
-            <Navbar />
+            <NavBarAdmin />
             <div className={style["card-check"]}>
                 <div className={style["card-container-left"]}>
                     <div className={style["card-container-setSearch"]}>
