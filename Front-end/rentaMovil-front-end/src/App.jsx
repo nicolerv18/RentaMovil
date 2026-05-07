@@ -8,14 +8,14 @@ const Login = lazy(() => import('./features/auth/pages/Login.jsx'))
 const Home = lazy(() => import('./features/vehicles/pages/Home.jsx'))
 const Reservation = lazy(() => import('./features/booking/pages/Reservation.jsx'))
 const Count = lazy(() => import('./features/auth/pages/Count.jsx'))
-const Notification = lazy(() => import('./features/notification/pages/notification.jsx'))
+const Notification = lazy(() => import('./features/notification/pages/Notification.jsx'))
 const Payment = lazy(() => import('./features/payment/pages/Payment.jsx'))
 const RegisterVehicle = lazy(() => import('./features/admin/vehicles/pages/RegisterVehicle.jsx'))
 const Maintenance = lazy(() => import('./features/admin/maintenance/pages/Maintenance.jsx'))
 const CheckStatus = lazy(() => import('./features/admin/status/pages/CheckStatus.jsx'))
-const ChangePassword = lazy(() => import('./features/auth/pages/Register.jsx'))
-const Register = lazy(() => import('./features/auth/pages/Register.jsx'))
-
+const ChangePassword = lazy(() => import('./features/auth/pages/ChangePassword.jsx'))
+const Register = lazy(() => import('./features/auth/components/RegisterForm.jsx'))
+const History = lazy(() => import('./features/admin/historyMaintenance/pages/History.jsx'))
 function App() {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "light1"
@@ -51,7 +51,8 @@ function App() {
           <Route path="/Maintenance" element={<Maintenance />} />
           <Route path="/CheckStatus" element={<CheckStatus />} />
           <Route path="/ChangePassword" element={<ChangePassword />} />
-
+          <Route path="/History" element={<History />} />
+          
         </Routes>
         
       </Suspense>
