@@ -1,17 +1,13 @@
-
-import Reservation from '../../booking/pages/Reservation';
 import './CartVehicule.css'
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 
-function CartVehicule({img,name,age,price}){
+function CartVehicule({img,name,age,price, branch}){
     const {t} = useTranslation();
     const navigate = useNavigate();
     return(
 <div className="card-vehicule">
-    
-    {/* IZQUIERDA - IMAGEN */}
     <div className="car-img">
         <img src={img} alt={name} />
     </div>
@@ -28,14 +24,13 @@ function CartVehicule({img,name,age,price}){
         </div>
 
         <p className="location">
-            {t('cartVehicule.location')}
+            📍 {branch}
         </p>
     </div>
-    {/* DERECHA - PRECIO */}
     <div className="car-price">
         <p className="price">${price}</p>
         <span className="free">{t('cartVehicule.cancellation')}</span>
-        <button onClick={() => navigate("/Reservation")}>{t('cartVehicule.continue')}</button>
+        <button  onClick={() => navigate("/Reservation", { state: { img, name, price, branch } })}>{t('cartVehicule.continue')}</button>
     </div>
 
 </div>

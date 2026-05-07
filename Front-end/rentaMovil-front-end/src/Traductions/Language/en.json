@@ -28,8 +28,7 @@
     "deliveryDate": "Pickup date",
     "deliveryHour": "Pickup time",
     "returnDate": "Return date",
-    "returnHour": "Return time",
-    "search": "Search"
+    "returnHour": "Return time"
   },
   "cartVehicule": {
     "gasoline": "Gasoline",
@@ -38,8 +37,7 @@
     "kmLimit": "∞ Km limit",
     "location": "📍 Airport, Bogotá",
     "cancellation": "Free cancellation",
-    "continue": "Continue",
-    "type": "Similar mini"
+    "continue": "Continue"
   },
   "filtersHome": {
     "brand": "Brand",
@@ -50,23 +48,6 @@
     "typeGasoline": "Gasoline",
     "typeHybrid": "Hybrid",
     "typeDiesel": "Diesel"
-  },
-  "reservation": {
-    "ErrorDate": "Return date cannot be earlier than pickup date",
-    "ErrorAge:": "You must be of legal age",
-    "selectDates": "You must select dates",
-    "changeLocation": "Change location",
-    "summary": "Summary",
-    "days": "Days x $403.000",
-    "sure": "All-risk insurance",
-    "total": "Total: $403.000",
-    "amountToPay": "Amount to pay",
-    "responsible": "Person Responsible for the Reservation",
-    "placeholderResponsible": "Full name and lastname",
-    "dateOfBirth": "Date of birth",
-    "document": "ID Document Number",
-    "phone": "Phone",
-    "submit": "Rent"
   },
 
   "login": {
@@ -241,59 +222,136 @@
     "imgp3": "Drag the image here or click to select an image",
     "changeImage": "Change image"
   },
-      "contractHistory": {
-      "title": "Contract history",
-      "searchPlaceholder": "Search by client or vehicle",
-      "clearFilters": "Clear",
-      "viewDetail": "View details",
-      "noContracts": "No contracts found.",
-      "back": "Back",
-      "newContract": "+ New contract",
-      "filters": {
-        "fecha": "Date",
-        "cliente": "Client",
-        "vehiculo": "Vehicle",
-        "estado": "Status"
-      },
-      "modal": {
-        "contractNumber": "Contract #{{id}}",
-        "vehicle": "Vehicle",
-        "date": "Date",
-        "duration": "Duration",
-        "value": "Value",
-        "description": "Description",
-        "close": "Close"
-      }
+  "contractHistory": {
+    "title": "Contract history",
+    "searchPlaceholder": "Search by client or vehicle",
+    "clearFilters": "Clear",
+    "viewDetail": "View details",
+    "noContracts": "No contracts found.",
+    "back": "Back",
+    "newContract": "+ New contract",
+    "filters": {
+      "fecha": "Date",
+      "cliente": "Client",
+      "vehiculo": "Vehicle",
+      "estado": "Status"
     },
-        "contract": {
-      "title": "New contract",
-      "subtitle": "Complete the client and vehicle information",
-      "client": {
-        "sectionTitle": "Client",
-        "selectLabel": "Select client",
-        "selectPlaceholder": "— Choose a client —",
-        "registerLink": "+ Register new client",
-        "startDate": "Start date",
-        "contractValue": "Contract value",
-        "contractValuePlaceholder": "$ 0.00",
-        "observations": "Observations",
-        "observationsPlaceholder": "Additional notes..."
-      },
-      "vehicle": {
-        "sectionTitle": "Vehicle",
-        "selectLabel": "Select vehicle",
-        "selectPlaceholder": "— Choose a vehicle —",
-        "registerLink": "+ Register new vehicle",
-        "endDate": "End date",
-        "plate": "Plate",
-        "platePlaceholder": "Ex: ABC-123",
-        "observations": "Observations",
-        "observationsPlaceholder": "Additional notes..."
-      },
-      "actions": {
-        "back": "Back",
-        "history": "Contract history",
-        "create": "Create contract"
-      }
+    "modal": {
+      "contractNumber": "Contract #{{id}}",
+      "vehicle": "Vehicle",
+      "date": "Date",
+      "duration": "Duration",
+      "value": "Value",
+      "description": "Description",
+      "close": "Close"
     }
+  },
+  "contract": {
+    "title": "New contract",
+    "subtitle": "Complete the client and vehicle information",
+    "client": {
+      "sectionTitle": "Client",
+      "selectLabel": "Select client",
+      "selectPlaceholder": "— Choose a client —",
+      "registerLink": "+ Register new client",
+      "startDate": "Start date",
+      "contractValue": "Contract value",
+      "contractValuePlaceholder": "$ 0.00",
+      "observations": "Observations",
+      "observationsPlaceholder": "Additional notes..."
+    },
+    "vehicle": {
+      "sectionTitle": "Vehicle",
+      "selectLabel": "Select vehicle",
+      "selectPlaceholder": "— Choose a vehicle —",
+      "registerLink": "+ Register new vehicle",
+      "endDate": "End date",
+      "plate": "Plate",
+      "platePlaceholder": "Ex: ABC-123",
+      "observations": "Observations",
+      "observationsPlaceholder": "Additional notes..."
+    },
+    "actions": {
+      "back": "Back",
+      "history": "Contract history",
+      "create": "Create contract"
+    }
+  },
+    "maintenanceForm": {
+    "title": "Registrar un nuevo vehículo",
+    "plate": "Placa",
+    "requiredPlate": "La placa es obligatoria",
+    "placeholderPlate": "Placa ejemplo: ABC123",
+    "invalidPlate": "Formato invalido. Carro: ABC123",
+    "model": "Modelo",
+    "requiredModel": "El modelo es obligatorio",
+    "placeholderModel": "Ej: Volkswagen Gol, Crolla, Tesla Model 3... ",
+    "minLenghtModel": "El modelo debe tener al menos 2 caracteres",
+    "maxLenghtModel": "El modelo no puede tener más de 30 caracteres",
+    "invalidModel": "El modelo solo puede contener letras, números y guiones.",
+    "date": "Fecha",
+    "placeholderDate": "Fecha",
+    "requiredDate": "La fecha es obligatoria",
+    "brand": "Marca",
+    "requiredBrand": "La marca es obligatoria",
+    "placeholderBrand": "Ejemplo: Toyota, Chevrolet, Renault....",
+    "minLenghtBrand": "La marca debe tener al menos 2 caracteres",
+    "maxLenghtBrand": "La marca no puede tener más de 30 caracteres",
+    "ivalidBrand": "La marca solo puede contener letras, números y guiones.",
+    "Type": "Tipo de vehículo",
+    "requiredType": "Debes seleccionar un tipo de vehículo",
+    "disabledType": "Selecciona un tipo...",
+    "labelType1": "Automoviles",
+    "labelType2": "Carga",
+    "cargaType1": "Truck",
+    "cargaType2": "Tracto Truck",
+    "cargaType3": "Furgoneta",
+    "TypeMaintenance": "Tipo de mantenimiento: ",
+    "placeholderMaintenance": "Ej: Cambio de aceite, Revisión de frenos...",
+    "requiredMaintenance": "El tipo de mantenimiento es obligatorio. ",
+    "minLenghtMaintenance": "Minimo 3 caracteres. ",
+    "maxLenght": "Maximo 60 caracteres ",
+    "invalidMaintenance": "Solo se permiten letras, números, guiones y comas.",
+    "option1": "Cambio de aceite",
+    "option2": "Cambio de filtros",
+    "option3": "Revision de frenos",
+    "option4": "Cambio de llantas",
+    "option5": "Alineación y balanceo",
+    "option6": "Revisión general",
+    "option7": "Reparación de motor",
+    "option8": "Reparación de frenos",
+    "option9": "Reparación eléctrica",
+    "option10": "Reparación de suspensión",
+    "option11": "Reparación de transmisión",
+    "option12": "Lavado",
+    "option13": "Pintura",
+    "option14": "Latonería",
+    "observations": "Observaciones",
+    "placeholderObservations": "Observaciones",
+    "minLenghtObservations": "Minimo 5 caracteres",
+    "maxLenghtObservations": "Maximo 200 caracteres ",
+    "PminLenghtObservations": "La observacion debe tener al menos 5 caracteres",
+    "PmaxLenghtObservations": "La observacion no debe tener mas de 200 caracteres",
+    "sheduling": "Agendando mantenimiento",
+    "shedule": "Agendar mantenimiento",
+    "button": "Historial de mantenimientos"
+  },
+  
+  "reservation": {
+    "ErrorDate": "La fecha de entrega no puede ser anterior a la de recogida",
+    "ErrorAge:": "Debes ser mayor de edad",
+    "selectDates": "Debes seleccionar fechas",
+    "changeLocation": "Cambiar ubicación",
+    "summary": "Resumen",
+    "days": "Días x $403.000",
+    "sure": "Seguro todo riesgo",
+    "total": "Total: $403.000",
+    "amountToPay": "Monto a pagar",
+    "responsible": "Responsable de la Reserva",
+    "placeholderResponsible": "Nombre y apellidos completos",
+    "dateOfBirth": "Fecha de nacimiento",
+    "document": "Nº Documento de identidad",
+    "phone": "Teléfono",
+    "submit": "Alquilar"
+  }
 }

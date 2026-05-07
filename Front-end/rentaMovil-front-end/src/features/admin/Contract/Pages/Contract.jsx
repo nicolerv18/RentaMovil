@@ -95,9 +95,6 @@ function Contract() {
           </button>
           <button className="btn-contract btn-create">
             {t("contract.actions.create")}
-
-
-
           </button>
         </div>
       </div>

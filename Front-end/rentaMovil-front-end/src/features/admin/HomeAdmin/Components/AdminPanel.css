@@ -5,7 +5,7 @@
   top: 0;
   width: 350px;
   height: 100vh;
-  background: var(--placeholder);
+  background: var(--bg);
   padding: 30px 20px;
   transition: right 0.4s ease;
   z-index: 999;
@@ -49,12 +49,12 @@
 .admin-icon {
   font-size: 28px;
   margin-right: 12px;
-  color: var(--adminP);
+  color: var(--accent);
 }
 
 .admin-item p {
   padding: 10px 20px;
-  color: var(--adminP);
+  color: var(--text);
   font-size: 18px;
   font-weight: 500;
   margin: 0;
@@ -62,7 +62,7 @@
 }
 
 .admin-item .icono-flecha {
-  color: var(--adminP);
+  color: var(--accent);
   width: 25px;
   height: 25px;
   filter: invert(0.3);
@@ -74,7 +74,7 @@
 
 /* Subsecciones */
 .admin-subsection {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--bg);
   padding: 10px 15px 10px 50px;
   animation: slideDown 0.8s ease;
   
@@ -94,7 +94,7 @@
 .admin-subitem {
   display: block;
   padding: 8px 0;
-  color: var(--adminP);
+  color: var(--text);
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
