@@ -124,7 +124,7 @@ function VehicleForm() {
                                     type="text"
                                     placeholder="Ej: Volkswagen Gol, Crolla, Tesla Model 3... "
                                     {...register("model", {
-                                        required: "El modeolo es obligatorio",
+                                        required: "El modelo es obligatorio",
                                         minLength: { value: 2, message: "El modelo debe tener al menos 2 caracteres." },
                                         maxLength: { value: 30, message: "El modelo no debe superar 30 caracteres." },
                                         pattern: {
@@ -136,6 +136,25 @@ function VehicleForm() {
                                 {errors.model && (
                                     <p className={style['error-message']}>
                                         <AiOutlineDashboard /> {errors.model.message}
+                                    </p>
+                                )}
+                            </div>
+                                <div className={style['vehicle-form-input']}>
+                                <label htmlFor="price">Precio:</label>
+                                <input
+                                    type="number"
+                                    placeholder="Ej: 100000"
+                                    step="100"
+                                    {...register('price', {
+                                        required: 'El precio es obligatorio',
+                                        valueAsNumber: true,
+                                        min: { value: 0, message: 'El precio debe ser mayor o igual a 0' },
+                                        max: { value: 100000000, message: 'El precio no debe superar 100000000' }
+                                    })}
+                                />
+                                {errors.price && (
+                                    <p className={style['error-message']}>
+                                        <AiOutlineDashboard /> {errors.price.message}
                                     </p>
                                 )}
                             </div>
