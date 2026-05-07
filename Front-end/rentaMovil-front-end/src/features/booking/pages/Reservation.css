@@ -1,3 +1,4 @@
+/*Reservacion*/
 .containerR {
     width: 100%;
 }
@@ -91,4 +92,44 @@ select{
     color: #ef4444;
     margin-top: -2px;
     margin-left: 15px;
+}
+@media (max-width: 868px) {
+
+    .contentR {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .leftR,
+    .rightR {
+        width: 100%;
+    }
+
+    .leftR {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .card-car,
+    .card-location {
+        padding: 12px;
+    }
+
+
+    .rightR {
+        margin-top: 10px;
+    }
+
+
+    input,
+    select {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .card-summary button {
+        height: 50px;
+        font-size: 16px;
+    }
 }

@@ -1,0 +1,232 @@
+
+
+.contract-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+/* ── Título ── */
+.contract-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0 0 8px;
+}
+
+.contract-subtitle {
+  font-size: 14px;
+  color: var(--placeholder);
+  margin: 0 0 32px;
+}
+
+/* ── Cards ── */
+.contract-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.contract-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.contract-card-header span {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-h);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-dot-cliente {
+  background: #2D7FF9;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.card-dot-vehiculo {
+  background: #1ce715;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contract-card-body {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ── Fields ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field.full-width {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--input);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--placeholder);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--navbar);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.field select {
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-color: var(--input);
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.field-hint {
+  font-size: 12px;
+  color: var(--primary, #2D7FF9);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.field-hint:hover {
+  text-decoration: underline;
+}
+
+/* ── Botones ── */
+.contract-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-contract {
+  padding: 11px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+}
+
+.btn-contract:hover {
+  transform: translateY(-2px);
+}
+
+.btn-contract:active {
+  transform: translateY(0);
+}
+
+.btn-create {
+  background: var(--button);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 200, 83, 0.35);
+}
+
+.btn-create:hover {
+  box-shadow: 0 5px 16px rgba(0, 200, 83, 0.45);
+}
+
+.btn-history {
+  background: var(--navbar);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(29, 78, 216, 0.25);
+}
+
+.btn-history:hover {
+  box-shadow: 0 5px 16px rgba(29, 78, 216, 0.35);
+}
+
+.btn-back {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+
+.btn-back:hover {
+  background: var(--input);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .contract-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  .field.full-width {
+    grid-column: 1;
+  }
+
+  .contract-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .btn-contract {
+    text-align: center;
+  }
+}
+/* Icono calendario en inputs date (esto me ayudo ia porque no podia cambiar el color del calendario en los inputs)*/
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0);
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}

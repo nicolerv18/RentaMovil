@@ -1,5 +1,5 @@
-import style from '../components/MaintenanceForm.module.css';
-import ButtonBack from '../../../../shared/components/ButtonBack';
+import style from './MaintenanceForm.module.css';
+import ButtonBack from '../../../../shared/components/buttonBack';
 import { AiOutlineDashboard } from "react-icons/ai";
 import Animation from '../../../../shared/components/layout/Animation';
 import { useState } from 'react';

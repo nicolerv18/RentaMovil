@@ -1,0 +1,300 @@
+{
+  "navbar": {
+    "linkInit": "Home",
+    "linkNotifications": "Notifications",
+    "linkReservation": "Reservation",
+    "linkPanelAdmin": "Administration"
+
+  },
+  "footer": {
+    "contact": "Contact",
+    "links": "Links",
+    "paragraph": "Your vehicle rental platform",
+    "description": "© 2026 RentaMovil - All rights reserved",
+    "linkInit": "Home",
+    "linkNotifications": "Notifications",
+    "linkCount": "Account"
+  },
+  "filterCalendar": {
+    "branch1": "Bogotá - Downtown",
+    "branch2": "Bogotá - North",
+    "branch3": "Medellín - El Poblado",
+    "branch4": "Cali - South",
+    "branch5": "Barranquilla - Downtown",
+    "errorDate": "Return date cannot be earlier than pickup date",
+    "errorBranch": "Invalid branch",
+    "errorHour": "Invalid time (8:00 - 18:00)",
+    "success": "Search completed",
+    "deliveryLocation": "Pickup location",
+    "deliveryDate": "Pickup date",
+    "deliveryHour": "Pickup time",
+    "returnDate": "Return date",
+    "returnHour": "Return time",
+    "search": "Search"
+  },
+  "cartVehicule": {
+    "gasoline": "Gasoline",
+    "doors": "Doors",
+    "driving": "⚙️ Manual",
+    "kmLimit": "∞ Km limit",
+    "location": "📍 Airport, Bogotá",
+    "cancellation": "Free cancellation",
+    "continue": "Continue",
+    "type": "Similar mini"
+  },
+  "filtersHome": {
+    "brand": "Brand",
+    "model": "Model",
+    "price": "Price",
+    "type": "Vehicle Type",
+    "typeElectric": "Electric",
+    "typeGasoline": "Gasoline",
+    "typeHybrid": "Hybrid",
+    "typeDiesel": "Diesel"
+  },
+  "reservation": {
+    "ErrorDate": "Return date cannot be earlier than pickup date",
+    "ErrorAge:": "You must be of legal age",
+    "selectDates": "You must select dates",
+    "changeLocation": "Change location",
+    "summary": "Summary",
+    "days": "Days x ",
+    "sure": "All-risk insurance",
+    "total": "Total: ",
+    "amountToPay": "Amount to pay",
+    "responsible": "Person Responsible for the Reservation",
+    "placeholderResponsible": "Full name and lastname",
+    "dateOfBirth": "Date of birth",
+    "document": "ID Document Number",
+    "phone": "Phone",
+    "submit": "Rent"
+  },
+
+  "login": {
+    "createAccount": "Create account",
+    "iniciarSesion": "Sign in"
+  },
+  "loginForm": {
+    "errorFields": "Fill in all fields",
+    "emailInvalid": "Enter a valid email",
+    "errorAuthentication": "Authentication error",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "your@email.com",
+    "passwordPlaceholder": "••••••••",
+    "submitting": "Signing in...",
+    "submit": "Sign in",
+    "noAccount": "Don't have an account? Sign up",
+    "error": "Error"
+  },
+  "register": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "phonePlaceholder": "3001234567",
+    "usernamePlaceholder": "username123",
+    "emailPlaceholder": "your@email.com",
+    "passwordPlaceholder": "••••••••",
+
+    "submit": "Create account",
+    "submitting": "Creating account...",
+
+    "haveAccount": "Already have an account? Sign in",
+
+    "errorFields": "Fill in all fields",
+    "emailInvalid": "Enter a valid email",
+    "phoneInvalid": "Invalid phone (10 digits)",
+    "passwordShort": "Password must be at least 6 characters",
+    "passwordMatch": "Passwords do not match",
+    "errorCreate": "Error creating account"
+  },
+  "quotes": {
+    "quote1": "Trust your journey. Trust Rentamovil.",
+    "quote2": "Your adventure begins with a click. Rentamovil, your travel companion.",
+    "quote3": "Explore the world at your own pace with Rentamovil.",
+    "quote4": "Travel without limits, rent with Rentamovil.",
+    "quote5": "Wherever you want to go, Rentamovil takes you.",
+    "quote6": "Rent easily, travel happily with Rentamovil.",
+    "quote7": "Your trip, your style. Rentamovil makes it possible."
+  },
+  "count": {
+    "nombre": "Name",
+    "telefono": "Phone",
+    "correo": "Email",
+    "password": "Password",
+    "modificarPassword": "Change Password",
+    "modoEdicion": "Edit mode activated",
+    "perfilActualizado": "Profile updated",
+    "cambiarFoto": "Change photo",
+    "seleccionaTema": "Select a theme",
+    "seleccionaIdioma": "Select a language",
+    "cancelar": "Cancel"
+  },
+  "payment": {
+    "payTitle": "Confirm Payment",
+    "paySubtitle": "Review the details before continuing",
+    "desc-location": "Location description",
+    "desc-location2": "Location description 2",
+    "summary": "3 Days x 403.000",
+    "sure": "All-risk insurance",
+    "include": "Included",
+    "total": "TOTAL",
+    "responsible": "Person Responsible for the Reservation",
+    "name": "Name",
+    "placeholderName": "Your full name",
+    "city": "City",
+    "placeholderCity": "City of residence",
+    "adrress": "Address",
+    "placeholderAddress": "Delivery address",
+    "confirm": "Confirm and pay"
+  },
+  "buttonBack": {
+    "label": "Back"
+  },
+  "adminPanel": {
+    "title": "Administration Panel",
+    "vehicle": "Vehicle",
+    "ve-agg": "Add vehicle",
+    "ve-state": "Check Status",
+    "location": "Location",
+    "loc-map": "Map",
+    "loc-routes": "Route history",
+    "maintenance": "Maintenance",
+    "man-new": "Register maintenance",
+    "man-history": "Maintenance history",
+    "contracts": "Contracts",
+    "con-new": "New contract",
+    "con-history": "Contract history"
+  },
+  "changePassword": {
+    "caracters": "At least 8 characters",
+    "specialCaracters": "At least one special character (#, @, etc)",
+    "uppercase": "At least one uppercase letter",
+    "errorPassword": "Error changing password",
+    "successPassword": "Password changed successfully",
+    "errorRequest": "Request error",
+    "title": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm new password",
+    "invalid": "Passwords do not match",
+    "saving": "Saving...",
+    "save": "Save changes"
+  },
+  "vehicleForm": {
+    "title": "Register a new vehicle",
+    "plate": "Plate",
+    "requiredPlate": "Plate is required",
+    "placeholderPlate": "Example plate: ABC123",
+    "invalidPlate": "Invalid format. Car: ABC123",
+
+    "brand": "Brand",
+    "requiredBrand": "Brand is required",
+    "placeholderBrand": "Example: Toyota, Chevrolet, Renault...",
+    "minLenghtBrand": "Brand must be at least 2 characters",
+    "maxLenghtBrand": "Brand cannot exceed 30 characters",
+    "ivalidBrand": "Brand can only contain letters, numbers, and hyphens",
+
+    "model": "Model",
+    "requiredModel": "Model is required",
+    "placeholderModel": "Example: Volkswagen Gol, Renault Sandero, Toyota Corolla...",
+    "minLenghtModel": "Model must be at least 2 characters",
+    "maxLenghtModel": "Model cannot exceed 30 characters",
+    "invalidModel": "Model can only contain letters, numbers, and hyphens",
+
+    "Type": "Vehicle type",
+    "requiredType": "You must select a vehicle type",
+    "disabledType": "Select a type...",
+    "labelType1": "Cars",
+    "labelType2": "Cargo",
+    "cargaType1": "Truck",
+    "cargaType2": "Tractor truck",
+    "cargaType3": "Van",
+
+    "FuelType": "Fuel type",
+    "requiredFuelType": "You must select a fuel type",
+    "disabledFuelType": "Select a type...",
+    "fuelType1": "Gasoline",
+    "fuelType2": "Diesel",
+    "fuelType3": "Hybrid",
+    "fuelType4": "Electric",
+    "fuelType5": "Natural gas",
+    "fuelType6": "Propane gas",
+
+    "location": "Location",
+    "placeholderLocation": "Example: Bogotá, Medellín, Cali...",
+    "requiredLocation": "Location is required",
+    "minLenghtLocation": "Location must be at least 2 characters",
+    "maxLenghtLocation": "Location cannot exceed 100 characters",
+    "invalidLocation": "Location contains invalid characters",
+
+    "saving": "Saving...",
+    "save": "Save vehicle",
+    "imgp": "Make sure the image is sharp and shows the entire vehicle. This speeds up the validation process.",
+    "imgp2": "Drop the image here...",
+    "imgp3": "Drag the image here or click to select an image",
+    "changeImage": "Change image"
+  },
+      "contractHistory": {
+      "title": "Contract history",
+      "searchPlaceholder": "Search by client or vehicle",
+      "clearFilters": "Clear",
+      "viewDetail": "View details",
+      "noContracts": "No contracts found.",
+      "back": "Back",
+      "newContract": "+ New contract",
+      "filters": {
+        "fecha": "Date",
+        "cliente": "Client",
+        "vehiculo": "Vehicle",
+        "estado": "Status"
+      },
+      "modal": {
+        "contractNumber": "Contract #{{id}}",
+        "vehicle": "Vehicle",
+        "date": "Date",
+        "duration": "Duration",
+        "value": "Value",
+        "description": "Description",
+        "close": "Close"
+      }
+    },
+        "contract": {
+      "title": "New contract",
+      "subtitle": "Complete the client and vehicle information",
+      "client": {
+        "sectionTitle": "Client",
+        "selectLabel": "Select client",
+        "selectPlaceholder": "— Choose a client —",
+        "registerLink": "+ Register new client",
+        "startDate": "Start date",
+        "contractValue": "Contract value",
+        "contractValuePlaceholder": "$ 0.00",
+        "observations": "Observations",
+        "observationsPlaceholder": "Additional notes..."
+      },
+      "vehicle": {
+        "sectionTitle": "Vehicle",
+        "selectLabel": "Select vehicle",
+        "selectPlaceholder": "— Choose a vehicle —",
+        "registerLink": "+ Register new vehicle",
+        "endDate": "End date",
+        "plate": "Plate",
+        "platePlaceholder": "Ex: ABC-123",
+        "observations": "Observations",
+        "observationsPlaceholder": "Additional notes..."
+      },
+      "actions": {
+        "back": "Back",
+        "history": "Contract history",
+        "create": "Create contract"
+      }
+    }
+}
