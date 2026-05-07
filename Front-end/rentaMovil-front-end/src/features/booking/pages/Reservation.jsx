@@ -95,6 +95,7 @@ function Reservation() {
         navigate('/Payment');
     };
 
+    const totally = days * price;
     return (
         <>
             <Navbar />
@@ -145,9 +146,9 @@ function Reservation() {
                                 }}
                             >
                                 <h3>{t('reservation.summary')}</h3>
-                                <p>{days} {t('reservation.days')}</p>
+                                <p>{days} {t('reservation.days')}{ price}</p>
                                 <p>{t('reservation.sure')}</p>
-                                <h4>{t('reservation.total')}</h4>
+                                <h4>{t('reservation.total')}{totally}</h4>
 
                                 <div>
                                     <label className='labelR'>{t('reservation.amountToPay')}</label>
