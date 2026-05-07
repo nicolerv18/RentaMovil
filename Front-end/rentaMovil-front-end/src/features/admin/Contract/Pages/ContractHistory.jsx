@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import "./ContractHistory.css";
 import { TiArrowDown } from "react-icons/ti";
 import Lupa from "../../../../assets/img/lupa.png";
+import { useTranslation } from "react-i18next";
 
 
 export default function ContractHistory() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   // Guarda lo que escribe el usuario en el buscador
   const [activeFilter, setActiveFilter] = useState(null);
@@ -146,77 +148,61 @@ export default function ContractHistory() {
   );
   // Retorna true si hay filtros activos
 
-  return (
+return (
     <div className="ch-page">
       <NavBarAdmin />
-
       <div className="ch-wrapper">
-        <h1 className="ch-title">Historial de contratos</h1>
+        <h1 className="ch-title">{t("contractHistory.title")}</h1>
 
-        {/* Buscador */}
         <div className="ch-search">
           <img src={Lupa} alt="Lupa" className="ch-search-icon" />
           <input
             type="text"
-            placeholder="Buscar por cliente o vehículo"
+            placeholder={t("contractHistory.searchPlaceholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="ch-search-input"
           />
         </div>
 
-        {/* Filtros */}
         <div className="ch-filters" ref={filtersRef}>
           {["fecha", "cliente", "vehiculo", "estado"].map((key) => (
             <div className="ch-filter-wrap" key={key}>
               <button
                 className={`ch-filter-btn ${activeFilter === key ? "active" : ""} ${selectedFilters[key] ? "selected" : ""}`}
-                onClick={() => handleFilterClick(key)} //Boton de filtro
+                onClick={() => handleFilterClick(key)}
               >
-                <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                <span>{t(`contractHistory.filters.${key}`)}</span>
                 <TiArrowDown className="ch-filter-arrow" />
               </button>
               {activeFilter === key && (
                 <div className="ch-dropdown">
-                  {getUniqueValues(key).map(
-                    (
-                      val, //Genera opciones del dropdown con valores unicos del contrato para cada filtro ejemplu pues vigente-finalizado solo crea 1 no varios de ese mismo
-                    ) => (
-                      <button
-                        key={val}
-                        className={`ch-dropdown-item ${selectedFilters[key] === val ? "chosen" : ""}`} //Esto es para que genera una flecha en el valor seleccionado dentro del dropdown
-                        onClick={() => handleFilterSelect(key, val)}
-                      >
-                        {selectedFilters[key] === val && <span>✓ </span>}
-                        {val}
-                        {/**La flecha */}
-                      </button>
-                    ),
-                  )}
+                  {getUniqueValues(key).map((val) => (
+                    <button
+                      key={val}
+                      className={`ch-dropdown-item ${selectedFilters[key] === val ? "chosen" : ""}`}
+                      onClick={() => handleFilterSelect(key, val)}
+                    >
+                      {selectedFilters[key] === val && <span>✓ </span>}
+                      {val}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
           ))}
           {hasActiveFilters && (
             <button className="ch-clear-btn" onClick={clearAllFilters}>
-              {" "}
-              {/**El boton limpiar solo se activa si hay filtros seleccionados */}
-              ✕ Limpiar
+              ✕ {t("contractHistory.clearFilters")}
             </button>
           )}
         </div>
 
-        {/* Tarjetas */}
         <div className="ch-grid">
           {filteredContracts.map((contract) => (
-            <div
-              key={contract.id}
-              className={`ch-card estado-${contract.estado.toLowerCase()}`}
-            >
+            <div key={contract.id} className={`ch-card estado-${contract.estado.toLowerCase()}`}>
               <div className="ch-card-top">
-                <span
-                  className={`ch-badge estado-${contract.estado.toLowerCase()}`}
-                >
+                <span className={`ch-badge estado-${contract.estado.toLowerCase()}`}>
                   {contract.estado}
                 </span>
                 <span className="ch-date">{contract.fecha}</span>
@@ -227,95 +213,71 @@ export default function ContractHistory() {
                 <p className="ch-card-desc">{contract.descripcion}</p>
               </div>
               <div className="ch-card-footer">
-                <button
-                  className="ch-btn-ver"
-                  onClick={() => setSelectedContract(contract)}
-                >
-                  Ver detalle
+                <button className="ch-btn-ver" onClick={() => setSelectedContract(contract)}>
+                  {t("contractHistory.viewDetail")}
                 </button>
               </div>
             </div>
           ))}
 
           {filteredContracts.length === 0 && (
-            <div className="ch-empty">No se encontraron contratos.</div>
+            <div className="ch-empty">{t("contractHistory.noContracts")}</div>
           )}
         </div>
 
-        {/* Acciones */}
         <div className="ch-actions">
           <button className="ch-btn-action back" onClick={() => navigate(-1)}>
-            Regresar
+            {t("contractHistory.back")}
           </button>
-          <button
-            className="ch-btn-action primary"
-            onClick={() => navigate("/Contract")}
-          >
-            + Nuevo contrato
+          <button className="ch-btn-action primary" onClick={() => navigate("/Contract")}>
+            {t("contractHistory.newContract")}
           </button>
         </div>
       </div>
 
       <FooterAdmin />
 
-      {/* Modal */}
       {selectedContract && (
-        <div
-          className="ch-modal-overlay"
-          onClick={() => setSelectedContract(null)}
-        >
+        <div className="ch-modal-overlay" onClick={() => setSelectedContract(null)}>
           <div className="ch-modal" onClick={(e) => e.stopPropagation()}>
             <div className="ch-modal-header">
               <div>
                 <p className="ch-modal-label">
-                  Contrato #{selectedContract.id}
+                  {t("contractHistory.modal.contractNumber", { id: selectedContract.id })}
                 </p>
                 <h2 className="ch-modal-title">{selectedContract.cliente}</h2>
               </div>
-              <span
-                className={`ch-badge estado-${selectedContract.estado.toLowerCase()}`}
-              >
+              <span className={`ch-badge estado-${selectedContract.estado.toLowerCase()}`}>
                 {selectedContract.estado}
               </span>
             </div>
 
             <div className="ch-modal-grid">
               <div className="ch-modal-field">
-                <span className="ch-modal-field-label">Vehículo</span>
-                <span className="ch-modal-field-value">
-                  {selectedContract.vehiculo}
-                </span>
+                <span className="ch-modal-field-label">{t("contractHistory.modal.vehicle")}</span>
+                <span className="ch-modal-field-value">{selectedContract.vehiculo}</span>
               </div>
               <div className="ch-modal-field">
-                <span className="ch-modal-field-label">Fecha</span>
-                <span className="ch-modal-field-value">
-                  {selectedContract.fecha}
-                </span>
+                <span className="ch-modal-field-label">{t("contractHistory.modal.date")}</span>
+                <span className="ch-modal-field-value">{selectedContract.fecha}</span>
               </div>
               <div className="ch-modal-field">
-                <span className="ch-modal-field-label">Duración</span>
-                <span className="ch-modal-field-value">
-                  {selectedContract.duracion}
-                </span>
+                <span className="ch-modal-field-label">{t("contractHistory.modal.duration")}</span>
+                <span className="ch-modal-field-value">{selectedContract.duracion}</span>
               </div>
               <div className="ch-modal-field">
-                <span className="ch-modal-field-label">Valor</span>
-                <span className="ch-modal-field-value valor">
-                  {selectedContract.valor}
-                </span>
+                <span className="ch-modal-field-label">{t("contractHistory.modal.value")}</span>
+                <span className="ch-modal-field-value valor">{selectedContract.valor}</span>
               </div>
             </div>
 
             <div className="ch-modal-desc">
-              <span className="ch-modal-field-label">Descripción</span>
+              <span className="ch-modal-field-label">{t("contractHistory.modal.description")}</span>
               <p>{selectedContract.descripcion}</p>
             </div>
 
-            <button
-              className="ch-modal-close"
-              onClick={() => setSelectedContract(null)}
-            >
-              Cerrar
+            <button className="ch-modal-close" onClick={() => setSelectedContract(null)}>
+              {t("contractHistory.modal.close")}
             </button>
           </div>
         </div>
@@ -323,3 +285,4 @@ export default function ContractHistory() {
     </div>
   );
 }
+

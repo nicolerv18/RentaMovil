@@ -4,6 +4,7 @@
     "linkNotifications": "Notifications",
     "linkReservation": "Reservation",
     "linkPanelAdmin": "Administration"
+
   },
   "footer": {
     "contact": "Contact",
@@ -57,9 +58,9 @@
     "selectDates": "You must select dates",
     "changeLocation": "Change location",
     "summary": "Summary",
-    "days": "Days x $403.000",
+    "days": "Days x ",
     "sure": "All-risk insurance",
-    "total": "Total: $403.000",
+    "total": "Total: ",
     "amountToPay": "Amount to pay",
     "responsible": "Person Responsible for the Reservation",
     "placeholderResponsible": "Full name and lastname",
@@ -171,5 +172,129 @@
     "contracts": "Contracts",
     "con-new": "New contract",
     "con-history": "Contract history"
-  }
+  },
+  "changePassword": {
+    "caracters": "At least 8 characters",
+    "specialCaracters": "At least one special character (#, @, etc)",
+    "uppercase": "At least one uppercase letter",
+    "errorPassword": "Error changing password",
+    "successPassword": "Password changed successfully",
+    "errorRequest": "Request error",
+    "title": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm new password",
+    "invalid": "Passwords do not match",
+    "saving": "Saving...",
+    "save": "Save changes"
+  },
+  "vehicleForm": {
+    "title": "Register a new vehicle",
+    "plate": "Plate",
+    "requiredPlate": "Plate is required",
+    "placeholderPlate": "Example plate: ABC123",
+    "invalidPlate": "Invalid format. Car: ABC123",
+
+    "brand": "Brand",
+    "requiredBrand": "Brand is required",
+    "placeholderBrand": "Example: Toyota, Chevrolet, Renault...",
+    "minLenghtBrand": "Brand must be at least 2 characters",
+    "maxLenghtBrand": "Brand cannot exceed 30 characters",
+    "ivalidBrand": "Brand can only contain letters, numbers, and hyphens",
+
+    "model": "Model",
+    "requiredModel": "Model is required",
+    "placeholderModel": "Example: Volkswagen Gol, Renault Sandero, Toyota Corolla...",
+    "minLenghtModel": "Model must be at least 2 characters",
+    "maxLenghtModel": "Model cannot exceed 30 characters",
+    "invalidModel": "Model can only contain letters, numbers, and hyphens",
+
+    "Type": "Vehicle type",
+    "requiredType": "You must select a vehicle type",
+    "disabledType": "Select a type...",
+    "labelType1": "Cars",
+    "labelType2": "Cargo",
+    "cargaType1": "Truck",
+    "cargaType2": "Tractor truck",
+    "cargaType3": "Van",
+
+    "FuelType": "Fuel type",
+    "requiredFuelType": "You must select a fuel type",
+    "disabledFuelType": "Select a type...",
+    "fuelType1": "Gasoline",
+    "fuelType2": "Diesel",
+    "fuelType3": "Hybrid",
+    "fuelType4": "Electric",
+    "fuelType5": "Natural gas",
+    "fuelType6": "Propane gas",
+
+    "location": "Location",
+    "placeholderLocation": "Example: Bogotá, Medellín, Cali...",
+    "requiredLocation": "Location is required",
+    "minLenghtLocation": "Location must be at least 2 characters",
+    "maxLenghtLocation": "Location cannot exceed 100 characters",
+    "invalidLocation": "Location contains invalid characters",
+
+    "saving": "Saving...",
+    "save": "Save vehicle",
+    "imgp": "Make sure the image is sharp and shows the entire vehicle. This speeds up the validation process.",
+    "imgp2": "Drop the image here...",
+    "imgp3": "Drag the image here or click to select an image",
+    "changeImage": "Change image"
+  },
+      "contractHistory": {
+      "title": "Contract history",
+      "searchPlaceholder": "Search by client or vehicle",
+      "clearFilters": "Clear",
+      "viewDetail": "View details",
+      "noContracts": "No contracts found.",
+      "back": "Back",
+      "newContract": "+ New contract",
+      "filters": {
+        "fecha": "Date",
+        "cliente": "Client",
+        "vehiculo": "Vehicle",
+        "estado": "Status"
+      },
+      "modal": {
+        "contractNumber": "Contract #{{id}}",
+        "vehicle": "Vehicle",
+        "date": "Date",
+        "duration": "Duration",
+        "value": "Value",
+        "description": "Description",
+        "close": "Close"
+      }
+    },
+        "contract": {
+      "title": "New contract",
+      "subtitle": "Complete the client and vehicle information",
+      "client": {
+        "sectionTitle": "Client",
+        "selectLabel": "Select client",
+        "selectPlaceholder": "— Choose a client —",
+        "registerLink": "+ Register new client",
+        "startDate": "Start date",
+        "contractValue": "Contract value",
+        "contractValuePlaceholder": "$ 0.00",
+        "observations": "Observations",
+        "observationsPlaceholder": "Additional notes..."
+      },
+      "vehicle": {
+        "sectionTitle": "Vehicle",
+        "selectLabel": "Select vehicle",
+        "selectPlaceholder": "— Choose a vehicle —",
+        "registerLink": "+ Register new vehicle",
+        "endDate": "End date",
+        "plate": "Plate",
+        "platePlaceholder": "Ex: ABC-123",
+        "observations": "Observations",
+        "observationsPlaceholder": "Additional notes..."
+      },
+      "actions": {
+        "back": "Back",
+        "history": "Contract history",
+        "create": "Create contract"
+      }
+    }
 }

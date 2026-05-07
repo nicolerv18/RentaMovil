@@ -18,6 +18,8 @@ entity User {
   +user_id : INT <<PK>>
   person_id : INT <<FK>>
   username : VARCHAR
+  email : VARCHAR
+  phone : VARCHAR
   password_hash : VARCHAR
   status : VARCHAR
   last_login : DATETIME
@@ -144,7 +146,6 @@ entity Rental {
   status : VARCHAR
   start_date : DATE
   end_date : DATE
-
 }
 entity Gps {
   +gps_id : INT <<PK>>

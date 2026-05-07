@@ -18,27 +18,26 @@ function Count({ theme, setTheme }) {
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showLangModal, setShowLangModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [image, setImage] = useState(login);
-  const [user, setUser] = useState({
-    nombre: "",
-    telefono: "",
-    email: "",
-    password: "",
-  });
-
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    } else {
-      setUser({
+const [user, setUser] = useState(() => {
+  const saved = localStorage.getItem("user");
+  return saved
+    ? JSON.parse(saved)
+    : {
         nombre: "Sharik Rojas",
         telefono: "3145556",
         email: "sha@example.com",
         password: "123456",
-      });
-    }
-  }, []);
+      };
+});
+
+const [image, setImage] = useState(() => {
+  const saved = localStorage.getItem("user");
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    return parsed.image || login;
+  }
+  return login;
+});
 
   const handleSave = () => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -73,23 +72,22 @@ function Count({ theme, setTheme }) {
       <div className="containerC">
         <div className="cardC">
           <div className="header-page">
-            <ButtonBack onClick={() => navigate(-1)} />
+            <ButtonBack onClick={() => navigate(-1)} variant="overlay" />
           </div>
-
           <div className="actions">
             <button
-              className="icon-btn"
+              className="icon-btnC"
               onClick={isEditing ? handleSave : () => setIsEditing(true)}
             >
               {isEditing ? <FaSave /> : <FaEdit />}
             </button>
 
-            <button className="icon-btn" onClick={() => setShowThemeModal(true)}>
+            <button className="icon-btnC" onClick={() => setShowThemeModal(true)}>
               <FaMoon />
             </button>
 
             {/* Botón idioma ahora funcional (v2 lo tenía sin onClick) */}
-            <button className="icon-btn" onClick={() => setShowLangModal(true)}>
+            <button className="icon-btnC" onClick={() => setShowLangModal(true)}>
               <FaGlobe />
             </button>
           </div>
@@ -172,9 +170,9 @@ function Count({ theme, setTheme }) {
             <div className="theme-grid">
               {[
                 { id: "skylight", label: "Modo azul claro",     desc: "Fondo blanco, texto oscuro" },
-                { id: "light",    label: "Modo amarillo claro",  desc: "Fondo negro, acentos morados" },
-                { id: "dark",     label: "Azul",                 desc: "Fondo azul suave, acentos navy" },
-                { id: "darkPurple", label: "Morado",             desc: "Fondo lila suave, acentos violeta" },
+                { id: "light",    label: "Modo Verde claro",  desc: "Fondo blanco, acentos amarillos" },
+                { id: "dark",     label: "Azul Oscuro" ,                 desc: "Fondo azul noche, acentos navy" },
+                { id: "darkPurple", label: "Verde Oscuro",             desc: "Fondo verde oscuro, acentos claros" },
               ].map(({ id, label, desc }) => (
                 <button
                   key={id}

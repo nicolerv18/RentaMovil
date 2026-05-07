@@ -1,4 +1,5 @@
 /* ── Página ── */
+
 .pay-page {
   background: var(--bg);
   min-height: 100vh;
@@ -11,8 +12,8 @@
 }
 
 /* ── Header ── */
-.pay-header {
 
+.pay-header {
   align-items: center;
   justify-content: center;
   margin-bottom: 32px;
@@ -31,10 +32,11 @@
   font-size: 14px;
   color: var(--placeholder);
   margin: 0;
-  text-align: center; 
+  text-align: center;
 }
 
 /* ── Grid principal ── */
+
 .pay-grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -43,11 +45,11 @@
 }
 
 /* ── Tarjeta del mapa ── */
+
 .pay-map-card {
   background: var(--card-bg);
-  border-radius: 18px;
+  border-radius: 10px;
   border: 1px solid var(--border);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
   overflow: hidden;
   position: sticky;
   top: 20px;
@@ -79,7 +81,6 @@
   border-radius: 50%;
   flex-shrink: 0;
   margin-top: 4px;
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
 }
 
 .pay-loc-dot.start { background: var(--navbar); }
@@ -108,6 +109,7 @@
 }
 
 /* ── Columna derecha ── */
+
 .pay-right {
   display: flex;
   flex-direction: column;
@@ -115,11 +117,11 @@
 }
 
 /* ── Card base ── */
+
 .pay-card {
   background: var(--card-bg);
-  border-radius: 16px;
+  border-radius: 10px;
   border: 1px solid var(--border);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   overflow: hidden;
 }
 
@@ -152,6 +154,7 @@
 }
 
 /* ── Resumen rows ── */
+
 .pay-resumen-row {
   display: flex;
   justify-content: space-between;
@@ -201,78 +204,271 @@
   margin: 0;
 }
 
-/* ── Campos responsable ── */
-.pay-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.pay-field {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.pay-field-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--placeholder);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.pay-input {
-  padding: 10px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  font-size: 14px;
-  font-family: inherit;
-  background: var(--input);
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.pay-input::placeholder {
-  color: var(--placeholder);
-}
-
-.pay-input:focus {
-  border-color: var(--navbar);
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-}
-
 /* ── Botón pagar ── */
+
 .pay-btn {
   width: 100%;
-  padding: 14px;
-  background: var(--button);
-  color: #fff;
+  height: 45px;
+  margin-top: 4px;
+  border-radius: 10px;
+  background-color: var(--button);
   border: none;
-  border-radius: 12px;
+  color: #fff;
   font-size: 15px;
   font-weight: 700;
-  font-family: inherit;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 14px rgba(0, 200, 83, 0.35);
   transition: transform 0.18s, box-shadow 0.18s;
 }
 
 .pay-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 200, 83, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 200, 83, 0.35);
 }
 
 .pay-btn:active {
   transform: translateY(0);
 }
 
+.pay-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Payment methods card ── */
+
+.pay-method-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pay-method-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.pay-method-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-h);
+}
+
+/* ── Method wrapper ── */
+
+.payment-method-wrapper {
+  position: relative;
+}
+
+/* ── Option button ── */
+
+.payment-option {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.payment-option:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.payment-option-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.payment-option-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* ── Radio custom ── */
+
+.payment-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  transition: 0.2s;
+  flex-shrink: 0;
+}
+
+.payment-radio.checked {
+  border-color: var(--navbar);
+}
+
+.payment-radio-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--navbar);
+  transform: scale(0);
+  transition: 0.2s;
+}
+
+.payment-radio.checked .payment-radio-inner {
+  transform: scale(1);
+}
+
+/* ── Option name ── */
+
+.payment-option-name {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-h);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── Logos (SVG brand icons) ── */
+
+.payment-logos {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Price ── */
+
+.payment-option-price {
+  text-align: right;
+}
+
+.payment-option-price strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-h);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1;
+}
+
+.payment-option-price span {
+  font-size: 12px;
+  color: var(--placeholder);
+}
+
+/* ── Divider ── */
+
+.payment-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 20px;
+}
+
+/* ── Dropdown ── */
+
+.payment-dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease;
+}
+
+.payment-dropdown.open {
+  max-height: 600px;
+}
+
+.payment-dropdown > div {
+  padding: 0 20px 20px;
+}
+
+/* ── Form ── */
+
+.pay-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pay-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ── Label — igual que .labelR de Reservacion ── */
+
+.pay-form label {
+  display: block;
+  margin-left: 10px;
+  margin-bottom: 2px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--placeholder);
+  font-family: 'Poppins', sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── Input — igual que el input global de Reservacion ── */
+
+.pay-form input {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  background-color: var(--card-bg);
+  color: var(--placeholder);
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  outline: none;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.pay-form input::placeholder {
+  color: var(--placeholder);
+  opacity: 0.6;
+}
+
+.pay-form input:focus {
+  border-color: var(--navbar);
+  box-shadow: 0 0 0 1px var(--navbar);
+}
+
+/* ── Input con ícono de marca dentro ── */
+
+.pay-input-card-wrapper {
+  position: relative;
+}
+
+.pay-input-card-wrapper input {
+  padding-right: 52px;
+}
+
+.pay-input-brand-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
 /* ── Responsive ── */
-@media (max-width: 768px) {
+
+@media (max-width: 868px) {
+
   .pay-grid {
     grid-template-columns: 1fr;
   }
@@ -281,5 +477,24 @@
     position: static;
   }
 
+  .payment-option-top {
+    flex-direction: column;
+  }
 
+  .payment-option-price {
+    text-align: left;
+  }
+
+  .pay-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-option {
+    padding: 18px;
+  }
+
+  .pay-form input,
+  .pay-form label {
+    font-size: 15px;
+  }
 }

@@ -14,7 +14,7 @@ function Navbar(){
 
             <div className='logo-container'>
                 <h2 className='Title'>RentaMovil</h2>
-                <FaCar className='icon'/>
+                <FaCar className='iconCar'/>
             </div>
             <div className='menu-toggle'>
                 <FaBars  className="icon-FaBars" onClick={() => setOpen(!open)} />
@@ -23,7 +23,7 @@ function Navbar(){
                 <nav className={`nav-links-container ${open ? "active" : ""}`}>
                 <Link to="/Home">{t("navbar.linkInit")}</Link>
                 <Link to="/Notification">{t("navbar.linkNotifications")}</Link>
-                <Link to="/HistorialReservation">Reservaciones</Link>
+                <Link to="/HistorialReservation">{t("navbar.linkReservation")}</Link>
                 <Link to="/Count"><MdPerson className='icon-user'/></Link>
             </nav>
 

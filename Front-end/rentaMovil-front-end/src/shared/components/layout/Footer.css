@@ -108,6 +108,9 @@ footer {
   height: 30px;
   cursor: pointer;
 }
+.icon{
+  color: var(--accent);
+}
 
 .icon:hover {
   color: rgb(135, 216, 145);
