@@ -230,7 +230,7 @@
     "maxLenghtLocation": "La ubicación no puede tener más de 100 caracteres",
     "invalidLocation": "La ubicación contiene caracteres no permitidos",
     "saving": "Guardando...",
-    "save": "Guardar vehículo",
+    "saveVehicle": "Guardar vehículo",
     "imgp": "Asegúrate de que la imagen sea nítida y muestre el vehículo completo. Esto agiliza el proceso de validación.",
     "imgp2": "Suelta la imagen aquí...",
     "imgp3": "Arrastra la imagen aquí o haz clic para seleccionar una imagen",

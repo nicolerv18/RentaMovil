@@ -220,7 +220,7 @@ function VehicleForm() {
                             {errors.vehicleImage && (<p className={style['error-message']}><AiOutlineDashboard />{errors.vehicleImage?.message}</p>)}
                         </div>
                     </div>
-                    <button className="save" type="submit" disabled={isLoading}>
+                    <button className={style.save} type="submit" disabled={isLoading}>
                         {isLoading ? t('vehicleForm.saving') : t('vehicleForm.saveVehicle')}
                     </button>
                     <span className={style["vehicule-animation"]}>
