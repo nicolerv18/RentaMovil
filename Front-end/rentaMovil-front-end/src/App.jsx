@@ -38,6 +38,7 @@ import ContractHistory from './features/admin/Contract/Pages/ContractHistory.jsx
 // Admin - HomeAdmin
 import HomeAdmin from './features/admin/HomeAdmin/Pages/HomeAdmin.jsx';
 
+import History from './features/admin/historyMaintenance/pages/History.jsx';
 
 
 function App() {
