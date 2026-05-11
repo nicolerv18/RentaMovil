@@ -1,3 +1,4 @@
+/*
 package com.rentamovil.repository;
 
 import main.java.com.rentamovil.entity.Permission;
@@ -13,4 +14,4 @@ List<Permission> findByDescription(String description);
     List<Permission> findByRoles_RoleId(Long roleId);
 
 
-}
+}*/
