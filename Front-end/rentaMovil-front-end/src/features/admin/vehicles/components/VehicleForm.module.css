@@ -144,6 +144,35 @@
     display: flex;
     justify-content: center;
 }
+.save {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+.save:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+
+}
+ 
+.vehicule-animation {
+    display: flex;
+    justify-content: center;
+
+}
  
 @media (max-width: 860px) {
     .container-container {

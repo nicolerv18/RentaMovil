@@ -4,8 +4,10 @@ import Navbar from "../../shared/components/layout/Navbar.jsx";
 import Footer from "../../shared/components/layout/Footer.jsx";
 import img from "../../assets/carts/car1.jpg"
 import { FaBell, FaCar, FaHotel } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 function HistorialReservation() {
+  const { t } = useTranslation();
     
   const [reservas, setReservas] = useState([]);
   const [selectedReserva, setSelectedReserva] = useState(null);
@@ -77,7 +79,7 @@ function HistorialReservation() {
 
       <div className="historial-page">
         <div className="cards-container">
-          <h2 className="title">Mis reservas</h2>
+          <h2 className="title">{t("historyReservation.myReservations")}</h2>
           {reservas.map((r) => (
           <div key={r.id} className="card-reserva">
             <div className="card-header">
@@ -94,9 +96,9 @@ function HistorialReservation() {
               />
               <div className="card-body">
                 <h4 className="car-name">{r.vehicle.brand} {r.vehicle.model}</h4>
-                <p><strong>Fecha:</strong> {r.start_date} → {r.end_date}</p>
-                <p><strong>Días:</strong> {r.days}</p>
-                <p><strong>Total:</strong> ${r.total_price.toLocaleString()}</p>
+                <p><strong>{t("historyReservation.date")}</strong> {r.start_date} → {r.end_date}</p>
+                <p><strong>{t("historyReservation.days")}</strong> {r.days}</p>
+                <p><strong>{t("historyReservation.total")}</strong> ${r.total_price.toLocaleString()}</p>
                 {r.status === "activa" && (
                 <div className="btn-container">
                   <button
@@ -106,7 +108,7 @@ function HistorialReservation() {
                     setShowCancelModal(true);
                   }}
                 >
-                  Cancelar reserva
+                  {t("historyReservation.cancel")}
                 </button>
                 </div>
               )}
@@ -126,7 +128,7 @@ function HistorialReservation() {
             onClick={(e) => e.stopPropagation()}
           >
             <p>
-              ¿Seguro que deseas cancelar la reserva de{" "}
+              {t("historyReservation.sure")}{" "}
               <strong>
                 {selectedReserva.vehicle.brand}{" "}
                 {selectedReserva.vehicle.model}
@@ -138,14 +140,14 @@ function HistorialReservation() {
               className="btn-negative"
                 onClick={() => setShowCancelModal(false)}
               >
-                No
+                {t("historyReservation.no")}
               </button>
 
               <button
                 className="btn-danger"
                 onClick={() => cancelarReserva(selectedReserva.id)}
               >
-                Sí, cancelar
+                {t("historyReservation.yes")}
               </button>
             </div>
           </div>
