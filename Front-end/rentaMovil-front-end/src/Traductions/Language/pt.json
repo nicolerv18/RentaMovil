@@ -343,5 +343,30 @@
     "sheduling": "Agendando manutenção",
     "shedule": "Agendar manutenção",
     "button": "Histórico de manutenções"
-  }
+  },
+  "notifications": {
+  "unread": "Não lidas",
+  "all": "Todas",
+  "confReservations": "Reservas confirmadas",
+  "pays": "Pagamentos",
+  "cancel": "Canceladas",
+  "recordatory": "Lembretes",
+  "recibed": "Recebidas",
+  "detail": "Detalhes da notificação",
+  "message": "Mensagem",
+  "date": "Data",
+  "state": "Status",
+  "vehicle": "Veículo",
+  "close": "Fechar"
+},
+"historyReservation": {
+  "myReservations": "Minhas reservas",
+  "date": "Data: ",
+  "days": "Dias: ",
+  "total": "Total: ",
+  "cancel": "Cancelar reserva",
+  "sure": "Tem certeza de que deseja cancelar a reserva de",
+  "yes": "Sim, cancelar",
+  "no": "Não"
+}
 }

@@ -343,6 +343,31 @@
     "sheduling": "Planification de la maintenance",
     "shedule": "Planifier la maintenance",
     "button": "Historique des maintenances"
-  }
+  },
+  "notifications": {
+  "unread": "Non lues",
+  "all": "Toutes",
+  "confReservations": "Réservations confirmées",
+  "pays": "Paiements",
+  "cancel": "Annulées",
+  "recordatory": "Rappels",
+  "recibed": "Reçues",
+  "detail": "Détails de la notification",
+  "message": "Message",
+  "date": "Date",
+  "state": "Statut",
+  "vehicle": "Véhicule",
+  "close": "Fermer"
+},
+"historyReservation": {
+  "myReservations": "Mes réservations",
+  "date": "Date : ",
+  "days": "Jours : ",
+  "total": "Total : ",
+  "cancel": "Annuler la réservation",
+  "sure": "Êtes-vous sûr de vouloir annuler la réservation de",
+  "yes": "Oui, annuler",
+  "no": "Non"
+}
 }
 

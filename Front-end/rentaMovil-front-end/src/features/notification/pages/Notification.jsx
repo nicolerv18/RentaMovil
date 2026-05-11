@@ -5,8 +5,10 @@ import ButtonBack from "../../../shared/components/buttonBack.jsx";
 import Navbar from "../../../shared/components/layout/Navbar.jsx";
 import Footer from "../../../shared/components/layout/Footer.jsx";
 import { FaBell, FaEnvelopeOpen } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 function Notification() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [showModalReservation, setshowModalReservation] = useState(false);
@@ -151,13 +153,13 @@ const notificacionesFiltradas =
               <ButtonBack onClick={() => navigate(-1)} variant="normal" />
             </div>
             <div className="Bell">
-              <h4> <FaBell className="iconBell"/> {noLeidas} sin leer</h4>
+              <h4> <FaBell className="iconBell"/> {noLeidas} {t("notifications.unread")}</h4>
             </div>
             <div
               className={`filter-item ${filtro === "todos" ? "active" : ""}`}
               onClick={() => setFiltro("todos")}
             >
-              Todas
+              {t("notifications.all")}
             </div>
 
             <div
@@ -166,7 +168,7 @@ const notificacionesFiltradas =
               }`}
               onClick={() => setFiltro("reserva_confirmada")}
             >
-              Reservas confirmadas
+              {t("notifications.confReservations")}
             </div>
 
             <div
@@ -175,7 +177,7 @@ const notificacionesFiltradas =
               }`}
               onClick={() => setFiltro("pago_confirmado")}
             >
-              Pagos
+              {t("notifications.pays")}
             </div>
 
             <div
@@ -184,7 +186,7 @@ const notificacionesFiltradas =
               }`}
               onClick={() => setFiltro("reserva_cancelada")}
             >
-              Canceladas
+              {t("notifications.cancel")}
             </div>
 
             <div
@@ -193,13 +195,13 @@ const notificacionesFiltradas =
               }`}
               onClick={() => setFiltro("recordatorio")}
             >
-              Recordatorios
+              {t("notifications.recordatory")}
             </div>
           </div>
           <div className="line-vertical"></div>
           <div className="content">
             <div className="notifications-container">
-              <h3>Recibidas</h3>
+              <h3>{t("notifications.recibed")}</h3>
               {notificacionesFiltradas.map((n) => {
                 const config = notificationConfig[n.type];
                 return (
@@ -239,21 +241,21 @@ const notificacionesFiltradas =
           className="modal-content"
           onClick={(e) => e.stopPropagation()}
         >
-          <h3 className="modal-title">Detalles de notificación</h3>
+          <h3 className="modal-title">{t("notifications.detail")}</h3>
 
           <div className="invoice">
             <div className="invoice-row">
-              <span className="label">Mensaje</span>
+              <span className="label">{t("notifications.message")}</span>
               <span className="value">{selectedNotification.message}</span>
             </div>
             <div className="invoice-row">
-              <span className="label">Fecha</span>
+              <span className="label">{t("notifications.date")}</span>
               <span className="value">
                 {new Date(selectedNotification.sent_date).toLocaleString()}
               </span>
             </div>
             <div className="invoice-row">
-              <span className="label">Estado</span>
+              <span className="label">{t("notifications.state")}</span>
               <span className="value">
                 {selectedNotification.type === "reserva_confirmada" && "Activa"}
                 {selectedNotification.type === "pago_confirmado" && "Pago confirmado"}
@@ -266,7 +268,7 @@ const notificacionesFiltradas =
               if (!reserva) return null;
               return (
                 <div className="invoice-row">
-                  <span className="label">Vehículo</span>
+                  <span className="label">{t("notifications.vehicle")}</span>
                   <span className="value">
                     {reserva.vehicle.brand} {reserva.vehicle.model}
                   </span>
@@ -279,7 +281,7 @@ const notificacionesFiltradas =
               className="btn-modal"
               onClick={() => setshowModalReservation(false)}
             >
-              Cerrar
+              {t("notifications.close")}
             </button>
           </div>
         </div>

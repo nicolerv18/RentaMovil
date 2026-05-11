@@ -344,7 +344,29 @@
     "shedule": "Schedule maintenance",
     "button": "Maintenance history"
   },
-  "notifications" : {
-    
-  }
+  "notifications": {
+  "unread": "Unread",
+  "all": "All",
+  "confReservations": "Confirmed Reservations",
+  "pays": "Payments",
+  "cancel": "Cancelled",
+  "recordatory": "Reminders",
+  "recibed": "Received",
+  "detail": "Notification details",
+  "message": "Message",
+  "date": "Date",
+  "state": "Status",
+  "vehicle": "Vehicle",
+  "close": "Close"
+},
+"historyReservation": {
+  "myReservations": "My Reservations",
+  "date": "Date: ",
+  "days": "Days: ",
+  "total": "Total: ",
+  "cancel": "Cancel Reservation",
+  "sure": "Are you sure you want to cancel the reservation for",
+  "yes": "Yes, cancel",
+  "no": "No"
+}
 }
