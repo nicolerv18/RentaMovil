@@ -8,6 +8,7 @@ import Login from './features/auth/pages/Login.jsx';
 import Count from './features/auth/pages/Count.jsx';
 import ChangePassword from './features/auth/pages/ChangePassword.jsx';
 
+
 // Vehicles
 import Home from './features/vehicles/pages/Home.jsx';
 
@@ -37,6 +38,9 @@ import ContractHistory from './features/admin/Contract/Pages/ContractHistory.jsx
 // Admin - HomeAdmin
 import HomeAdmin from './features/admin/HomeAdmin/Pages/HomeAdmin.jsx';
 
+import History from './features/admin/historyMaintenance/pages/History.jsx';
+
+
 function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "light"
@@ -49,6 +53,7 @@ function App() {
 
   return (
     <BrowserRouter>
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/count" element={<Count theme={theme} setTheme={setTheme} />} />
@@ -64,6 +69,8 @@ function App() {
         <Route path="/Contract" element={<Contract />} />
         <Route path="/ContractHistory" element={<ContractHistory />} />
         <Route path="/HomeAdmin" element={<HomeAdmin />} />
+        <Route path="/History" element={<History />} />
+
       </Routes>
     </BrowserRouter>
   );

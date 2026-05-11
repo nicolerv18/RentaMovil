@@ -52,6 +52,7 @@
     "typeDiesel": "Diesel"
   },
 
+
   "reservation": {
     "ErrorDate": "La fecha de entrega no puede ser anterior a la de recogida",
     "ErrorAge:": "Debes ser mayor de edad",
