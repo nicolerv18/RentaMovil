@@ -164,3 +164,30 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .success{
     display: none;
 }
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .filter {
+        grid-template-columns: 1fr;
+        max-width: 95%;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .btn-search {
+        width: 100%;
+        height: 42px;
+    }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .filter {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 92%;
+    }
+
+    .btn-search {
+        width: 100%;
+    }
+}

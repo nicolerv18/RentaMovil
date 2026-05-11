@@ -306,7 +306,7 @@ function Payment() {
               </div>
 
               {/* Botón pagar */}
-              <button className="pay-btn" onClick={handlePayment} disabled={loading}>
+              <button className="pay-btn">
                 {loading ? "Procesando..." : t("payment.confirm")}
               </button>
 
