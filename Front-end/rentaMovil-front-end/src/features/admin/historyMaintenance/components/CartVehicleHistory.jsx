@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './CartVehicleHistory.module.css';
-
-function CartVehicleHistory({ record = {}, onViewMore }){
+import { useState } from 'react';
+function CartVehicleHistory({ record = {}, onViewMore }) {
     const { plate, date, type, status, notes, img, model } = record;
-
+    const [state, setState] = useState('Pendiente','En progreso','Completado','Cancelado')
     const statusClass = {
         'Pendiente': style['state--pendiente'],
         'En progreso': style['state--progreso'],
@@ -11,28 +11,35 @@ function CartVehicleHistory({ record = {}, onViewMore }){
         'Cancelado': style['state--cancelado'],
     }[status] || '';
 
+    const changeState = () =>{
+        if(state === "Pendiente"){
+            setState('Cancelado')
+        }
+    }
     const formattedDate = date ? new Date(date).toLocaleString() : 'Sin fecha';
 
     return (
-        <div className={style['card']}> 
-            <div className={style['left']}>
-                <div className={style['img-wrap']}>
-                    <img src={img || 'https://via.placeholder.com/160x100?text=Auto'} alt={model || plate} />
+        <div className={style['history-container']}>
+            <div className={style['history-card-container']}>
+                <div className={style['card-left']}>
+                    <div className={style['card-img-wrap']}>
+                        <img src={img || 'https://via.placeholder.com/160x100?text=Auto'} alt={model || plate} />
+                    </div>
                 </div>
-            </div>
 
-            <div className={style['center']}>
-                <div className={style['meta']}>
-                    <strong className={style['plate']}>{plate || 'N/A'}</strong>
-                    <span className={style['date']}>{formattedDate}</span>
+                <div className={style['card-center']}>
+                    <div className={style['card-meta']}>
+                        <strong className={style['card-plate']}>{plate || 'N/A'}</strong>
+                        <span className={style['card-date']}>{formattedDate}</span>
+                    </div>
+                    <div className={style['card-type']}>{type || 'Mantenimiento'}</div>
+                    <p className={style['card-notes']}>{notes ? notes.slice(0, 140) : 'Sin observaciones'}</p>
                 </div>
-                <div className={style['type']}>{type || 'Mantenimiento'}</div>
-                <p className={style['notes']}>{notes ? notes.slice(0,140) : 'Sin observaciones'}</p>
-            </div>
 
-            <div className={style['right']}>
-                <span className={`${style['badge']} ${statusClass}`}>{status || 'Pendiente'}</span>
-                <button className={style['btn']} onClick={() => onViewMore && onViewMore(record)}>Ver más</button>
+                <div className={style['card-right']}>
+                    <span className={`${style['badge']} ${statusClass}`}>{status || 'Pendiente'}</span>
+                    <button className={style['btn']} onClick={() => onViewMore && onViewMore(record)}>Ver más</button>
+                </div>
             </div>
         </div>
     )

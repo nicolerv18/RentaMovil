@@ -1,7 +1,52 @@
-.container{max-width:1100px;margin:28px auto;padding:12px}
-.list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
-.modalBackdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;padding:12px}
-.modal{background:#fff;padding:18px;border-radius:8px;max-width:720px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.15)}
-.fullNotes{white-space:pre-wrap;background:#f9f9f9;padding:8px;border-radius:6px}
-.modalActions{text-align:right;margin-top:12px}
-.modalActions button{background:#0b71ff;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+.container {
+    max-width: 1100px;
+    margin: 28px auto;
+    padding: 12px
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px
+}
+
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px
+}
+
+.modal {
+    background: #fff;
+    padding: 18px;
+    border-radius: 8px;
+    max-width: 720px;
+    width: 100%;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15)
+}
+
+.fullNotes {
+    white-space: pre-wrap;
+    background: #f9f9f9;
+    padding: 8px;
+    border-radius: 6px
+}
+
+.modalActions {
+    text-align: right;
+    margin-top: 12px
+}
+
+.modalActions button {
+    background: #0b71ff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer
+}
