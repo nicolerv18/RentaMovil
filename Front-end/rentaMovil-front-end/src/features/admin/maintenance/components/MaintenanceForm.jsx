@@ -4,12 +4,14 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import Animation from '../../../../shared/components/layout/Animation';
 import { useState } from 'react';
 import ValidateDate from './ValidateDate';
+import { useTranslation } from 'react-i18next';
 //se instala librerio de home koo form para manejejar formulario validaciones
 // se instala en la terminal con : npm install react-hook-form
 
 import { useForm } from 'react-hook-form';
 
 function MaintenanceForm() {
+    const { t } = useTranslation(); 
     /* // se inicializa el hook useForm para manejar el estado del formulario
     // el register se encargara de registrar cada campo de los inputs para su validacion
     // formState se encarga de manejar el estado del formulario, como errores, si esta sucio, etc
