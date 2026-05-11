@@ -343,5 +343,8 @@
     "sheduling": "Scheduling maintenance",
     "shedule": "Schedule maintenance",
     "button": "Maintenance history"
+  },
+  "notifications" : {
+    
   }
 }
