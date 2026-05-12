@@ -1,16 +1,17 @@
 import React from 'react';
 import style from './CartVehicleHistory.module.css';
+import carImg from "../../../../assets/carro.png";
 
 import { useState } from 'react';
 function CartVehicleHistory({ record = {}, onViewMore }) {
-    const { plate, date, type, status, notes, img, model } = record;
-    const [state, setState] = useState('Pendiente','En progreso','Completado','Cancelado')
+    const { plate, date, type, status, notes, img: recordImg, model } = record;
+    const [state, setState] = useState(status || 'Pendiente')
     const statusClass = {
         'Pendiente': style['state--pendiente'],
         'En progreso': style['state--progreso'],
         'Completado': style['state--completado'],
         'Cancelado': style['state--cancelado'],
-    }[status] || '';
+    }[state] || '';
 
 
     const changeState = () =>{
@@ -21,11 +22,11 @@ function CartVehicleHistory({ record = {}, onViewMore }) {
     const formattedDate = date ? new Date(date).toLocaleString() : 'Sin fecha';
 
     return (
-        <div className={style['history-container']}>
+       
             <div className={style['history-card-container']}>
                 <div className={style['card-left']}>
                     <div className={style['card-img-wrap']}>
-                        <img src={img || 'https://via.placeholder.com/160x100?text=Auto'} alt={model || plate} />
+                        <img src={recordImg || carImg || 'https://via.placeholder.com/160x100?text=Auto'} alt={model || plate} />
                     </div>
                 </div>
 
@@ -39,11 +40,11 @@ function CartVehicleHistory({ record = {}, onViewMore }) {
                 </div>
 
                 <div className={style['card-right']}>
-                    <span className={`${style['badge']} ${statusClass}`}>{status || 'Pendiente'}</span>
-                    <button className={style['btn']} onClick={() => onViewMore && onViewMore(record)}>Ver más</button>
+                    <span className={`${style['badge']} ${statusClass}`}>{state || 'Pendiente'}</span>
+                    <button className={style['card-btn']} onClick={() => onViewMore && onViewMore(record)}>Ver más</button>
                 </div>
             </div>
-        </div>
+    
     )
 }
 
