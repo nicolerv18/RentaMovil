@@ -5,13 +5,17 @@
 }
 
 .list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    padding: 20px 0;
+display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 24px 57px;
+
 
 }
-
+.history-h2{
+    margin: 10px 0;
+    text-align: center;
+}
 .modalBackdrop {
     position: fixed;
     inset: 0;

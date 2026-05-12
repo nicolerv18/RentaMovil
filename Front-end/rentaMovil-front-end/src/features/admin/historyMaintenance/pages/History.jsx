@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { AiOutlineDashboard } from 'react-icons/ai';
 import ValidateDate from '../../maintenance/components/ValidateDate.jsx';
 import img from "../../../../assets/carro.png";
+import FiltrerStatus from "../components/FiltrerHistory.jsx";
 
 const MOCK = [
   { id: '1', plate: 'ABC1323', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Cancelado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
@@ -46,7 +47,24 @@ function History() {
   //agraga 
   // estados para facilitar la edicion de los apartados
   const [isEditing, setIsEditing] = useState(false);
+  const [query, setSearch] = useState("");
+  const [filterState, setFilterState] = useState("Todos");// Estado para almacenar el estado de filtro seleccionado
 
+const filteredRecords = records
+      .filter((c) => {
+        const fs = String(filterState || '').toLowerCase();
+        if (fs === 'todos' || fs === '') return true;
+        return String(c.status || '').toLowerCase() === fs;
+      })
+      .filter((c) => {
+        const q = String(query || '').trim().toLowerCase();
+        if (!q) return true;
+        return (
+          String(c.model || '').toLowerCase().includes(q) ||
+          String(c.plate || '').toLowerCase().includes(q) ||
+          String(c.type || '').toLowerCase().includes(q)
+        );
+      });
 
   const closeModal = () => {
     setSelected(null)
@@ -91,7 +109,10 @@ function History() {
     <>
       <Navbar />
       <div className={style["history-container"]}>
-        <h2>Gestión de mantenimiento</h2>
+        <div className={style["card-container-setSearch"]}>
+        <h2 className={style["history-h2"]}>Gestión de mantenimiento</h2>
+          <FiltrerStatus query={query} setSearch={setSearch} filterState={filterState} setFilterState={setFilterState} />
+        </div>
         <div className={style.list}>
           {records.map(r => (
             <CartVehicleHistory
@@ -184,19 +205,19 @@ function History() {
                   <label htmlFor="maintenance-notes">Observaciones</label>
                   {/* aca se registra las validaciones de el campo como observaciones, se requiere que el campo sea obligatorio con una longitud minima de 5 caracteres y maxima de 30 */}
                   <div className={style['history-form-observations']}>
-                  <textarea
-                    placeholder="Observaciones"
-                    className={style["maintenance-observatios"]}
-                    rows={2}
-                    {...register("observations", {
-                      minLength: { value: 5, message: "Mínimo 5 caracteres." },
-                      maxLength: { value: 200, message: "Máximo 200 caracteres." }
-                    })}
-                    onInput={(e) => {
-                      e.target.style.height = 'auto';         /* // resetea la altura */
-                      e.target.style.height = e.target.scrollHeight + 'px'; // crece según el contenido
-                    }} />
-                    </div>
+                    <textarea
+                      placeholder="Observaciones"
+                      className={style["maintenance-observatios"]}
+                      rows={2}
+                      {...register("observations", {
+                        minLength: { value: 5, message: "Mínimo 5 caracteres." },
+                        maxLength: { value: 200, message: "Máximo 200 caracteres." }
+                      })}
+                      onInput={(e) => {
+                        e.target.style.height = 'auto';         /* // resetea la altura */
+                        e.target.style.height = e.target.scrollHeight + 'px'; // crece según el contenido
+                      }} />
+                  </div>
                   {/* manejo de errores ], aca se senala el tipo de error y se le especifica el mensaje */}
                   {errors.observations?.type === "minLength" && <p className={style['error-message']}><AiOutlineDashboard /> La observacion debe tener al menos 5 caracteres</p>}
                   {errors.observations?.type === "maxLength" && <p className={style['error-message']}><AiOutlineDashboard /> La observacion no debe tener mas de 200 caracteres</p>}
@@ -240,9 +261,9 @@ function History() {
                       </div>
                     )}
 
-                  <button className={style['modal-button']} onClick={closeModal}>Cerrar</button>
+                    <button className={style['modal-button']} onClick={closeModal}>Cerrar</button>
                   </div>
-                
+
                 </>
               )}
             </div>
