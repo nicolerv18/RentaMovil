@@ -14,3 +14,4 @@ Uso arquitectura _Component-driven_ combinada con organización _Feature-based_ 
 **services/:** Contiene el cliente HTTP central (como una instancia de axios) y utilidades relacionadas con las llamadas a la API. Esto permite configurar aspectos como la baseURL, los interceptores y el manejo de errores en un solo lugar.
 
 
+arquitectura feature-based profesional
