@@ -1,15 +1,15 @@
 import './Reservation.css'
 
-import carro from '../../../assets/carro.png';
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from '../../../shared/components/layout/Footer';
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import FilterCalendar from '../../vehicles/components/FilterCalendar';
 import MapComponent from './components/MapComponents';
 import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import { useTranslation } from "react-i18next";
 
 const DefaultIcon = L.icon({
     iconUrl: markerIcon,
@@ -18,10 +18,17 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function Reservation() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
+    const location = useLocation();
+    const { img, name, price, branch } = location.state || {};
+
+    if (!name) {
+        return <p>No hay vehículo seleccionado</p>;
+    }
 
     const [opcion, setOpcion] = useState('');
-    const [location, setLocation] = useState(null);
+    const [mapLocation, setMapLocation] = useState(null);
     const [nameR, setNameR] = useState("");
     const [document, setDocument] = useState("");
     const [birthDate, setBirthDate] = useState("");
@@ -29,22 +36,21 @@ function Reservation() {
     const [returnDate, setReturnDate] = useState("");
     const [errorFecha, setErrorFecha] = useState("");
     const [errorEdad, setErrorEdad] = useState("");
-    const rentalDays= () => {
+
+    const rentalDays = () => {
         if (!pickupDate || !returnDate) return 0;
-        const init =  new Date (pickupDate);
-        const end = new Date (returnDate);
-        const diference = end- init;
-         const days = Math.ceil(diference / (1000 * 60 * 60 * 24));
-        return days +1 ;
-
-    }
+        const init = new Date(pickupDate);
+        const end = new Date(returnDate);
+        const diference = end - init;
+        const days = Math.ceil(diference / (1000 * 60 * 60 * 24));
+        return days + 1;
+    };
     const days = rentalDays();
-
 
     useEffect(() => {
         if (pickupDate && returnDate) {
             if (returnDate < pickupDate) {
-                setErrorFecha("La fecha de entrega no puede ser anterior a la de recogida");
+                setErrorFecha(t('reservation.ErrorDate'));
             } else {
                 setErrorFecha("");
             }
@@ -53,24 +59,20 @@ function Reservation() {
 
     const validarEdad = (fecha) => {
         if (!fecha) return false;
-
         const hoy = new Date();
         const nacimiento = new Date(fecha);
-
         let edad = hoy.getFullYear() - nacimiento.getFullYear();
         const mes = hoy.getMonth() - nacimiento.getMonth();
-
         if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
             edad--;
         }
-
         return edad >= 18;
     };
 
     useEffect(() => {
         if (birthDate) {
             if (!validarEdad(birthDate)) {
-                setErrorEdad("Debes ser mayor de edad");
+                setErrorEdad(t('reservation.ErrorAge'));
             } else {
                 setErrorEdad("");
             }
@@ -78,25 +80,22 @@ function Reservation() {
     }, [birthDate]);
 
     const Pago = () => {
-
         if (!pickupDate || !returnDate) {
-            alert("Debes seleccionar fechas");
+            alert(t('reservation.selectDates'));
             return;
         }
-
         if (errorFecha) {
             alert(errorFecha);
             return;
         }
-
         if (errorEdad) {
             alert(errorEdad);
             return;
         }
-
         navigate('/Payment');
     };
 
+    const totally = days * price;
     return (
         <>
             <Navbar />
@@ -115,23 +114,24 @@ function Reservation() {
 
                     <div className="leftR">
                         <div className="card-car">
-                            <img className="img-car" src={carro} alt="carro" />
-                            <h2>Toyota 4x4</h2>
-                            <p className="price">$13,2444</p>
+                            <img className="img-car" src={img} alt={name} />
+                            <h2>{name}</h2>
+                            <p className="price">${price}</p>
                         </div>
 
                         <div className="card-location">
-                            <p><b>Cambiar ubicación</b></p>
+                            <p>{branch}</p>
+
 
                             <MapComponent
-                                location={location}
-                                setLocation={setLocation}
+                                location={mapLocation}
+                                setLocation={setMapLocation}
                             />
 
-                            {location && (
+                            {mapLocation && (
                                 <p>
-                                    Lat: {location[0].toFixed(4)} <br />
-                                    Lng: {location[1].toFixed(4)}
+                                    Lat: {mapLocation[0].toFixed(4)} <br />
+                                    Lng: {mapLocation[1].toFixed(4)}
                                 </p>
                             )}
                         </div>
@@ -145,14 +145,13 @@ function Reservation() {
                                     Pago();
                                 }}
                             >
-
-                                <h3>Resumen</h3>
-                                <p>{days} días x $403.000</p>
-                                <p>Seguro todo riesgo</p>
-                                <h4>TOTAL: $403.000</h4>
+                                <h3>{t('reservation.summary')}</h3>
+                                <p>{days} {t('reservation.days')}{ price}</p>
+                                <p>{t('reservation.sure')}</p>
+                                <h4>{t('reservation.total')}{totally}</h4>
 
                                 <div>
-                                    <label className='labelR'>Monto a pagar</label>
+                                    <label className='labelR'>{t('reservation.amountToPay')}</label>
                                     <select value={opcion} onChange={e => setOpcion(e.target.value)}>
                                         <option value="1">30%</option>
                                         <option value="2">50%</option>
@@ -162,16 +161,16 @@ function Reservation() {
                                     </select>
                                 </div>
 
-                                <label className='labelR'>Responsable de Reserva</label>
+                                <label className='labelR'>{t('reservation.responsible')}</label>
                                 <input
                                     type="text"
-                                    placeholder='Nombre y apellidos completos'
+                                    placeholder={t('reservation.placeholderResponsible')}
                                     value={nameR}
                                     onChange={(e) => setNameR(e.target.value)}
                                     required
                                 />
 
-                                <label className='labelR'>Fecha de nacimiento</label>
+                                <label className='labelR'>{t('reservation.dateOfBirth')}</label>
                                 <input
                                     type="date"
                                     value={birthDate}
@@ -181,7 +180,7 @@ function Reservation() {
                                 />
                                 {errorEdad && <p className='error2'>{errorEdad}</p>}
 
-                                <label className='labelR'>Nº Documento de identidad</label>
+                                <label className='labelR'>{t('reservation.document')}</label>
                                 <input
                                     type="text"
                                     placeholder='12345'
@@ -190,13 +189,12 @@ function Reservation() {
                                     required
                                 />
 
-                                <label className='labelR'>Telefono</label>
+                                <label className='labelR'>{t('reservation.phone')}</label>
                                 <input type="text" placeholder='###' required />
 
-                                <button type="submit">Alquilar</button>
+                                <button type="submit">{t('reservation.submit')}</button>
 
                             </form>
-
                         </div>
                     </div>
 

@@ -1,10 +1,13 @@
 import React from 'react';
-import "./ButtonBack.css";
+import "./buttonBack.css";
 import {FaArrowLeft} from "react-icons/fa";
-const ButtonBack = ({ onClick, type = 'button' }) => {
+import { useTranslation } from "react-i18next";
+
+const ButtonBack = ({ onClick, type = 'button', variant = 'normal' }) => {
+    const { t } = useTranslation();
     return(
-        <button className = "buttonBack" onClick={onClick} type={type}>
-            <FaArrowLeft /> Regresar
+        <button className={`buttonBack ${variant}`} onClick={onClick} type={type}>
+            <FaArrowLeft /> {t('buttonBack.label')}
         </button>
     )
 }

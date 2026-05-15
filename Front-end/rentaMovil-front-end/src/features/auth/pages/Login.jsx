@@ -4,11 +4,13 @@ import NavbarTwo from "../../../shared/components/layout/NavbarTwo.jsx";
 import FooterTwo from "../../../shared/components/layout/FooterTwo.jsx";
 import LoginForm from "../components/LoginForm.jsx";
 import RegisterForm from "../components/RegisterForm.jsx";
+import { useTranslation } from "react-i18next";
 
-import './Login.css';
+import "./Login.css";
 
 function Login() {
     const [isLoginMode, setIsLoginMode] = useState(true);
+    const { t } = useTranslation();    
 
     return (
         <>
@@ -19,10 +21,10 @@ function Login() {
                 {/* Botón para cambiar */}
                 <div className="btn">
                     <button
-                        className={`auth-toggle-btn ${!isLoginMode ? 'active' : ''}`}
+                        className={`auth-toggle-btn ${!isLoginMode ? "active" : ""}`}
                         onClick={() => setIsLoginMode(!isLoginMode)}
                     >
-                        {isLoginMode ? 'Crear cuenta' : 'Iniciar sesión'}
+                        {isLoginMode ? t("login.createAccount") : t("login.iniciarSesion")}
                     </button>
                 </div>
 

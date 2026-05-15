@@ -5,11 +5,12 @@
     width: 100%;
     max-width: 800px;
     background: var(--card-bg);
-    border: 1px solid var(---border-card);
+    border: 1px solid var(--border-card);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     transition: 0.3s;
+    border-left: 5px solid #00C853;
 }
 
 .card-vehicule:hover {
@@ -85,6 +86,26 @@
 }
 
 
+.img-car-vehicule{ 
+    width: 200px;  
+    border-radius: 8px;
+}
+
+.text-vehicule{
+    text-align: left;
+    align-items: center;
+}
+
+.name-car-vehicule{
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.price-vehicule{
+    margin: 5px;
+    font-size: 20px;
+}
+
 
 /*TABLET*/
 @media (max-width: 1024px) {
@@ -129,4 +150,3 @@
         max-width: 250px;
     }
 }
-
