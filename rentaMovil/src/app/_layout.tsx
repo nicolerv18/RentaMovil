@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@react-navigation/native';  // ← faltaba esto
+import { ThemeProvider } from '@react-navigation/native';
 import Colors from '../constants/Colors';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';

@@ -56,7 +56,6 @@ export default function TabLayout() {
         options={{
           title: 'Rentamóvil',
           tabBarLabel: 'Options',
-          
           tabBarIcon: ({ color }) => <TabBarIcon name="bars" color={color} />,
         }}
       />
