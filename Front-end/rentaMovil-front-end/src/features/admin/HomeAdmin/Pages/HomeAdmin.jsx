@@ -60,7 +60,7 @@ function Home() {
         <div className="main-column">
           <div className="card-vehicule-container">
             {visibleCars.length === 0 ? (
-              <p className='notFound'>No hay vehículos disponibles NIGUNO NO HAY MAS <FaSearch/></p>
+              <p className='notFound'>No hay vehículos disponibles<FaSearch/></p>
             ) : (
               visibleCars.map(car => (
                 <CartVehicule
