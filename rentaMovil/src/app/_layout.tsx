@@ -1,14 +1,12 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider } from '@react-navigation/native';
+import Colors from '../constants/Colors';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-
 import { useColorScheme } from 'react-native';
 
-export {
-  ErrorBoundary
-} from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
   initialRouteName: 'auth/login',
@@ -17,7 +15,6 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-
   useEffect(() => {
     SplashScreen.hideAsync();
   }, []);
@@ -29,12 +26,21 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+    <ThemeProvider value={colorScheme === 'dark' ? Colors.dark : Colors.light}>
+      <Stack
+        screenOptions={{
+          title: 'Renta Móvil',
+          headerStyle: {
+            backgroundColor: Colors[colorScheme ?? 'light'].colors.background,
+          },
+          headerTintColor: Colors[colorScheme ?? 'light'].colors.text,
+        }}
+      >
         <Stack.Screen name="auth/login" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
+    
   );
 }
