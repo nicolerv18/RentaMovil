@@ -2,8 +2,8 @@
     display: grid;
     grid-template-columns: 140px 1fr 160px;
     gap: 20px;
-    width: 100%;
-    max-width: 800px;
+    width: 80%;
+    max-width: 8000px;
     background: var(--card-bg);
     border: 1px solid var(--border-card);
     border-radius: 10px;

@@ -59,7 +59,10 @@ function LoginForm({onSubmit}){
                 />
             </div>
             {error && <div className='login-error' role='alert'>{t(error)}</div>} 
-            <Link to="/home" className='register-link'>{t('loginForm.noAccount')}</Link>
+            <Link to="/Register" className='register-link'>{t('loginForm.noAccount')}</Link>
+            <Link to="/EmailVerification" className='register-link'>{t('loginForm.changePassword')}</Link>
+
+            <></>
             <button className='email-btn' type="submit" disabled={loading}>
                 {loading ? t('loginForm.submitting') : t('loginForm.submit')}
             </button>

@@ -58,9 +58,9 @@
     "selectDates": "Debes seleccionar fechas",
     "changeLocation": "Cambiar ubicación",
     "summary": "Resumen",
-    "days": "Días x $403.000",
+    "days": "Días x",
     "sure": "Seguro todo riesgo",
-    "total": "Total: $403.000",
+    "total": "Total: ",
     "amountToPay": "Monto a pagar",
     "responsible": "Responsable de la Reserva",
     "placeholderResponsible": "Nombre y apellidos completos",
@@ -85,6 +85,7 @@
     "submitting": "Iniciando sesión...",
     "submit": "Iniciar sesión",
     "noAccount": "¿No tienes cuenta? Regístrate",
+    "changePassword" : "¿Deseas actualizar tu contraseña?",
     "error": "Error"
   },
   "register": {
@@ -230,7 +231,7 @@
     "maxLenghtLocation": "La ubicación no puede tener más de 100 caracteres",
     "invalidLocation": "La ubicación contiene caracteres no permitidos",
     "saving": "Guardando...",
-    "save": "Guardar vehículo",
+    "saveVehicle": "Guardar vehículo",
     "imgp": "Asegúrate de que la imagen sea nítida y muestre el vehículo completo. Esto agiliza el proceso de validación.",
     "imgp2": "Suelta la imagen aquí...",
     "imgp3": "Arrastra la imagen aquí o haz clic para seleccionar una imagen",
@@ -349,5 +350,31 @@
     "sheduling": "Agendando mantenimiento",
     "shedule": "Agendar mantenimiento",
     "button": "Historial de mantenimientos"
-  }
+  },
+  "notifications" : {
+    "unread" : "Sin leer",
+    "all" : "Todas",
+    "confReservations" : "Reservas Confirmadas",
+    "pays" : "Pagos",
+    "cancel" : "Canceladas",
+    "recordatory" : "Recordatorios",
+    "recibed" : "Recibidas",
+    "detail" : "Detalles de notificación",
+    "message" : "Mensaje",
+    "date" : "Fecha",
+    "state" : "Estado",
+    "vehicle" : "Vehiculo",
+    "close" : "Cerrar"
+  },
+"historyReservation" :{
+  "myReservations" : "Mis Reservas",
+  "date" : "Fecha: ",
+  "days" : "Días: ",
+  "total" : "Total: ",
+  "cancel" : "Cancelar Reserva",
+  "sure" : "¿Seguro que deseas cancelar la reserva de",
+  "yes" : "Sí, cancelar",
+  "no" : "No",
+  "confirm" :"Confirmar"
+}
 }

@@ -146,7 +146,7 @@ function Reservation() {
                                 }}
                             >
                                 <h3>{t('reservation.summary')}</h3>
-                                <p>{days} {t('reservation.days')}{ price}</p>
+                                <p>{days} {t("reservation.days")}{ price}</p>
                                 <p>{t('reservation.sure')}</p>
                                 <h4>{t('reservation.total')}{totally}</h4>
 

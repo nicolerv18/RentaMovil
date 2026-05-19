@@ -1,0 +1,89 @@
+.container-code{
+  margin: 30px auto;
+  max-width: 480px;
+  padding: 24px;
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  background-color: var(--card-bg);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.container-code label{
+    font-size: 16px;
+    color: var(--text);
+}
+
+.code-inputs{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.code-input{
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+background-color: var(--card-bg);
+       border: 1px solid var(--border);
+
+  outline: none;
+}
+
+.code-input:focus{
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+  border-color: rgba(99,102,241,0.6);
+}
+
+.confirm-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.confirm-button button {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--button);
+  color: var(--text-btn);
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .container-code{
+    max-width: 640px;
+    padding: 32px;
+  }
+
+  .code-inputs{
+    gap: 16px;
+  }
+
+  .code-input{
+    width: 56px;
+    height: 64px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .container-code{
+    margin: 16px;
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .code-input{
+    width: 44px;
+    height: 48px;
+    font-size: 18px;
+  }
+}
