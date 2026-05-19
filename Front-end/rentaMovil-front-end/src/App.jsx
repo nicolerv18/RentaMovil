@@ -9,6 +9,7 @@ import Count from './features/auth/pages/Count.jsx';
 import ChangePassword from './features/auth/pages/ChangePassword.jsx';
 
 
+
 // Vehicles
 import Home from './features/vehicles/pages/Home.jsx';
 
@@ -40,6 +41,14 @@ import HomeAdmin from './features/admin/HomeAdmin/Pages/HomeAdmin.jsx';
 
 import History from './features/admin/historyMaintenance/pages/History.jsx';
 
+import RegisterForm from './features/auth/components/RegisterForm.jsx';
+
+import EmailVerification from './features/auth/pages/EmailVerification.jsx';
+
+import CodeVerification from "./features/auth/pages/CodeVerification.jsx";
+
+import ChangePasswordLogin from './features/auth/pages/ChangePasswordLogin.jsx';
+
 
 function App() {
   const [theme, setTheme] = useState(
@@ -70,6 +79,12 @@ function App() {
         <Route path="/ContractHistory" element={<ContractHistory />} />
         <Route path="/HomeAdmin" element={<HomeAdmin />} />
         <Route path="/History" element={<History />} />
+        <Route path="/Register" element={<RegisterForm />} />
+        <Route path="/EmailVerification" element={<EmailVerification />} />
+        <Route path="/CodeVerification" element={<CodeVerification />} />
+        <Route path="/ChangePasswordLogin" element={<ChangePasswordLogin />} />
+
+
 
       </Routes>
     </BrowserRouter>
