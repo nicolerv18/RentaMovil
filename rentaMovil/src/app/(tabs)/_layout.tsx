@@ -35,13 +35,18 @@ export default function TabLayout() {
           title: 'Rentamóvil',
           tabBarLabel: 'Menu',
           tabBarIcon: ({ color }) => <TabBarIcon name="car" color={color} />,
+          title: 'Rentamóvil',
+          tabBarLabel: 'Menu',
+          tabBarIcon: ({ color }) => <TabBarIcon name="car" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
                     name="user"
+                    name="user"
                     size={25}
+                    color={Colors[colorScheme ?? 'light'].tabIconDefault}
                     color={Colors[colorScheme ?? 'light'].tabIconDefault}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
@@ -54,6 +59,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="menu"
         options={{
+          title: 'Rentamóvil',
+          tabBarLabel: 'Options',
           title: 'Rentamóvil',
           tabBarLabel: 'Options',
           tabBarIcon: ({ color }) => <TabBarIcon name="bars" color={color} />,
