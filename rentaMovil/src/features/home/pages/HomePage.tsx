@@ -1,35 +1,83 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from "react-native";
+import { useEffect, useState } from "react";
+
+import FilterCalendar from "../components/Filter";
+import VehicleCard from "../components/VehicleCard";
+
+import { vehicleService } from "../services/vehicleService";
+
+import { Vehicle } from "../../../types/vehicles";
 
 export default function HomePage() {
+
+  const [vehicles, setVehicles] =
+    useState<Vehicle[]>([]);
+
+  useEffect(() => {
+    loadVehicles();
+  }, []);
+
+  const loadVehicles = async () => {
+
+    const data =
+      await vehicleService.getVehicles();
+
+    setVehicles(data);
+  };
+
+  const handleSearch = async (data: {
+    branch: string;
+    startDate: Date;
+    endDate: Date;
+  }) => {
+
+    const filteredVehicles =
+      await vehicleService.getVehicles({
+        branch: data.branch,
+      });
+
+    setVehicles(filteredVehicles);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>RentaMovil</Text>
-      <Text style={styles.subtitle}>
-        Encuentra tu vehículo ideal
-      </Text>
-    </View>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+    >
+
+      <FilterCalendar
+        onSearch={handleSearch}
+      />
+
+      <View style={styles.cardsContainer}>
+
+        {vehicles.map((vehicle) => (
+          <VehicleCard
+            key={vehicle.id}
+            vehicle={vehicle}
+          />
+        ))}
+
+      </View>
+
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1EFE8',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#F1EFE8",
+  },
+
+  content: {
     padding: 20,
+    paddingBottom: 40,
   },
 
-  title: {
-    fontSize: 32,
-    fontWeight: '700',
-    color: '#1a2e4a',
-    marginBottom: 10,
-  },
-
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
+  cardsContainer: {
+    marginTop: 25,
+    gap: 20,
   },
 });
