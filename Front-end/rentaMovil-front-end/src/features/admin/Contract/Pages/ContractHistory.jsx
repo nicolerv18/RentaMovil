@@ -4,7 +4,7 @@ import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
 import { useNavigate } from "react-router-dom";
 import "./ContractHistory.css";
 import { TiArrowDown } from "react-icons/ti";
-import Lupa from "../../../../assets/img/lupa.png";
+import Lupa from "../../../../assets/img/Lupa.png";
 import { useTranslation } from "react-i18next";
 
 
