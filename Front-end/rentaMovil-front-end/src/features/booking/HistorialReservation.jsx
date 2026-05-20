@@ -22,7 +22,7 @@ function HistorialReservation() {
         end_date: "2026-05-05",
         days: 4,
         total_price: 400000,
-        vehicle: { brand: "Toyota", model: "Corolla", img}
+        vehicle: { brand: "Toyota2222", model: "Corolla", img}
       },
       {
         id: 2,
