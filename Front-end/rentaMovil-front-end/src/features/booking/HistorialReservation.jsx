@@ -31,7 +31,7 @@ function HistorialReservation() {
         end_date: "2026-04-22",
         days: 2,
         total_price: 200000,
-        vehicle: { brand: "Mazda", model: "CX-5", img }
+        vehicle: { brand: "Toyota", model: "CX-5", img }
       },
       {
         id: 3,
