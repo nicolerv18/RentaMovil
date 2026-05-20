@@ -40,7 +40,7 @@ function HistorialReservation() {
         end_date: "2026-04-15",
         days: 5,
         total_price: 500000,
-        vehicle: { brand: "Kia", model: "Rio", img }
+        vehicle: { brand: "twingo", model: "Rio", img }
       }
     ];
 
