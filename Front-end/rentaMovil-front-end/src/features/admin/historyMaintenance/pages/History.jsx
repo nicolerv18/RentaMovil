@@ -8,7 +8,7 @@ import { AiOutlineDashboard } from 'react-icons/ai';
 import ValidateDate from '../../maintenance/components/ValidateDate.jsx';
 import img from "../../../../assets/carro.png";
 import FiltrerStatus from "../components/FiltrerHistory.jsx";
-
+import NavbarAdmin from '../../../../shared/components/layout/NavBarAdmin.jsx';
 const MOCK = [
   { id: '1', plate: 'ABC1323', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Cancelado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
   { id: '2', plate: 'XYZ987', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
@@ -107,7 +107,7 @@ const filteredRecords = records
   return (
 
     <>
-      <Navbar />
+      <NavbarAdmin/>
       <div className={style["history-container"]}>
         <div className={style["card-container-setSearch"]}>
         <h2 className={style["history-h2"]}>Gestión de mantenimiento</h2>
