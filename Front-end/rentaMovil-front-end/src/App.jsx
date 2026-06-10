@@ -8,7 +8,7 @@ import Login from './features/auth/pages/Login.jsx';
 import Count from './features/auth/pages/Count.jsx';
 import ChangePassword from './features/auth/pages/ChangePassword.jsx';
 
-
+import VehicleInventary from './features/admin/VehicleInventary/pages/VehicleInventary.jsx';
 // Vehicles
 import Home from './features/vehicles/pages/Home.jsx';
 
@@ -70,6 +70,7 @@ function App() {
         <Route path="/ContractHistory" element={<ContractHistory />} />
         <Route path="/HomeAdmin" element={<HomeAdmin />} />
         <Route path="/History" element={<History />} />
+        <Route path="/VehicleInventary" element={<VehicleInventary />} />
 
       </Routes>
     </BrowserRouter>
