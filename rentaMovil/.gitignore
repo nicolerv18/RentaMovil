@@ -40,5 +40,5 @@ yarn-error.*
 /ios
 /android
 
-.idea
+.idea/
 .node_modules
