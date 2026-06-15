@@ -18,17 +18,14 @@ const delay = (ms: number) =>
 
 export const vehicleService = {
 
-  // GET ALL
   async getVehicles(
     filters?: VehicleFilters
   ) {
 
-    // Simula backend
     await delay(500);
 
     let data = [...vehicles];
 
-    // FILTER BRANCH
     if (filters?.branch) {
       data = data.filter(
         (vehicle) =>
@@ -36,7 +33,6 @@ export const vehicleService = {
       );
     }
 
-    // FILTER TYPE
     if (filters?.type) {
       data = data.filter(
         (vehicle) =>
@@ -44,7 +40,6 @@ export const vehicleService = {
       );
     }
 
-    // FILTER TRANSMISSION
     if (filters?.transmission) {
       data = data.filter(
         (vehicle) =>
@@ -53,7 +48,6 @@ export const vehicleService = {
       );
     }
 
-    // FILTER MIN PRICE
     if (filters?.minPrice !== undefined) {
       data = data.filter(
         (vehicle) =>
@@ -61,7 +55,6 @@ export const vehicleService = {
       );
     }
 
-    // FILTER MAX PRICE
     if (filters?.maxPrice !== undefined) {
       data = data.filter(
         (vehicle) =>
@@ -69,7 +62,6 @@ export const vehicleService = {
       );
     }
 
-    // SEARCH
     if (filters?.search) {
 
       const query =
@@ -95,7 +87,6 @@ export const vehicleService = {
     );
   },
 
-  // GET AVAILABLE
   async getAvailableVehicles(
     startDate: Date,
     endDate: Date

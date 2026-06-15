@@ -1,4 +1,4 @@
-    export type Reservation = {
+export type Reservation = {
     startDate: string;
     endDate: string;
     };
@@ -9,12 +9,11 @@
     name: string;
     brand: string;
     model: string;
-
     type: string;
 
     price: number;
 
-    image: string;
+    image: any;
 
     branch: string;
 
@@ -24,4 +23,6 @@
     transmission: string;
 
     reservas: Reservation[];
+
+    benefits: string[];
     };

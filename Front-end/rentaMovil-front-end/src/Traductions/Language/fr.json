@@ -49,7 +49,9 @@
     "typeElectric": "Électrique",
     "typeGasoline": "Essence",
     "typeHybrid": "Hybride",
-    "typeDiesel": "Diesel"
+    "typeDiesel": "Diesel",
+    "apply": "Appliquer les filtres",
+    "clear": "Effacer les filtres"
   },
   "reservation": {
     "ErrorDate": "La date de retour ne peut pas être antérieure à la date de prise en charge",

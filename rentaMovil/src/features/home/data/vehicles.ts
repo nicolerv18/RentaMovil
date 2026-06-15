@@ -1,4 +1,6 @@
-    import { Vehicle } from "../../../types/vehicles";
+import { Vehicle } from "../../../types/vehicles";
+import { branches } from "./branches";
+import carImg from "../../../assets/img/car1.jpg";
     
 
     export const vehicles: Vehicle[] = [
@@ -9,21 +11,28 @@
         brand: "Ford",
         model: "2022",
 
-        type: "Gasolina",
+        type: "automatico",
 
         price: 140000,
 
-        image:
-        "https://cdn.imagin.studio/getImage?customer=img&make=ford&modelFamily=mustang",
+        image: carImg,
 
-        branch: "Bogotá",
+        branch: branches[0],
 
         seats: 4,
         bags: 2,
 
-        transmission: "Automático",
+        transmission: "Gasolina",
 
         reservas: [],
+
+        benefits: [
+        "Kilometraje Ilimitado",
+
+        "Protección Contra Terceros",
+        ],
+
+
     },
 
     {
@@ -37,10 +46,9 @@
 
         price: 100000,
 
-        image:
-        "https://cdn.imagin.studio/getImage?customer=img&make=suzuki&modelFamily=swift",
+        image: carImg,
 
-        branch: "Medellín",
+        branch: branches[1],
 
         seats: 4,
         bags: 1,
@@ -48,6 +56,12 @@
         transmission: "Manual",
 
         reservas: [],
+
+        benefits: [
+        "Kilometraje Ilimitado",
+        "Asistencia en Carretera 24/7",
+        "Protección Contra Terceros",
+        ],
     },
 
     {
@@ -61,10 +75,9 @@
 
         price: 150000,
 
-        image:
-        "https://cdn.imagin.studio/getImage?customer=img&make=toyota&modelFamily=prius",
+        image: carImg,
 
-        branch: "Cali",
+        branch: branches[2],
 
         seats: 5,
         bags: 3,
@@ -72,5 +85,11 @@
         transmission: "Automático",
 
         reservas: [],
+
+        benefits: [
+        "Kilometraje Ilimitado",
+        "Asistencia en Carretera 24/7",
+        "Protección Contra Terceros",
+        ],
     },
     ];

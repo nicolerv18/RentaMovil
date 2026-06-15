@@ -5,83 +5,302 @@ import CartVehicule from "../components/CartVehicule";
 import FiltrerBrand from "../components/FiltrerBrand";
 import FiltrerPrice from "../components/FiltrerPrice";
 import FiltrerType from "../components/FiltrerType";
-import FiltrerModel from '../components/FiltrerModel.jsx';
+import FiltrerModel from "../components/FiltrerModel.jsx";
 import Banner from "../../../shared/components/layout/Banner.jsx";
 import img1 from "../../../assets/img/img1.png";
 import img2 from "../../../assets/img/img2.jpg";
 import img3 from "../../../assets/img/img3.webp";
-import FilterCalendar from '../components/FilterCalendar.jsx';
-import { useState, useEffect } from 'react';
-import { getCars } from '../data/carsService.js';
-import { FaSearch, FaSearchengin, FaSearchPlus } from 'react-icons/fa';
+import FilterCalendar from "../components/FilterCalendar.jsx";
+import { useState, useEffect } from "react";
+import { getCars } from "../data/carsService.js";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
 function Home() {
-  const [cars, setCars]               = useState([]);
+  const [cars, setCars] = useState([]);
   const [carsFiltered, setCarsFiltered] = useState([]);
-  const [brandFilter, setBrandFilter]   = useState("");
-  const [priceFilter, setPriceFilter]   = useState(null);
-  const [typeFilter,  setTypeFilter]    = useState("");
-  const [modelFilter, setModelFilter]   = useState(null);
+
+  const [brandFilter, setBrandFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState(null);
+  const [typeFilter, setTypeFilter] = useState("");
+  const [modelFilter, setModelFilter] = useState(null);
+
+  const [showFiltersModal, setShowFiltersModal] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(
+    window.innerWidth <= 992
+  );
 
   useEffect(() => {
-    getCars().then(data => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 992);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () =>
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
+  }, []);
+
+  useEffect(() => {
+    getCars().then((data) => {
       setCars(data);
       setCarsFiltered(data);
     });
   }, []);
 
-  const isAvailable = (car, start, end) =>
-    !car.reservas.some(r => start <= r.end && end >= r.start);
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        setShowFiltersModal(false);
+      }
+    };
 
-  const handleSearch = ({ branch, startDate, endDate }) => {
-    const disponibles = cars.filter(car =>
-      car.branch.toLowerCase().includes(branch.toLowerCase()) &&
-      isAvailable(car, startDate, endDate)
+    if (showFiltersModal) {
+      document.addEventListener(
+        "keydown",
+        handleEscape
+      );
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener(
+        "keydown",
+        handleEscape
+      );
+      document.body.style.overflow = "unset";
+    };
+  }, [showFiltersModal]);
+
+  const isAvailable = (car, start, end) =>
+    !car.reservas.some(
+      (r) => start <= r.end && end >= r.start
     );
+
+  const handleSearch = ({
+    branch,
+    startDate,
+    endDate,
+  }) => {
+    const disponibles = cars.filter(
+      (car) =>
+        car.branch
+          .toLowerCase()
+          .includes(branch.toLowerCase()) &&
+        isAvailable(
+          car,
+          startDate,
+          endDate
+        )
+    );
+
     setCarsFiltered(disponibles);
   };
 
+  const handleClearFilters = () => {
+    setBrandFilter("");
+    setPriceFilter(null);
+    setModelFilter(null);
+    setTypeFilter("");
+  };
+
   const visibleCars = carsFiltered
-    .filter(car => brandFilter ? car.brand === brandFilter : true)
-    .filter(car => typeFilter  ? car.type  === typeFilter  : true)
-    .filter(car => modelFilter ? (car.model >= modelFilter.min && car.model <= modelFilter.max) : true)
-    .filter(car => priceFilter ? (car.price >= priceFilter.min && car.price <= priceFilter.max) : true);
+    .filter((car) =>
+      brandFilter
+        ? car.brand === brandFilter
+        : true
+    )
+    .filter((car) =>
+      typeFilter
+        ? car.type === typeFilter
+        : true
+    )
+    .filter((car) =>
+      modelFilter
+        ? car.model >= modelFilter.min &&
+          car.model <= modelFilter.max
+        : true
+    )
+    .filter((car) =>
+      priceFilter
+        ? car.price >= priceFilter.min &&
+          car.price <= priceFilter.max
+        : true
+    );
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
+
       <div className="banner-wrapper">
         <div className="banner-container">
           <Banner imgs={[img1, img2, img3]} />
-          <FilterCalendar onSearch={handleSearch}/>
+
+          <FilterCalendar
+            onSearch={handleSearch}
+          />
         </div>
       </div>
+
       <section className="home-container">
+
         <div className="main-column">
+
+          {isMobile && (
+            <div className="filters-mobile-header">
+              <button
+                className="filters-toggle-btn"
+                onClick={() =>
+                  setShowFiltersModal(true)
+                }
+              >
+                <FaBars />
+                <span>Filtros</span>
+              </button>
+            </div>
+          )}
+
           <div className="card-vehicule-container">
             {visibleCars.length === 0 ? (
-              <p className='notFound'>No hay vehículos disponibles <FaSearch/></p>
+              <p className="notFound">
+                No hay vehículos disponibles
+                <FaSearch />
+              </p>
             ) : (
-              visibleCars.map(car => (
+              visibleCars.map((car) => (
                 <CartVehicule
                   key={car.id}
                   name={car.name}
                   price={car.price}
                   img={car.img}
                   branch={car.branch}
+                  model={car.model}
+                  type={car.type}
+                  door= {car.door}
+                  capacity={car.capacity}
                 />
               ))
             )}
           </div>
+
         </div>
-        <aside className="sidebar-container">
-          <FiltrerBrand cars={cars} onFilter={setBrandFilter} />
-          <FiltrerPrice cars={cars} onFilter={setPriceFilter} />
-          <FiltrerModel cars={cars} onFilter={setModelFilter} />
-          <FiltrerType  cars={cars} onFilter={setTypeFilter}  />
-        </aside>
+
+        {!isMobile && (
+          <aside className="sidebar-container">
+            <h3 className="filters-title">
+              Filtros
+            </h3>
+
+            <FiltrerBrand
+              cars={cars}
+              onFilter={setBrandFilter}
+            />
+
+            <FiltrerPrice
+              cars={cars}
+              onFilter={setPriceFilter}
+            />
+
+            <FiltrerModel
+              cars={cars}
+              onFilter={setModelFilter}
+            />
+
+            <FiltrerType
+              cars={cars}
+              onFilter={setTypeFilter}
+            />
+
+            <button
+              className="btn-clear-filters"
+              onClick={handleClearFilters}
+            >
+              Limpiar filtros
+            </button>
+          </aside>
+        )}
+
+        {isMobile && showFiltersModal && (
+          <>
+            <div
+              className="filters-modal-backdrop"
+              onClick={() =>
+                setShowFiltersModal(false)
+              }
+            />
+
+            <div className="filters-modal">
+
+              <div className="filters-modal-header">
+                <h3>Filtros</h3>
+
+                <button
+                  className="btn-close-modal"
+                  onClick={() =>
+                    setShowFiltersModal(false)
+                  }
+                >
+                  <FaTimes />
+                </button>
+              </div>
+
+              <div className="filters-modal-content">
+
+                <FiltrerBrand
+                  cars={cars}
+                  onFilter={setBrandFilter}
+                />
+
+                <FiltrerPrice
+                  cars={cars}
+                  onFilter={setPriceFilter}
+                />
+
+                <FiltrerModel
+                  cars={cars}
+                  onFilter={setModelFilter}
+                />
+
+                <FiltrerType
+                  cars={cars}
+                  onFilter={setTypeFilter}
+                />
+
+              </div>
+
+              <div className="filters-modal-footer">
+
+                <button
+                  className="btn-clear-filters"
+                  onClick={() => {
+                    handleClearFilters();
+                    setShowFiltersModal(false);
+                  }}
+                >
+                  Limpiar
+                </button>
+
+                <button
+                  className="btn-apply-filters"
+                  onClick={() =>
+                    setShowFiltersModal(false)
+                  }
+                >
+                  Aplicar
+                </button>
+
+              </div>
+
+            </div>
+          </>
+        )}
+
       </section>
-      <Footer/>
+
+      <Footer />
     </>
   );
 }

@@ -1,5 +1,8 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
+import {HomeStyles} from "./Home.style";
+import { useTheme } from "../../../theme/useTheme";
+import { themes } from "../../../theme/themes";
 
 import FilterCalendar from "../components/Filter";
 import VehicleCard from "../components/VehicleCard";
@@ -7,6 +10,9 @@ import VehicleCard from "../components/VehicleCard";
 import { vehicleService } from "../services/vehicleService";
 
 import { Vehicle } from "../../../types/vehicles";
+import SelectLanguage from "../../../shared/components/select/selectLanguage";
+import selectTheme from "../../../shared/components/select/selectTheme";
+import ThemeSelector from "../../../shared/components/select/selectTheme";
 
 export default function HomePage() {
 
@@ -31,6 +37,8 @@ export default function HomePage() {
     endDate: Date;
   }) => {
 
+    console.log("Buscando vehículos en sucursal:", data.branch);
+
     const filteredVehicles =
       await vehicleService.getVehicles({
         branch: data.branch,
@@ -39,6 +47,13 @@ export default function HomePage() {
     setVehicles(filteredVehicles);
   };
 
+  
+      const { themeName } = useTheme();
+  
+      const colors = themes[themeName];
+  
+      const styles = HomeStyles(colors);
+
   return (
     <ScrollView
       style={styles.container}
@@ -46,6 +61,8 @@ export default function HomePage() {
       showsVerticalScrollIndicator={false}
     >
 
+      <SelectLanguage />
+      <ThemeSelector />
       <FilterCalendar
         onSearch={handleSearch}
       />
@@ -65,19 +82,3 @@ export default function HomePage() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F1EFE8",
-  },
-
-  content: {
-    padding: 20,
-    paddingBottom: 40,
-  },
-
-  cardsContainer: {
-    marginTop: 25,
-    gap: 20,
-  },
-});

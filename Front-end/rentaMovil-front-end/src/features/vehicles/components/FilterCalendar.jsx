@@ -13,7 +13,7 @@ function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setRetur
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split("T")[0];
   };
-
+  const [showFilters, setShowFilters] = useState(false);
   const [query, setQuery]               = useState("");
   const [sugerencias, setSugerencias]   = useState([]);
   const [seleccionado, setSeleccionado] = useState("");
@@ -92,25 +92,42 @@ function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setRetur
   };
 
   return (
+  <div className="filter-wrapper">
     <form
-      className={`filter ${variant}`}
-      onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}
+      className={`filter ${variant} ${showFilters ? "open" : ""}`}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
     >
       <div className="field" ref={wrapperRef}>
-        <label className="label-filter1">{t("filterCalendar.deliveryLocation")}</label>
+        <label className="label-filter1">
+          {t("filterCalendar.deliveryLocation")}
+        </label>
+
         <input
-          className={`input-container ${errorSucursal ? "inputInvalid" : ""}`}
+          className={`input-container ${
+            errorSucursal ? "inputInvalid" : ""
+          }`}
           value={query}
           onChange={handleChange}
           placeholder="Ej: Bogotá..."
           autoComplete="off"
           required
         />
-        {errorSucursal && <div className="message-error">{errorSucursal}</div>}
+
+        {errorSucursal && (
+          <div className="message-error">{errorSucursal}</div>
+        )}
+
         {sugerencias.length > 0 && (
           <ul className="sucursal-dropdown">
             {sugerencias.map((s, i) => (
-              <li key={i} onMouseDown={(e) => e.preventDefault()} onClick={() => handleSelect(s)}>
+              <li
+                key={i}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => handleSelect(s)}
+              >
                 {s}
               </li>
             ))}
@@ -119,30 +136,52 @@ function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setRetur
       </div>
 
       <div className="field">
-        <label className="label-filter1">{t("filterCalendar.deliveryDate")}</label>
+        <label className="label-filter1">
+          {t("filterCalendar.deliveryDate")}
+        </label>
+
         <input
           type="date"
-          className={`input-container ${errorFecha ? "inputInvalid" : ""}`}
+          className={`input-container ${
+            errorFecha ? "inputInvalid" : ""
+          }`}
           min={today}
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-        {errorFecha && <div className="message-error">{errorFecha}</div>}
+
+        {errorFecha && (
+          <div className="message-error">{errorFecha}</div>
+        )}
       </div>
 
       <div className="field">
-        <label className="label-filter1">{t("filterCalendar.deliveryHour")}</label>
+        <label className="label-filter1">
+          {t("filterCalendar.deliveryHour")}
+        </label>
+
         <input
           type="time"
-          className={`input-container ${errorHora ? "inputInvalid" : ""}`}
+          className={`input-container ${
+            errorHora ? "inputInvalid" : ""
+          }`}
           value={hora}
-          onChange={(e) => { setHora(e.target.value); setErrorHora(""); }}
+          onChange={(e) => {
+            setHora(e.target.value);
+            setErrorHora("");
+          }}
         />
-        {errorHora && <div className="message-error">{errorHora}</div>}
+
+        {errorHora && (
+          <div className="message-error">{errorHora}</div>
+        )}
       </div>
 
       <div className="field">
-        <label className="label-filter1">{t("filterCalendar.returnDate")}</label>
+        <label className="label-filter1">
+          {t("filterCalendar.returnDate")}
+        </label>
+
         <input
           type="date"
           className="input-container"
@@ -153,14 +192,27 @@ function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setRetur
       </div>
 
       <div className="field">
-        <label className="label-filter1">{t("filterCalendar.returnHour")}</label>
+        <label className="label-filter1">
+          {t("filterCalendar.returnHour")}
+        </label>
+
         <input
           type="time"
-          className={`input-container ${errorReturnHora ? "inputInvalid" : ""}`}
+          className={`input-container ${
+            errorReturnHora ? "inputInvalid" : ""
+          }`}
           value={returnhora}
-          onChange={(e) => { setReturnHora(e.target.value); setErrorReturnHora(""); }}
+          onChange={(e) => {
+            setReturnHora(e.target.value);
+            setErrorReturnHora("");
+          }}
         />
-        {errorReturnHora && <div className="message-error">{errorReturnHora}</div>}
+
+        {errorReturnHora && (
+          <div className="message-error">
+            {errorReturnHora}
+          </div>
+        )}
       </div>
 
       <button type="submit" className="btn-search">
@@ -169,7 +221,9 @@ function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setRetur
 
       {success && <p className="success">{success}</p>}
     </form>
-  );
+
+  </div>
+);
 }
 
 export default FilterCalendar;

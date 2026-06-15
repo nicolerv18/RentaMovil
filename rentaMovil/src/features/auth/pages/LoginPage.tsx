@@ -1,8 +1,10 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function LoginPage() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,11 +19,11 @@ export default function LoginPage() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Iniciar Sesión</Text>
+      <Text style={styles.title}>{t('loginForm.Title')}</Text>
 
       <View style={styles.form}>
         <TextInput
-          placeholder="Correo electrónico"
+          placeholder={t('loginForm.emailPlaceholder')}
           placeholderTextColor="#8A8A8A"
           value={email}
           onChangeText={setEmail}
@@ -29,7 +31,7 @@ export default function LoginPage() {
         />
 
         <TextInput
-          placeholder="Contraseña"
+          placeholder={t('loginForm.passwordPlaceholder')}
           placeholderTextColor="#8A8A8A"
           secureTextEntry
           value={password}
@@ -38,7 +40,7 @@ export default function LoginPage() {
         />
 
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Ingresar</Text>
+          <Text style={styles.buttonText}>{t('loginForm.submit')}</Text>
         </TouchableOpacity>
       </View>
     </View>

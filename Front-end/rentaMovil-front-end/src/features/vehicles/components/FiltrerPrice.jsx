@@ -1,46 +1,130 @@
 import "./Filtrer.css";
-import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
-import { useState } from "react";
+import { FaDollarSign, FaArrowAltCircleDown } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 function FiltrerPrice({ cars = [], onFilter }) {
   const { t } = useTranslation();
+
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const prices = cars.map(c => c.price);
-  const minPrice = Math.min(...prices);
-  const maxPrice = Math.max(...prices);
-  const mid1 = Math.round((maxPrice - minPrice) / 3 + minPrice);
-  const mid2 = Math.round((maxPrice - minPrice) / 3 * 2 + minPrice);
+  const prices = cars.map((c) => c.price);
 
-  const priceRanges = prices.length ? [
-    { label: `$${minPrice.toLocaleString()} - $${mid1.toLocaleString()}`,  min: minPrice, max: mid1  },
-    { label: `$${mid1.toLocaleString()} - $${mid2.toLocaleString()}`,      min: mid1,     max: mid2  },
-    { label: `$${mid2.toLocaleString()} - $${maxPrice.toLocaleString()}`,  min: mid2,     max: maxPrice },
-  ] : [];
+  const minPriceData = prices.length ? Math.min(...prices) : 0;
+  const maxPriceData = prices.length ? Math.max(...prices) : 0;
 
-  const handleSelect = (range) => {
-    const newSelected = selected === range.label ? "" : range.label;
-    setSelected(newSelected);
-    onFilter(newSelected ? range : null);
+  const [range, setRange] = useState([
+    minPriceData,
+    maxPriceData,
+  ]);
+
+  useEffect(() => {
+    setRange([minPriceData, maxPriceData]);
+  }, [minPriceData, maxPriceData]);
+
+  const handleApply = () => {
+    const filter = {
+      min: range[0],
+      max: range[1],
+    };
+
+    setSelected(
+      `$${range[0].toLocaleString()} - $${range[1].toLocaleString()}`
+    );
+
+    onFilter(filter);
+    setOpen(false);
   };
+
+  const handleClear = () => {
+    setRange([minPriceData, maxPriceData]);
+    setSelected("");
+
+    onFilter(null);
+    setOpen(false); 
+  };
+
 
   return (
     <aside className="filtrer-container">
       <ul className="nav-container">
         <li className={open ? "active" : ""}>
-          <button className="btn-filtrar" onClick={() => setOpen(!open)}>
-            {t('filtersHome.price')} <FaCar className="icon2" />
-            <FaArrowAltCircleDown className={`icono-flecha ${open ? "rotade" : ""}`} />
+          <button
+            type="button"
+            className="btn-filtrar"
+            onClick={() => setOpen(!open)}
+          >
+            <div className="btn-filtrar-content">
+              <FaDollarSign className="icon2" />
+
+              <span>
+                {selected || t("filtersHome.price")}
+              </span>
+            </div>
+
+            <FaArrowAltCircleDown
+              className={`icono-flecha ${open ? "rotade" : ""}`}
+            />
           </button>
-          <ul className="dropdown">
-            {priceRanges.map((range) => (
-              <li key={range.label} className={selected === range.label ? "selected" : ""} onClick={() => handleSelect(range)}>
-                <a>{range.label}</a>
-              </li>
-            ))}
-          </ul>
+
+          <div className="dropdown dropdown-price-slider">
+            <h4 className="price-title">
+              {t("filtersHome.price") || "Precio Total"}
+            </h4>
+
+            <div className="slider-container">
+              <Slider
+                range
+                min={minPriceData}
+                max={maxPriceData}
+                value={range}
+                onChange={setRange}
+              />
+            </div>
+
+            <div className="price-values">
+              <div className="price-box">
+                <span>
+                  {t("filtersHome.min") || "Mínimo"}
+                </span>
+
+                <strong>
+                  ${range[0].toLocaleString()}
+                </strong>
+              </div>
+
+              <div className="price-box">
+                <span>
+                  {t("filtersHome.max") || "Máximo"}
+                </span>
+
+                <strong>
+                  ${range[1].toLocaleString()}
+                </strong>
+              </div>
+            </div>
+
+            <div className="price-actions">
+              <button
+                type="button"
+                className="btn-price"
+                onClick={handleApply}
+              >
+                {t("filtersHome.apply") || "Aplicar"}
+              </button>
+
+              <button
+                type="button"
+                className="btn-price btn-clear"
+                onClick={handleClear}
+              >
+                {t("filtersHome.clear") || "Limpiar"}
+              </button>
+            </div>
+          </div>
         </li>
       </ul>
     </aside>

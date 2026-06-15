@@ -49,7 +49,9 @@
     "typeElectric": "Elétrico",
     "typeGasoline": "Gasolina",
     "typeHybrid": "Híbrido",
-    "typeDiesel": "Diesel"
+    "typeDiesel": "Diesel",
+    "apply": "Aplicar filtros",
+    "clear": "Limpar filtros"
   },
   "reservation": {
     "ErrorDate": "A data de devolução não pode ser anterior à data de retirada",
