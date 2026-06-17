@@ -1,0 +1,512 @@
+/* ── Layout Base ── */
+.vi-page {
+  background: var(--bg);
+  min-height: 100vh;
+}
+.vi-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+/* ── Header ── */
+.vi-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.vi-title {
+  font: 800 26px var(--font-family, inherit);
+  color: var(--text-h);
+  margin: 0 0 4px;
+  letter-spacing: -0.4px;
+}
+.vi-subtitle {
+  font-size: 14px;
+  color: var(--placeholder);
+  margin: 0;
+}
+
+/* ── Botones ── */
+.vi-btn-add,
+.vi-btn-back,
+.vi-modal-btn-secondary,
+.vi-modal-btn-primary {
+  padding: 11px 20px;
+  border-radius: 10px;
+  font: 600 14px inherit;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.vi-btn-add {
+  background: var(--button);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(0, 200, 83, 0.3);
+}
+.vi-btn-add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 16px rgba(0, 200, 83, 0.4);
+}
+.vi-btn-back,
+.vi-modal-btn-secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.vi-btn-back:hover,
+.vi-modal-btn-secondary:hover {
+  background: var(--input);
+}
+.vi-btn-back {
+  padding: 11px 22px;
+}
+.vi-modal-btn-primary {
+  flex: 1;
+  background: var(--navbar);
+  color: #fff;
+  border: none;
+}
+.vi-modal-btn-primary:hover {
+  background: var(--primary-dark, #1e40af);
+}
+
+/* ── Stats y Tarjetas (Estructura Común) ── */
+.vi-stats,
+.vi-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.vi-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.vi-stats {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.vi-stat,
+.vi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  transition: all 0.18s;
+}
+.vi-card {
+  border-radius: 16px;
+  border-left-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  overflow: hidden;
+}
+.vi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Dinámica de Estados Compartidos */
+.vi-stat.disponible,
+.vi-card.estado-disponible {
+  border-left-color: var(--button);
+}
+.vi-stat.en-uso,
+.vi-card.estado-en-uso {
+  border-left-color: var(--navbar);
+}
+.vi-stat.mantenimiento,
+.vi-card.estado-mantenimiento {
+  border-left-color: #f59e0b;
+}
+
+.vi-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vi-stat-num {
+  font: 800 28px/1 inherit;
+  color: var(--text-h);
+}
+.vi-stat-label,
+.vi-card-tipo,
+.vi-table th,
+.vi-modal-label,
+.vi-modal-field-label {
+  font: 700 11px inherit;
+  color: var(--placeholder);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.vi-stat-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── Elementos Internos de la Tarjeta ── */
+.vi-card-img {
+  background: var(--accent-bg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 90px;
+}
+.vi-car-img-file {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+/* Estilo para el texto en caso de que el vehículo no tenga foto */
+.vi-car-placeholder {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--placeholder);
+  text-transform: uppercase;
+}
+.vi-card-tipo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  background: var(--card-bg);
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+.vi-card-body {
+  padding: 14px 16px;
+}
+.vi-card-top,
+.vi-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vi-card-top {
+  margin-bottom: 8px;
+}
+.vi-placa,
+.vi-card-año,
+.vi-results-count {
+  font-size: 13px;
+  color: var(--placeholder);
+}
+.vi-placa {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.vi-card-nombre {
+  font: 700 16px inherit;
+  color: var(--text-h);
+  margin: 0 0 2px;
+}
+.vi-card-año {
+  margin-bottom: 12px;
+}
+.vi-card-footer {
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.vi-sucursal-tag,
+.vi-km {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: 600 11px inherit;
+  color: var(--placeholder);
+}
+
+/* ── Controles y Filtros ── */
+.vi-controls,
+.vi-filters,
+.vi-vista-toggle {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.vi-controls {
+  margin-bottom: 16px;
+}
+.vi-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+.vi-search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--placeholder);
+  pointer-events: none;
+}
+
+.vi-search,
+.vi-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font: 600 14px inherit;
+  background: var(--card-bg);
+  color: var(--text);
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+.vi-search {
+  padding-left: 38px;
+  font-weight: 400;
+}
+.vi-search::placeholder {
+  color: var(--placeholder);
+}
+.vi-search:focus,
+.vi-select:focus {
+  border-color: var(--navbar);
+}
+.vi-search:focus {
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.vi-filters {
+  gap: 10px;
+}
+.vi-select {
+  width: auto;
+  padding-right: 32px;
+  font-size: 13px;
+  cursor: pointer;
+  appearance: none;
+  background: var(--card-bg) no-repeat right 10px center / 14px
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Toggle Vista */
+.vi-vista-toggle {
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+.vi-vista-toggle button {
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--placeholder);
+  display: flex;
+  transition: all 0.15s;
+}
+.vi-vista-toggle button svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+.vi-vista-toggle button.active {
+  background: var(--navbar);
+  color: #fff;
+}
+.vi-vista-toggle button:hover:not(.active) {
+  background: var(--accent-bg);
+  color: var(--text);
+}
+
+.vi-results-count {
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+
+/* ── Badges ── */
+.vi-badge {
+  font: 700 11px inherit;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+.vi-badge.disponible {
+  background: rgba(0, 200, 83, 0.12);
+  color: #00a844;
+}
+.vi-badge.en-uso {
+  background: rgba(29, 78, 216, 0.1);
+  color: #1d4ed8;
+}
+.vi-badge.mantenimiento {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+
+/* ── Tabla ── */
+.vi-table-wrap {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden auto;
+  margin-bottom: 32px;
+}
+.vi-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.vi-table thead tr {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.vi-table th,
+.vi-table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+.vi-table th {
+  white-space: nowrap;
+}
+.vi-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.vi-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.vi-table tbody tr:hover {
+  background: var(--accent-bg);
+}
+.vi-td-placa,
+.vi-td-nombre {
+  font-weight: 700;
+  color: var(--text-h);
+}
+.vi-td-nombre {
+  font-weight: 600;
+}
+
+.vi-btn-detail {
+  padding: 6px 14px;
+  border: 1.5px solid var(--navbar);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--navbar);
+  font: 700 12px inherit;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.vi-btn-detail:hover {
+  background: var(--navbar);
+  color: #fff;
+}
+.vi-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px;
+  color: var(--placeholder);
+  font-size: 15px;
+}
+.vi-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ── Modal ── */
+.vi-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+}
+.vi-modal {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.vi-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.vi-modal-label {
+  margin: 0 0 4px;
+}
+.vi-modal-title {
+  font: 800 20px inherit;
+  color: var(--text-h);
+  margin: 0;
+}
+.vi-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 20px 24px;
+}
+.vi-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vi-modal-field-value {
+  font: 600 15px inherit;
+  color: var(--text-h);
+}
+.vi-modal-footer {
+  display: flex;
+  gap: 10px;
+  padding: 0 24px 24px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .vi-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .vi-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .vi-search-wrap {
+    min-width: unset;
+  }
+  .vi-filters {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 480px) {
+  .vi-header {
+    flex-direction: column;
+  }
+  .vi-btn-add {
+    width: 100%;
+    text-align: center;
+  }
+}
