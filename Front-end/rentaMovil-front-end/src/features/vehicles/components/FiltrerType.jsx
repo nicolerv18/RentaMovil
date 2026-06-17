@@ -14,7 +14,6 @@ function FiltrerType({ cars = [], onFilter }) {
     const newSelected = selected === type ? "" : type;
     setSelected(newSelected);
     onFilter(newSelected);
-    setOpen(false);
   };
 
   return (

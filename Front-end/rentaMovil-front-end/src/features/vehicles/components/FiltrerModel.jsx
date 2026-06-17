@@ -14,7 +14,6 @@ function FiltrerModel({ cars = [], onFilter }) {
     const newSelected = selected === model ? "" : model;
     setSelected(newSelected);
     onFilter(newSelected ? { min: model, max: model } : null);
-    setOpen(false);
   };
 
   return (

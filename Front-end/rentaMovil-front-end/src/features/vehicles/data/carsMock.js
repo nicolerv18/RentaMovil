@@ -66,5 +66,31 @@ export const cars = [
     model: "2021",
     branch: branches[1],
     reservas: []
+  },
+  {
+    id: 6,
+    name: "Twingo",
+    price: 120000,
+    img: img,
+    brand: "Twingo",
+    type: "Manual",
+    door: 4,
+    capacity: 5,
+    model: "2021",
+    branch: branches[1],
+    reservas: []
+  },
+  {
+    id: 7,
+    name: "Toyota",
+    price: 150000,
+    img: img,
+    brand: "Toyota",
+    type: "Electrico",
+    door: 4,
+    capacity: 5,
+    model: "2021",
+    branch: branches[2],
+    reservas: []
   }
 ];

@@ -1,59 +1,119 @@
-import { useState, useEffect, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle
+} from "react";
+
 import "./FilterCalendar.css";
 import { useTranslation } from "react-i18next";
 import { branches } from "../data/branches";
 
-function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setReturnDate }) {
+const FilterCalendar = forwardRef(
+(
+{
+  onSearch,
+  variant = "overlay",
+  setPickupDate,
+  setReturnDate
+},
+ref
+) => {
+
   const { t } = useTranslation();
 
   const today = new Date().toISOString().split("T")[0];
-  const getCurrentTime = () => new Date().toTimeString().slice(0, 5);
+
+  const getCurrentTime = () =>
+    new Date().toTimeString().slice(0, 5);
+
   const getTomorrow = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split("T")[0];
   };
+
   const [showFilters, setShowFilters] = useState(false);
-  const [query, setQuery]               = useState("");
-  const [sugerencias, setSugerencias]   = useState([]);
+
+  const [query, setQuery] = useState("");
+  const [sugerencias, setSugerencias] = useState([]);
   const [seleccionado, setSeleccionado] = useState("");
-  const [hora, setHora]                 = useState(getCurrentTime());
-  const [returnhora, setReturnHora]     = useState(getCurrentTime());
-  const [date, setDate]                 = useState(today);
-  const [dateReturn, setDateReturn]     = useState(getTomorrow());
-  const [success, setSuccess]           = useState("");
+
+  const [hora, setHora] = useState(getCurrentTime());
+  const [returnhora, setReturnHora] = useState(getCurrentTime());
+
+  const [date, setDate] = useState(today);
+  const [dateReturn, setDateReturn] = useState(getTomorrow());
+
+  const [success, setSuccess] = useState("");
+
   const [errorSucursal, setErrorSucursal] = useState("");
-  const [errorFecha, setErrorFecha]       = useState("");
-  const [errorHora, setErrorHora]         = useState("");
+  const [errorFecha, setErrorFecha] = useState("");
+  const [errorHora, setErrorHora] = useState("");
   const [errorReturnHora, setErrorReturnHora] = useState("");
 
   const wrapperRef = useRef(null);
 
   useEffect(() => {
     if (date && dateReturn) {
-      setErrorFecha(dateReturn < date ? t("filterCalendar.errorDate") : "");
+      setErrorFecha(
+        dateReturn < date
+          ? t("filterCalendar.errorDate")
+          : ""
+      );
     }
-  }, [date, dateReturn]);
+  }, [date, dateReturn, t]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target))
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(e.target)
+      ) {
         setSugerencias([]);
+      }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside
+    );
+
+    return () =>
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
   }, []);
 
-  useEffect(() => { setPickupDate && setPickupDate(date); }, [date]);
-  useEffect(() => { setReturnDate && setReturnDate(dateReturn); }, [dateReturn]);
+  useEffect(() => {
+    setPickupDate && setPickupDate(date);
+  }, [date, setPickupDate]);
+
+  useEffect(() => {
+    setReturnDate && setReturnDate(dateReturn);
+  }, [dateReturn, setReturnDate]);
 
   const handleChange = (e) => {
     const value = e.target.value;
+
     setQuery(value);
     setSeleccionado("");
     setErrorSucursal("");
-    if (!value.trim()) { setSugerencias([]); return; }
-    setSugerencias(branches.filter(s => s.toLowerCase().includes(value.toLowerCase())));
+
+    if (!value.trim()) {
+      setSugerencias([]);
+      return;
+    }
+
+    setSugerencias(
+      branches.filter((s) =>
+        s.toLowerCase().includes(
+          value.toLowerCase()
+        )
+      )
+    );
   };
 
   const handleSelect = (sucursal) => {
@@ -64,32 +124,81 @@ function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setRetur
 
   const validarHora = (h) => {
     if (!h) return false;
+
     const [hh] = h.split(":").map(Number);
+
     return hh >= 8 && hh <= 18;
   };
 
   const handleSubmit = () => {
+
     setErrorSucursal("");
     setErrorHora("");
     setErrorReturnHora("");
     setSuccess("");
 
     if (!seleccionado) {
-      setErrorSucursal(t("filterCalendar.errorBranch"));
-      return;
-    }
-    if (!validarHora(hora)) {
-      setErrorHora(t("filterCalendar.errorHour"));
-      return;
-    }
-    if (!validarHora(returnhora)) {
-      setErrorReturnHora(t("filterCalendar.errorHour"));
-      return;
+      setErrorSucursal(
+        t("filterCalendar.errorBranch")
+      );
+      return false;
     }
 
-    onSearch({ branch: seleccionado, startDate: date, endDate: dateReturn });
-    setSuccess(t("filterCalendar.success"));
+    if (!validarHora(hora)) {
+      setErrorHora(
+        t("filterCalendar.errorHour")
+      );
+      return false;
+    }
+
+    if (!validarHora(returnhora)) {
+      setErrorReturnHora(
+        t("filterCalendar.errorHour")
+      );
+      return false;
+    }
+
+    onSearch({
+      branch: seleccionado,
+      startDate: date,
+      endDate: dateReturn
+    });
+
+    setSuccess(
+      t("filterCalendar.success")
+    );
+
+    return true;
   };
+
+  useImperativeHandle(ref, () => ({
+
+    submit: () => {
+      return handleSubmit();
+    },
+
+    clear: () => {
+
+      setQuery("");
+      setSeleccionado("");
+
+      setHora(getCurrentTime());
+      setReturnHora(getCurrentTime());
+
+      setDate(today);
+      setDateReturn(getTomorrow());
+
+      setSugerencias([]);
+
+      setSuccess("");
+
+      setErrorSucursal("");
+      setErrorFecha("");
+      setErrorHora("");
+      setErrorReturnHora("");
+    }
+
+  }));
 
   return (
   <div className="filter-wrapper">
@@ -223,7 +332,9 @@ function FilterCalendar({ onSearch, variant = "overlay", setPickupDate, setRetur
     </form>
 
   </div>
-);
-}
+
+  );
+
+});
 
 export default FilterCalendar;

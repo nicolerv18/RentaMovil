@@ -44,7 +44,7 @@ function FiltrerPrice({ cars = [], onFilter }) {
     setSelected("");
 
     onFilter(null);
-    setOpen(false); 
+
   };
 
 

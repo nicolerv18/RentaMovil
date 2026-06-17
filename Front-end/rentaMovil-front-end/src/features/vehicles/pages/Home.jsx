@@ -11,7 +11,7 @@ import img1 from "../../../assets/img/img1.png";
 import img2 from "../../../assets/img/img2.jpg";
 import img3 from "../../../assets/img/img3.webp";
 import FilterCalendar from "../components/FilterCalendar.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getCars } from "../data/carsService.js";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
@@ -23,8 +23,10 @@ function Home() {
   const [priceFilter, setPriceFilter] = useState(null);
   const [typeFilter, setTypeFilter] = useState("");
   const [modelFilter, setModelFilter] = useState(null);
+  const [activeTab, setActiveTab] = useState("availability");
 
   const [showFiltersModal, setShowFiltersModal] = useState(false);
+  const filterCalendarRef = useRef(null);
 
   const [isMobile, setIsMobile] = useState(
     window.innerWidth <= 992
@@ -32,12 +34,12 @@ function Home() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 992);
+      setIsMobile(window.innerWidth <= 1024);
     };
 
     window.addEventListener("resize", handleResize);
 
-    return () =>
+    return () => 
       window.removeEventListener(
         "resize",
         handleResize
@@ -106,6 +108,26 @@ function Home() {
     setModelFilter(null);
     setTypeFilter("");
   };
+
+const handleApplyFilters = () => {
+
+  if (activeTab === "availability") {
+
+    const valid =
+      filterCalendarRef.current?.submit();
+
+    if (!valid) return;
+  }
+
+  setShowFiltersModal(false);
+};
+
+const handleClearAllFilters = () => {
+
+  handleClearFilters();
+
+  filterCalendarRef.current?.clear();
+};
 
   const visibleCars = carsFiltered
     .filter((car) =>
@@ -234,14 +256,33 @@ function Home() {
 
             <div className="filters-modal">
 
-              <div className="filters-modal-header">
-                <h3>Filtros</h3>
+                <div className="filters-modal-header">
+
+                <div className="filters-tabs">
+                  <button
+                    className={`tab-btn ${
+                      activeTab === "availability" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("availability")}
+                    type="button"
+                  >
+                    Disponibilidad
+                  </button>
+
+                  <button
+                    className={`tab-btn ${
+                      activeTab === "features" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("features")}
+                    type="button"
+                  >
+                    Características
+                  </button>
+                </div>
 
                 <button
                   className="btn-close-modal"
-                  onClick={() =>
-                    setShowFiltersModal(false)
-                  }
+                  onClick={() => setShowFiltersModal(false)}
                 >
                   <FaTimes />
                 </button>
@@ -249,25 +290,37 @@ function Home() {
 
               <div className="filters-modal-content">
 
-                <FiltrerBrand
-                  cars={cars}
-                  onFilter={setBrandFilter}
-                />
+                {activeTab === "availability" && (
+                  <FilterCalendar
+                    ref={filterCalendarRef}
+                    onSearch={handleSearch}
+                    variant="normal"
+                  />
+                )}
 
-                <FiltrerPrice
-                  cars={cars}
-                  onFilter={setPriceFilter}
-                />
+                {activeTab === "features" && (
+                  <>
+                    <FiltrerBrand
+                      cars={cars}
+                      onFilter={setBrandFilter}
+                    />
 
-                <FiltrerModel
-                  cars={cars}
-                  onFilter={setModelFilter}
-                />
+                    <FiltrerPrice
+                      cars={cars}
+                      onFilter={setPriceFilter}
+                    />
 
-                <FiltrerType
-                  cars={cars}
-                  onFilter={setTypeFilter}
-                />
+                    <FiltrerModel
+                      cars={cars}
+                      onFilter={setModelFilter}
+                    />
+
+                    <FiltrerType
+                      cars={cars}
+                      onFilter={setTypeFilter}
+                    />
+                  </>
+                )}
 
               </div>
 
@@ -276,7 +329,7 @@ function Home() {
                 <button
                   className="btn-clear-filters"
                   onClick={() => {
-                    handleClearFilters();
+                    handleClearAllFilters();
                     setShowFiltersModal(false);
                   }}
                 >
@@ -284,10 +337,9 @@ function Home() {
                 </button>
 
                 <button
+                  type="button"
                   className="btn-apply-filters"
-                  onClick={() =>
-                    setShowFiltersModal(false)
-                  }
+                  onClick={handleApplyFilters}
                 >
                   Aplicar
                 </button>
