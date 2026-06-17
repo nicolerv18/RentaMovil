@@ -1,0 +1,94 @@
+.chip {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(28, 77, 68, 0.15);
+    background-color: aliceblue;
+    cursor: pointer;
+    font-size: clamp(10px, 1.2vw, 14px);
+    color: #1f2937;
+    font-family: 'poppins', sans-serif;
+    height: 37px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex: 0 1 auto;
+    min-width: 64px;
+    max-width: 220px;
+}
+
+.chip-active {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #001e46;
+    background: #001e46;
+    color: white;
+    cursor: pointer;
+    font-size: clamp(10px, 1.2vw, 14px);
+    margin: 0;
+    height: 37px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex: 0 1 auto;
+    min-width: 64px;
+    max-width: 220px;
+
+}
+.container-filter {
+    display: flex;
+    gap: 10px;
+    padding: 16px 14px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.container-chips {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 14px;
+    flex-wrap: wrap;
+}
+.container-filter input {
+    padding: 20px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(28, 77, 68, 0.15);
+    width: 100%;
+    max-width: 900px;
+    height: 30px;
+    background-color: aliceblue;
+    color: #1f2937;
+    font-family: 'poppins', sans-serif;
+    font-size: 15px;
+}
+
+.icon-search {
+    width: 100px;
+    height: 20px;
+    color: #1f2937;
+    position: relative;;
+    right: 55px;
+    display: flex;
+    position: static; 
+    right: unset;
+}
+
+@media (max-width: 700px) {
+    .container-filter {
+        padding: 10px 10px;
+        justify-content: flex-start;
+    }
+    .container-chips {
+        gap: 8px;
+        justify-content: flex-start;
+    }
+    .chip, .chip-active {
+        height: 34px;
+        min-width: 56px;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}

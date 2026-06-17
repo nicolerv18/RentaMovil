@@ -63,7 +63,7 @@ function AdminPanel({ open, onClose }) {
           {expandedSection === 'mantenimiento' && (
             <div className="admin-subsection">
               <Link to="/Maintenance" className="admin-subitem" onClick={onClose}>• {t('adminPanel.man-new')}</Link>
-              <Link to="/Maintenance" className="admin-subitem" onClick={onClose}>• {t('adminPanel.man-history')}</Link>
+              <Link to="/History" className="admin-subitem" onClick={onClose}>• {t('adminPanel.man-history')}</Link>
             </div>
           )}
         </div>

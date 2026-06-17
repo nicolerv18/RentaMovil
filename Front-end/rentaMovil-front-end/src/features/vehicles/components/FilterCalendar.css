@@ -210,6 +210,24 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
+/* TABLET */
+@media (max-width: 1024px) {
+
+    .filter {
+        grid-template-columns: repeat(2, 1fr);
+
+        max-width: 95%;
+
+        gap: 14px;
+    }
+
+    .btn-search {
+        grid-column: span 2;
+
+        width: 100%;
+    }
+}
+
 
 /* LARGE DESKTOP - 1200px+ */
 @media (min-width: 1200px) {

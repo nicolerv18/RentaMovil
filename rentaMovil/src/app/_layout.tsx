@@ -15,6 +15,7 @@ import 'react-native-reanimated';
 import '../traslation/i18n';
 
 export { ErrorBoundary } from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
   initialRouteName: 'auth/login',

@@ -52,6 +52,7 @@
     0 10px 30px rgba(0, 0, 0, .10);
 }
 
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -190,7 +191,6 @@
   font-weight: 700;
 }
 
-
 .btn-container {
   margin-top: 18px;
 }
@@ -225,6 +225,7 @@
   box-shadow:
     0 8px 20px rgba(220, 38, 38, .25);
 }
+
 
 
 .modal-overlay {
@@ -273,6 +274,7 @@
     transform: translateY(15px);
   }
 
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -315,6 +317,7 @@
   color: var(--textNavabar);
 }
 
+.btn-danger:hover,
 .btn-danger:hover,
 .btn-negative:hover {
   transform: translateY(-2px);

@@ -87,6 +87,7 @@
     "submitting": "Iniciando sesión...",
     "submit": "Iniciar sesión",
     "noAccount": "¿No tienes cuenta? Regístrate",
+    "changePassword" : "¿Deseas actualizar tu contraseña?",
     "error": "Error"
   },
   "register": {
