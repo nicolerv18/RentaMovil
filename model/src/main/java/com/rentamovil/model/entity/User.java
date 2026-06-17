@@ -19,7 +19,6 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column (unique = true)
     private String username;
 
     @Column(unique = true)
@@ -28,10 +27,10 @@ public class User {
     @Column (name = "phone")
     private String phone;
 
-    @Column (name = "password_hash")
+    @Column (name = "password_hash", nullable = false)
     private String passwordHash;
 
-    private String status; //macara si esta activo o inactivo
+    private String status; //marcara si esta activo o inactivo
 
     @Column(name = "last_login")
     private LocalDateTime lastLogin;

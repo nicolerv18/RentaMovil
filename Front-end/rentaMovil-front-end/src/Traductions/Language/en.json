@@ -48,7 +48,11 @@
     "typeElectric": "Electric",
     "typeGasoline": "Gasoline",
     "typeHybrid": "Hybrid",
-    "typeDiesel": "Diesel"
+    "typeDiesel": "Diesel",
+    "Apply": "Apply filters",
+    "Clear": "Clear filters",
+    "min": "minimun",
+    "max" : "maximun"
   },
   "reservation": {
     "ErrorDate": "Return date cannot be earlier than pickup date",

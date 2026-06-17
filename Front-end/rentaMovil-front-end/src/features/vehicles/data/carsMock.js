@@ -8,7 +8,9 @@ export const cars = [
     price: 140000,
     img: img,
     brand: "Mustang",
-    type: "Gasolina",
+    type: "Manual",
+    door: 4,
+    capacity: 5,
     model: "2022",
     branch: branches[0],
     reservas: []
@@ -19,7 +21,9 @@ export const cars = [
     price: 100000,
     img: img,
     brand: "Swift",
-    type: "Deportivo",
+    type: "Hibrido",
+    door: 4,
+    capacity: 5,
     model: "2021",
     branch: branches[2],
     reservas: []
@@ -31,6 +35,8 @@ export const cars = [
     img: img,
     brand: "Toyota",
     type: "Electrico",
+    door: 4,
+    capacity: 5,
     model: "2023",
     branch: branches[1],
     reservas: []
@@ -41,9 +47,50 @@ export const cars = [
     price: 150000,
     img: img,
     brand: "Twingo",
-    type: "Gasolina",
+    type: "Manual",
+    door: 4,
+    capacity: 5,
     model: "2023",
     branch: branches[1],
     reservas: []
   },
+      {
+    id: 5,
+    name: "Twingo",
+    price: 120000,
+    img: img,
+    brand: "Twingo",
+    type: "Manual",
+    door: 4,
+    capacity: 5,
+    model: "2021",
+    branch: branches[1],
+    reservas: []
+  },
+  {
+    id: 6,
+    name: "Twingo",
+    price: 120000,
+    img: img,
+    brand: "Twingo",
+    type: "Manual",
+    door: 4,
+    capacity: 5,
+    model: "2021",
+    branch: branches[1],
+    reservas: []
+  },
+  {
+    id: 7,
+    name: "Toyota",
+    price: 150000,
+    img: img,
+    brand: "Toyota",
+    type: "Electrico",
+    door: 4,
+    capacity: 5,
+    model: "2021",
+    branch: branches[2],
+    reservas: []
+  }
 ];

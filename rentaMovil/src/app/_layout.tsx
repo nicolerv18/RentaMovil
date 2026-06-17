@@ -1,14 +1,21 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider } from '../theme/themeContext';
+import { useTheme } from '../theme/useTheme';
+import { themes } from '../theme/themes';
+
+import {
+  ThemeProvider as NavigationThemeProvider,
+  DefaultTheme,
+} from '@react-navigation/native';
+
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+
 import 'react-native-reanimated';
+import '../traslation/i18n';
 
-import { useColorScheme } from 'react-native';
-
-export {
-  ErrorBoundary
-} from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
   initialRouteName: 'auth/login',
@@ -17,24 +24,62 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-
   useEffect(() => {
     SplashScreen.hideAsync();
   }, []);
 
-  return <RootLayoutNav />;
+  return (
+    <ThemeProvider>
+      <InnerNav />
+    </ThemeProvider>
+  );
 }
 
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+function InnerNav() {
+  const { themeName } = useTheme();
+
+  const currentTheme = themes[themeName];
+
+  const navigationTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: currentTheme.background,
+      card: currentTheme.card,
+      text: currentTheme.text,
+      border: currentTheme.border,
+      primary: currentTheme.primary,
+    },
+  };
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="auth/login" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+    <NavigationThemeProvider value={navigationTheme}>
+      <Stack
+        screenOptions={{
+          title: 'Renta Móvil',
+
+          headerStyle: {
+            backgroundColor: currentTheme.background,
+          },
+
+          headerTintColor: currentTheme.text,
+        }}
+      >
+        <Stack.Screen
+          name="auth/login"
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="modal"
+          options={{ presentation: 'modal' }}
+        />
       </Stack>
-    </ThemeProvider>
+    </NavigationThemeProvider>
   );
 }

@@ -154,8 +154,7 @@ const [image, setImage] = useState(() => {
             <Link to="/ChangePassword" className="linkC">
               {t("count.modificarPassword")}
             </Link>
-
-            <p className="status">
+              <p className="status2">
               {isEditing ? t("count.modoEdicion") : t("count.perfilActualizado")}
             </p>
           </div>

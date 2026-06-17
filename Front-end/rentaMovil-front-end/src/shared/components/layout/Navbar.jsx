@@ -1,34 +1,65 @@
-import './Navbar.css'
+import "./Navbar.css";
 import { Link } from "react-router-dom";
-import {FaCar, FaBars} from "react-icons/fa";
-import {MdPerson} from "react-icons/md";
-import { useState } from 'react';
+import { FaCar, FaBars, FaTimes } from "react-icons/fa";
+import { MdPerson } from "react-icons/md";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-function Navbar(){
+    function Navbar() {
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
 
     return (
-        <header className='navbar'>
+        <header className="navbar">
+        <div className="navbar-content">
 
-            <div className='logo-container'>
-                <h2 className='Title'>RentaMovil</h2>
-                <FaCar className='iconCar'/>
-            </div>
-            <div className='menu-toggle'>
-                <FaBars  className="icon-FaBars" onClick={() => setOpen(!open)} />
-            </div>
+            <Link to="/Home" className="logo-container">
+            <span className="logo-text">RentaMovil</span>
+            <FaCar className="logo-icon" />
+            </Link>
 
-                <nav className={`nav-links-container ${open ? "active" : ""}`}>
-                <Link to="/Home">{t("navbar.linkInit")}</Link>
-                <Link to="/Notification">{t("navbar.linkNotifications")}</Link>
-                <Link to="/HistorialReservation">{t("navbar.linkReservation")}</Link>
-                <Link to="/Count"><MdPerson className='icon-user'/></Link>
+        <nav className={`nav-links ${open ? "active" : ""}`}>
+
+            <Link
+                to="/Home"
+                onClick={() => setOpen(false)}
+            >
+                {t("navbar.linkInit")}
+            </Link>
+
+            <Link
+                to="/Notification"
+                onClick={() => setOpen(false)}
+            >
+                {t("navbar.linkNotifications")}
+            </Link>
+
+            <Link
+                to="/HistorialReservation"
+                onClick={() => setOpen(false)}
+            >
+                {t("navbar.linkReservation")}
+            </Link>
+
+            <Link
+                to="/Count"
+                className="profile-link"
+                onClick={() => setOpen(false)}
+            >
+                <MdPerson />
+            </Link>
             </nav>
 
+            <button
+            className="menu-button"
+            onClick={() => setOpen(!open)}
+            >
+            {open ? <FaTimes /> : <FaBars />}
+            </button>
+
+        </div>
         </header>
     );
-}
+    }
 
 export default Navbar;

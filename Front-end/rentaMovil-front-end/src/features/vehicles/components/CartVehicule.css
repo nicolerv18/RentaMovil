@@ -3,9 +3,10 @@
     grid-template-columns: 140px 1fr 160px;
     gap: 20px;
     width: 100%;
-    max-width: 800px;
+    max-width: 950px;
+    box-sizing: border-box; /*la solucion a todos mis problemas, evita q se desborde la card*/
     background: var(--card-bg);
-    border: 1px solid var(--border-card);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
@@ -106,6 +107,35 @@
     font-size: 20px;
 }
 
+.location-box{
+    flex: 0 0 auto;
+    margin: 5px 5px 5px;
+    padding: 4px 8px;
+
+    border:1px solid var(--border);
+    border-radius:8px;
+
+    background:var(--input);
+
+    box-sizing:border-box;
+
+    margin-bottom:1px;
+    }
+
+    .location-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .location-text{
+        font-size:12px;
+        font-family: sans-serif;
+
+    }
+
+    .text-box{
+        font-weight: 600;
+    }
 
 /*TABLET*/
 @media (max-width: 1024px) {
@@ -139,6 +169,11 @@
     .features {
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    .location-container {
+        justify-content: center;
+        width: 100%;
     }
 
     .car-price {
