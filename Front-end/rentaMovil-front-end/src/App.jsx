@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // Auth
 import Login from './features/auth/pages/Login.jsx';
 import Count from './features/auth/pages/Count.jsx';
-import RegisterForm from './features/auth/components/RegisterForm.jsx';
 import ChangePassword from './features/auth/pages/ChangePassword.jsx';
 
 
