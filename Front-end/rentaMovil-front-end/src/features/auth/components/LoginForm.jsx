@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import Quotes from '../../../shared/components/Quotes.jsx';
 import './LoginForm.css';
 import { useTranslation } from 'react-i18next';
- 
+import './RegisterForm.jsx';
 
 
-function LoginForm({onSubmit}){
+function LoginForm({onSubmit, onSwitchToRegister}){
     const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -59,10 +58,7 @@ function LoginForm({onSubmit}){
                 />
             </div>
             {error && <div className='login-error' role='alert'>{t(error)}</div>} 
-            <Link to="/Register" className='register-link'>{t('loginForm.noAccount')}</Link>
-            <Link to="/EmailVerification" className='register-link'>{t('loginForm.changePassword')}</Link>
-
-            <></>
+            <button type="button" className='register-link' onClick={onSwitchToRegister}>{t('loginForm.noAccount')}</button>
             <button className='email-btn' type="submit" disabled={loading}>
                 {loading ? t('loginForm.submitting') : t('loginForm.submit')}
             </button>

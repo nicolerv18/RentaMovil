@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import "./RegisterForm.css";
 import Quotes from '../../../shared/components/Quotes';
 import { useTranslation } from 'react-i18next'; 
 
 
-function RegisterForm({ onSubmit }) {
+function RegisterForm({ onSubmit, onSwitchToLogin }) {
   const { t } = useTranslation();
 
   const [firstName, setFirstName] = useState('');
@@ -155,9 +154,9 @@ function RegisterForm({ onSubmit }) {
         {error && <div className="register-error">{error}</div>}
 
         {/* Link */}
-        <Link to="/" className="register-link">
+        <button type="button" className="register-link" onClick={onSwitchToLogin}>
           {t('register.haveAccount')}
-        </Link>
+        </button>
 
         {/* Botón */}
         <button className="register-btn" type="submit" disabled={loading}>

@@ -8,7 +8,7 @@ function FiltrerBrand({ cars = [], onFilter }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const brands = [...new Set(cars.map(c => c.brand))];
+  const brands = [...new Set(cars.map((c) => c.brand))];
 
   const handleSelect = (brand) => {
     const newSelected = selected === brand ? "" : brand;
@@ -20,17 +20,44 @@ function FiltrerBrand({ cars = [], onFilter }) {
     <aside className="filtrer-container">
       <ul className="nav-container">
         <li className={open ? "active" : ""}>
-          <button className="btn-filtrar" onClick={() => setOpen(!open)}>
-            {t('filtersHome.brand')} <FaCar className="icon2" />
-            <FaArrowAltCircleDown className={`icono-flecha ${open ? "rotade" : ""}`} />
+          <button
+            type="button"
+            className="btn-filtrar"
+            onClick={() => setOpen(!open)}
+          >
+            <div className="btn-filtrar-content">
+              <FaCar className="icon2" />
+              <span>{selected || t("filtersHome.brand")}</span>
+            </div>
+
+            <FaArrowAltCircleDown
+              className={`icono-flecha ${open ? "rotade" : ""}`}
+            />
           </button>
-          <ul className="dropdown">
-            {brands.map((brand) => (
-              <li key={brand} className={selected === brand ? "selected" : ""} onClick={() => handleSelect(brand)}>
-                <a>{brand}</a>
-              </li>
-            ))}
-          </ul>
+
+          <div className="dropdown">
+            <div className="dropdown-section">
+              <h4 className="dropdown-title">
+                {t("filtersHome.brand") || "Marcas"}
+              </h4>
+
+              <ul>
+                {brands.map((brand) => (
+                  <li key={brand}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selected === brand}
+                        onChange={() => handleSelect(brand)}
+                      />
+
+                      <span className="item-label">{brand}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </li>
       </ul>
     </aside>

@@ -85,6 +85,11 @@
 
     }
 
+    .status2{
+        font-size: 12px;
+        color: var(--accent);
+    }
+
     .imgC {
         width: 150px;
         height: 150px;
