@@ -122,9 +122,12 @@
 @media (max-width: 768px) {
   .admin-panel {
     width: 300px;
-    right: -300px;
+    right: -350px;
   }
-
+.admin-panel.active {
+    right: 0; 
+  }
+  
   .btn-admin {
     top: 15px;
     right: 15px;

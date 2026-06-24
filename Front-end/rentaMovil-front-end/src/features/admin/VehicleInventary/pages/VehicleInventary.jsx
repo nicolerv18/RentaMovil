@@ -1,43 +1,88 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react"; // CORREGIDO: Se importaron useEffect y useRef
 import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
 import Footer from "../../../../shared/components/layout/Footer";
 import { useNavigate } from "react-router-dom";
 import "./VehicleInventary.css";
+import { useTranslation } from "react-i18next";
+import carro from "../../../../assets/carro.png";
+import { TfiLayoutGrid2Alt } from "react-icons/tfi";
+import { TfiMenu } from "react-icons/tfi";
+
+
 
 const vehiculosData = [
-  { id: 1, placa: "ABC-123", marca: "Toyota", modelo: "Camry", año: 2022, tipo: "Sedán",    sucursal: "Neiva Centro",    estado: "Disponible",   km: 12400, imagen: null },
-  { id: 2, placa: "DEF-456", marca: "Honda",  modelo: "CR-V",  año: 2021, tipo: "SUV",      sucursal: "Neiva Norte",     estado: "En uso",       km: 34200, imagen: null },
+  { id: 1, placa: "ABC-123", marca: "Toyota", modelo: "Camry", año: 2022, tipo: "Sedán",      sucursal: "Neiva Centro",    estado: "Disponible",    km: 12400, imagen: null },
+  { id: 2, placa: "DEF-456", marca: "Honda",  modelo: "CR-V",  año: 2021, tipo: "SUV",        sucursal: "Neiva Norte",     estado: "En uso",       km: 34200, imagen: null },
   { id: 3, placa: "GHI-789", marca: "Ford",   modelo: "Mustang",año: 2023,tipo: "Deportivo",sucursal: "Bogotá Centro",   estado: "Disponible",   km: 5800,  imagen: null },
-  { id: 4, placa: "JKL-012", marca: "BMW",    modelo: "X5",    año: 2022, tipo: "SUV",      sucursal: "Bogotá Norte",    estado: "Mantenimiento",km: 48900, imagen: null },
-  { id: 5, placa: "MNO-345", marca: "Audi",   modelo: "A4",    año: 2021, tipo: "Sedán",    sucursal: "Neiva Centro",    estado: "Disponible",   km: 22100, imagen: null },
-  { id: 6, placa: "PQR-678", marca: "Mercedes",modelo:"C-Class",año: 2023,tipo: "Sedán",   sucursal: "Medellín Sur",    estado: "En uso",       km: 9300,  imagen: null },
+  { id: 4, placa: "JKL-012", marca: "BMW",    modelo: "X5",    año: 2022, tipo: "SUV",        sucursal: "Bogotá Norte",    estado: "Mantenimiento",km: 48900, imagen: null },
+  { id: 5, placa: "MNO-345", marca: "Audi",   modelo: "A4",    año: 2021, tipo: "Sedán",      sucursal: "Neiva Centro",    estado: "Disponible",   km: 22100, imagen: null },
+  { id: 6, placa: "PQR-678", marca: "Mercedes",modelo:"C-Class",año: 2023,tipo: "Sedán",    sucursal: "Medellín Sur",    estado: "En uso",       km: 9300,  imagen: null },
   { id: 7, placa: "STU-901", marca: "Chevrolet",modelo:"Spark", año: 2020,tipo: "Compacto", sucursal: "Neiva Norte",     estado: "Disponible",   km: 61200, imagen: null },
-  { id: 8, placa: "VWX-234", marca: "Kia",    modelo: "Sportage",año: 2022,tipo: "SUV",    sucursal: "Medellín Centro", estado: "Mantenimiento",km: 31700, imagen: null },
-  { id: 9, placa: "YZA-567", marca: "Mazda",  modelo: "CX-5",  año: 2023, tipo: "SUV",      sucursal: "Bogotá Centro",   estado: "Disponible",   km: 7600,  imagen: null },
+  { id: 8, placa: "VWX-234", marca: "Kia",    modelo: "Sportage",año: 2022,tipo: "SUV",       sucursal: "Medellín Centro", estado: "Mantenimiento",km: 31700, imagen: null },
+  { id: 9, placa: "YZA-567", marca: "Mazda",  modelo: "CX-5",  año: 2023, tipo: "SUV",        sucursal: "Bogotá Centro",   estado: "Disponible",   km: 7600,  imagen: null },
 ];
-
-const ESTADOS = ["Todos", "Disponible", "En uso", "Mantenimiento"];
-const SUCURSALES = ["Todas", ...new Set(vehiculosData.map(v => v.sucursal))];
-const TIPOS = ["Todos", ...new Set(vehiculosData.map(v => v.tipo))];
 
 export default function VehicleInventory() {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Listo por si usas traducciones
+  
+  // Estados de búsqueda y filtros
   const [search, setSearch] = useState("");
-  const [filterEstado, setFilterEstado] = useState("Todos");
-  const [filterSucursal, setFilterSucursal] = useState("Todas");
-  const [filterTipo, setFilterTipo] = useState("Todos");
-  const [selected, setSelected] = useState(null);
-  const [vista, setVista] = useState("grid"); // grid | tabla
+  const [activeFilter, setActiveFilter] = useState(null);
+  const [selectedFilters, setSelectedFilters] = useState({
+    estado: null,
+    sucursal: null,
+    tipo: null,
+  });
 
+  // CORREGIDO: Se agregaron los estados que faltaban en tu código
+  const [vista, setVista] = useState("grid"); // Controla si se ve en 'grid' o 'tabla'
+  const [selected, setSelected] = useState(null); // Controla el vehículo seleccionado para el modal
+
+  const filtersRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (filtersRef.current && !filtersRef.current.contains(event.target)) {
+        setActiveFilter(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleFilterClick = (filterType) =>
+    setActiveFilter(activeFilter === filterType ? null : filterType);
+
+  const handleFilterSelect = (filterType, value) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [filterType]: prev[filterType] === value ? null : value,
+    }));
+  };
+
+  const clearAllFilters = () =>
+    setSelectedFilters({ estado: null, sucursal: null, tipo: null });
+
+  const hasActiveFilters = Object.values(selectedFilters).some((v) => v !== null);
+
+  // Arrays de opciones dinámicas
+  const ESTADOS = ["Todos", "Disponible", "En uso", "Mantenimiento"];
+  const SUCURSALES = ["Todas", ...new Set(vehiculosData.map(v => v.sucursal))];
+  const TIPOS = ["Todos", ...new Set(vehiculosData.map(v => v.tipo))];
+
+  // Filtrado lógico
   const filtered = vehiculosData.filter(v =>
-    (search === "" || v.placa.toLowerCase().includes(search.toLowerCase()) ||
+    (search === "" ||
+      v.placa.toLowerCase().includes(search.toLowerCase()) ||
       v.marca.toLowerCase().includes(search.toLowerCase()) ||
       v.modelo.toLowerCase().includes(search.toLowerCase())) &&
-    (filterEstado === "Todos" || v.estado === filterEstado) &&
-    (filterSucursal === "Todas" || v.sucursal === filterSucursal) &&
-    (filterTipo === "Todos" || v.tipo === filterTipo)
+    (selectedFilters.estado === null || selectedFilters.estado === "Todos" || v.estado === selectedFilters.estado) &&
+    (selectedFilters.sucursal === null || selectedFilters.sucursal === "Todas" || v.sucursal === selectedFilters.sucursal) &&
+    (selectedFilters.tipo === null || selectedFilters.tipo === "Todos" || v.tipo === selectedFilters.tipo)
   );
 
+  // Estadísticas calculadas
   const stats = {
     total: vehiculosData.length,
     disponible: vehiculosData.filter(v => v.estado === "Disponible").length,
@@ -82,12 +127,9 @@ export default function VehicleInventory() {
           </div>
         </div>
 
-        {/* Controles */}
+        {/* Controles de Búsqueda, Filtros y Cambio de Vista */}
         <div className="vi-controls">
           <div className="vi-search-wrap">
-            <svg className="vi-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
             <input
               className="vi-search"
               type="text"
@@ -97,30 +139,67 @@ export default function VehicleInventory() {
             />
           </div>
 
-          <div className="vi-filters">
-            <select className="vi-select" value={filterEstado} onChange={e => setFilterEstado(e.target.value)}>
-              {ESTADOS.map(e => <option key={e}>{e}</option>)}
-            </select>
-            <select className="vi-select" value={filterSucursal} onChange={e => setFilterSucursal(e.target.value)}>
-              {SUCURSALES.map(s => <option key={s}>{s}</option>)}
-            </select>
-            <select className="vi-select" value={filterTipo} onChange={e => setFilterTipo(e.target.value)}>
-              {TIPOS.map(t => <option key={t}>{t}</option>)}
-            </select>
+          {/* Selector de vistas añadido para dar soporte visual a tu código */}
+         <div className="vi-view-toggle">
+  <button 
+    className={`vi-view-btn ${vista === 'grid' ? 'active' : ''}`} 
+    onClick={() => setVista('grid')}
+    title="Cuadrícula"
+  >
+    <TfiLayoutGrid2Alt size={18} />
+  </button>
+  
+  <button 
+    className={`vi-view-btn ${vista === 'tabla' ? 'active' : ''}`} 
+    onClick={() => setVista('tabla')}
+    title="Tabla"
+  >
+    <TfiMenu size={18} />
+  </button>
+</div>
 
-            <div className="vi-vista-toggle">
-              <button className={vista === 'grid' ? 'active' : ''} onClick={() => setVista('grid')}>
-                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <div className="vi-filters" ref={filtersRef}>
+            {[
+              { key: "estado", label: "Estado", options: ESTADOS },
+              { key: "sucursal", label: "Sucursal", options: SUCURSALES },
+              { key: "tipo", label: "Tipo", options: TIPOS },
+            ].map(({ key, label, options }) => (
+              <div className="vi-filter-wrap" key={key}>
+                <button
+                  className={`vi-filter-btn ${activeFilter === key ? "active" : ""} ${selectedFilters[key] ? "selected" : ""}`}
+                  onClick={() => handleFilterClick(key)}
+                >
+                  <span>{selectedFilters[key] || label}</span>
+                  <span className="vi-filter-arrow">▼</span>
+                </button>
+                {activeFilter === key && (
+                  <div className="vi-dropdown">
+                    {options.map((val) => (
+                      <button
+                        key={val}
+                        className={`vi-dropdown-item ${selectedFilters[key] === val ? "chosen" : ""}`}
+                        onClick={() => handleFilterSelect(key, val)}
+                      >
+                        {selectedFilters[key] === val && <span>✓ </span>}
+                        {val}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            {hasActiveFilters && (
+              <button className="vi-clear-btn" onClick={clearAllFilters}>
+                ✕ Limpiar filtros
               </button>
-              <button className={vista === 'tabla' ? 'active' : ''} onClick={() => setVista('tabla')}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-              </button>
-            </div>
+            )}
           </div>
         </div>
 
         {/* Resultados */}
-        <p className="vi-results-count">{filtered.length} vehículo{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}</p>
+        <p className="vi-results-count">
+          {filtered.length} vehículo{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}
+        </p>
 
         {/* Vista Grid */}
         {vista === 'grid' && (
@@ -129,14 +208,7 @@ export default function VehicleInventory() {
               <div key={v.id} className={`vi-card estado-${v.estado.replace(' ', '-').toLowerCase()}`} onClick={() => setSelected(v)}>
                 <div className="vi-card-img">
                   <span className="vi-card-tipo">{v.tipo}</span>
-                  <svg viewBox="0 0 64 32" className="vi-car-svg">
-                    <rect x="8" y="14" width="48" height="12" rx="4" fill="var(--navbar)" opacity="0.15"/>
-                    <rect x="14" y="8" width="36" height="14" rx="5" fill="var(--navbar)" opacity="0.25"/>
-                    <circle cx="18" cy="26" r="5" fill="var(--text-h)" opacity="0.6"/>
-                    <circle cx="46" cy="26" r="5" fill="var(--text-h)" opacity="0.6"/>
-                    <circle cx="18" cy="26" r="2.5" fill="var(--card-bg)"/>
-                    <circle cx="46" cy="26" r="2.5" fill="var(--card-bg)"/>
-                  </svg>
+                  <img src={v.imagen || carro} alt={`${v.marca} ${v.modelo}`} />
                 </div>
                 <div className="vi-card-body">
                   <div className="vi-card-top">

@@ -12,6 +12,18 @@ function Navbar(){
     const [menuOpen, setMenuOpen] = useState(false);
     const [adminOpen, setAdminOpen] = useState(false);
 
+    // Controla el menú de hamburguesa flotante de navegación
+    const handleToggleMenu = () => {
+        setMenuOpen(!menuOpen);
+        if (!menuOpen) setAdminOpen(false); // Si se abre este, cierra el Admin Panel
+    };
+
+    // Controla la apertura del Panel de Administración
+    const handleToggleAdmin = () => {
+        setAdminOpen(!adminOpen);
+        if (!adminOpen) setMenuOpen(false); // Si se abre este, cierra el menú de navegación
+    };
+
     return (
         <>
             <header className='navbar'>
@@ -22,16 +34,17 @@ function Navbar(){
                 </div>
 
                 <div className='menu-toggle'>
-                    <FaBars className="icon-FaBars" onClick={() => setMenuOpen(!menuOpen)} />
+                    <FaBars className="icon-FaBars" onClick={handleToggleMenu} />
                 </div>
 
                 <nav className={`nav-links-container ${menuOpen ? "active" : ""}`}>
                     <Link to="/HomeAdmin">{t("navbar.linkInit")}</Link>
                     <Link to="/Notification">{t("navbar.linkNotifications")}</Link>
                     <Link to="/HistorialReservation">{t("navbar.linkReservation")}</Link>
+                    
                     <span
                         className={`nav-admin-link ${adminOpen ? "nav-admin-active" : ""}`}
-                        onClick={() => setAdminOpen(!adminOpen)}
+                        onClick={handleToggleAdmin}
                     >
                         {t("navbar.linkPanelAdmin")}
                     </span>
@@ -40,6 +53,7 @@ function Navbar(){
 
             </header>
 
+            
             <AdminPanel open={adminOpen} onClose={() => setAdminOpen(false)} />
         </>
     );
