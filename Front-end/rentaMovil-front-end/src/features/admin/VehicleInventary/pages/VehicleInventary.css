@@ -74,12 +74,12 @@
 }
 .vi-modal-btn-primary {
   flex: 1;
-  background: var(--navbar);
+  background: #1e40af;
   color: #fff;
   border: none;
 }
 .vi-modal-btn-primary:hover {
-  background: var(--primary-dark, #1e40af);
+  background: #5a7ceb;
 }
 .vi-clear-btn {
   background: transparent;
@@ -131,7 +131,7 @@
 .vi-stat.disponible,
 .vi-card.estado-disponible { border-left-color: var(--button, #00c853); font-size: 15px; }
 .vi-stat.en-uso,
-.vi-card.estado-en-uso { border-left-color: var(--navbar, #1d4ed8); font-size: 15px;}
+.vi-card.estado-en-uso { border-left-color: #1d4ed8; font-size: 15px;}
 .vi-stat.mantenimiento,
 .vi-card.estado-mantenimiento { border-left-color: #f59e0b; font-size: 15px;}
 

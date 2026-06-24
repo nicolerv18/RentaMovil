@@ -159,6 +159,7 @@
     "vehicle": "Veículo",
     "ve-agg": "Adicionar veículo",
     "ve-state": "Consultar estado",
+    "ve-inventory": "Inventário de Veículos",
     "location": "Localização",
     "loc-map": "Mapa",
     "loc-routes": "Histórico de rotas",

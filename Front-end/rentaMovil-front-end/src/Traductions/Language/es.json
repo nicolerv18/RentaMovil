@@ -87,7 +87,7 @@
     "submitting": "Iniciando sesión...",
     "submit": "Iniciar sesión",
     "noAccount": "¿No tienes cuenta? Regístrate",
-    "changePassword" : "¿Deseas actualizar tu contraseña?",
+    "changePassword": "¿Deseas actualizar tu contraseña?",
     "error": "Error"
   },
   "register": {
@@ -166,6 +166,7 @@
     "vehicle": "Vehiculo",
     "ve-agg": "Agregar vehiculo",
     "ve-state": "Consultar Estado",
+    "ve-inventory": "Inventario de Vehiculos",
     "location": "Ubicación",
     "loc-map": "Mapa",
     "loc-routes": "Historial de rutas",
@@ -353,30 +354,50 @@
     "shedule": "Agendar mantenimiento",
     "button": "Historial de mantenimientos"
   },
-  "notifications" : {
-    "unread" : "Sin leer",
-    "all" : "Todas",
-    "confReservations" : "Reservas Confirmadas",
-    "pays" : "Pagos",
-    "cancel" : "Canceladas",
-    "recordatory" : "Recordatorios",
-    "recibed" : "Recibidas",
-    "detail" : "Detalles de notificación",
-    "message" : "Mensaje",
-    "date" : "Fecha",
-    "state" : "Estado",
-    "vehicle" : "Vehiculo",
-    "close" : "Cerrar"
+  "notifications": {
+    "unread": "Sin leer",
+    "all": "Todas",
+    "confReservations": "Reservas Confirmadas",
+    "pays": "Pagos",
+    "cancel": "Canceladas",
+    "recordatory": "Recordatorios",
+    "recibed": "Recibidas",
+    "detail": "Detalles de notificación",
+    "message": "Mensaje",
+    "date": "Fecha",
+    "state": "Estado",
+    "vehicle": "Vehiculo",
+    "close": "Cerrar"
   },
-"historyReservation" :{
-  "myReservations" : "Mis Reservas",
-  "date" : "Fecha: ",
-  "days" : "Días: ",
-  "total" : "Total: ",
-  "cancel" : "Cancelar Reserva",
-  "sure" : "¿Seguro que deseas cancelar la reserva de",
-  "yes" : "Sí, cancelar",
-  "no" : "No",
-  "confirm" :"Confirmar"
-}
+  "historyReservation": {
+    "myReservations": "Mis Reservas",
+    "date": "Fecha: ",
+    "days": "Días: ",
+    "total": "Total: ",
+    "cancel": "Cancelar Reserva",
+    "sure": "¿Seguro que deseas cancelar la reserva de",
+    "yes": "Sí, cancelar",
+    "no": "No",
+    "confirm": "Confirmar"
+  },
+  "VehicleInventary": {
+    "title": "Inventario de Vehículos",
+    "subtitle": "Consulta el estado y la ubicacion de toda la flota",
+    "btnAddVehicle": " + Agregar Vehículo",
+    "total": "Total ",
+    "available": "Disponible ",
+    "inUse": "En uso ",
+    "maintenance": "Mantenimiento ",
+    "placeholderSearch": "Buscar por placa, marca o modelo...",
+    "cuadTitle": "Cudricula",
+    "cuadTitle2": "Tabla",
+    "keyState": "Estado",
+    "keyBranch": "Sucursal",
+    "keyType": "Tipo",
+    "CleanFilters": " X Limpiar filtros",
+    "vehicleLength": "Vehículo",
+    "vehicleLength2": "encontrado"
+
+
+  }
 }

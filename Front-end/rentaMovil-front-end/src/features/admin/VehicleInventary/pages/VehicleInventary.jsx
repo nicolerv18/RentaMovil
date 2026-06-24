@@ -99,11 +99,11 @@ export default function VehicleInventory() {
         {/* Header */}
         <div className="vi-header">
           <div>
-            <h1 className="vi-title">Inventario de Vehículos</h1>
-            <p className="vi-subtitle">Consulta el estado y ubicación de toda la flota</p>
+            <h1 className="vi-title">{t('VehicleInventary.title')}</h1>
+            <p className="vi-subtitle">{t('VehicleInventary.subtitle')}</p>
           </div>
           <button className="vi-btn-add" onClick={() => navigate('/RegisterVehicle')}>
-            + Agregar vehículo
+            {t('VehicleInventary.btnAddVehicle')}
           </button>
         </div>
 
@@ -111,19 +111,19 @@ export default function VehicleInventory() {
         <div className="vi-stats">
           <div className="vi-stat">
             <span className="vi-stat-num">{stats.total}</span>
-            <span className="vi-stat-label">Total</span>
+            <span className="vi-stat-label">{t('VehicleInventary.total')}</span>
           </div>
           <div className="vi-stat disponible">
             <span className="vi-stat-num">{stats.disponible}</span>
-            <span className="vi-stat-label">Disponibles</span>
+            <span className="vi-stat-label">{t('VehicleInventary.available')}</span>
           </div>
           <div className="vi-stat en-uso">
             <span className="vi-stat-num">{stats.enUso}</span>
-            <span className="vi-stat-label">En uso</span>
+            <span className="vi-stat-label">{t('VehicleInventary.inUse')}</span>
           </div>
           <div className="vi-stat mantenimiento">
             <span className="vi-stat-num">{stats.mantenimiento}</span>
-            <span className="vi-stat-label">Mantenimiento</span>
+            <span className="vi-stat-label">{t('VehicleInventary.maintenance')}</span>
           </div>
         </div>
 
@@ -133,7 +133,7 @@ export default function VehicleInventory() {
             <input
               className="vi-search"
               type="text"
-              placeholder="Buscar por placa, marca o modelo..."
+              placeholder={t('VehicleInventary.searchPlaceholder')}
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
@@ -144,7 +144,7 @@ export default function VehicleInventory() {
   <button 
     className={`vi-view-btn ${vista === 'grid' ? 'active' : ''}`} 
     onClick={() => setVista('grid')}
-    title="Cuadrícula"
+    title={t('VehicleInventary.cuadTitle')}
   >
     <TfiLayoutGrid2Alt size={18} />
   </button>
@@ -152,7 +152,7 @@ export default function VehicleInventory() {
   <button 
     className={`vi-view-btn ${vista === 'tabla' ? 'active' : ''}`} 
     onClick={() => setVista('tabla')}
-    title="Tabla"
+    title={t('VehicleInventary.cuadTitle2')}
   >
     <TfiMenu size={18} />
   </button>
@@ -160,9 +160,9 @@ export default function VehicleInventory() {
 
           <div className="vi-filters" ref={filtersRef}>
             {[
-              { key: "estado", label: "Estado", options: ESTADOS },
-              { key: "sucursal", label: "Sucursal", options: SUCURSALES },
-              { key: "tipo", label: "Tipo", options: TIPOS },
+              { key: "estado", label: t('VehicleInventary.keyState'), options: ESTADOS },
+              { key: "sucursal", label: t('VehicleInventary.keyBranch'), options: SUCURSALES },
+              { key: "tipo", label: t('VehicleInventary.keyType'), options: TIPOS },
             ].map(({ key, label, options }) => (
               <div className="vi-filter-wrap" key={key}>
                 <button
@@ -190,7 +190,7 @@ export default function VehicleInventory() {
             ))}
             {hasActiveFilters && (
               <button className="vi-clear-btn" onClick={clearAllFilters}>
-                ✕ Limpiar filtros
+                {t('VehicleInventary.CleanFilters')}
               </button>
             )}
           </div>

@@ -160,6 +160,7 @@
     "vehicle": "Vehicle",
     "ve-agg": "Add vehicle",
     "ve-state": "Check Status",
+    "ve-inventory": "Vehicle Inventory",
     "location": "Location",
     "loc-map": "Map",
     "loc-routes": "Route History",
