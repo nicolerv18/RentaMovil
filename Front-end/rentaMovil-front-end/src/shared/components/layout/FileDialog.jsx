@@ -20,20 +20,31 @@ function FileDialog({ onFileChange, file }) {
     /*  const [file, setFile] = useState() */ // estado para almacenar el archivo seleccionado
     const [preview, setPreview] = useState(null) // estado para almacenar la url de la imagen seleccionada
 
-    //cuando el padre limpia el archivo , tambien limpia el preview local
     useEffect(() => {
         if (!file) {
             setPreview(null)
+            return
         }
-    }, [file]) // se ejecuta ca que file cambia 
+
+        if (typeof file === 'string') {
+            setPreview(file)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(file)
+        setPreview(objectUrl)
+
+        return () => {
+            URL.revokeObjectURL(objectUrl)
+        }
+    }, [file])
+
     const onDrop = useCallback(acceptedFiles => {
-        //se encarga de manejar el evento de selcion de el archivo
-        const selectedFile = acceptedFiles[0] // se obtiene el primer archivo seleccionado por el usuario
+        const selectedFile = acceptedFiles[0]
         if (selectedFile) {
-            setPreview(URL.createObjectURL(selectedFile)) // se crea una url para mostrar la imagen seleccionada por el usuario
             onFileChange(selectedFile);
         }
-    }, [onFileChange])//aca se anade onFileChange a las dependenciasaaaa     
+    }, [onFileChange])
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: { 'image/*': [] } });
 
