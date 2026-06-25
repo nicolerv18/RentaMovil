@@ -149,7 +149,7 @@
 .vi-table th,
 .vi-modal-label,
 .vi-modal-field-label {
-  font: 700 11px inherit;
+  font: 700 8px inherit;
   color: var(--placeholder);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -214,6 +214,7 @@
 }
 .vi-card-nombre {
   font: 700 15px inherit;
+  font-weight: 600; 
   color: var(--text-h);
   margin: 0 0 4px;
 }
@@ -481,7 +482,7 @@
   font-size: 15px;
 }
 .vi-modal-title {
-  font: 800 20px inherit;
+  font: 800 15px inherit;
   color: var(--text-h);
   margin: 0;
   
@@ -500,6 +501,7 @@
 }
 .vi-modal-field-value {
   font: 600 15px inherit;
+  font-weight: 600;
   color: var(--text-h);
 }
 .vi-modal-footer {

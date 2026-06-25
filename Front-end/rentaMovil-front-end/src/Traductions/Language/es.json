@@ -395,9 +395,21 @@
     "keyBranch": "Sucursal",
     "keyType": "Tipo",
     "CleanFilters": " X Limpiar filtros",
-    "vehicleLength": "Vehículo",
-    "vehicleLength2": "encontrado"
-
-
+    "resultsCount_one": "{{count}} vehículo encontrado",
+    "resultsCount_other": "{{count}} vehículos encontrados",
+    "notFound": "No se encontraron vehículos.",
+    "plate": "Placa",
+    "vehicle": "Vehículo",
+    "year": "Año",
+    "type": "Tipo",
+    "branch": "Sucursal",
+    "mileage": "Kilometraje",
+    "state": "Estado",
+    "back": "Regresar",
+    "vehicleDetails": "Ficha del vehículo",
+    "close" : "Cerrar",
+    "stateSee": "Ver estado",
+    "all_m": "Todos",
+      "all_f": "Todas"
   }
 }

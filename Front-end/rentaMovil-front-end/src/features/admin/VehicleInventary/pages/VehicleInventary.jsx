@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import "./VehicleInventary.css";
 import { useTranslation } from "react-i18next";
 import carro from "../../../../assets/carro.png";
+import car from "../../../../assets/logo.png";
 import { TfiLayoutGrid2Alt } from "react-icons/tfi";
 import { TfiMenu } from "react-icons/tfi";
 
 
 
 const vehiculosData = [
-  { id: 1, placa: "ABC-123", marca: "Toyota", modelo: "Camry", año: 2022, tipo: "Sedán",      sucursal: "Neiva Centro",    estado: "Disponible",    km: 12400, imagen: null },
+  { id: 1, placa: "ABC-123", marca: "Toyota", modelo: "Camry", año: 2022, tipo: "Sedán",      sucursal: "Neiva Centro",    estado: "Disponible",    km: 12400, imagen: car },
   { id: 2, placa: "DEF-456", marca: "Honda",  modelo: "CR-V",  año: 2021, tipo: "SUV",        sucursal: "Neiva Norte",     estado: "En uso",       km: 34200, imagen: null },
   { id: 3, placa: "GHI-789", marca: "Ford",   modelo: "Mustang",año: 2023,tipo: "Deportivo",sucursal: "Bogotá Centro",   estado: "Disponible",   km: 5800,  imagen: null },
   { id: 4, placa: "JKL-012", marca: "BMW",    modelo: "X5",    año: 2022, tipo: "SUV",        sucursal: "Bogotá Norte",    estado: "Mantenimiento",km: 48900, imagen: null },
@@ -67,9 +68,20 @@ export default function VehicleInventory() {
   const hasActiveFilters = Object.values(selectedFilters).some((v) => v !== null);
 
   // Arrays de opciones dinámicas
-  const ESTADOS = ["Todos", "Disponible", "En uso", "Mantenimiento"];
-  const SUCURSALES = ["Todas", ...new Set(vehiculosData.map(v => v.sucursal))];
-  const TIPOS = ["Todos", ...new Set(vehiculosData.map(v => v.tipo))];
+  const ESTADOS = [
+    { value: "Todos", label: t('VehicleInventary.all_m') }, // "Todos"
+    { value: "Disponible", label: t('VehicleInventary.available') },
+    { value: "En uso", label: t('VehicleInventary.inUse') },
+    { value: "Mantenimiento", label: t('VehicleInventary.maintenance') }
+  ];
+  const SUCURSALES = [
+    { value: "Todas", label: t('VehicleInventary.all_f') }, // "Todas"
+    ...[...new Set(vehiculosData.map(v => v.sucursal))].map(suc => ({ value: suc, label: suc }))
+  ];
+  const TIPOS = [
+    { value: "Todos", label: t('VehicleInventary.all_m') }, // "Todos"
+    ...[...new Set(vehiculosData.map(v => v.tipo))].map(tipo => ({ value: tipo, label: tipo }))
+  ];
 
   // Filtrado lógico
   const filtered = vehiculosData.filter(v =>
@@ -133,7 +145,7 @@ export default function VehicleInventory() {
             <input
               className="vi-search"
               type="text"
-              placeholder={t('VehicleInventary.searchPlaceholder')}
+              placeholder={t('VehicleInventary.placeholderSearch')}
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
@@ -174,17 +186,16 @@ export default function VehicleInventory() {
                 </button>
                 {activeFilter === key && (
                   <div className="vi-dropdown">
-                    {options.map((val) => (
-                      <button
-                        key={val}
-                        className={`vi-dropdown-item ${selectedFilters[key] === val ? "chosen" : ""}`}
-                        onClick={() => handleFilterSelect(key, val)}
-                      >
-                        {selectedFilters[key] === val && <span>✓ </span>}
-                        {val}
-                      </button>
-                    ))}
-                  </div>
+  {ESTADOS.map((opcion) => (
+    <button
+      key={opcion.value}
+      className={`vi-dropdown-item ${selectedFilters.estado === opcion.value ? 'chosen' : ''}`}
+      onClick={() => handleFilterSelect('estado', opcion.value)}
+    >
+      {opcion.label} {/* <── Aquí se muestra el texto traducido */}
+    </button>
+  ))}
+</div>
                 )}
               </div>
             ))}
@@ -198,8 +209,8 @@ export default function VehicleInventory() {
 
         {/* Resultados */}
         <p className="vi-results-count">
-          {filtered.length} vehículo{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}
-        </p>
+  {t('VehicleInventary.resultsCount', { count: filtered.length })}
+</p>
 
         {/* Vista Grid */}
         {vista === 'grid' && (
@@ -208,7 +219,10 @@ export default function VehicleInventory() {
               <div key={v.id} className={`vi-card estado-${v.estado.replace(' ', '-').toLowerCase()}`} onClick={() => setSelected(v)}>
                 <div className="vi-card-img">
                   <span className="vi-card-tipo">{v.tipo}</span>
-                  <img src={v.imagen || carro} alt={`${v.marca} ${v.modelo}`} />
+                  <img 
+  src={v.imagen || carro} 
+  alt={`${v.marca} ${v.modelo}`} 
+/>
                 </div>
                 <div className="vi-card-body">
                   <div className="vi-card-top">
@@ -227,7 +241,7 @@ export default function VehicleInventory() {
                 </div>
               </div>
             ))}
-            {filtered.length === 0 && <div className="vi-empty">No se encontraron vehículos.</div>}
+            {filtered.length === 0 && <div className="vi-empty">{t('VehicleInventary.notFound')}</div>}
           </div>
         )}
 
@@ -237,13 +251,13 @@ export default function VehicleInventory() {
             <table className="vi-table">
               <thead>
                 <tr>
-                  <th>Placa</th>
-                  <th>Vehículo</th>
-                  <th>Año</th>
-                  <th>Tipo</th>
-                  <th>Sucursal</th>
-                  <th>Kilometraje</th>
-                  <th>Estado</th>
+                  <th>{t('VehicleInventary.plate')}</th>
+                  <th>{t('VehicleInventary.vehicle')}</th>
+                  <th>{t('VehicleInventary.year')}</th>
+                  <th>{t('VehicleInventary.type')}</th>
+                  <th>{t('VehicleInventary.branch')}</th>
+                  <th>{t('VehicleInventary.mileage')}</th>
+                  <th>{t('VehicleInventary.state')}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -263,7 +277,7 @@ export default function VehicleInventory() {
                   </tr>
                 ))}
                 {filtered.length === 0 && (
-                  <tr><td colSpan="8" className="vi-empty">No se encontraron vehículos.</td></tr>
+                  <tr><td colSpan="8" className="vi-empty">{t('VehicleInventary.notFound')}</td></tr>
                 )}
               </tbody>
             </table>
@@ -272,7 +286,7 @@ export default function VehicleInventory() {
 
         {/* Acciones */}
         <div className="vi-actions">
-          <button className="vi-btn-back" onClick={() => navigate(-1)}>Regresar</button>
+          <button className="vi-btn-back" onClick={() => navigate(-1)}>{t('VehicleInventary.back')}</button>
         </div>
       </div>
 
@@ -284,7 +298,7 @@ export default function VehicleInventory() {
           <div className="vi-modal" onClick={e => e.stopPropagation()}>
             <div className="vi-modal-header">
               <div>
-                <p className="vi-modal-label">Ficha del vehículo</p>
+                <p className="vi-modal-label">{t('VehicleInventary.vehicleDetails')}</p>
                 <h2 className="vi-modal-title">{selected.marca} {selected.modelo}</h2>
               </div>
               <span className={`vi-badge ${selected.estado.replace(' ', '-').toLowerCase()}`}>{selected.estado}</span>
@@ -292,30 +306,30 @@ export default function VehicleInventory() {
 
             <div className="vi-modal-grid">
               <div className="vi-modal-field">
-                <span className="vi-modal-field-label">Placa</span>
+                <span className="vi-modal-field-label">{t('VehicleInventary.plate')}</span>
                 <span className="vi-modal-field-value">{selected.placa}</span>
               </div>
               <div className="vi-modal-field">
-                <span className="vi-modal-field-label">Año</span>
+                <span className="vi-modal-field-label">{t('VehicleInventary.year')}</span>
                 <span className="vi-modal-field-value">{selected.año}</span>
               </div>
               <div className="vi-modal-field">
-                <span className="vi-modal-field-label">Tipo</span>
+                <span className="vi-modal-field-label">{t('VehicleInventary.type')}</span>
                 <span className="vi-modal-field-value">{selected.tipo}</span>
               </div>
               <div className="vi-modal-field">
-                <span className="vi-modal-field-label">Kilometraje</span>
+                <span className="vi-modal-field-label">{t('VehicleInventary.mileage')}</span>
                 <span className="vi-modal-field-value">{selected.km.toLocaleString()} km</span>
               </div>
               <div className="vi-modal-field" style={{ gridColumn: '1 / -1' }}>
-                <span className="vi-modal-field-label">Sucursal</span>
+                <span className="vi-modal-field-label">{t('VehicleInventary.branch')}</span>
                 <span className="vi-modal-field-value">{selected.sucursal}</span>
               </div>
             </div>
 
             <div className="vi-modal-footer">
-              <button className="vi-modal-btn-secondary" onClick={() => setSelected(null)}>Cerrar</button>
-              <button className="vi-modal-btn-primary" onClick={() => navigate('/CheckStatus')}>Ver estado</button>
+              <button className="vi-modal-btn-secondary" onClick={() => setSelected(null)}>{t('VehicleInventary.close')}</button>
+              <button className="vi-modal-btn-primary" onClick={() => navigate('/CheckStatus')}>{t('VehicleInventary.stateSee')}</button>
             </div>
           </div>
         </div>
