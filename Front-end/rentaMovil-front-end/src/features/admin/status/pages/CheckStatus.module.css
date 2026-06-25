@@ -101,7 +101,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +115,8 @@
   max-width: 760px;
   max-height: calc(100vh - 80px);
   height: auto;
-  background: #ffffff;
+  background: var(--card-bg);
+
   border-radius: 18px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
   overflow: hidden;
@@ -128,8 +129,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: #0b8602;
-  color: #ffffff;
-  padding: 18px 22px;
+    padding: 18px 22px;
   border-bottom: 1px solid #0b8602;
 }
 
@@ -184,6 +184,8 @@
 }
 
 .modalFileDialogWrapper label {
+  color: var(--text-h);
+  background: var(--modal-card-bg);
   font-weight: 600;
   text-align: right;    
   margin-bottom: 6px;   
@@ -206,8 +208,8 @@
 }
 
 .modal-submitButton {
-  background: #2f80ed;
-  color: #ffffff;
+    border-color: var(--modal-button);
+    background-color: var(--modal-button);
 }
 
 .modal-input{
@@ -222,6 +224,9 @@
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
+    background-color: aliceblue;
+    color: #1f2937;
+
     border-radius: 4px;
     box-sizing: border-box;
     min-height: 100px;
