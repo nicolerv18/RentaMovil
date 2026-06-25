@@ -5,61 +5,46 @@ import { MdPerson } from "react-icons/md";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-    function Navbar() {
-    const { t } = useTranslation();
-    const [open, setOpen] = useState(false);
+function Navbar() {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
 
-    return (
-        <header className="navbar">
-        <div className="navbar-content">
-
-            <Link to="/Home" className="logo-container">
-            <span className="logo-text">RentaMovil</span>
-            <FaCar className="logo-icon" />
-            </Link>
+  return (
+    <header className="navbar">
+      <div className="navbar-content">
+        <Link to="/Home" className="logo-container">
+          <span className="logo-text">RentaMovil</span>
+          <FaCar className="logo-icon" />
+        </Link>
 
         <nav className={`nav-links ${open ? "active" : ""}`}>
+          <Link to="/Home" onClick={() => setOpen(false)}>
+            {t("navbar.linkInit")}
+          </Link>
 
-            <Link
-                to="/Home"
-                onClick={() => setOpen(false)}
-            >
-                {t("navbar.linkInit")}
-            </Link>
+          <Link to="/Notification" onClick={() => setOpen(false)}>
+            {t("navbar.linkNotifications")}
+          </Link>
 
-            <Link
-                to="/Notification"
-                onClick={() => setOpen(false)}
-            >
-                {t("navbar.linkNotifications")}
-            </Link>
+          <Link to="/HistorialReservation" onClick={() => setOpen(false)}>
+            {t("navbar.linkReservation")}
+          </Link>
 
-            <Link
-                to="/HistorialReservation"
-                onClick={() => setOpen(false)}
-            >
-                {t("navbar.linkReservation")}
-            </Link>
+          <Link
+            to="/Count"
+            className="profile-link"
+            onClick={() => setOpen(false)}
+          >
+            <MdPerson />
+          </Link>
+        </nav>
 
-            <Link
-                to="/Count"
-                className="profile-link"
-                onClick={() => setOpen(false)}
-            >
-                <MdPerson />
-            </Link>
-            </nav>
-
-            <button
-            className="menu-button"
-            onClick={() => setOpen(!open)}
-            >
-            {open ? <FaTimes /> : <FaBars />}
-            </button>
-
-        </div>
-        </header>
-    );
-    }
+        <button className="menu-button" onClick={() => setOpen(!open)}>
+          {open ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+    </header>
+  );
+}
 
 export default Navbar;
