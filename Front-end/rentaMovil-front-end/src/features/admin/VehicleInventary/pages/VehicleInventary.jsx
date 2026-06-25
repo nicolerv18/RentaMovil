@@ -226,7 +226,11 @@ export default function VehicleInventory() {
                 </div>
                 <div className="vi-card-body">
                   <div className="vi-card-top">
-                    <span className={`vi-badge ${v.estado.replace(' ', '-').toLowerCase()}`}>{v.estado}</span>
+                    <span className={`vi-badge ${v.estado.replace(' ', '-').toLowerCase()}`}>
+  {v.estado === "Disponible" && t('VehicleInventary.available')}
+  {v.estado === "En uso" && t('VehicleInventary.inUse')}
+  {v.estado === "Mantenimiento" && t('VehicleInventary.maintenance')}
+</span>
                     <span className="vi-placa">{v.placa}</span>
                   </div>
                   <p className="vi-card-nombre">{v.marca} {v.modelo}</p>
@@ -270,7 +274,11 @@ export default function VehicleInventory() {
                     <td>{v.tipo}</td>
                     <td>{v.sucursal}</td>
                     <td>{v.km.toLocaleString()} km</td>
-                    <td><span className={`vi-badge ${v.estado.replace(' ', '-').toLowerCase()}`}>{v.estado}</span></td>
+                    <td><span className={`vi-badge ${v.estado.replace(' ', '-').toLowerCase()}`}>
+  {v.estado === "Disponible" && t('VehicleInventary.available')}
+  {v.estado === "En uso" && t('VehicleInventary.inUse')}
+  {v.estado === "Mantenimiento" && t('VehicleInventary.maintenance')}
+</span></td>
                     <td>
                       <button className="vi-btn-detail" onClick={() => setSelected(v)}>Ver</button>
                     </td>
@@ -301,7 +309,11 @@ export default function VehicleInventory() {
                 <p className="vi-modal-label">{t('VehicleInventary.vehicleDetails')}</p>
                 <h2 className="vi-modal-title">{selected.marca} {selected.modelo}</h2>
               </div>
-              <span className={`vi-badge ${selected.estado.replace(' ', '-').toLowerCase()}`}>{selected.estado}</span>
+              <span className={`vi-badge ${selected.estado.replace(' ', '-').toLowerCase()}`}>
+  {selected.estado === "Disponible" && t('VehicleInventary.available')}
+  {selected.estado === "En uso" && t('VehicleInventary.inUse')}
+  {selected.estado === "Mantenimiento" && t('VehicleInventary.maintenance')}
+</span>
             </div>
 
             <div className="vi-modal-grid">

@@ -372,5 +372,38 @@
   "sure": "Are you sure you want to cancel the reservation for",
   "yes": "Yes, cancel",
   "no": "No"
+},
+"VehicleInventary": {
+  "title": "Vehicle Inventory",
+  "subtitle": "Check the status and location of the entire fleet",
+  "btnAddVehicle": " + Add Vehicle",
+  "total": "Total ",
+  "available": "Available ",
+  "inUse": "In Use ",
+  "maintenance": "Maintenance ",
+  "placeholderSearch": "Search by plate, brand or model...",
+  "gridTitle": "Grid",
+  "gridTitle2": "Table",
+  "keyState": "State",
+  "keyBranch": "Branch",
+  "keyType": "Type",
+  "cleanFilters": " X Clear filters",
+  "resultsCount_one": "{{count}} vehicle found",
+  "resultsCount_other": "{{count}} vehicles found",
+  "notFound": "No vehicles found.",
+  "plate": "Plate",
+  "vehicle": "Vehicle",
+  "year": "Year",
+  "type": "Type",
+  "branch": "Branch",
+  "mileage": "Mileage",
+  "state": "State",
+  "back": "Back",
+  "vehicleDetails": "Vehicle Details",
+  "close": "Close",
+  "stateSee": "See status",
+  "all_m": "All",
+  "all_f": "All"
 }
+
 }
