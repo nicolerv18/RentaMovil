@@ -371,5 +371,38 @@
   "sure": "Tem certeza de que deseja cancelar a reserva de",
   "yes": "Sim, cancelar",
   "no": "Não"
+},
+"VehicleInventary": {
+  "title": "Inventário de Veículos",
+  "subtitle": "Consulte o estado e a localização de toda a frota",
+  "btnAddVehicle": " + Adicionar Veículo",
+  "total": "Total ",
+  "available": "Disponível ",
+  "inUse": "Em uso ",
+  "maintenance": "Manutenção ",
+  "placeholderSearch": "Buscar por placa, marca ou modelo...",
+  "gridTitle": "Grade",
+  "gridTitle2": "Tabela",
+  "keyState": "Estado",
+  "keyBranch": "Filial",
+  "keyType": "Tipo",
+  "cleanFilters": " X Limpar filtros",
+  "resultsCount_one": "{{count}} veículo encontrado",
+  "resultsCount_other": "{{count}} veículos encontrados",
+  "notFound": "Nenhum veículo encontrado.",
+  "plate": "Placa",
+  "vehicle": "Veículo",
+  "year": "Ano",
+  "type": "Tipo",
+  "branch": "Filial",
+  "mileage": "Quilometragem",
+  "state": "Estado",
+  "back": "Voltar",
+  "vehicleDetails": "Ficha do veículo",
+  "close": "Fechar",
+  "stateSee": "Ver estado",
+  "all_m": "Todos",
+  "all_f": "Todas"
 }
+
 }
