@@ -8,9 +8,6 @@ import { useTranslation } from "react-i18next";
 function ChangePassword() {
     const { t } = useTranslation();
 
-    // ============================================
-    // ESTADOS DEL FORMULARIO
-    // ============================================
     // currentPassword: la contraseña actual del usuario (para verificar)
     // password: la nueva contraseña que ingresa el usuario
     // confirmPassword: confirmación de la nueva contraseña
@@ -171,7 +168,8 @@ function ChangePassword() {
                                 </button>
                             </div>
                         </div>
-                        <ul className='list'>
+                        <div className='rulesContainer'>
+                            <ul className='list'>
                             {rules.map((rule, index) => (
                                 <li
                                     key={index}
@@ -181,6 +179,7 @@ function ChangePassword() {
                                 </li>
                             ))}
                         </ul>
+                        </div>
                         <div className="inputGroupP">
                             <label className='form-labelP' htmlFor='confirmPassword'>
                                 {t('changePassword.confirmPassword')}

@@ -13,6 +13,7 @@ export const cars = [
     capacity: 5,
     model: "2022",
     branch: branches[0],
+    beneficios: ["Kilometraje Ilimitado", "Proteccion Contra Terceros" ] ,
     reservas: []
   },
   {
@@ -26,6 +27,7 @@ export const cars = [
     capacity: 5,
     model: "2021",
     branch: branches[2],
+    beneficios: ["Kilometraje Ilimitado", "Proteccion Contra Terceros"] ,
     reservas: []
   },
   {
@@ -39,6 +41,7 @@ export const cars = [
     capacity: 5,
     model: "2023",
     branch: branches[1],
+    beneficios: ["Kilometraje Ilimitado", "Proteccion Contra Terceros", "Contraccion 4x4"] ,
     reservas: []
   },
     {
@@ -52,6 +55,7 @@ export const cars = [
     capacity: 5,
     model: "2023",
     branch: branches[1],
+    beneficios: ["Kilometraje Ilimitado", "Proteccion Contra Terceros"] ,
     reservas: []
   },
       {
@@ -65,6 +69,7 @@ export const cars = [
     capacity: 5,
     model: "2021",
     branch: branches[1],
+    beneficios: ["Kilometraje Ilimitado", "Proteccion Contra Terceros"] ,
     reservas: []
   },
   {
@@ -78,6 +83,7 @@ export const cars = [
     capacity: 5,
     model: "2021",
     branch: branches[1],
+    beneficios: ["Kilometraje Ilimitado", "Proteccion Contra Terceros"] ,
     reservas: []
   },
   {
@@ -91,6 +97,8 @@ export const cars = [
     capacity: 5,
     model: "2021",
     branch: branches[2],
+    beneficios: ["Kilometraje Ilimitado", "Proteccion Contra Terceros"] ,
     reservas: []
+
   }
 ];

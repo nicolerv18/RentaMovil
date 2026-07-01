@@ -1,38 +1,61 @@
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-function LocationMarker({ setLocation }) {
+function MapComponent({
+    mode = "view",
+    branch,
+    branches = [],
+    selectedBranch,
+    setSelectedBranch
+}) {
 
-    useMapEvents({
-        click(e) {
-            setLocation([e.latlng.lat, e.latlng.lng]);
-        },
-    });
-
-    return null;
-}
-
-function MapComponent({ location, setLocation }) {
-
-    const defaultPosition = [4.7110, -74.0721]; // Bogotá
+    const center =
+        mode === "view"
+            ? [branch.lat, branch.lng]
+            : selectedBranch
+                ? [selectedBranch.lat, selectedBranch.lng]
+                : [branches[0].lat, branches[0].lng];
 
     return (
         <MapContainer
-            center={location || defaultPosition}
+            center={center}
             zoom={13}
-            style={{ height: "200px", width: "100%", borderRadius: "10px" }}
+            style={{
+                height: "250px",
+                width: "100%",
+                borderRadius: "10px"
+            }}
         >
             <TileLayer
-                attribution='&copy; OpenStreetMap'
+                attribution="&copy; OpenStreetMap"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <LocationMarker setLocation={setLocation} />
-
-            {location && (
-                <Marker position={location}>
-                    <Popup>Ubicación seleccionada</Popup>
+            {mode === "view" && branch && (
+                <Marker position={[branch.lat, branch.lng]}>
+                    <Popup>
+                        <strong>{branch.name}</strong>
+                        <br />
+                        {branch.address}
+                    </Popup>
                 </Marker>
             )}
+
+            {mode === "select" &&
+                branches.map((branch) => (
+                    <Marker
+                        key={branch.id}
+                        position={[branch.lat, branch.lng]}
+                        eventHandlers={{
+                            click: () => setSelectedBranch(branch)
+                        }}
+                    >
+                        <Popup>
+                            <strong>{branch.name}</strong>
+                            <br />
+                            {branch.address}
+                        </Popup>
+                    </Marker>
+                ))}
         </MapContainer>
     );
 }

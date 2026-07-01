@@ -1,7 +1,6 @@
+    import carImg from "../../../assets/img/car1.jpg";
 import { Vehicle } from "../../../types/vehicles";
-import { branches } from "./branches";
-import carImg from "../../../assets/img/car1.jpg";
-    
+import { branches } from "../../branches/data/branches";
 
     export const vehicles: Vehicle[] = [
     {
@@ -11,7 +10,9 @@ import carImg from "../../../assets/img/car1.jpg";
         brand: "Ford",
         model: "2022",
 
-        type: "automatico",
+        category: "Deportivo",
+        transmission: "Automático",
+        fuelType: "Gasolina",
 
         price: 140000,
 
@@ -22,17 +23,12 @@ import carImg from "../../../assets/img/car1.jpg";
         seats: 4,
         bags: 2,
 
-        transmission: "Gasolina",
-
-        reservas: [],
+        reservations: [],
 
         benefits: [
         "Kilometraje Ilimitado",
-
         "Protección Contra Terceros",
         ],
-
-
     },
 
     {
@@ -42,7 +38,9 @@ import carImg from "../../../assets/img/car1.jpg";
         brand: "Suzuki",
         model: "2021",
 
-        type: "Deportivo",
+        category: "Hatchback",
+        transmission: "Manual",
+        fuelType: "Gasolina",
 
         price: 100000,
 
@@ -53,9 +51,7 @@ import carImg from "../../../assets/img/car1.jpg";
         seats: 4,
         bags: 1,
 
-        transmission: "Manual",
-
-        reservas: [],
+        reservations: [],
 
         benefits: [
         "Kilometraje Ilimitado",
@@ -71,7 +67,9 @@ import carImg from "../../../assets/img/car1.jpg";
         brand: "Toyota",
         model: "2023",
 
-        type: "Eléctrico",
+        category: "Sedán",
+        transmission: "Automático",
+        fuelType: "Híbrido",
 
         price: 150000,
 
@@ -82,9 +80,7 @@ import carImg from "../../../assets/img/car1.jpg";
         seats: 5,
         bags: 3,
 
-        transmission: "Automático",
-
-        reservas: [],
+        reservations: [],
 
         benefits: [
         "Kilometraje Ilimitado",

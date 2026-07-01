@@ -203,6 +203,7 @@ const handleClearAllFilters = () => {
                   type={car.type}
                   door= {car.door}
                   capacity={car.capacity}
+                  beneficios={car.beneficios}
                 />
               ))
             )}

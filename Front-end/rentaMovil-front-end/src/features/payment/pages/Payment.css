@@ -1,4 +1,3 @@
-/* ── Página ── */
 
 .pay-page {
   background: var(--bg);
@@ -10,8 +9,6 @@
   margin: 0 auto;
   padding: 18px 24px 60px;
 }
-
-/* ── Header ── */
 
 .pay-header {
   align-items: center;
@@ -35,16 +32,12 @@
   text-align: center;
 }
 
-/* ── Grid principal ── */
-
 .pay-grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 20px;
   align-items: start;
 }
-
-/* ── Tarjeta del mapa ── */
 
 .pay-map-card {
   background: var(--card-bg);
@@ -153,7 +146,7 @@
   padding: 18px 20px;
 }
 
-/* ── Resumen rows ── */
+
 
 .pay-resumen-row {
   display: flex;
@@ -204,7 +197,6 @@
   margin: 0;
 }
 
-/* ── Botón pagar ── */
 
 .pay-btn {
   width: 100%;
@@ -236,7 +228,6 @@
   transform: none;
 }
 
-/* ── Payment methods card ── */
 
 .pay-method-card {
   background: var(--card-bg);
@@ -260,13 +251,11 @@
   color: var(--text-h);
 }
 
-/* ── Method wrapper ── */
 
 .payment-method-wrapper {
   position: relative;
 }
 
-/* ── Option button ── */
 
 .payment-option {
   width: 100%;
@@ -295,7 +284,6 @@
   gap: 14px;
 }
 
-/* ── Radio custom ── */
 
 .payment-radio {
   width: 20px;
@@ -327,8 +315,6 @@
   transform: scale(1);
 }
 
-/* ── Option name ── */
-
 .payment-option-name {
   margin: 0 0 10px;
   font-size: 15px;
@@ -337,7 +323,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* ── Logos (SVG brand icons) ── */
 
 .payment-logos {
   display: flex;
@@ -345,8 +330,6 @@
   flex-wrap: wrap;
   align-items: center;
 }
-
-/* ── Price ── */
 
 .payment-option-price {
   text-align: right;
@@ -366,7 +349,6 @@
   color: var(--placeholder);
 }
 
-/* ── Divider ── */
 
 .payment-divider {
   height: 1px;
@@ -374,7 +356,6 @@
   margin: 0 20px;
 }
 
-/* ── Dropdown ── */
 
 .payment-dropdown {
   overflow: hidden;
@@ -404,7 +385,6 @@
   gap: 14px;
 }
 
-/* ── Label — igual que .labelR de Reservacion ── */
 
 .pay-form label {
   display: block;
@@ -418,7 +398,7 @@
   letter-spacing: 0;
 }
 
-/* ── Input — igual que el input global de Reservacion ── */
+
 
 .pay-form input {
   padding: 10px;

@@ -1,9 +1,11 @@
 import { vehicles } from "../data/vehicles";
 
 type VehicleFilters = {
+  brand?: string;
   branch?: string;
-  type?: string;
+  category?: string;
   transmission?: string;
+  fuelType?: string;
 
   minPrice?: number;
   maxPrice?: number;
@@ -12,34 +14,41 @@ type VehicleFilters = {
 };
 
 const delay = (ms: number) =>
-  new Promise((resolve) =>
-    setTimeout(resolve, ms)
-  );
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 export const vehicleService = {
 
-  async getVehicles(
-    filters?: VehicleFilters
-  ) {
+  async getVehicles(filters?: VehicleFilters) {
 
     await delay(500);
 
     let data = [...vehicles];
 
+    // Sucursal
     if (filters?.branch) {
       data = data.filter(
         (vehicle) =>
-          vehicle.branch === filters.branch
+          vehicle.branch.name === filters.branch
       );
     }
 
-    if (filters?.type) {
+    // Categoría
+    if (filters?.category) {
       data = data.filter(
         (vehicle) =>
-          vehicle.type === filters.type
+          vehicle.category === filters.category
       );
     }
 
+    // Marca
+    if (filters?.brand) {
+      data = data.filter(
+        (vehicle) =>
+          vehicle.brand === filters.brand
+      );
+    }
+
+    // Transmisión
     if (filters?.transmission) {
       data = data.filter(
         (vehicle) =>
@@ -48,20 +57,25 @@ export const vehicleService = {
       );
     }
 
+    // Precio mínimo
     if (filters?.minPrice !== undefined) {
+      const minPrice = filters.minPrice;
       data = data.filter(
         (vehicle) =>
-          vehicle.price >= filters.minPrice!
+          vehicle.price >= minPrice
       );
     }
 
+    // Precio máximo
     if (filters?.maxPrice !== undefined) {
+      const maxPrice = filters.maxPrice;
       data = data.filter(
         (vehicle) =>
-          vehicle.price <= filters.maxPrice!
+          vehicle.price <= maxPrice
       );
     }
 
+    // Búsqueda
     if (filters?.search) {
 
       const query =
@@ -77,7 +91,6 @@ export const vehicleService = {
     return data;
   },
 
-  // GET BY ID
   async getVehicleById(id: number) {
 
     await delay(300);
@@ -96,21 +109,17 @@ export const vehicleService = {
 
     return vehicles.filter((vehicle) => {
 
-      return !vehicle.reservas.some(
+      return !vehicle.reservations.some(
         (reservation) => {
 
-          const reservationStart =
-            new Date(reservation.startDate);
-
-          const reservationEnd =
-            new Date(reservation.endDate);
-
           return (
-            startDate <= reservationEnd &&
-            endDate >= reservationStart
+            startDate <= reservation.endDate &&
+            endDate >= reservation.startDate
           );
         }
       );
+
     });
   },
+
 };

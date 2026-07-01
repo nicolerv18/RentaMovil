@@ -1,28 +1,32 @@
-export type Reservation = {
-    startDate: string;
-    endDate: string;
-    };
+  import { ImageSourcePropType } from "react-native";
+import { Branch } from "../types/branch";
 
-    export type Vehicle = {
+  export type Reservation = {
+    startDate: Date;
+    endDate: Date;
+  };
+
+  export type Vehicle = {
     id: number;
 
     name: string;
     brand: string;
     model: string;
-    type: string;
+
+    category: string;
+    transmission: string;
+    fuelType: string;
 
     price: number;
 
-    image: any;
+    image: ImageSourcePropType;
 
-    branch: string;
+    branch: Branch;
 
     seats: number;
     bags: number;
 
-    transmission: string;
-
-    reservas: Reservation[];
+    reservations: Reservation[];
 
     benefits: string[];
-    };
+  };
