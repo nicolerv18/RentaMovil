@@ -22,6 +22,7 @@ import Payment from './features/payment/pages/Payment.jsx';
 
 // Notification
 import Notification from './features/notification/pages/Notification.jsx';
+import NotificationAdmin from './features/notification/pages/NotificationAdmin.jsx';
 
 // Admin - Vehicles
 import RegisterVehicle from './features/admin/vehicles/pages/RegisterVehicle.jsx';
@@ -76,6 +77,7 @@ function App() {
         <Route path="/HistorialReservation" element={<HistorialReservation />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/Notification" element={<Notification />} />
+        <Route path="/NotificationAdmin" element={<NotificationAdmin />} />
         <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
         <Route path="/Maintenance" element={<Maintenance />} />
         <Route path="/CheckStatus" element={<CheckStatus />} />
