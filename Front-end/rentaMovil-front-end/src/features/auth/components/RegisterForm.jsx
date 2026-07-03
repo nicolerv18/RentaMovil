@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import "./RegisterForm.css";
 import Quotes from '../../../shared/components/Quotes';
+import { useTranslation } from 'react-i18next'; 
 
-function RegisterForm({ onSubmit }) {
+
+function RegisterForm({ onSubmit, onSwitchToLogin }) {
+  const { t } = useTranslation();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -20,24 +22,24 @@ function RegisterForm({ onSubmit }) {
     e.preventDefault();
 
     if (!firstName || !lastName || !phone || !username || !email || !password || !confirmPassword) {
-      return setError('Rellena todos los campos');
+      return setError(t('register.errorFields'));
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return setError('Introduce un email válido');
+      return setError(t('register.emailInvalid'));
     }
 
     if (!/^[0-9]{10}$/.test(phone)) {
-      return setError('Teléfono inválido (10 dígitos)');
+      return setError(t('register.phoneInvalid'));
     }
 
     if (password.length < 6) {
-      return setError('La contraseña debe tener al menos 6 caracteres');
+      return setError(t('register.passwordShort'));
     }
 
     if (password !== confirmPassword) {
-      return setError('Las contraseñas no coinciden');
+      return setError(t('register.passwordMatch'));
     }
 
     setLoading(true);
@@ -52,7 +54,7 @@ function RegisterForm({ onSubmit }) {
         password
       });
     } catch (err) {
-      setError(err.message || 'Error al crear la cuenta');
+      setError(err.message || t('register.errorCreate'));
     } finally {
       setLoading(false);
     }
@@ -66,84 +68,84 @@ function RegisterForm({ onSubmit }) {
 
         {/* Nombre */}
         <div className="form-group">
-          <label>Nombre</label>
+          <label>{t('register.firstName')}</label>
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="firstName"
+            placeholder={t('register.firstNamePlaceholder')}
             required
           />
         </div>
 
         {/* Apellido */}
         <div className="form-group">
-          <label>Apellido</label>
+          <label>{t('register.lastName')}</label>
           <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="lastName"
+            placeholder={t('register.lastNamePlaceholder')}
             required
           />
         </div>
 
         {/* Teléfono */}
         <div className="form-group">
-          <label>Teléfono</label>
+          <label>{t('register.phone')}</label>
           <input
             type="text"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="3001234567"
+            placeholder={t('register.phonePlaceholder')}
             required
           />
         </div>
 
         {/* Usuario */}
         <div className="form-group">
-          <label>Usuario</label>
+          <label>{t('register.username')}</label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="username"
+            placeholder={t('register.usernamePlaceholder')}
             required
           />
         </div>
 
         {/* Email */}
         <div className="form-group full">
-          <label>Correo electrónico</label>
+          <label>{t('register.email')}</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="tu@email.com"
+            placeholder={t('register.emailPlaceholder')}
             required
           />
         </div>
 
         {/* Contraseña */}
         <div className="form-group full">
-          <label>Contraseña</label>
+          <label>{t('register.password')}</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
+            placeholder={t('register.passwordPlaceholder')}
             required
           />
         </div>
 
         {/* Confirmar contraseña */}
         <div className="form-group full">
-          <label>Confirmar contraseña</label>
+          <label>{t('register.confirmPassword')}</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="••••••••"
+            placeholder={t('register.passwordPlaceholder')}
             required
           />
         </div>
@@ -152,13 +154,13 @@ function RegisterForm({ onSubmit }) {
         {error && <div className="register-error">{error}</div>}
 
         {/* Link */}
-        <Link to="/" className="register-link">
-          ¿Ya tienes cuenta? Inicia sesión
-        </Link>
+        <button type="button" className="register-link" onClick={onSwitchToLogin}>
+          {t('register.haveAccount')}
+        </button>
 
         {/* Botón */}
         <button className="register-btn" type="submit" disabled={loading}>
-          {loading ? 'Creando cuenta...' : 'Crear cuenta'}
+          {loading ? t('register.submitting') : t('register.submit')}
         </button>
 
       </form>

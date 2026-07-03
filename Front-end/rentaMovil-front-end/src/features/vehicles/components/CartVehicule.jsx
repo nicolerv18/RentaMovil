@@ -1,37 +1,40 @@
-import Reservation from '../../booking/pages/Reservation';
-import '../components/CartVehicule.css'
+import './CartVehicule.css'
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
-function CartVehicule({img,name,age,price}){
+
+function CartVehicule({img,name,model,price, branch,type, door, capacity}){
+    const {t} = useTranslation();
     const navigate = useNavigate();
     return(
 <div className="card-vehicule">
-    
-    {/* IZQUIERDA - IMAGEN */}
     <div className="car-img">
         <img src={img} alt={name} />
     </div>
     {/* CENTRO - INFO */}
     <div className="car-info">
         <h3>{name}</h3>
-        <p className="car-type">Mini similar</p>
+        <p className="car-type">{type}</p>
 
         <div className="features">
-            <span>Gasolina</span>
-            <span>5 puertas</span>
-            <span>⚙️ Manual</span>
-            <span>∞ Km libre</span>
+            <p><span className='text-box'>Modelo: </span>{model}</p>
+            <p><span className='text-box'>Capacidad: </span>{capacity}</p>
+            <span>🧳{door}</span>
         </div>
 
-        <p className="location">
-            📍 Aeropuerto, Bogotá
-        </p>
+        <div className='location-container'>
+            <div className='location-box'>
+                <p className='location-text'>✈️</p> 
+            </div>
+            <div className='location-box'>
+                <p className='location-text'> {branch} </p> 
+            </div>
+        </div>
     </div>
-    {/* DERECHA - PRECIO */}
     <div className="car-price">
         <p className="price">${price}</p>
-        <span className="free">Cancelación gratis</span>
-        <button onClick={() => navigate("/Reservation")}>Continuar</button>
+        <span className="free">{t('cartVehicule.cancellation')}</span>
+        <button  onClick={() => navigate("/Reservation", { state: { img, name, price, branch } })}>{t('cartVehicule.continue')}</button>
     </div>
 
 </div>

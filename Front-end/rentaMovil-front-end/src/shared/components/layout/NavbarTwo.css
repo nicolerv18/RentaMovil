@@ -5,13 +5,14 @@
   background: var(--navbar);
   color: var(--icon);
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  width: 90%;
-  height: 50px;
-  justify-self: center;
-  padding: 15px 40px;
-  border-radius: 10px;
-  margin: 10px auto;
-  clip-path: polygon(0 0, 100% 0, 40% 100%, 0 100%);
+  width: 100%;
+  box-sizing: border-box;
+  height: 70px;
+  padding: 15px 30px;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
 }
 
 .logo{

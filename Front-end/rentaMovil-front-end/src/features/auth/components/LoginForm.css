@@ -76,24 +76,26 @@
 /* LINK DE REGISTRO */
 .register-link {
   font-size: 13px;
-  color: #3b82f6;
+  color: var(--accent);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
   align-self: flex-start;
   padding: 4px 0;
+  border: none;
+  background-color: transparent;
   margin: -8px 0 8px 0;
 }
 
 .register-link:hover {
-  color: #1d4ed8;
+  color: var(--accent);
   text-decoration: underline;
 }
 
 /* BOTÓN DE ENVÍO */
 .email-btn {
   padding: 14px 24px;
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: var(--button);
   color: white;
   border: none;
   border-radius: 10px;

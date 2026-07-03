@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Animation from '../../../../shared/components/layout/Animation';
 import FileDialog from "../../../../shared/components/layout/FileDialog";
+import { useTranslation } from 'react-i18next';
 
 function VehicleForm() {
+    const { t } = useTranslation();
     const { register, formState: { errors }, handleSubmit, reset, setError, clearErrors } = useForm();
     const [mos, setmos] = useState(false);
     const [vehicleFile, setVehicleFile] = useState(null); // esto verificará el estado del fileDialog
@@ -54,15 +56,15 @@ function VehicleForm() {
                 <form className={style['form-container']} onSubmit={handleSubmit(insert)}>
                     <div className={style['container-container']}>
                         <div className={style["vechicle-containerfor"]}>
-                            <h2>Registre un nuevo vehículo</h2>
+                            <h2>{t('vehicleForm.title')}</h2>
                             <div className={style['vehicle-form-input']}>
-                                <label htmlFor="plate">Placa:</label>
-                                <input type="text" placeholder="Placa ej: ABC123"
+                                <label htmlFor="plate">{t('vehicleForm.plate')}</label>
+                                <input type="text" placeholder={t('vehicleForm.placeholderPlate')}
                                     {...register("plate", {
-                                        required: "La placa es obligatoria.",
+                                        required: t('vehicleForm.requiredPlate'),
                                         pattern: {
                                             value: /^[A-Z]{3}[0-9]{2}[A-Z0-9]?$/,
-                                            message: "Formato inválido. Carro: ABC123"
+                                            message: t('vehicleForm.invalidPlate')
                                         },
                                         onChange: (e) => { e.target.value = e.target.value.toUpperCase() }
                                     })} />
@@ -76,18 +78,18 @@ function VehicleForm() {
 
                             </div>
                             <div className={style['vehicle-form-input']}>
-                                <label htmlFor="brand">Marca:</label>
+                                <label htmlFor="brand">{t('vehicleForm.brand')}</label>
                                 <input
                                     type="text"
-                                    placeholder="Ej: Chevrolet, Renault, Toyota...."
+                                    placeholder={t('vehicleForm.placeholderBrand')}
                                     list='brand-options'
                                     {...register("brand", {
-                                        required: "La marca es oobligatoria",
-                                        minLength: { value: 2, message: "Mínimo 2 caracteres." },
-                                        maxLength: { value: 30, message: "Máximo 30 caracteres." },
+                                        required: t('vehicleForm.requiredBrand'),
+                                        minLength: { value: 2, message: t('vehicleForm.minLenghtBrand') },
+                                        maxLength: { value: 30, message: t('vehicleForm.maxLenghtBrand') },
                                         pattern: {
                                             value: /^[A-Za-z0-9\s\-]{2,30}$/,
-                                            message: "La marca solo puede contener letras, números y guiones."
+                                            message: t('vehicleForm.invalidBrand')
                                         }
                                     })}
                                 />
@@ -119,17 +121,19 @@ function VehicleForm() {
                             </div>
 
                             <div className={style['vehicle-form-input']}>
-                                <label htmlFor="model">Modelo:</label>
+                                <label htmlFor="model">{t('vehicleForm.model')}</label>
                                 <input
                                     type="text"
-                                    placeholder="Ej: Volkswagen Gol, Crolla, Tesla Model 3... "
+                                    placeholder={t('vehicleForm.placeholderModel')}
                                     {...register("model", {
-                                        required: "El modeolo es obligatorio",
+
+                                        required: "El modelo es obligatorio",
                                         minLength: { value: 2, message: "El modelo debe tener al menos 2 caracteres." },
                                         maxLength: { value: 30, message: "El modelo no debe superar 30 caracteres." },
+
                                         pattern: {
                                             value: /^[A-Za-z0-9\s\-]{2,30}$/,
-                                            message: "El modelo solo puede contener letras, números y guiones."
+                                            message: t('vehicleForm.invalidModel')
                                         }
                                     })}
                                 />
@@ -139,28 +143,47 @@ function VehicleForm() {
                                     </p>
                                 )}
                             </div>
+                                <div className={style['vehicle-form-input']}>
+                                <label htmlFor="price">Precio:</label>
+                                <input
+                                    type="number"
+                                    placeholder="Ej: 100000"
+                                    step="100"
+                                    {...register('price', {
+                                        required: 'El precio es obligatorio',
+                                        valueAsNumber: true,
+                                        min: { value: 0, message: 'El precio debe ser mayor o igual a 0' },
+                                        max: { value: 100000000, message: 'El precio no debe superar 100000000' }
+                                    })}
+                                />
+                                {errors.price && (
+                                    <p className={style['error-message']}>
+                                        <AiOutlineDashboard /> {errors.price.message}
+                                    </p>
+                                )}
+                            </div>
                             <div className={style['vehicle-form-input']}>
-                                <label htmlFor="type">Tipo de vehículo:</label>
+                                <label htmlFor="type">{t('vehicleForm.Type')}</label>
                                 <select
                                     {...register("vehicleType", {
-                                        required: "Debes seleccionar el tipo de vehículo.",
-                                        validate: value => value !== "" || "Debes seleccionar el tipo de vehículo."
+                                        required: t('vehicleForm.requiredType'),
+                                        validate: value => value !== "" || t('vehicleForm.requiredType')
                                     })}
                                     defaultValue="">
-                                    <option value="" disabled>Selecciona un tipo...</option>
-                                    <optgroup label="Automóviles">
+                                    <option value="" disabled>{t('vehicleForm.disabledType')}</option>
+                                    <optgroup label={t('vehicleForm.labelType1')}>
                                         <option value="Sedán">Sedán</option>
                                         <option value="Hatchback">Hatchback</option>
-                                        <option value="SUV">SUV</option>
+                                        <option value="SUV">SUVs</option>
                                         <option value="Camioneta">Camioneta</option>
                                         <option value="Pickup">Pickup</option>
                                         <option value="Van">Van</option>
                                         <option value="Coupé">Coupé</option>
                                     </optgroup>
-                                    <optgroup label="Carga">
-                                        <option value="Camión">Camión</option>
-                                        <option value="Tractocamión">Tractocamión</option>
-                                        <option value="Furgón">Furgón</option>
+                                    <optgroup label={t('vehicleForm.labelType2')}>
+                                        <option value="Camión">{t('vehicleForm.cargaType1')}</option>
+                                        <option value="Tractocamión">{t('vehicleForm.cargaType2')}</option>
+                                        <option value="Furgón">{t('vehicleForm.cargaType3')}</option>
                                     </optgroup>
                                 </select>
                                 {errors.vehicleType && (
@@ -170,20 +193,20 @@ function VehicleForm() {
                                 )}
                             </div>
                             <div className={style['vehicle-form-input']}>
-                                <label htmlFor="fuelType">Tipo de combustible:</label>
+                                <label htmlFor="fuelType">{t('vehicleForm.FuelType')}</label>
                                 <select
                                     {...register("fuelType", {
-                                        required: "Debes seleccionar el tipo de combustible.",
-                                        validate: value => value !== "" || "Debes seleccionar el tipo de combustible."
+                                        required: t('vehicleForm.requiredFuelType'),
+                                        validate: value => value !== "" || t('vehicleForm.requiredFuelType')
                                     })}
                                     defaultValue="">
-                                    <option value="" disabled>Selecciona un tipo...</option>
-                                    <option value="Gasolina">Gasolina</option>
-                                    <option value="Diésel">Diésel</option>
-                                    <option value="Eléctrico">Eléctrico</option>
-                                    <option value="Híbrido">Híbrido</option>
-                                    <option value="Gas natural">Gas natural</option>
-                                    <option value="Gas propano">Gas propano (GLP)</option>
+                                    <option value="" disabled>{t('vehicleForm.disabledFuelType')}</option>
+                                    <option value="Gasolina">{t('vehicleForm.fuelType1')}</option>
+                                    <option value="Diésel">{t('vehicleForm.fuelType2')}</option>
+                                    <option value="Eléctrico">{t('vehicleForm.fuelType4')}</option>
+                                    <option value="Híbrido">{t('vehicleForm.fuelType3')}</option>
+                                    <option value="Gas natural">{t('vehicleForm.fuelType5')}</option>
+                                    <option value="Gas propano">{t('vehicleForm.fuelType6')}</option>
                                 </select>
                                 {errors.fuelType && (
                                     <p className={style['error-message']}>
@@ -192,17 +215,17 @@ function VehicleForm() {
                                 )}
                             </div>
                             <div className={style['vehicle-form-input']}>
-                                <label htmlFor="location">Ubicación:</label>
+                                <label htmlFor="location">{t('vehicleForm.location')}</label>
                                 <input
                                     type="text"
-                                    placeholder="Ej: Bogotá, Medellín,"
+                                    placeholder={t('vehicleForm.placeholderLocation')}
                                     {...register("location", {
-                                        required: "La ubicación es obligatoria.",
-                                        minLength: { value: 2, message: "La ubicación debe tener al menos 2 caracteres." },
-                                        maxLength: { value: 100, message: "La ubicación no debe superar 100 caracteres." },
+                                        required: t('vehicleForm.requiredLocation'),
+                                        minLength: { value: 2, message: t('vehicleForm.minLenghtLocation') },
+                                        maxLength: { value: 100, message: t('vehicleForm.maxLenghtLocation') },
                                         pattern: {
                                             value: /^[A-Za-zÀ-ÿ0-9\s\.\,\#\-]{2,100}$/,
-                                            message: "La ubicación contiene caracteres no permitidos."
+                                            message: t('vehicleForm.invalidLocation')
                                         }
                                     })}
                                 />
@@ -218,8 +241,8 @@ function VehicleForm() {
                             {errors.vehicleImage && (<p className={style['error-message']}><AiOutlineDashboard />{errors.vehicleImage?.message}</p>)}
                         </div>
                     </div>
-                    <button className="save" type="submit" disabled={isLoading}>
-                        {isLoading ? 'Guardando' : 'Guardar el vehículo'}
+                    <button className={style.save} type="submit" disabled={isLoading}>
+                        {isLoading ? t('vehicleForm.saving') : t('vehicleForm.saveVehicle')}
                     </button>
                     <span className={style["vehicule-animation"]}>
                         {mos && <Animation />}

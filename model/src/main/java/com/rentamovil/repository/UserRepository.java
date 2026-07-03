@@ -1,6 +1,7 @@
+
 package com.rentamovil.repository;
 
-import com.rentamovil.entity.User;
+import com.rentamovil.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,6 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByLastLogin(LocalDateTime lastLogin);
 
     boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
 
     boolean existsByPerson_PersonId(Long personId);
 

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import "../components/layout/Quotes.css";
+import { useTranslation } from 'react-i18next';
 function Quotes() {
+    const { t } = useTranslation();
     const quotes = [
-        "Confía en tu viaje. Confía en Rentamovil.",
-        "Tu aventura comienza con un clic. Rentamovil, tu compañero de viaje.",
-        "Explora el mundo a tu ritmo con Rentamovil.",
-        "Viaja sin límites, alquila con Rentamovil.",
-        "Donde quieras ir, Rentamovil te lleva.",
-        "Alquila fácil, viaja feliz con Rentamovil.",
-        "Tu viaje, tu estilo. Rentamovil lo hace posible."
+        t('quotes.quote1'),
+        t('quotes.quote2'),
+        t('quotes.quote3'),
+        t('quotes.quote4'),
+        t('quotes.quote5'),
+        t('quotes.quote6'),
+        t('quotes.quote7')
     ];
 
     const [quote, setQuote] =  useState("");

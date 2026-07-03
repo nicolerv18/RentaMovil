@@ -1,33 +1,65 @@
 import "./Filtrer.css";
-import flecha from "../../../assets/img/flecha.png";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-function Filtrer() {
-  const [open, setOPen] = useState(false);
+function FiltrerModel({ cars = [], onFilter }) {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("");
+
+  const models = [...new Set(cars.map((c) => c.model))].sort();
+
+  const handleSelect = (model) => {
+    const newSelected = selected === model ? "" : model;
+    setSelected(newSelected);
+    onFilter(newSelected ? { min: model, max: model } : null);
+  };
 
   return (
     <aside className="filtrer-container">
       <ul className="nav-container">
         <li className={open ? "active" : ""}>
-          <button className="btn-filtrar" onClick={() => setOPen(!open)}>
-            Modelo <FaCar className="icon2" />{" "}
+          <button
+            type="button"
+            className="btn-filtrar"
+            onClick={() => setOpen(!open)}
+          >
+            <div className="btn-filtrar-content">
+              <FaCar className="icon2" />
+              <span>{selected || t("filtersHome.model")}</span>
+            </div>
+
             <FaArrowAltCircleDown
-              src={flecha}
-              alt=""
               className={`icono-flecha ${open ? "rotade" : ""}`}
             />
           </button>
-          <ul className="dropdown">
-            <li><a>2000</a></li>
-            <li><a>2010 - 2015</a></li>
-            <li><a>2015 - 2020</a></li>
-            <li><a>2020+</a></li>
-          </ul>
+
+          <div className="dropdown">
+            <div className="dropdown-section">
+              <h4 className="dropdown-title">{t("filtersHome.model") || "Modelos"}
+              </h4>
+              <ul>
+                {models.map((model) => (
+                  <li key={model}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selected === model}
+                        onChange={() => handleSelect(model)}
+                      />
+
+                      <span className="item-label">{model}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </li>
       </ul>
     </aside>
   );
 }
 
-export default Filtrer;
+export default FiltrerModel;  

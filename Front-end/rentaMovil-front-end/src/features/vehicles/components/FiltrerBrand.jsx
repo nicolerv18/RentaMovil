@@ -1,35 +1,67 @@
 import "./Filtrer.css";
-import flecha from "../../../assets/img/flecha.png";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-function Filtrer() {
-  const [open, setOPen] = useState(false);
+function FiltrerBrand({ cars = [], onFilter }) {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("");
+
+  const brands = [...new Set(cars.map((c) => c.brand))];
+
+  const handleSelect = (brand) => {
+    const newSelected = selected === brand ? "" : brand;
+    setSelected(newSelected);
+    onFilter(newSelected);
+  };
 
   return (
     <aside className="filtrer-container">
       <ul className="nav-container">
         <li className={open ? "active" : ""}>
-          <button className="btn-filtrar" onClick={() => setOPen(!open)}>
-            Marca <FaCar className="icon2" />{" "}
+          <button
+            type="button"
+            className="btn-filtrar"
+            onClick={() => setOpen(!open)}
+          >
+            <div className="btn-filtrar-content">
+              <FaCar className="icon2" />
+              <span>{selected || t("filtersHome.brand")}</span>
+            </div>
+
             <FaArrowAltCircleDown
-              src={flecha}
-              alt=""
               className={`icono-flecha ${open ? "rotade" : ""}`}
             />
           </button>
-          <ul className="dropdown">
-            <li><a>Swift</a></li>
-            <li><a>Twingo</a></li>
-            <li><a>Honda</a></li>
-            <li><a>Renault</a></li>
-            <li><a>Chevrolet</a></li>
-            <li><a>Mazda</a></li>
-          </ul>
+
+          <div className="dropdown">
+            <div className="dropdown-section">
+              <h4 className="dropdown-title">
+                {t("filtersHome.brand") || "Marcas"}
+              </h4>
+
+              <ul>
+                {brands.map((brand) => (
+                  <li key={brand}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selected === brand}
+                        onChange={() => handleSelect(brand)}
+                      />
+
+                      <span className="item-label">{brand}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </li>
       </ul>
     </aside>
   );
 }
 
-export default Filtrer;
+export default FiltrerBrand;

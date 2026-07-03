@@ -5,14 +5,15 @@
     max-width: 1200px;
     margin:0 auto;
     align-items: flex-start;
+    box-sizing: border-box;
 }
 
 .card-container-left {
     display: flex;
     flex-direction: column;
-    
     gap: 20px;
     width: 340px;
+    max-width: 340px;
     flex-shrink: 0;
     position: sticky;
     top: 24px;          /* se queda fijo mientras scrolleas las cards */
@@ -24,13 +25,331 @@
     flex-direction: column;
     gap: 16px;
 }
+
+.card-container-setSearch {
+    width: 100%;
+}
+
+.card-container-fleetc {
+    width: 100%;
+}
+
+.card-container-status {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .card-check {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .card-container-left,
+    .card-container-right {
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 992px) {
+    .modal-overlay {
+        padding: 14px;
+    }
+
+    .modal-modal {
+        width: 100%;
+        max-width: 720px;
+    }
+
+    .modalForm {
+        grid-template-columns: 1fr;
+        max-height: none;
+    }
+}
+
 @media (max-width: 768px) {
     .card-check {
         flex-direction: column;
+        padding: 16px;
     }
 
     .card-container-left {
         width: 100%;      /* deja de ser 340px fijo */
+        max-width: 100%;
         position: static; /* quita el sticky en móvil */
     }
+
+    .card-container-right {
+        width: 100%;
+    }
+
+    .card-container-fleetc,
+    .card-container-status {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card-container-status {
+        gap: 18px;
+    }
 }
+
+/*modal*/
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.modal-modal {
+  width: min(95vw, 760px);
+  max-width: 760px;
+  max-height: calc(100vh - 80px);
+  height: auto;
+  background: var(--card-bg);
+
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0b8602;
+    padding: 18px 22px;
+  border-bottom: 1px solid #0b8602;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.modal-closeButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.modalForm {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 16px;
+  padding: 24px;
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+}
+
+.modalFields,
+.modalFileDialogWrapper {
+  min-width: 0;
+}
+
+.modalFields {
+  display: grid;
+  gap: 16px;
+}
+
+.modalFields label {
+  display: grid;
+  gap: 8px;
+}
+
+.modalFileDialogWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: 12px;
+  padding-right: 40px;
+}
+
+.modalFileDialogWrapper label {
+  color: var(--text-h);
+  background: var(--modal-card-bg);
+  font-weight: 600;
+  text-align: right;    
+  margin-bottom: 6px;   
+  width: 100%;  
+}
+
+
+.modal-cancelButton,
+.modal-submitButton {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-cancelButton {
+  background: #f2f2f5;  
+  color: #252525;
+}
+
+.modal-submitButton {
+    border-color: var(--modal-button);
+    background-color: var(--modal-button);
+}
+
+.modal-input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.modal-textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: aliceblue;
+    color: #1f2937;
+
+    border-radius: 4px;
+    box-sizing: border-box;
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    align-items: center;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modal-fileLabel {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .modal-overlay {
+        top: 0;
+        padding: 8px;
+        align-items: flex-start;
+    }
+
+    .modal-modal {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 16px;
+        max-height: calc(100vh - 16px);
+    }
+
+    .modalForm {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 18px;
+        max-height: none;
+    }
+
+    .modalFileDialogWrapper {
+        align-items: stretch;
+        padding-right: 0;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .modalFileDialogWrapper label {
+        text-align: left;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .modal-footer {
+        padding: 12px 16px;
+        gap: 8px;
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .modal-cancelButton,
+    .modal-submitButton {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .modal-modal {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 100vh;
+        border-radius: 0;
+        max-height: none;
+    }
+
+    .modalForm {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .modalFields {
+        gap: 12px;
+    }
+
+    .modalFields label {
+        gap: 6px;
+        font-size: 0.9rem;
+    }
+
+    .modal-input,
+    .modal-textarea,
+    .modalFields select {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .modal-header {
+        padding: 12px 16px;
+    }
+
+    .modal-title {
+        font-size: 1rem;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+        padding: 10px;
+    }
+
+    .modal-cancelButton,
+    .modal-submitButton {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
