@@ -38,8 +38,7 @@ function Navbar() {
 
         <nav className={`nav-links-container ${menuOpen ? "active" : ""}`}>
           <Link to="/HomeAdmin">{t("navbar.linkInit")}</Link>
-          <Link to="/Notification">{t("navbar.linkNotifications")}</Link>
-          <Link to="/HistorialReservation">{t("navbar.linkReservation")}</Link>
+          <Link to="/NotificationAdmin">{t("navbar.linkNotifications")}</Link>
 
           <span
             className={`nav-admin-link ${adminOpen ? "nav-admin-active" : ""}`}
@@ -47,7 +46,7 @@ function Navbar() {
           >
             {t("navbar.linkPanelAdmin")}
           </span>
-          <Link to="/Count">
+          <Link to="/CountAdmin">
             <MdPerson className="icon-user" />
           </Link>
         </nav>

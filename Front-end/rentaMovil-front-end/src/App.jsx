@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // Auth
 import Login from './features/auth/pages/Login.jsx';
 import Count from './features/auth/pages/Count.jsx';
+import CountAdmin from './features/auth/pages/CountAdmin.jsx';
 import ChangePassword from './features/auth/pages/ChangePassword.jsx';
 
 import VehicleInventary from './features/admin/VehicleInventary/pages/VehicleInventary.jsx';
@@ -21,6 +22,7 @@ import Payment from './features/payment/pages/Payment.jsx';
 
 // Notification
 import Notification from './features/notification/pages/Notification.jsx';
+import NotificationAdmin from './features/notification/pages/NotificationAdmin.jsx';
 
 // Admin - Vehicles
 import RegisterVehicle from './features/admin/vehicles/pages/RegisterVehicle.jsx';
@@ -68,12 +70,14 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/count" element={<Count theme={theme} setTheme={setTheme} />} />
+        <Route path="/CountAdmin" element={<CountAdmin theme={theme} setTheme={setTheme} />} />
         <Route path="/ChangePassword" element={<ChangePassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/HistorialReservation" element={<HistorialReservation />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/Notification" element={<Notification />} />
+        <Route path="/NotificationAdmin" element={<NotificationAdmin />} />
         <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
         <Route path="/Maintenance" element={<Maintenance />} />
         <Route path="/CheckStatus" element={<CheckStatus />} />
