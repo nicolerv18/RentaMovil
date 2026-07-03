@@ -3,10 +3,12 @@ import Quotes from '../../../shared/components/Quotes.jsx';
 import './LoginForm.css';
 import { useTranslation } from 'react-i18next';
 import './RegisterForm.jsx';
+import { useNavigate } from 'react-router-dom';
 
 
 function LoginForm({onSubmit, onSwitchToRegister}){
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -30,6 +32,11 @@ function LoginForm({onSubmit, onSwitchToRegister}){
             setLoading(false);
         }
     };
+
+    const handleForgotPassword = () => {
+        navigate('/EmailVerification', { state: { email } });
+    };
+
     return(
         <section className="login">
         <form className='login-form' onSubmit={handleSubmit} aria-live='polite'>
@@ -59,6 +66,7 @@ function LoginForm({onSubmit, onSwitchToRegister}){
             </div>
             {error && <div className='login-error' role='alert'>{t(error)}</div>} 
             <button type="button" className='register-link' onClick={onSwitchToRegister}>{t('loginForm.noAccount')}</button>
+            <button type="button" className='register-link' onClick={handleForgotPassword}>{t('loginForm.forgotPassword')}</button>
             <button className='email-btn' type="submit" disabled={loading}>
                 {loading ? t('loginForm.submitting') : t('loginForm.submit')}
             </button>

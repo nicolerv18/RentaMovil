@@ -15,3 +15,25 @@ Uso arquitectura _Component-driven_ combinada con organización _Feature-based_ 
 
 
 arquitectura feature-based profesional
+
+
+
+
+
+
+
+
+====------------------------====
+<============Tareas============>
+====------------------------====
+- refactorizar registrar nuevo mantenimiento.
+
+- ajustar traduciones en contract hystory .
+
+-verificar que todo este traducido.
+
+MOVILLL.
+====------------------------====
+
+
+
