@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 function Notification() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
   const [showModalReservation, setshowModalReservation] = useState(false);
 
   const [selectedNotification, setSelectedNotification] = useState(null);
