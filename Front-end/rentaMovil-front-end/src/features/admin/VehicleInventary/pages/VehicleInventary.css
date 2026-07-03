@@ -34,7 +34,8 @@
 .vi-btn-add,
 .vi-btn-back,
 .vi-modal-btn-secondary,
-.vi-modal-btn-primary {
+.vi-modal-btn-primary,
+.vi-clear-btn {
   padding: 11px 20px;
   border-radius: 10px;
   font: 600 14px inherit;
@@ -49,47 +50,60 @@
   font-weight: 700;
   box-shadow: 0 3px 10px rgba(0, 200, 83, 0.3);
 }
-.vi-btn-add:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 16px rgba(0, 200, 83, 0.4);
+.vi-btn-back {
+  background: var(--button);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(0, 200, 83, 0.3);
 }
-.vi-btn-back,
 .vi-modal-btn-secondary {
   background: transparent;
   border-color: var(--border);
   color: var(--text);
 }
 .vi-btn-back:hover,
-.vi-modal-btn-secondary:hover {
-  background: var(--input);
+.vi-btn-add:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.2);
+
 }
-.vi-btn-back {
-  padding: 11px 22px;
+.vi-modal-btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
 }
 .vi-modal-btn-primary {
   flex: 1;
-  background: var(--navbar);
+  background: #1e40af;
   color: #fff;
   border: none;
 }
 .vi-modal-btn-primary:hover {
-  background: var(--primary-dark, #1e40af);
+  background: #5a7ceb;
+}
+.vi-clear-btn {
+  background: transparent;
+  color: #ef4444;
+  border: 1.5px solid #ef4444;
+  padding: 8px 14px;
+}
+.vi-clear-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
 }
 
-/* ── Stats y Tarjetas (Estructura Común) ── */
+/* ── Stats y Tarjetas ── */
 .vi-stats,
 .vi-grid {
   display: grid;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.vi-grid {
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .vi-stats {
   grid-template-columns: repeat(4, 1fr);
+}
+.vi-grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin-bottom: 32px;
 }
 
 .vi-stat,
@@ -102,11 +116,11 @@
   transition: all 0.18s;
 }
 .vi-card {
-  border-radius: 16px;
-  border-left-color: transparent;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   cursor: pointer;
+  position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .vi-card:hover {
   transform: translateY(-3px);
@@ -115,17 +129,11 @@
 
 /* Dinámica de Estados Compartidos */
 .vi-stat.disponible,
-.vi-card.estado-disponible {
-  border-left-color: var(--button);
-}
+.vi-card.estado-disponible { border-left-color: var(--button, #00c853); font-size: 15px; }
 .vi-stat.en-uso,
-.vi-card.estado-en-uso {
-  border-left-color: var(--navbar);
-}
+.vi-card.estado-en-uso { border-left-color: #1d4ed8; font-size: 15px;}
 .vi-stat.mantenimiento,
-.vi-card.estado-mantenimiento {
-  border-left-color: #f59e0b;
-}
+.vi-card.estado-mantenimiento { border-left-color: #f59e0b; font-size: 15px;}
 
 .vi-stat {
   display: flex;
@@ -141,7 +149,7 @@
 .vi-table th,
 .vi-modal-label,
 .vi-modal-field-label {
-  font: 700 11px inherit;
+  font: 700 8px inherit;
   color: var(--placeholder);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -153,26 +161,19 @@
 
 /* ── Elementos Internos de la Tarjeta ── */
 .vi-card-img {
-  background: var(--accent-bg);
-  padding: 20px;
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  height: 90px;
+  border-radius: 8px;
 }
-.vi-car-img-file {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; 
-}
-
-/* Estilo para el texto en caso de que el vehículo no tenga foto */
-.vi-car-placeholder {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--placeholder);
-  text-transform: uppercase;
+.vi-card-img img {
+  max-height: 85%;
+  max-width: 85%;
+  object-fit: contain;
 }
 .vi-card-tipo {
   position: absolute;
@@ -183,9 +184,13 @@
   padding: 2px 8px;
   border-radius: 20px;
   border: 1px solid var(--border);
+  z-index: 2;
 }
 .vi-card-body {
-  padding: 14px 16px;
+  padding: 14px 0 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .vi-card-top,
 .vi-card-footer {
@@ -208,9 +213,10 @@
   letter-spacing: 0.5px;
 }
 .vi-card-nombre {
-  font: 700 16px inherit;
+  font: 700 15px inherit;
+  font-weight: 600; 
   color: var(--text-h);
-  margin: 0 0 2px;
+  margin: 0 0 4px;
 }
 .vi-card-año {
   margin-bottom: 12px;
@@ -218,126 +224,145 @@
 .vi-card-footer {
   padding-top: 10px;
   border-top: 1px solid var(--border);
+  margin-top: auto;
 }
 .vi-sucursal-tag,
 .vi-km {
+  font-size: 12px;
   display: flex;
   align-items: center;
   gap: 4px;
-  font: 600 11px inherit;
   color: var(--placeholder);
 }
 
-/* ── Controles y Filtros ── */
-.vi-controls,
-.vi-filters,
-.vi-vista-toggle {
+/* ── Controles, Buscador y Filtros Desplegables ── */
+.vi-controls {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
   flex-wrap: wrap;
-}
-.vi-controls {
   margin-bottom: 16px;
 }
 .vi-search-wrap {
-  position: relative;
   flex: 1;
-  min-width: 220px;
+  min-width: 260px;
 }
-.vi-search-icon {
-  position: absolute;
-  left: 13px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  color: var(--placeholder);
-  pointer-events: none;
-}
-
-.vi-search,
-.vi-select {
+.vi-search {
   width: 100%;
-  padding: 10px 14px;
+  padding: 12px 14px;
   border: 1.5px solid var(--border);
   border-radius: 10px;
-  font: 600 14px inherit;
+  font: 400 14px inherit;
   background: var(--card-bg);
   color: var(--text);
   outline: none;
   transition: all 0.2s;
   box-sizing: border-box;
 }
-.vi-search {
-  padding-left: 38px;
-  font-weight: 400;
-}
-.vi-search::placeholder {
-  color: var(--placeholder);
-}
-.vi-search:focus,
-.vi-select:focus {
-  border-color: var(--navbar);
-}
 .vi-search:focus {
+  border-color: var(--navbar);
   box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
 }
 
-.vi-filters {
-  gap: 10px;
-}
-.vi-select {
-  width: auto;
-  padding-right: 32px;
-  font-size: 13px;
-  cursor: pointer;
-  appearance: none;
-  background: var(--card-bg) no-repeat right 10px center / 14px
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-}
-
-/* Toggle Vista */
-.vi-vista-toggle {
-  gap: 0;
+/* Alternador de vistas (Grid/Tabla) */
+.vi-view-toggle {
+  display: flex;
   border: 1.5px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
   background: var(--card-bg);
 }
-.vi-vista-toggle button {
-  padding: 8px 12px;
+.vi-view-btn {
+  padding: 10px 16px;
   background: none;
   border: none;
   cursor: pointer;
+  font: 600 13px inherit;
   color: var(--placeholder);
-  display: flex;
   transition: all 0.15s;
 }
-.vi-vista-toggle button svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-  stroke: currentColor;
-}
-.vi-vista-toggle button.active {
+.vi-view-btn.active {
   background: var(--navbar);
   color: #fff;
 }
-.vi-vista-toggle button:hover:not(.active) {
-  background: var(--accent-bg);
+
+/* Filtros React Estilo Dropdown Personalizado */
+.vi-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.vi-filter-wrap {
+  position: relative;
+}
+.vi-filter-btn {
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
   color: var(--text);
+  font: 600 13px inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.vi-filter-btn.active, 
+.vi-filter-btn.selected {
+  border-color: var(--navbar);
+  background: rgba(29, 78, 216, 0.05);
+}
+.vi-filter-arrow {
+  font-size: 9px;
+  color: var(--placeholder);
+}
+.vi-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+.vi-dropdown-item {
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  font: 500 13px inherit;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.vi-dropdown-item:hover {
+  background: var(--input, #f3f4f6);
+}
+.vi-dropdown-item.chosen {
+  font-weight: 700;
+  color: var(--navbar);
 }
 
 .vi-results-count {
-  margin: 0 0 16px;
-  font-weight: 500;
+  margin: 8px 0 16px;
+  font-weight: 600;
 }
 
-/* ── Badges ── */
+/* ── Badges de Estado ── */
 .vi-badge {
   font: 700 11px inherit;
-  padding: 3px 10px;
+  padding: 4px 10px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -346,22 +371,26 @@
 .vi-badge.disponible {
   background: rgba(0, 200, 83, 0.12);
   color: #00a844;
+  font-size: 13px;
+  
 }
 .vi-badge.en-uso {
   background: rgba(29, 78, 216, 0.1);
   color: #1d4ed8;
+  font-size: 13px;
 }
 .vi-badge.mantenimiento {
   background: rgba(245, 158, 11, 0.12);
   color: #d97706;
+  font-size: 13px;
 }
 
-/* ── Tabla ── */
+/* ── Tabla Dinámica ── */
 .vi-table-wrap {
   background: var(--card-bg);
   border-radius: 16px;
   border: 1px solid var(--border);
-  overflow: hidden auto;
+  overflow-x: auto;
   margin-bottom: 32px;
 }
 .vi-table {
@@ -375,14 +404,13 @@
 }
 .vi-table th,
 .vi-table td {
-  padding: 12px 16px;
+  padding: 14px 16px;
   text-align: left;
 }
 .vi-table th {
   white-space: nowrap;
 }
 .vi-table td {
-  padding: 14px 16px;
   border-bottom: 1px solid var(--border);
   color: var(--text);
 }
@@ -390,17 +418,15 @@
   border-bottom: none;
 }
 .vi-table tbody tr:hover {
-  background: var(--accent-bg);
+  background: rgba(0,0,0,0.02);
 }
-.vi-td-placa,
-.vi-td-nombre {
+.vi-td-placa {
   font-weight: 700;
   color: var(--text-h);
 }
 .vi-td-nombre {
   font-weight: 600;
 }
-
 .vi-btn-detail {
   padding: 6px 14px;
   border: 1.5px solid var(--navbar);
@@ -410,7 +436,6 @@
   font: 700 12px inherit;
   cursor: pointer;
   transition: all 0.18s;
-  white-space: nowrap;
 }
 .vi-btn-detail:hover {
   background: var(--navbar);
@@ -426,9 +451,10 @@
 .vi-actions {
   display: flex;
   justify-content: flex-end;
+  margin-top: 24px;
 }
 
-/* ── Modal ── */
+/* ── Modal Detalle ── */
 .vi-modal-overlay {
   position: fixed;
   inset: 0;
@@ -455,20 +481,20 @@
   justify-content: space-between;
   padding: 24px 24px 16px;
   border-bottom: 1px solid var(--border);
-}
-.vi-modal-label {
-  margin: 0 0 4px;
+  font-size: 15px;
 }
 .vi-modal-title {
-  font: 800 20px inherit;
+  font: 800 15px inherit;
   color: var(--text-h);
   margin: 0;
+  
 }
 .vi-modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   padding: 20px 24px;
+  font-size: 15px;
 }
 .vi-modal-field {
   display: flex;
@@ -477,6 +503,7 @@
 }
 .vi-modal-field-value {
   font: 600 15px inherit;
+  font-weight: 600;
   color: var(--text-h);
 }
 .vi-modal-footer {
@@ -486,27 +513,146 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .vi-stats {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
+}
+
+@media (max-width: 768px) {
+  .vi-wrapper {
+    padding: 24px 16px 40px;
+  }
+  
   .vi-controls {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
+
   .vi-search-wrap {
+    width: 100%;
     min-width: unset;
   }
+
+  /* Hace que el contenedor de filtros y el alternador de vistas se organicen mejor */
   .vi-filters {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .vi-filter-wrap {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .vi-filter-btn {
+    width: 100%;
     justify-content: space-between;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .vi-view-toggle {
+    align-self: flex-start;
+  }
+
+  /* Garantiza que la tabla/lista no rompa el diseño y sea deslizable de forma suave */
+  .vi-table-wrap {
+    margin-bottom: 24px;
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch; /* Desplazamiento ultra suave en iOS */
+  }
+
+  .vi-table th, 
+  .vi-table td {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  .vi-btn-detail {
+    padding: 5px 10px;
+    font-size: 11px;
   }
 }
+
 @media (max-width: 480px) {
   .vi-header {
     flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 20px;
   }
+
   .vi-btn-add {
     width: 100%;
     text-align: center;
+    padding: 12px;
+  }
+
+  .vi-title {
+    font-size: 22px;
+  }
+
+  .vi-stats {
+    grid-template-columns: 1fr; /* Un solo stat por fila en pantallas muy pequeñas */
+    gap: 10px;
+  }
+
+  .vi-stat {
+    padding: 12px 16px;
+  }
+
+  .vi-stat-num {
+    font-size: 24px;
+  }
+
+  /* Los filtros caen en bloque uniforme para evitar textos amontonados */
+  .vi-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .vi-filter-wrap {
+    width: 100%;
+  }
+
+  .vi-view-toggle {
+    width: 100%;
+  }
+
+  .vi-view-btn {
+    flex: 1;
+    padding: 12px;
+  }
+
+  .vi-clear-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Ajustes para el Modal en teléfonos */
+  .vi-modal {
+    max-width: 100%;
+  }
+
+  .vi-modal-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .vi-modal-footer {
+    flex-direction: column;
+    padding: 0 16px 16px;
+    gap: 8px;
+  }
+
+  .vi-modal-btn-primary,
+  .vi-modal-btn-secondary {
+    width: 100%;
+    flex: unset;
   }
 }
