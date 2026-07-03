@@ -86,6 +86,7 @@
     "submitting": "Logging in...",
     "submit": "Log in",
     "noAccount": "Don't have an account? Sign up",
+    "forgotPassword": "Forgot your password?",
     "error": "Error"
   },
   "register": {

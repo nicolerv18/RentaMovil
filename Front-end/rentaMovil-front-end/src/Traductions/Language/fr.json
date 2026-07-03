@@ -85,6 +85,7 @@
     "submitting": "Connexion...",
     "submit": "Se connecter",
     "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "forgotPassword": "Mot de passe oublié ?",
     "error": "Erreur"
   },
   "register": {
