@@ -1,6 +1,6 @@
 import style from "./EmailVerification.module.css";
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineDashboard } from 'react-icons/ai';
 import NavbarTwo from "../../../shared/components/layout/NavbarTwo";
 import Footer from '../../../shared/components/layout/Footer';
@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form';
 function EmailVerification({ email }) {
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const location = useLocation();
+    const initialEmail = email || location.state?.email || '';
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     function insert(data) {
         reset();
@@ -25,7 +27,7 @@ function EmailVerification({ email }) {
                     className={style["input-email"]}
                         id="email"
                         type="email"
-                        defaultValue={email}
+                        defaultValue={initialEmail}
                         autoComplete='username'
                         placeholder={t('loginForm.emailPlaceholder')}
                         {...register("email", {

@@ -38,7 +38,7 @@ import { filterStyles } from "./Filter.style";
         t.setDate(t.getDate() + 1);
         return t;
     };
-
+    const { t } = useTranslation();
     const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState<Branch[]>([]);
     const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);

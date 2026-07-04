@@ -85,6 +85,7 @@
     "submitting": "Connexion...",
     "submit": "Se connecter",
     "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "forgotPassword": "Mot de passe oublié ?",
     "error": "Erreur"
   },
   "register": {
@@ -159,6 +160,7 @@
     "vehicle": "Véhicule",
     "ve-agg": "Ajouter un véhicule",
     "ve-state": "Vérifier l'état",
+    "ve-inventory": "Inventaire des véhicules",
     "location": "Emplacement",
     "loc-map": "Carte",
     "loc-routes": "Historique des trajets",
@@ -370,6 +372,39 @@
   "sure": "Êtes-vous sûr de vouloir annuler la réservation de",
   "yes": "Oui, annuler",
   "no": "Non"
+},
+"VehicleInventary": {
+  "title": "Inventaire des Véhicules",
+  "subtitle": "Consultez l'état et l'emplacement de toute la flotte",
+  "btnAddVehicle": " + Ajouter un Véhicule",
+  "total": "Total ",
+  "available": "Disponible ",
+  "inUse": "En cours d'utilisation ",
+  "maintenance": "Maintenance ",
+  "placeholderSearch": "Rechercher par plaque, marque ou modèle...",
+  "gridTitle": "Grille",
+  "gridTitle2": "Tableau",
+  "keyState": "État",
+  "keyBranch": "Succursale",
+  "keyType": "Type",
+  "cleanFilters": " X Effacer filtres",
+  "resultsCount_one": "{{count}} véhicule trouvé",
+  "resultsCount_other": "{{count}} véhicules trouvés",
+  "notFound": "Aucun véhicule trouvé.",
+  "plate": "Plaque",
+  "vehicle": "Véhicule",
+  "year": "Année",
+  "type": "Type",
+  "branch": "Succursale",
+  "mileage": "Kilométrage",
+  "state": "État",
+  "back": "Retour",
+  "vehicleDetails": "Fiche du véhicule",
+  "close": "Fermer",
+  "stateSee": "Voir état",
+  "all_m": "Tous",
+  "all_f": "Toutes"
 }
+
 }
 

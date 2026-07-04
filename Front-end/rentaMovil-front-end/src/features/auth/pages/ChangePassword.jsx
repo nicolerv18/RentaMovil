@@ -1,8 +1,8 @@
 import './ChangePassword.css'
 import {  FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-import Navbar from "../../../shared/components/layout/Navbar";
-import Footer from '../../../shared/components/layout/Footer';
+import Navbar from "../../../shared/components/layout/NavBarAdmin";
+import Footer from '../../../shared/components/layout/FooterAdmin';
 import { useTranslation } from "react-i18next";
 
 function ChangePassword() {
