@@ -62,4 +62,4 @@ function FiltrerModel({ cars = [], onFilter }) {
   );
 }
 
-export default FiltrerModel;  
+export default FiltrerModel;

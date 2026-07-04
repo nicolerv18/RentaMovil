@@ -36,12 +36,11 @@ function FiltrerPrice({ cars = [], onFilter }) {
     );
 
     onFilter(filter);
-    setOpen(false);
   };
 
   const handleClear = () => {
     setRange([minPriceData, maxPriceData]);
-    setSelected("");
+    setSelected(null);
 
     onFilter(null);
 
