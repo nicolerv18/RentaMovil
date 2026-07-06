@@ -8,7 +8,7 @@ import {
 
 import "./FilterCalendar.css";
 import { useTranslation } from "react-i18next";
-import { branches } from "../data/mocks/branches.js";
+import { branches } from "../../../shared/mocks/branches.js";
 
 const FilterCalendar = forwardRef(
 (
