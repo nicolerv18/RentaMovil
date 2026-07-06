@@ -23,6 +23,7 @@
     const navigate = useNavigate();
     const location = useLocation();
 
+
     const { img, name, price, branch } = location.state || {};
 
     const [showFilters, setShowFilters] = useState(false);
