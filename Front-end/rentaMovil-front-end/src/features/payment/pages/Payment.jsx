@@ -5,7 +5,7 @@ import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from "../../../shared/components/layout/Footer";
 import "./Payment.css";
 import { useTranslation } from "react-i18next";
-import { createPayment } from "../pages/services/PaymentServices";
+import { createPayment } from "../services/PaymentServices";
 
 function Payment() {
   const { t } = useTranslation();

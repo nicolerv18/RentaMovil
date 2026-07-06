@@ -15,8 +15,8 @@ import Home from './features/vehicles/pages/Home.jsx';
 import HomeS from './features/vehicles/pages/HomeS.jsx';
 
 // Booking
-import Reservation from './features/booking/pages/Reservation.jsx';
-import HistorialReservation from './features/booking/HistorialReservation.jsx';
+import Reservation from './features/booking//pages/Reservation.jsx';
+import HistorialReservation from './features/booking/pages/HistorialReservation.jsx';
 
 // Payment
 import Payment from './features/payment/pages/Payment.jsx';

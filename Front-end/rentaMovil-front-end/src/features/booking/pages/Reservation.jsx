@@ -1,12 +1,11 @@
     import "./Reservation.css";
-
     import Navbar from "../../../shared/components/layout/Navbar";
-    import { branches } from "../../vehicles/data/branches";
+    import { branches } from "../../vehicles/data/mocks/branches";
     import Footer from "../../../shared/components/layout/Footer";
     import { useState, useEffect } from "react";
     import { useNavigate, useLocation } from "react-router-dom";
     import FilterCalendar from "../../vehicles/components/FilterCalendar";
-    import MapComponent from "./components/MapComponents";
+    import MapComponent from "../components/MapComponents";
     import L from "leaflet";
     import markerIcon from "leaflet/dist/images/marker-icon.png";
     import markerShadow from "leaflet/dist/images/marker-shadow.png";
