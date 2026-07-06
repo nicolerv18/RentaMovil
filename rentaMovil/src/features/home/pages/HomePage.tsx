@@ -34,7 +34,7 @@ export default function HomePage() {
 
   const [filters, setFilters] = useState<Filters>({
     brand: "",
-    type: "",
+    category: "",
     transmission: "",
     minPrice: 0,
     maxPrice: 1000000,
@@ -73,7 +73,7 @@ const handleSearch = (data: SearchData) => {
   const handleClearFilters = async () => {
     const reset: Filters = {
       brand: "",
-      type: "",
+      category: "",
       transmission: "",
       minPrice: 0,
       maxPrice: 1000000,

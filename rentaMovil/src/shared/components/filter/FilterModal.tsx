@@ -15,20 +15,20 @@ import { styles } from "./FilterModalStyle";
 
 export interface Filters {
   brand: string;
-  type: string; // automatico, electrico, gasolina
-  transmission: string; //gasolina dissel etc
+  category: string;
+  transmission: string;
   minPrice: number;
   maxPrice: number;
   search: string;
 }
 
 interface Props {
-  visible: boolean;
-  onClose: () => void;
-  filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-  onApply: () => void;
-  onClear: () => void;
+  readonly visible: boolean;
+  readonly onClose: () => void;
+  readonly filters: Filters;
+  readonly setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  readonly onApply: () => void;
+  readonly onClear: () => void;
 }
 
 export default function FilterModal({
@@ -41,13 +41,8 @@ export default function FilterModal({
 }: Props) {
 
 const transmissions = [...new Set(vehicles.map(v => v.transmission))];
-const type = [...new Set(vehicles.map(v => v.type))];
+const categories = [...new Set(vehicles.map(v => v.category))];
 const brand = [...new Set(vehicles.map(v => v.brand))];
-
-  const toggleValue = (list: string[], value: string) =>
-    list.includes(value)
-      ? list.filter((v) => v !== value)
-      : [...list, value];
 
   const selectTransmission = (value: string) => {
     setFilters((prev) => ({
@@ -56,10 +51,10 @@ const brand = [...new Set(vehicles.map(v => v.brand))];
     }));
   };
 
-  const toggleFuel = (value: string) => {
+  const toggleCategory = (value: string) => {
     setFilters((prev) => ({
       ...prev,
-      type: prev.type === value ? "" : value,
+      category: prev.category === value ? "" : value,
     }));
   };
 
@@ -76,7 +71,7 @@ const brand = [...new Set(vehicles.map(v => v.brand))];
 
     setFilters((prev) => ({
       ...prev,
-      [key]: isNaN(num) ? 0 : num,
+      [key]: Number.isNaN(num) ? 0 : num,
     }));
   };
 
@@ -184,16 +179,16 @@ const brand = [...new Set(vehicles.map(v => v.brand))];
                 </View>
 
                 <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>Combustible</Text>
+                  <Text style={styles.sectionTitle}>Categoría</Text>
 
-                  {type.map((item) => (
+                  {categories.map((item) => (
                     <TouchableOpacity
                       key={item}
                       style={styles.option}
-                      onPress={() => toggleFuel(item)}
+                      onPress={() => toggleCategory(item)}
                     >
                       <Text style={styles.optionText}>
-                        {filters.type.includes(item) ? "✔️" : "⬜"} {item}
+                        {filters.category === item ? "✔️" : "⬜"} {item}
                       </Text>
                     </TouchableOpacity>
                   ))}

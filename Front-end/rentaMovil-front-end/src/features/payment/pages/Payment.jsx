@@ -1,13 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 import ButtonBack from "../../../shared/components/buttonBack";
-import ImgMapa from "../../../assets/MapaNeivaPago.png";
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from "../../../shared/components/layout/Footer";
 import "./Payment.css";
 import { useTranslation } from "react-i18next";
-import MapComponent from "../../booking/pages/components/MapComponents";
 import { createPayment } from "../pages/services/PaymentServices";
 
 function Payment() {
@@ -16,7 +13,6 @@ function Payment() {
 
   const [selectedMethod, setSelectedMethod] = useState("credit");
   const [loading, setLoading] = useState(false);
-  const [mapLocation, setMapLocation] = useState(null);
 
   const paymentMethods = [
     {

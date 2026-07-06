@@ -16,7 +16,7 @@ import { useTheme } from "../../../theme/useTheme";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-  vehicle: Vehicle;
+  readonly vehicle: Vehicle;
 };
 
 export default function VehicleSummaryCard({
@@ -53,7 +53,7 @@ export default function VehicleSummaryCard({
         <View style={styles.infoContainer}>
 
           <Text style={styles.info}>
-            🚗 {vehicle.type}
+            {"🚗 "}{vehicle.category}
           </Text>
 
           <Text style={styles.info}>
