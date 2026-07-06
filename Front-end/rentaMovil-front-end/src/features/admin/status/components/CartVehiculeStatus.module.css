@@ -160,15 +160,14 @@
     color: #fff;
 }
 
-/* ── Responsive ── */
-@media (max-width: 900px) {
+@media (max-width: 500px) {
     .card-vehicule {
         grid-template-columns: 1fr;
         gap: 14px;
-        width: 100%;
-        max-width: 100%;
+        width: 85%;
+        max-width: 85%;
         padding: 16px;
-        margin: 0 0 14px;
+        margin-top:auto ;
     }
 
     .img-car-vehicule {
@@ -189,9 +188,10 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .card-actions {
         flex-direction: column;
-        align-items: stretch;
+        width: 88%;
+        margin: 0 auto;
     }
 }

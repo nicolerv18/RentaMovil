@@ -239,7 +239,7 @@ function CheckStatus() {
                                 </label>
                             </div>
                             <div className={style.modalFileDialogWrapper}>
-                                <label className={style["modal-fileLabel"]}>Imagen</label>
+                
                                 <FileDialog onFileChange={handleFileChange} file={vehicleFile} />
                             </div>
                         </div>

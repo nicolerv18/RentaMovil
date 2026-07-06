@@ -32,6 +32,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    position: relative;
 }
 .container-chips {
     display: flex;
@@ -43,7 +44,7 @@
     padding: 12px;
 }
 .container-filter input {
-    padding: 8px 16px;
+    padding: 8px 42px 8px 16px;
     border-radius: 6px;
     border: 1px solid rgba(28, 77, 68, 0.15);
     width: 100%;
@@ -56,25 +57,31 @@
 }
 
 .icon-search {
+    position: absolute;
+    right: 89px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 20px;
     height: 20px;
     color: #1f2937;
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {
     .container-filter {
         flex-direction: column;
         align-items: stretch;
-        padding: 12px 14px;
+        padding: 10px 14px;
     }
 
     .container-chips {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        padding-left: 0;
+        padding-left: 7px;
+        margin-top: auto;
     }
 
     .container-filter input {
-        max-width: 100%;
+        max-width: 80%;
+        margin: 0 26px auto;
+        width: 100%;
     }
 }
