@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 
-function CartVehicule({img,name,model,price, branch,type, door, capacity}){
+function CartVehicule({img,name,model,price, branch,type, door, capacity, beneficios}){
     const {t} = useTranslation();
     const navigate = useNavigate();
     return(
@@ -11,7 +11,6 @@ function CartVehicule({img,name,model,price, branch,type, door, capacity}){
     <div className="car-img">
         <img src={img} alt={name} />
     </div>
-    {/* CENTRO - INFO */}
     <div className="car-info">
         <h3>{name}</h3>
         <p className="car-type">{type}</p>
@@ -22,12 +21,20 @@ function CartVehicule({img,name,model,price, branch,type, door, capacity}){
             <span>🧳{door}</span>
         </div>
 
+        <div className="benefits">
+            {beneficios?.map((beneficio, index) => (
+                <span key={index}>
+                    ✓ {beneficio}
+                </span>
+            ))}
+        </div>
+
         <div className='location-container'>
             <div className='location-box'>
-                <p className='location-text'>✈️</p> 
+                <p className='location-text'>✈️</p>
             </div>
             <div className='location-box'>
-                <p className='location-text'> {branch} </p> 
+                <p className='location-text'> {branch.name} </p>
             </div>
         </div>
     </div>

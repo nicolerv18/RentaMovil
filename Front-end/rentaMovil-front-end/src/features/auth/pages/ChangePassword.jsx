@@ -1,128 +1,34 @@
 import './ChangePassword.css'
 import {  FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
-import Navbar from "../../../shared/components/layout/Navbar";
-import Footer from '../../../shared/components/layout/Footer';
+import Navbar from "../../../shared/components/layout/NavBarAdmin";
+import Footer from '../../../shared/components/layout/FooterAdmin';
 import { useTranslation } from "react-i18next";
+import useChangePassword from "../hooks/useChangePassword.js";
 
 function ChangePassword() {
     const { t } = useTranslation();
 
-    // ============================================
-    // ESTADOS DEL FORMULARIO
-    // ============================================
-    // currentPassword: la contraseña actual del usuario (para verificar)
-    // password: la nueva contraseña que ingresa el usuario
-    // confirmPassword: confirmación de la nueva contraseña
-    // loading: indica si se está esperando respuesta del servidor
-    // error: mensaje de error si algo falla
-    // ============================================
-    
-    const [currentPassword, setCurrentPassword] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirm, setShowConfirm] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const isPasswordValid = (pass) => {
-        return pass.length >= 8 &&
-            /[A-Z]/.test(pass) &&
-            /[#@!$%^&*]/.test(pass);
-    };
-
-    const passwordsMatch = password === confirmPassword;
-
-    const isValid = isPasswordValid(password) && passwordsMatch && currentPassword.length > 0;
-
-    const getCurrentPasswordClass = () => {
-        if (currentPassword.length === 0) return "inputBaseP";
-        return "inputBaseP inputValidP";
-    };
-
-
-    const getPasswordClass = () => {
-        if (password.length === 0) return "inputBaseP";
-        return isPasswordValid(password)
-            ? "inputBaseP inputValidP"
-            : "inputBaseP inputInvalidP";
-    };
-
-    const getConfirmClass = () => {
-        if (confirmPassword.length === 0) return "inputBaseP";
-        return passwordsMatch
-            ? "inputBaseP inputValidP"
-            : "inputBaseP inputInvalidP";
-    };
-
-
-    const rules = [
-        {
-            label: t('changePassword.caracters'),
-            valid: password.length >= 8
-        },
-        {
-            label: t('changePassword.specialCaracters'),
-            valid: /[#@!$%^&*-.]/.test(password)
-        },
-        {
-            label: t('changePassword.uppercase'),
-            valid: /[A-Z]/.test(password)
-        }
-    ];
-
-    const handleChangePassword = async (e) => {
-        e.preventDefault();
-        setError("");
-        setLoading(true);
-
-        try {
-
-            // 1. Reemplaza "http://tu-backend.com/api/auth/change-password"
-            //    con tu URL real del backend (ej: http://localhost:3001/api/auth/change-password)
-            // 2. Si tu backend requiere token, descomenta la línea de Authorization
-            
-            const response = await fetch("http://tu-backend.com/api/auth/change-password", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    // DESCOMENTA ESTA LÍNEA SI TU BACKEND REQUIERE AUTENTICACIÓN:
-                    // "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                // ESTRUCTURA QUE SE ENVÍA AL BACKEND:
-                // {
-                //   "currentPassword": "MiContraseña123#",
-                //   "newPassword": "NuevaContraseña123#",
-                //   "confirmPassword": "NuevaContraseña123#"
-                // }
-                body: JSON.stringify({
-                    currentPassword: currentPassword,
-                    newPassword: password,
-                    confirmPassword: confirmPassword
-                })
-            });
-
-            // Si la respuesta no es ok (200-299)
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message || t("changePassword.errorPassword"));
-            }
-
-            const data = await response.json();
-            alert(t("changePassword.successPassword"));
-
-            // Limpiar formulario después de cambio exitoso
-            setCurrentPassword("");
-            setPassword("");
-            setConfirmPassword("");
-
-        } catch (err) {
-            setError(err.message || t("changePassword.errorRequest"));
-            console.error("Error:", err);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const {
+        currentPassword,
+        setCurrentPassword,
+        password,
+        setPassword,
+        confirmPassword,
+        setConfirmPassword,
+        showPassword,
+        setShowPassword,
+        showConfirm,
+        setShowConfirm,
+        loading,
+        error,
+        passwordsMatch,
+        isValid,
+        rules,
+        getCurrentPasswordClass,
+        getPasswordClass,
+        getConfirmClass,
+        handleChangePassword,
+    } = useChangePassword(t);
 
     return (
         <>
@@ -171,7 +77,8 @@ function ChangePassword() {
                                 </button>
                             </div>
                         </div>
-                        <ul className='list'>
+                        <div className='rulesContainer'>
+                            <ul className='list'>
                             {rules.map((rule, index) => (
                                 <li
                                     key={index}
@@ -181,6 +88,7 @@ function ChangePassword() {
                                 </li>
                             ))}
                         </ul>
+                        </div>
                         <div className="inputGroupP">
                             <label className='form-labelP' htmlFor='confirmPassword'>
                                 {t('changePassword.confirmPassword')}

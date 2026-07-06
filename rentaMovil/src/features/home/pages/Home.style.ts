@@ -1,21 +1,20 @@
 
 import { StyleSheet } from "react-native";
 
-export const HomeStyles =  (colors: any) =>
-
+export const HomeStyles = (colors: any) =>
     StyleSheet.create({
-    container: {
+        container: {
         flex: 1,
         backgroundColor: colors.background,
-    },
+        marginTop: 20,
+        },
 
-    content: {
-        padding: 20,
+        content: {
+        paddingHorizontal: 20,
         paddingBottom: 40,
-    },
+        },
 
-    cardsContainer: {
-        marginTop: 25,
-        gap: 20,
-    },
-});
+        headerContainer: {
+        paddingBottom: 10,
+        },
+    });

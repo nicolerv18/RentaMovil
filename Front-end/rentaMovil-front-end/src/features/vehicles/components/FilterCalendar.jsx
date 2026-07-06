@@ -8,7 +8,7 @@ import {
 
 import "./FilterCalendar.css";
 import { useTranslation } from "react-i18next";
-import { branches } from "../data/branches";
+import { branches } from "../data/mocks/branches.js";
 
 const FilterCalendar = forwardRef(
 (
@@ -107,20 +107,18 @@ ref
       return;
     }
 
-    setSugerencias(
-      branches.filter((s) =>
-        s.toLowerCase().includes(
-          value.toLowerCase()
-        )
-      )
-    );
+  const filtradas = branches.filter((s) =>
+  s.name.toLowerCase().includes(value.toLowerCase())
+  );
+  setSugerencias(filtradas);
   };
 
   const handleSelect = (sucursal) => {
-    setQuery(sucursal);
-    setSeleccionado(sucursal);
-    setSugerencias([]);
-  };
+  setQuery(sucursal.name);
+  setSeleccionado(sucursal);
+  setSugerencias([]);
+  setErrorSucursal("");
+};
 
   const validarHora = (h) => {
     if (!h) return false;
@@ -237,7 +235,7 @@ ref
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => handleSelect(s)}
               >
-                {s}
+                {s.name}
               </li>
             ))}
           </ul>

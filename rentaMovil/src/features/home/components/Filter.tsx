@@ -1,30 +1,37 @@
-    import React, { useEffect, useState } from "react";
-    import { filterStyles } from "./Filter.style";
-    import {useTranslation} from "react-i18next";
-    import { useTheme } from "../../../theme/useTheme";
-    import { themes } from "../../../theme/themes";
-    import {
-    View,
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+    FlatList,
     Text,
     TextInput,
     TouchableOpacity,
-    FlatList,
-    } from "react-native";
-    import DateTimePicker from "@react-native-community/datetimepicker";
-    import { branches } from "../data/branches";
-    type SearchData = {
-    branch: string;
+    View,
+} from "react-native";
+
+    import { themes } from "../../../theme/themes";
+import { useTheme } from "../../../theme/useTheme";
+import { Branch } from "../../../types/branch";
+import { filterStyles } from "./Filter.style";
+
+    import { branches } from "../../branches/data/branches";
+
+    export type SearchData = {
+    branch: Branch;
     startDate: Date;
     endDate: Date;
     };
 
-    type FilterCalendarProps = {
+    type Props = {
     onSearch: (data: SearchData) => void;
-    setPickupDate?: (date: Date) => void;
-    setReturnDate?: (date: Date) => void;
     };
 
-    const FilterCalendar = ({ onSearch, setPickupDate, setReturnDate }: FilterCalendarProps) => {
+    export default function FilterCalendar({ onSearch }: Props) {
+    const { t } = useTranslation();
+    const { themeName } = useTheme();
+    const colors = themes[themeName];
+    const styles = filterStyles(colors);
+
     const today = new Date();
     const getTomorrow = () => {
         const t = new Date();
@@ -33,146 +40,231 @@
     };
     const { t } = useTranslation();
     const [query, setQuery] = useState("");
-    const [sugerencias, setSugerencias] = useState<string[]>([]);
-    const [seleccionado, setSeleccionado] = useState("");
-    const [date, setDate] = useState<Date>(today);
-    const [dateReturn, setDateReturn] = useState<Date>(getTomorrow());
-    const [hora, setHora] = useState<Date>(today);
-    const [returnHora, setReturnHora] = useState<Date>(today);
-    const [showDatePicker, setShowDatePicker] = useState(false);
-    const [showReturnDatePicker, setShowReturnDatePicker] = useState(false);
-    const [showHourPicker, setShowHourPicker] = useState(false);
-    const [showReturnHourPicker, setShowReturnHourPicker] = useState(false);
-    const [success, setSuccess] = useState("");
-    const [errorSucursal, setErrorSucursal] = useState("");
-    const [errorFecha, setErrorFecha] = useState("");
-    const [errorHora, setErrorHora] = useState("");
-    const [errorReturnHora, setErrorReturnHora] = useState("");
+    const [suggestions, setSuggestions] = useState<Branch[]>([]);
+    const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);
+
+    const [startDate, setStartDate] = useState<Date>(today);
+    const [endDate, setEndDate] = useState<Date>(getTomorrow());
+
+    const [startTime, setStartTime] = useState<Date | null>(null);
+    const [endTime, setEndTime] = useState<Date | null>(null);
+
+    const [showStartDate, setShowStartDate] = useState(false);
+    const [showEndDate, setShowEndDate] = useState(false);
+    const [showStartTime, setShowStartTime] = useState(false);
+    const [showEndTime, setShowEndTime] = useState(false);
+
+    const [errorBranch, setErrorBranch] = useState("");
+    const [errorDate, setErrorDate] = useState("");
 
     useEffect(() => {
-        setErrorFecha(dateReturn < date ? "La fecha de devolución no puede ser menor." : "");
-    }, [date, dateReturn]);
-
-    useEffect(() => { if (setPickupDate) setPickupDate(date); }, [date]);
-    useEffect(() => { if (setReturnDate) setReturnDate(dateReturn); }, [dateReturn]);
+        setErrorDate(
+        endDate < startDate ? "La fecha de devolución no puede ser menor." : ""
+        );
+    }, [startDate, endDate]);
 
     const handleChange = (value: string) => {
         setQuery(value);
-        setSeleccionado("");
-        setErrorSucursal("");
-        if (!value.trim()) { setSugerencias([]); return; }
-        setSugerencias(branches.filter((s) => s.toLowerCase().includes(value.toLowerCase())));
+        setErrorBranch("");
+
+        if (!value.trim()) {
+        setSuggestions([]);
+        return;
+        }
+
+        const filtered = branches.filter((branch) =>
+        branch.name.toLowerCase().includes(value.toLowerCase())
+        );
+        setSuggestions(filtered);
     };
 
-    const handleSelect = (sucursal: string) => {
-        setQuery(sucursal);
-        setSeleccionado(sucursal);
-        setSugerencias([]);
+    const handleSelect = (branch: Branch) => {
+        setQuery(branch.name);
+        setSelectedBranch(branch);
+        setSuggestions([]);
+        setErrorBranch("");
     };
 
-    const validarHora = (f: Date) => { const h = f.getHours(); return h >= 8 && h <= 18; };
-    const formatDate = (f: Date) => f.toLocaleDateString();
-    const formatHour = (f: Date) => f.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    const applyTime = (date: Date, time: Date | null): Date => {
+        const result = new Date(date);
+        if (time) {
+        result.setHours(time.getHours(), time.getMinutes(), 0, 0);
+        }
+        return result;
+    };
 
     const handleSubmit = () => {
-        setErrorSucursal(""); setErrorHora(""); setErrorReturnHora(""); setSuccess("");
-        if (!seleccionado) { setErrorSucursal("Selecciona una sucursal válida."); return; }
-        if (!validarHora(hora)) { setErrorHora("La hora debe estar entre 8 AM y 6 PM."); return; }
-        if (!validarHora(returnHora)) { setErrorReturnHora("La hora debe estar entre 8 AM y 6 PM."); return; }
-        onSearch({ branch: seleccionado, startDate: date, endDate: dateReturn });
+        if (!selectedBranch) {
+        setErrorBranch("Selecciona una sucursal válida.");
+        return;
+        }
+
+        const finalStartDate = applyTime(startDate, startTime);
+        const finalEndDate = applyTime(endDate, endTime);
+
+        onSearch({
+        branch: selectedBranch,
+        startDate: finalStartDate,
+        endDate: finalEndDate,
+        });
     };
+
+    const formatDate = (d: Date) => d.toLocaleDateString();
     
-    
-        const { themeName } = useTheme();
-    
-        const colors = themes[themeName];
-    
-        const styles = filterStyles(colors);
+    const formatTime = (d: Date | null) => {
+        const date = d ?? new Date();
+        return date.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        });
+    };
 
     return (
         <View style={styles.filter}>
+        {/* BRANCH */}
         <View style={styles.fieldFull}>
-            <Text style={styles.labelFilter}>{t("filterCalendar.branch")}</Text>
+            <Text style={styles.labelFilter}>
+            {t("filterCalendar.branch")}
+            </Text>
+
             <TextInput
-            style={[styles.inputContainer, errorSucursal ? styles.inputInvalid : undefined]}
+            style={styles.inputContainer}
             placeholder={t("filterCalendar.deliveryLocationPlaceholder")}
-            placeholderTextColor={styles.labelFilter.color}
             value={query}
             onChangeText={handleChange}
             />
-            {errorSucursal ? <Text style={styles.error}>{errorSucursal}</Text> : null}
-            {sugerencias.length > 0 && (
+
+            {errorBranch ? (
+            <Text style={styles.error}>{errorBranch}</Text>
+            ) : null}
+
+            {suggestions.length > 0 && (
             <FlatList
-                data={sugerencias}
-                keyExtractor={(_, i) => i.toString()}
+                data={suggestions}
+                keyExtractor={(item) => item.id.toString()}
+                keyboardShouldPersistTaps="handled"
                 style={styles.sucursalDropdown}
                 renderItem={({ item }) => (
-                <TouchableOpacity style={styles.sucursalDropdownItem} onPress={() => handleSelect(item)}>
-                    <Text style={styles.labelFilter}>{item}</Text>
+                <TouchableOpacity
+                    style={styles.sucursalDropdownItem}
+                    onPress={() => handleSelect(item)}
+                >
+                    <Text style={styles.labelFilter}>{item.name}</Text>
                 </TouchableOpacity>
                 )}
             />
             )}
         </View>
+
+        {/* DATES & TIMES */}
         <View style={styles.row}>
+            {/* Start Date */}
             <View style={styles.field}>
-            <Text style={styles.labelFilter}>{t("filterCalendar.deliveryDate")}</Text>
-            <TouchableOpacity style={styles.inputContainer} onPress={() => setShowDatePicker(true)}>
-                <Text style={styles.labelFilter}>{formatDate(date)}</Text>
+            <Text style={styles.labelFilter}>
+                {t("filterCalendar.deliveryDate")}
+            </Text>
+            <TouchableOpacity
+                style={styles.inputContainer}
+                onPress={() => setShowStartDate(true)}
+            >
+                <Text>{formatDate(startDate)}</Text>
             </TouchableOpacity>
-            {showDatePicker && (
-                <DateTimePicker value={date} mode="date" minimumDate={today}
-                onChange={(_, d) => { setShowDatePicker(false); if (d) setDate(d); }} />
+
+            {showStartDate && (
+                <DateTimePicker
+                value={startDate}
+                mode="date"
+                onChange={(_, d) => {
+                    setShowStartDate(false);
+                    if (d) setStartDate(d);
+                }}
+                />
             )}
-            {errorFecha ? <Text style={styles.error}>{errorFecha}</Text> : null}
             </View>
 
+            {/* Start Time */}
             <View style={styles.field}>
-            <Text style={styles.labelFilter}>{t("filterCalendar.deliveryHour")}</Text>
-            <TouchableOpacity style={styles.inputContainer} onPress={() => setShowHourPicker(true)}>
-                <Text style={styles.labelFilter}>{formatHour(date)}</Text>
+            <Text style={styles.labelFilter}>
+                {t("filterCalendar.deliveryHour")}
+            </Text>
+            <TouchableOpacity
+                style={styles.inputContainer}
+                onPress={() => setShowStartTime(true)}
+            >
+                <Text>{formatTime(startTime)}</Text>
             </TouchableOpacity>
-            {showReturnDatePicker && (
-                <DateTimePicker value={dateReturn} mode="date" minimumDate={date}
-                onChange={(_, d) => { setShowReturnDatePicker(false); if (d) setDateReturn(d); }} />
+
+            {showStartTime && (
+                <DateTimePicker
+                value={startTime || new Date()}
+                mode="time"
+                onChange={(_, d) => {
+                    setShowStartTime(false);
+                    if (d) setStartTime(d);
+                }}
+                />
             )}
             </View>
         </View>
 
+        {/* RETURN */}
         <View style={styles.row}>
+            {/* End Date */}
             <View style={styles.field}>
-            <Text style={styles.labelFilter}>{t("filterCalendar.returnDate")}</Text>
-            <TouchableOpacity style={styles.inputContainer} onPress={() => setShowReturnDatePicker(true)}>
-                <Text style={styles.labelFilter}>{formatDate(dateReturn)}</Text>
+            <Text style={styles.labelFilter}>
+                {t("filterCalendar.returnDate")}
+            </Text>
+            <TouchableOpacity
+                style={styles.inputContainer}
+                onPress={() => setShowEndDate(true)}
+            >
+                <Text>{formatDate(endDate)}</Text>
             </TouchableOpacity>
-            {showReturnDatePicker && (
-                <DateTimePicker value={dateReturn} mode="date" minimumDate={date}
-                onChange={(_, d) => { setShowReturnDatePicker(false); if (d) setDateReturn(d); }} />
+
+            {showEndDate && (
+                <DateTimePicker
+                value={endDate}
+                mode="date"
+                minimumDate={startDate}
+                onChange={(_, d) => {
+                    setShowEndDate(false);
+                    if (d) setEndDate(d);
+                }}
+                />
             )}
             </View>
 
+            {/* End Time */}
             <View style={styles.field}>
-            <Text style={styles.labelFilter}>{t("filterCalendar.returnHour")}</Text>
-            <TouchableOpacity style={styles.inputContainer} onPress={() => setShowReturnHourPicker(true)}>
-                <Text style={styles.labelFilter}>{formatHour(dateReturn)}</Text>
+            <Text style={styles.labelFilter}>
+                {t("filterCalendar.returnHour")}
+            </Text>
+            <TouchableOpacity
+                style={styles.inputContainer}
+                onPress={() => setShowEndTime(true)}
+            >
+                <Text>{formatTime(endTime)}</Text>
             </TouchableOpacity>
-            {showReturnHourPicker && (
-                <DateTimePicker value={dateReturn} mode="time" minimumDate={date}
-                onChange={(_, d) => { setShowReturnHourPicker(false); if (d) setDateReturn(d); }} />
+
+            {showEndTime && (
+                <DateTimePicker
+                value={endTime || new Date()}
+                mode="time"
+                onChange={(_, d) => {
+                    setShowEndTime(false);
+                    if (d) setEndTime(d);
+                }}
+                />
             )}
             </View>
         </View>
 
+        {/* BUTTON */}
         <TouchableOpacity style={styles.btnSearch} onPress={handleSubmit}>
-            <Text style={styles.btnSearchText}>{t("filterCalendar.search")}</Text>
+            <Text style={styles.btnSearchText}>
+            {t("filterCalendar.search")}
+            </Text>
         </TouchableOpacity>
-
-        {success ? (
-            <Text style={styles.btnSearchText}>{success}</Text>
-        ) : null}
-
         </View>
     );
-    };
-
-    export default FilterCalendar;
+    }

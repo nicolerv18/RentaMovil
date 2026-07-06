@@ -68,7 +68,6 @@ const [image, setImage] = useState(() => {
   return (
     <>
       <Navbar />
-
       <div className="containerC">
         <div className="cardC">
           <div className="header-page">
@@ -86,7 +85,6 @@ const [image, setImage] = useState(() => {
               <FaMoon />
             </button>
 
-            {/* Botón idioma ahora funcional (v2 lo tenía sin onClick) */}
             <button className="icon-btnC" onClick={() => setShowLangModal(true)}>
               <FaGlobe />
             </button>
@@ -139,6 +137,11 @@ const [image, setImage] = useState(() => {
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
                 disabled={!isEditing}
               />
+                <div className="accountLink">
+                <Link to="/ChangeEmail" className="linkC">
+                {t("count.modificarCorreo")}
+              </Link>
+                </div>
             </div>
 
             <div className="form-groupC">
@@ -149,19 +152,19 @@ const [image, setImage] = useState(() => {
                 value={user.password}
                 readOnly
               />
+              <div className="accountLink">
+                <Link to="/ChangePassword" className="linkC">
+                {t("count.modificarPassword")}
+              </Link>
+              </div>
             </div>
-
-            <Link to="/ChangePassword" className="linkC">
-              {t("count.modificarPassword")}
-            </Link>
-              <p className="status2">
-              {isEditing ? t("count.modoEdicion") : t("count.perfilActualizado")}
-            </p>
           </div>
         </div>
+        <p className="status2">
+              {isEditing ? t("count.modoEdicion") : t("count.perfilActualizado")}
+            </p>
       </div>
 
-      {/* ── Modal Tema ── */}
       {showThemeModal && (
         <div className="modal-overlay" onClick={() => setShowThemeModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -199,7 +202,6 @@ const [image, setImage] = useState(() => {
         </div>
       )}
 
-      {/* ── Modal Idioma (solo existía en v1) ── */}
       {showLangModal && (
         <div className="modal-overlay" onClick={() => setShowLangModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

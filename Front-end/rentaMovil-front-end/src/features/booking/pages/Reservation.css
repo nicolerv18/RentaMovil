@@ -1,6 +1,7 @@
-/*Reservacion*/
 .containerR {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .calendar-top {
@@ -13,32 +14,9 @@
     justify-content: center;
 }
 
-input {
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    width: 100%;
-    font-size: 16px;
-    background-color: var(--card-bg);
-    color: var(--placeholder);
-    font-family: 'poppins', sans-serif;
-    box-sizing: border-box;
-}
-
-.inputInvalidP {
-    border: none;
-    box-shadow: 0 0 0 1px #ef4444;
-    transition: all 0.25s ease;
-}
-
-.labelR{
-    margin-left: 15px;
-
-}
-
-select{
-    margin-left: 10px;
+.leftR,
+.rightR {
+    min-width: 0;
 }
 
 .leftR {
@@ -49,20 +27,62 @@ select{
     width: 40%;
 }
 
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: var(--card-bg);
+    color: var(--placeholder);
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.inputInvalidP {
+    border: none;
+    box-shadow: 0 0 0 1px #ef4444;
+    transition: all 0.25s ease;
+}
+
+.labelR {
+    margin-left: 15px;
+}
+
+select {
+    width: 30%;
+    margin: 10px 0 10px 10px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: var(--card-bg);
+    color: var(--placeholder);
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
 .card-car,
 .card-location,
 .card-summary {
+    width: 100%;
+    max-width: 100%;
     background: var(--card-bg);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
 .img-car {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
+    object-fit: cover;
 }
-
 
 .card-summary button {
     width: 100%;
@@ -70,66 +90,141 @@ select{
     margin-top: 20px;
     border-radius: 10px;
     background-color: var(--button);
-}
-
-select{
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    width: 30%;
-    font-size: 16px;
-    background-color: var(--card-bg);
-    color: var(--placeholder);
-    font-family: 'poppins', sans-serif;
     box-sizing: border-box;
 }
 
-.error2{
+.error2 {
     font-size: 14px;
     color: #ef4444;
     margin-top: -2px;
     margin-left: 15px;
 }
-@media (max-width: 868px) {
+
+@media (max-width: 992px) {
+
+    .card-location {
+        display: none;
+    }
 
     .contentR {
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
+        padding: 0 15px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .leftR,
     .rightR {
         width: 100%;
+        min-width: 0;
     }
 
     .leftR {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     .card-car,
-    .card-location {
-        padding: 12px;
+    .card-summary {
+        margin: 0;
     }
 
+    select {
+        width: 100%;
+        margin-left: 0;
+    }
+}
 
-    .rightR {
-        margin-top: 10px;
+@media (max-width: 768px) {
+
+    .containerR {
+        padding: 0 12px;
+        overflow-x: hidden;
     }
 
+    .calendar-top {
+        margin-bottom: 15px;
+    }
+
+    .contentR {
+        gap: 15px;
+        padding: 0;
+    }
+
+    .labelR {
+        margin-left: 0;
+    }
 
     input,
     select {
         width: 100%;
-        font-size: 15px;
+        margin: 10px 0;
+    }
+
+    .card-car,
+    .card-summary {
+        padding: 15px;
+    }
+
+    .filter-toggle {
+        margin-top: 10px;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: var(--button);
+        color: var(--text-btn);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 12px;
+        text-align: center;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .containerR {
+        padding: 0 8px;
+    }
+
+    .card-car,
+    .card-summary {
+        padding: 12px;
+    }
+
+    .img-car {
+        border-radius: 8px;
+    }
+
+    .card-summary h3 {
+        font-size: 18px;
+    }
+
+    .card-summary h4 {
+        font-size: 20px;
+    }
+
+    input,
+    select {
+        font-size: 14px;
     }
 
     .card-summary button {
-        height: 50px;
-        font-size: 16px;
+        height: 48px;
+        font-size: 14px;
+    }
+
+    .error2 {
+        margin-left: 0;
     }
 }

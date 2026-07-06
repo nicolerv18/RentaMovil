@@ -1,81 +1,116 @@
-import React, { useState } from 'react';
-import Quotes from '../../../shared/components/Quotes.jsx';
-import './LoginForm.css';
-import { useTranslation } from 'react-i18next';
-import './RegisterForm.jsx';
-import { useNavigate } from 'react-router-dom';
+    import React, { useState } from "react";
+    import Quotes from "../../../shared/components/Quotes.jsx";
+    import "./LoginForm.css";
+    import { useTranslation } from "react-i18next";
+    import "./RegisterForm.jsx";
+    import { useNavigate } from "react-router-dom";
 
-
-function LoginForm({onSubmit, onSwitchToRegister}){
+    function LoginForm({ onSubmit, onSwitchToRegister }) {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email || !password){
-            return setError('loginForm.errorFields')
+
+        if (!email || !password) {
+        return setError("loginForm.errorFields");
         }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         if (!emailRegex.test(email)) {
-            return setError('loginForm.emailInvalid')
+        return setError("loginForm.emailInvalid");
         }
+
         setLoading(true);
+
         try {
-            await onSubmit({email, password});
+        await onSubmit({ email, password });
         } catch (err) {
-            setError('loginForm.errorAuthentication');
+        setError("loginForm.errorAuthentication");
         } finally {
-            setLoading(false);
+        setLoading(false);
         }
     };
 
     const handleForgotPassword = () => {
-        navigate('/EmailVerification', { state: { email } });
+        navigate("/EmailVerification", { state: { email } });
     };
 
-    return(
+    return (
         <section className="login">
-        <form className='login-form' onSubmit={handleSubmit} aria-live='polite'>
+        <form
+            className="login-form"
+            onSubmit={handleSubmit}
+            aria-live="polite"
+        >
             <div className="form-group">
-                <label htmlFor="email">{t('loginForm.email')}</label>
-                <input 
-                    id="email"
-                    type="email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    autoComplete='username' 
-                    placeholder={t('loginForm.emailPlaceholder')}
-                    required 
-                />
+            <label htmlFor="email">{t("loginForm.email")}</label>
+            <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="username"
+                placeholder={t("loginForm.emailPlaceholder")}
+                required
+            />
             </div>
+
             <div className="form-group">
-                <label htmlFor="password">{t('loginForm.password')}</label>
-                <input 
-                    id="password"
-                    type="password" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)} 
-                    autoComplete='current-password'
-                    placeholder={t('loginForm.passwordPlaceholder')}
-                    required
-                />
+            <label htmlFor="password">{t("loginForm.password")}</label>
+            <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                placeholder={t("loginForm.passwordPlaceholder")}
+                required
+            />
             </div>
-            {error && <div className='login-error' role='alert'>{t(error)}</div>} 
-            <button type="button" className='register-link' onClick={onSwitchToRegister}>{t('loginForm.noAccount')}</button>
-            <button type="button" className='register-link' onClick={handleForgotPassword}>{t('loginForm.forgotPassword')}</button>
-            <button className='email-btn' type="submit" disabled={loading}>
-                {loading ? t('loginForm.submitting') : t('loginForm.submit')}
+
+            {error && (
+            <div className="login-error" role="alert">
+                {t(error)}
+            </div>
+            )}
+
+            <button
+            type="button"
+            className="register-link"
+            onClick={onSwitchToRegister}
+            >
+            {t("loginForm.noAccount")}
             </button>
-            </form>
-            <Quotes />
+
+            <button
+            type="button"
+            className="register-link"
+            onClick={handleForgotPassword}
+            >
+            {t("loginForm.forgotPassword")}
+            </button>
+
+            <button
+            className="email-btn"
+            type="submit"
+            disabled={loading}
+            >
+            {loading
+                ? t("loginForm.submitting")
+                : t("loginForm.submit")}
+            </button>
+        </form>
+
+        <Quotes />
         </section>
+    );
+    }
 
-    )
-
-}
-
-export default LoginForm;
+    export default LoginForm;
