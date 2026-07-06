@@ -1,10 +1,10 @@
 import { ThemeProvider } from '../theme/themeContext';
-import { useTheme } from '../theme/useTheme';
 import { themes } from '../theme/themes';
+import { useTheme } from '../theme/useTheme';
 
 import {
-  ThemeProvider as NavigationThemeProvider,
   DefaultTheme,
+  ThemeProvider as NavigationThemeProvider,
 } from '@react-navigation/native';
 
 import { Stack } from 'expo-router';
@@ -12,9 +12,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import 'react-native-reanimated';
+import { ReservationProvider } from '../features/Reservation/context/ReservationContext';
 import '../traslation/i18n';
 
-export { ErrorBoundary } from 'expo-router';
 export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
@@ -30,7 +30,11 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <InnerNav />
+        <ReservationProvider>
+
+        <InnerNav />
+
+      </ReservationProvider>
     </ThemeProvider>
   );
 }

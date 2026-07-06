@@ -2,7 +2,7 @@ import { vehicles } from "../data/vehicles";
 
 type VehicleFilters = {
   branch?: string;
-  type?: string;
+  category?: string;
   transmission?: string;
 
   minPrice?: number;
@@ -29,14 +29,14 @@ export const vehicleService = {
     if (filters?.branch) {
       data = data.filter(
         (vehicle) =>
-          vehicle.branch === filters.branch
+          vehicle.branch?.name === filters.branch
       );
     }
 
-    if (filters?.type) {
+    if (filters?.category) {
       data = data.filter(
         (vehicle) =>
-          vehicle.type === filters.type
+          vehicle.category === filters.category
       );
     }
 
@@ -51,14 +51,14 @@ export const vehicleService = {
     if (filters?.minPrice !== undefined) {
       data = data.filter(
         (vehicle) =>
-          vehicle.price >= filters.minPrice!
+          vehicle.price >= filters.minPrice
       );
     }
 
     if (filters?.maxPrice !== undefined) {
       data = data.filter(
         (vehicle) =>
-          vehicle.price <= filters.maxPrice!
+          vehicle.price <= filters.maxPrice
       );
     }
 
@@ -96,7 +96,7 @@ export const vehicleService = {
 
     return vehicles.filter((vehicle) => {
 
-      return !vehicle.reservas.some(
+      return !vehicle.reservations.some(
         (reservation) => {
 
           const reservationStart =

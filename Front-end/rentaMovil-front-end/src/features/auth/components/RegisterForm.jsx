@@ -157,8 +157,7 @@ function RegisterForm({ onSubmit, onSwitchToLogin }) {
         <button type="button" className="register-link" onClick={onSwitchToLogin}>
           {t('register.haveAccount')}
         </button>
-
-        {/* Botón */}
+        
         <button className="register-btn" type="submit" disabled={loading}>
           {loading ? t('register.submitting') : t('register.submit')}
         </button>

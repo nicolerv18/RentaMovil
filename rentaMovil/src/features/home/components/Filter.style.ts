@@ -8,7 +8,6 @@
         backgroundColor: colors.backgroundCard,
         padding: 16,
         gap: 12,
-        width: "100%",
         borderRadius: 16,
     },
     row: {
@@ -57,9 +56,9 @@
     },
     sucursalDropdown: {
         borderWidth: 1,
-        borderColor: colors.text,
+        borderColor: colors.card,
         borderRadius: 16,
-        backgroundColor: colors.text,
+        backgroundColor: colors.card,
         maxHeight: 150,
     },
     sucursalDropdownItem: {

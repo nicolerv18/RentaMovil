@@ -11,7 +11,7 @@ import carImg from "../../../assets/img/car1.jpg";
         brand: "Ford",
         model: "2022",
 
-        type: "automatico",
+        category: "Deportivo",
 
         price: 140000,
 
@@ -22,9 +22,10 @@ import carImg from "../../../assets/img/car1.jpg";
         seats: 4,
         bags: 2,
 
-        transmission: "Gasolina",
+        transmission: "Automático",
+        fuelType: "Gasolina",
 
-        reservas: [],
+        reservations: [],
 
         benefits: [
         "Kilometraje Ilimitado",
@@ -42,7 +43,7 @@ import carImg from "../../../assets/img/car1.jpg";
         brand: "Suzuki",
         model: "2021",
 
-        type: "Deportivo",
+        category: "Hatchback",
 
         price: 100000,
 
@@ -54,8 +55,9 @@ import carImg from "../../../assets/img/car1.jpg";
         bags: 1,
 
         transmission: "Manual",
+        fuelType: "Gasolina",
 
-        reservas: [],
+        reservations: [],
 
         benefits: [
         "Kilometraje Ilimitado",
@@ -71,7 +73,7 @@ import carImg from "../../../assets/img/car1.jpg";
         brand: "Toyota",
         model: "2023",
 
-        type: "Eléctrico",
+        category: "Sedán",
 
         price: 150000,
 
@@ -83,8 +85,9 @@ import carImg from "../../../assets/img/car1.jpg";
         bags: 3,
 
         transmission: "Automático",
+        fuelType: "Híbrido",
 
-        reservas: [],
+        reservations: [],
 
         benefits: [
         "Kilometraje Ilimitado",

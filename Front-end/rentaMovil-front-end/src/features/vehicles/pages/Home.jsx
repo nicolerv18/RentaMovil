@@ -83,21 +83,16 @@ function Home() {
     );
 
   const handleSearch = ({
-    branch,
-    startDate,
-    endDate,
-  }) => {
-    const disponibles = cars.filter(
-      (car) =>
-        car.branch
-          .toLowerCase()
-          .includes(branch.toLowerCase()) &&
-        isAvailable(
-          car,
-          startDate,
-          endDate
-        )
-    );
+  branch,
+  startDate,
+  endDate,
+}) => {
+  const disponibles = cars.filter(
+    (car) =>
+      car.branch.id === branch.id &&
+      isAvailable(car, startDate, endDate)
+  );
+
 
     setCarsFiltered(disponibles);
   };
@@ -203,6 +198,7 @@ const handleClearAllFilters = () => {
                   type={car.type}
                   door= {car.door}
                   capacity={car.capacity}
+                  beneficios={car.beneficios}
                 />
               ))
             )}

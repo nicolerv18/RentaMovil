@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ButtonBack from "../../../shared/components/buttonBack";
-import ImgMapa from "../../../assets/MapaNeivaPago.png";
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from "../../../shared/components/layout/Footer";
 import "./Payment.css";
@@ -171,8 +170,6 @@ function Payment() {
             {/* LEFT */}
             <div className="pay-left">
               <div className="pay-map-card">
-                <img src={ImgMapa} alt="Mapa" className="pay-map-img" />
-
                 <div className="pay-locations">
                   <div className="pay-loc">
                     <span className="pay-loc-dot start"></span>
