@@ -58,7 +58,7 @@
 
 .icon-search {
     position: absolute;
-    right: 89px;
+    right: 57px;
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
@@ -71,7 +71,7 @@
     .container-filter {
         flex-direction: column;
         align-items: stretch;
-        padding: 10px 14px;
+        padding: 10px 0px;
     }
 
     .container-chips {

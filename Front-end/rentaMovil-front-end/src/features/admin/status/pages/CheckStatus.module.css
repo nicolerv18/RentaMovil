@@ -132,7 +132,7 @@ width: min(95vw, 900px);
   align-items: center;
   justify-content: space-between;
   background: var(--navbar);
- color: var(--text-h);
+ color: var(--text);
     padding: 18px 22px;
   border-bottom: 1px solid #0b8602;
   border-radius: 17px 17px 0 0;
@@ -160,7 +160,8 @@ width: min(95vw, 900px);
   overflow: auto;
   justify-content: center;
   min-width: 0;
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .modalFields,
@@ -253,12 +254,10 @@ width: min(95vw, 900px);
 
 /* responsive */
 @media (max-width: 768px) {
-    .modal-overlay {
-        top: 0;
+ .modal-overlay {
         padding: 8px;
         align-items: flex-start;
     }
-    
 
     .modal-modal {
         width: 100%;
@@ -305,16 +304,16 @@ width: min(95vw, 900px);
 @media (max-width: 480px) {
     .modal-overlay {
         padding: 0;
-        align-items: stretch;
     }
 
     .modal-modal {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
+        width: 90%;
+        max-width: 90%;
+        height: auto ;
         min-height: 100vh;
         border-radius: 0;
         max-height: none;
+        margin: 0 auto;
     }
 
     .modalForm {

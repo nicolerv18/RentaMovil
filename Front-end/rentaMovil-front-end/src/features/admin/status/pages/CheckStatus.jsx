@@ -132,7 +132,6 @@ function CheckStatus() {
                     </div>
                 </div>
 
-                <Animation />
             </div>
 
             {selectedVehicle && (
