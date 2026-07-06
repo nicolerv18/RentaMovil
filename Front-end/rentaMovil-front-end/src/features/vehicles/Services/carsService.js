@@ -1,4 +1,4 @@
-import { cars } from "./carsMock.js";
+import { cars } from "../data/mocks/carsMock.js";
 
 export const getCars = () => Promise.resolve(cars);
 

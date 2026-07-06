@@ -1,5 +1,5 @@
-import img from "../../../assets/carts/car1.jpg";
-import { branches } from "./branches.js";
+import img from "../../../../assets/carts/car1.jpg";
+import { branches } from "./branches";
 
 export const cars = [
   {

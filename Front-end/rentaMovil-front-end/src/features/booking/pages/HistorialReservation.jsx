@@ -1,8 +1,8 @@
 import "./HistorialReservation.css";
 import { useState, useEffect } from "react";
-import Navbar from "../../shared/components/layout/Navbar.jsx";
-import Footer from "../../shared/components/layout/Footer.jsx";
-import img from "../../assets/carts/car1.jpg";
+import Navbar from "../../../shared/components/layout/Navbar.jsx";
+import Footer from "../../../shared/components/layout/Footer.jsx";
+import img from "../../../assets/carts/car1.jpg";
 import { useTranslation } from "react-i18next";
 
 function HistorialReservation() {

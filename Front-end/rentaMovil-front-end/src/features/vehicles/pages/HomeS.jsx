@@ -13,7 +13,7 @@ import img2 from "../../../assets/img/img2.jpg";
 import img3 from "../../../assets/img/img3.webp";
 import FilterCalendar from "../components/FilterCalendar.jsx";
 import { useState, useEffect, useRef } from "react";
-import { getCars } from "../data/carsService.js";
+import { getCars } from "../Services/carsService.js";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
 function Home() {

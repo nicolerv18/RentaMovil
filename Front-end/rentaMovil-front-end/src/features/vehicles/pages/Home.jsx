@@ -12,8 +12,11 @@ import img2 from "../../../assets/img/img2.jpg";
 import img3 from "../../../assets/img/img3.webp";
 import FilterCalendar from "../components/FilterCalendar.jsx";
 import { useState, useEffect, useRef } from "react";
-import { getCars } from "../data/carsService.js";
+import { getCars } from "../Services/carsService.js"
+import { useIsMobile } from "../../../shared/hooks/useIsMobile.js";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { filterAvailableVehicles } from "../utils/filterAvilableCars.js";
+import { filterVehicles } from "../utils/vehiclesFilters.js";
 
 function Home() {
   const [cars, setCars] = useState([]);
@@ -28,24 +31,8 @@ function Home() {
   const [showFiltersModal, setShowFiltersModal] = useState(false);
   const filterCalendarRef = useRef(null);
 
-  const [isMobile, setIsMobile] = useState(
-    window.innerWidth <= 992
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => 
-      window.removeEventListener(
-        "resize",
-        handleResize
-      );
-  }, []);
-
+  const isMobile = useIsMobile();
+  
   useEffect(() => {
     getCars().then((data) => {
       setCars(data);
@@ -77,26 +64,21 @@ function Home() {
     };
   }, [showFiltersModal]);
 
-  const isAvailable = (car, start, end) =>
-    !car.reservas.some(
-      (r) => start <= r.end && end >= r.start
-    );
-
-  const handleSearch = ({
+const handleSearch = ({
   branch,
   startDate,
   endDate,
 }) => {
-  const disponibles = cars.filter(
-    (car) =>
-      car.branch.id === branch.id &&
-      isAvailable(car, startDate, endDate)
+
+  const disponibles = filterAvailableVehicles(
+    cars,
+    branch,
+    startDate,
+    endDate
   );
 
-
-    setCarsFiltered(disponibles);
-  };
-
+  setCarsFiltered(disponibles);
+};
   const handleClearFilters = () => {
     setBrandFilter("");
     setPriceFilter(null);
@@ -124,29 +106,12 @@ const handleClearAllFilters = () => {
   filterCalendarRef.current?.clear();
 };
 
-  const visibleCars = carsFiltered
-    .filter((car) =>
-      brandFilter
-        ? car.brand === brandFilter
-        : true
-    )
-    .filter((car) =>
-      typeFilter
-        ? car.type === typeFilter
-        : true
-    )
-    .filter((car) =>
-      modelFilter
-        ? car.model >= modelFilter.min &&
-          car.model <= modelFilter.max
-        : true
-    )
-    .filter((car) =>
-      priceFilter
-        ? car.price >= priceFilter.min &&
-          car.price <= priceFilter.max
-        : true
-    );
+  const visibleCars = filterVehicles(carsFiltered, {
+    brand: brandFilter,
+    type: typeFilter,
+    model: modelFilter,
+    price: priceFilter
+  });
 
   return (
     <>
