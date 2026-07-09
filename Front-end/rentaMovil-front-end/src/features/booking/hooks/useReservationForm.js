@@ -1,0 +1,80 @@
+import { useEffect, useState } from "react";
+import { calculateRentalDays, calculateTotal } from "../../../shared/utils/rental";
+import { hasInvalidDateRange, isAdult } from "../../../shared/utils/validation";
+
+export const useReservationForm = (price, navigate, t, initialBranch = null) => {
+  const [opcion, setOpcion] = useState("");
+  const [selectedBranch, setSelectedBranch] = useState(initialBranch ?? null);
+  const [nameR, setNameR] = useState("");
+  const [document, setDocument] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [pickupDate, setPickupDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [errorFecha, setErrorFecha] = useState("");
+  const [errorEdad, setErrorEdad] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
+
+  const days = calculateRentalDays(pickupDate, returnDate);
+  const total = calculateTotal(pickupDate, returnDate, price);
+
+  useEffect(() => {
+    const invalid = hasInvalidDateRange(pickupDate, returnDate);
+    setErrorFecha(invalid ? t("reservation.ErrorDate") : "");
+  }, [pickupDate, returnDate, t]);
+
+  useEffect(() => {
+    if (!birthDate) {
+      setErrorEdad("");
+      return;
+    }
+
+    setErrorEdad(isAdult(birthDate) ? "" : t("reservation.ErrorAge"));
+  }, [birthDate, t]);
+
+  const toggleShowFilters = () => {
+    setShowFilters((prev) => !prev);
+  };
+
+  const handlePayment = () => {
+    if (!pickupDate || !returnDate) {
+      alert(t("reservation.selectDates"));
+      return;
+    }
+
+    if (errorFecha) {
+      alert(errorFecha);
+      return;
+    }
+
+    if (errorEdad) {
+      alert(errorEdad);
+      return;
+    }
+
+    navigate("/Payment");
+  };
+
+  return {
+    opcion,
+    setOpcion,
+    selectedBranch,
+    setSelectedBranch,
+    nameR,
+    setNameR,
+    document,
+    setDocument,
+    birthDate,
+    setBirthDate,
+    pickupDate,
+    setPickupDate,
+    returnDate,
+    setReturnDate,
+    errorFecha,
+    errorEdad,
+    days,
+    total,
+    showFilters,
+    toggleShowFilters,
+    handlePayment,
+  };
+};
