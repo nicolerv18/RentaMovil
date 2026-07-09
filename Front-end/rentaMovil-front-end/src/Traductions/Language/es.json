@@ -412,5 +412,51 @@
     "stateSee": "Ver estado",
     "all_m": "Todos",
       "all_f": "Todas"
+  },
+  "CheckStatus":{
+    "modal":{
+      "title":"Editar vehículo",
+      "close":"Cerrar modal",
+      "name":"Nombre",
+      "requiredName":"El nombre es obligatorio",
+      "requiredNameMinLength":"El nombre debe tener al menos 3 caracteres",
+      "requiredNameMaxLength":"El nombre no puede exceder los 50 caracteres",
+      "formatInvalid":"El nombre solo puede contener letras, números y guiones.",
+      "plate":"Placa",
+      "requiredPlate":"La placa es obligatoria",
+      "requiredPlateMinLength":"La placa debe tener al menos 2 caracteres",
+      "requiredPlateMaxLength":"La placa no puede exceder los 30 caracteres",
+      "formatInvalidPlate":"Formato de placa inválido",
+      "state":"Estado",
+      "seeMore":"Ver más",
+      "stateOptions":{
+        "available":"Disponible",
+        "maintenance":"En mantenimiento",
+        "inUse":"En uso",
+        "reserved":"Reservado"
+      },
+      "ubication":"Ubicación",
+      "requiredUbication":"La ubicación es obligatoria",
+      "requiredUbicationMinLength":"La ubicación debe tener al menos 2 caracteres",
+      "requiredUbicationMaxLength":"La ubicación no puede exceder los 100 caracteres",
+      "formatInvalidUbication":"La ubicación contiene caracteres no permitidos",
+      "description":"Descripción",
+      "requiredDescriptionMinLength":"La descripción debe tener al menos 5 caracteres",
+      "requiredDescriptionMaxLength":"La descripción no puede exceder los 200 caracteres",
+      "cancel":"Cancelar"
+    },
+    "actions":{
+      "save":"Guardar cambios",
+      "saving":"Guardando..."
+    }
+  },
+  "FiltrerStatus":{
+    "placeholder":"Buscar por placa, marca o modelo...",
+    "all":"Todos"
+  },
+  "CartVehiculeStatus":{
+    "veicle":"Vehículo",
+    "Maintenance":"Mantenimiento",
+    "InMaintenance":"En mantenimiento"
   }
 }

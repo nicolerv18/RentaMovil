@@ -1,16 +1,24 @@
+import { useTranslation } from "react-i18next";
 import { Pie, PieChart, Cell, Tooltip } from "recharts";// Importar los componentes necesarios de Recharts para crear el gráfico circular
 import style from "../components/FleetChart.module.css";
 function FleetChart({ vehicles }) {
+    const { t } = useTranslation();
+    const stateMap = {
+        available: "Disponible",
+        maintenance: "En mantenimiento",
+        inUse: "En uso",
+        reserved: "Reservado",
+    };
     const COLORS = {// Definir los colores para cada estado de los vehículos
-        "Disponible": "#8cff00",
-        "En mantenimiento": "#afafaf",
-        "En uso": '#2853ff',
-        "Reservado": "#ba1717",
+        available: "#8cff00",
+        maintenance: "#afafaf",
+        inUse: '#2853ff',
+        reserved: "#ba1717",
     }
-    const desiredOrder = ["Disponible", "En uso", "Reservado", "En mantenimiento"];
-    const data = desiredOrder.map((state) => ({ // Crear un array de objetos con el nombre del estado y la cantidad de vehículos en ese estado
-        name: state, // El nombre del estado
-        value: vehicles.filter((v) => v.state === state).length, // Contar la cantidad de vehículos que tienen ese estado
+    const desiredOrder = ["available", "inUse", "reserved", "maintenance"];
+    const data = desiredOrder.map((stateKey) => ({ // Crear un array de objetos con el nombre del estado y la cantidad de vehículos en ese estado
+        name: stateKey, // El nombre del estado
+        value: vehicles.filter((v) => v.state === stateMap[stateKey]).length, // Contar la cantidad de vehículos que tienen ese estado
     }))
 
     const total = vehicles.length
@@ -23,16 +31,16 @@ function FleetChart({ vehicles }) {
                             <Cell key={entry.name} fill={COLORS[entry.name]} />
                         ))}
                     </Pie>
-                    <Tooltip formatter={(value, name) => [value, name]} />
+                    <Tooltip formatter={(value, name) => [value, t(`CheckStatus.modal.stateOptions.${name}`)]} />
                 </PieChart>
                 <div className={style["fleet-chart-info"]}>
                     <div className={style["fleet-chart-total"]}>{total}</div>
-                    <div className={style["fleet-chart-label"]}>vehículos</div>
+                    <div className={style["fleet-chart-label"]}>{t("CartVehiculeStatus.veicle")}</div>
                 </div>
             </div>
             <div className={style["fleet-chart-legend"]}>
                 {data.map((entry) => {
-                    const label = entry.name === "En mantenimiento" ? "Mantenimiento" : entry.name;
+                    const label = t(`CheckStatus.modal.stateOptions.${entry.name}`);
                     return (
                         <div key={entry.name} className={style["legend-item"]}>
                             <span className={style["legend-color"]} style={{ backgroundColor: COLORS[entry.name] }} />

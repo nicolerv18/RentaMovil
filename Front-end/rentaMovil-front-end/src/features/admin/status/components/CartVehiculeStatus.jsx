@@ -1,7 +1,9 @@
 
+import { useTranslation } from "react-i18next";
 import style from '../components/CartVehiculeStatus.module.css'
 
 function CardVehiculeStatus({ name, text, state, plate, img, ubication, onVerMas }) {
+    const { t } = useTranslation();
 /* Eto funciona como un dicionario , perimiteiendo alteral el estilo del estado
 segun el estado de este :v es decir, si nuestro estado es alterado, automaticamente cambia el color  */
     const stateClass = {
@@ -10,6 +12,13 @@ segun el estado de este :v es decir, si nuestro estado es alterado, automaticame
         'En uso':          style['state--en-uso'],
         'Reservado':       style['state--reservado'],
     }[state] || ''
+
+    const stateLabel = {
+        'Disponible': t("CheckStatus.modal.stateOptions.available"),
+        'En mantenimiento': t("CheckStatus.modal.stateOptions.maintenance"),
+        'En uso': t("CheckStatus.modal.stateOptions.inUse"),
+        'Reservado': t("CheckStatus.modal.stateOptions.reserved"),
+    }[state] || state;
 
     return (
         <div className={style['card-vehicule']}>
@@ -23,20 +32,20 @@ segun el estado de este :v es decir, si nuestro estado es alterado, automaticame
                 <p className={style['desc-vehicule']}>{text}</p>
                 <div className={style['container-info']}>
                     <div className={style['info-item']}>
-                        <span className={style['info-label']}>Placa</span>
+                        <span className={style['info-label']}>{t("CheckStatus.modal.plate")}</span>
                         <span className={style['plate']}>{plate}</span>
                     </div>
                     <div className={style['info-item']}>
-                        <span className={style['info-label']}>Ubicación</span>
+                        <span className={style['info-label']}>{t("CheckStatus.modal.ubication")}</span>
                         <span className={style['price-vehicule']}>{ubication}</span>
                     </div>
                 </div>
             </div>
 
             <div className={style['card-actions']}>
-                <span className={`${style['state-badge']} ${stateClass}`}>{state}</span>
+                <span className={`${style['state-badge']} ${stateClass}`}>{stateLabel}</span>
                 <button className={style['btn-ver-mas']} onClick={onVerMas}>
-                    Ver más
+                    {t("CheckStatus.modal.seeMore")}
                 </button>
             </div>
 

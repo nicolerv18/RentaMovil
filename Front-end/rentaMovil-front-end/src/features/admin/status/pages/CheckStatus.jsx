@@ -15,7 +15,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 function CheckStatus() {
     const { t } = useTranslation();
     const [query, setSearch] = useState("");
-    const [filterState, setFilterState] = useState("Todos");
+    const [filterState, setFilterState] = useState("all");
     const { register, formState: { errors }, handleSubmit, reset, setError, clearErrors } = useForm();
     const [isLoading, setIsLoading] = useState(false);
     const [vehicles, setVehicles] = useState([
@@ -55,8 +55,16 @@ function CheckStatus() {
     const [vehicleFile, setVehicleFile] = useState(null);
     const [selectedVehicle, setSelectedVehicle] = useState(null);
 
+    const stateNameMap = {
+        all: null,
+        available: "Disponible",
+        maintenance: "En mantenimiento",
+        inUse: "En uso",
+        reserved: "Reservado",
+    };
+
     const filteredVehicles = vehicles
-        .filter((v) => filterState === "Todos" || v.state === filterState)
+        .filter((v) => filterState === "all" || v.state === stateNameMap[filterState])
         .filter((v) => v.name.toLowerCase().includes(query.toLowerCase()) || v.plate.toLowerCase().includes(query.toLowerCase()));
 
     const handleFileChange = (file) => {
@@ -138,24 +146,24 @@ function CheckStatus() {
                 <div className={style["modal-overlay"]} onClick={closeModal}>
                     <div className={style["modal-modal"]} onClick={(e) => e.stopPropagation()}>
                         <div className={style["modal-header"]}>
-                            <h3 className={style["modal-title"]}>Editar vehículo</h3>
-                            <button type="button" className={style["modal-closeButton"]} onClick={closeModal} aria-label="Cerrar modal">
+                            <h3 className={style["modal-title"]}>{t("CheckStatus.modal.title")}</h3>
+                            <button type="button" className={style["modal-closeButton"]} onClick={closeModal} aria-label={t("CheckStatus.modal.close")}>
                                 ×
                             </button>
                         </div>
                         <div className={style.modalForm}>
                             <div className={style.modalFields}>
                                 <label>
-                                    Nombre
+                                    {t("CheckStatus.modal.name")}
                                     <input
                                         className={style["modal-input"]}
                                         {...register("name", {
-                                            required: "El nombre es obligatorio",
-                                            minLength: { value: 3, message: "El nombre debe tener al menos 3 caracteres" },
-                                            maxLength: { value: 50, message: "El nombre no puede exceder los 50 caracteres" },
+                                            required: t("CheckStatus.modal.requiredName"),
+                                            minLength: { value: 3, message: t("CheckStatus.modal.requiredNameMinLength") },
+                                            maxLength: { value: 50, message: t("CheckStatus.modal.requiredNameMaxLength") },
                                             pattern: {
                                                 value: /^[A-Za-z0-9\s\-]{2,30}$/, 
-                                                message: t("formato de registro invalido")
+                                                message: t("CheckStatus.modal.formatInvalid")
                                             }
                                         })}
                                     />
@@ -166,16 +174,16 @@ function CheckStatus() {
                                     )}
                                 </label>
                                 <label>   
-                                    Placa
+                                    {t("CheckStatus.modal.plate")}
                                     <input
                                         className={style["modal-input"]}
                                         {...register("plate", {
-                                        required: t('La placa es obligatoria'),
-                                        minLength: { value: 2, message: t('La placa debe tener al menos 2 caracteres') },
-                                        maxLength: { value: 30, message: t('La placa no puede exceder los 30 caracteres') },
+                                        required: t("CheckStatus.modal.requiredPlate"),
+                                        minLength: { value: 2, message: t("CheckStatus.modal.requiredPlateMinLength") },
+                                        maxLength: { value: 30, message: t("CheckStatus.modal.requiredPlateMaxLength") },
                                         pattern: {
                                             value: /^[A-Z]{3}[0-9]{2}[A-Z0-9]?$/,
-                                            message: t('Formato de placa inválido')
+                                            message: t("CheckStatus.modal.formatInvalidPlate")
                                         },
                                         onChange: (e) => { e.target.value = e.target.value.toUpperCase() }
                                     })}
@@ -187,27 +195,27 @@ function CheckStatus() {
                                     )}
                                 </label>
                                 <label>
-                                    Estado
+                                    {t("CheckStatus.modal.state")}
                                     <select
                                         {...register("state")}
                                     >
-                                        <option value="Disponible">Disponible</option>
-                                        <option value="En mantenimiento">En mantenimiento</option>
-                                        <option value="En uso">En uso</option>
-                                        <option value="Reservado">Reservado</option>
+                                        <option value="Disponible">{t("CheckStatus.modal.stateOptions.available")}</option>
+                                        <option value="En mantenimiento">{t("CheckStatus.modal.stateOptions.maintenance")}</option>
+                                        <option value="En uso">{t("CheckStatus.modal.stateOptions.inUse")}</option>
+                                        <option value="Reservado">{t("CheckStatus.modal.stateOptions.reserved")}</option>
                                     </select>
                                 </label>
                                 <label>
-                                    Ubicación
+                                    {t("CheckStatus.modal.ubication")}
                                     <input
                                         className={style["modal-input"]}
                                         {...register("ubication", {
-                                            required: t('vehicleForm.requiredLocation'),
-                                            minLength: { value: 2, message: t('vehicleForm.minLenghtLocation') },
-                                            maxLength: { value: 100, message: t('vehicleForm.maxLenghtLocation') },
+                                            required: t("CheckStatus.modal.requiredUbication"),
+                                            minLength: { value: 2, message: t("CheckStatus.modal.requiredUbicationMinLength") },
+                                            maxLength: { value: 100, message: t("CheckStatus.modal.requiredUbicationMaxLength") },
                                             pattern: {
                                                 value: /^[A-Za-zÀ-ÿ0-9\s\.\,\#\-]{2,100}$/,
-                                                message: t('vehicleForm.invalidLocation')
+                                                message: t("CheckStatus.modal.formatInvalidUbication")
                                             }
                                         })}
                                 />
@@ -218,12 +226,12 @@ function CheckStatus() {
                                 )}
                                 </label>
                                 <label>
-                                    Descripción
+                                    {t("CheckStatus.modal.description")}
                                     <textarea
                                         className={style["modal-textarea"]}
                                         {...register("description", {
-                                        minLength: { value: 5, message: "Mínimo 5 caracteres." },
-                                        maxLength: { value: 200, message: "Máximo 200 caracteres." }
+                                        minLength: { value: 5, message: t("CheckStatus.modal.requiredDescriptionMinLength") },
+                                        maxLength: { value: 200, message: t("CheckStatus.modal.requiredDescriptionMaxLength") }
                                     })}
                                         onInput={(e) => {
                                         e.target.style.height = 'auto';         /* // resetea la altura */
@@ -244,10 +252,10 @@ function CheckStatus() {
                         </div>
                         <div className={style["modal-footer"]}>
                             <button type="button" className={style["modal-cancelButton"]} onClick={closeModal}>
-                                Cancelar
+                                {t("CheckStatus.modal.cancel")}
                             </button>
                             <button type="button" className={style["modal-submitButton"]} onClick={() => handleSubmit(onSubmit)()} disabled={isLoading}>
-                                {isLoading ? "Guardando..." : "Guardar cambios"}
+                                {isLoading ? t("CheckStatus.actions.saving") : t("CheckStatus.actions.save")}
                             </button>
                         </div>
                     </div>

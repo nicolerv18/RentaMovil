@@ -405,6 +405,51 @@
   "stateSee": "See status",
   "all_m": "All",
   "all_f": "All"
-}
-
+},
+  "CheckStatus":{
+    "modal":{
+      "title":"Edit vehicle",
+      "close":"Close modal",
+      "name":"Name",
+      "requiredName":"Name is required",
+      "requiredNameMinLength":"Name must have at least 3 characters",
+      "requiredNameMaxLength":"Name cannot exceed 50 characters",
+      "formatInvalid":"Name can only contain letters, numbers and hyphens.",
+      "plate":"License plate",
+      "requiredPlate":"License plate is required",
+      "requiredPlateMinLength":"License plate must have at least 2 characters",
+      "requiredPlateMaxLength":"License plate cannot exceed 30 characters",
+      "formatInvalidPlate":"Invalid plate format",
+      "state":"Status",
+      "seeMore":"See more",
+      "stateOptions":{
+        "available":"Available",
+        "maintenance":"Maintenance",
+        "inUse":"In use",
+        "reserved":"Reserved"
+      },
+      "ubication":"Location",
+      "requiredUbication":"Location is required",
+      "requiredUbicationMinLength":"Location must have at least 2 characters",
+      "requiredUbicationMaxLength":"Location cannot exceed 100 characters",
+      "formatInvalidUbication":"Location contains invalid characters",
+      "description":"Description",
+      "requiredDescriptionMinLength":"Description must have at least 5 characters",
+      "requiredDescriptionMaxLength":"Description cannot exceed 200 characters",
+      "cancel":"Cancel"
+    },
+    "actions":{
+      "save":"Save changes",
+      "saving":"Saving..."
+    }
+  },
+  "FiltrerStatus":{
+    "placeholder":"Search by plate, brand or model...",
+    "all":"All"
+  },
+  "CartVehiculeStatus":{
+    "veicle":"Vehicle",
+    "Maintenance":"Maintenance",
+    "InMaintenance":"In maintenance"
+  }
 }
