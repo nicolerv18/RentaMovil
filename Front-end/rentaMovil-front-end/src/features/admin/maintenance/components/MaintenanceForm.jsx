@@ -5,8 +5,11 @@ import { useMemo, useState } from 'react';
 import ValidateDate from './ValidateDate';
 import { vehicles } from '../service/CarsMock';
 import { useForm } from 'react-hook-form';
-
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 function MaintenanceForm() {
+    const navigate = useNavigate();
+    const { t } = useTranslation();
     const { register, formState: { errors }, handleSubmit, reset, setValue } = useForm();
     const [mos, setMos] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -52,15 +55,15 @@ function MaintenanceForm() {
                 <div className={style['maintenance-panel']}>
                     <div className={style['panel-header']}>
                         <div>
-                            <h3>Vehículos para mantenimiento</h3>
-                            <p>Busca por placa, nombre o estado:</p>
+                            <h3>{t('MaintenanceForm.title')}</h3>
+                            <p>{t('MaintenanceForm.search')}</p>
                         </div>
                     </div>
 
                     <input
                         type="text"
                         className={style['vehicle-search']}
-                        placeholder="Buscar placa o vehículo"
+                        placeholder={t('MaintenanceForm.search')}
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -87,7 +90,7 @@ function MaintenanceForm() {
                                 </button>
                             ))
                         ) : (
-                            <p className={style['vehicle-empty']}>No se encontraron vehículos.</p>
+                            <p className={style['vehicle-empty']}>{t('MaintenanceForm.noFound')}</p>
                         )}
                     </div>
                 </div>
@@ -96,19 +99,19 @@ function MaintenanceForm() {
             <form className={style['maintenance-form']} onSubmit={handleSubmit(insert)}>
                 <div className={style['maintenance-form-left']}>
                     <div className={style['maintenance-continerfor']}>
-                        <h2>Registre un nuevo mantenimiento</h2>
+                        <h2>{t('MaintenanceForm.newMaintenance')}</h2>
 
                         <div className={style['maintenance-form-input']}>
-                            <label htmlFor="plate">Placa:</label>
+                            <label htmlFor="plate">{t('CheckStatus.modal.plate')}</label>
                             <input
                                 type="text"
-                                placeholder="Placa ej: ABC123"
+                                placeholder={t('CheckStatus.modal.platePlaceholder')}
                                 readOnly={Boolean(selectedVehicle)}
                                 {...register('plate', {
-                                    required: 'La placa es obligatoria.',
+                                    required: t('CheckStatus.modal.requiredPlate'),
                                     pattern: {
                                         value: /^[A-Z]{3}[0-9]{2}[A-Z0-9]?$/,
-                                        message: 'Formato inválido. Carro: ABC123'
+                                        message: t('CheckStatus.modal.formatInvalidPlate')
                                     },
                                     onChange: (e) => {
                                         e.target.value = e.target.value.toUpperCase();
@@ -124,18 +127,18 @@ function MaintenanceForm() {
                         </div>
 
                         <div className={style['maintenance-form-input']}>
-                            <label htmlFor="model">Modelo:</label>
+                            <label htmlFor="model">{t('MaintenanceForm.model')}</label>
                             <input
                                 type="text"
-                                placeholder="Ej: Volkswagen Gol, Crolla, Tesla Model 3..."
+                                placeholder={t('MaintenanceForm.modelPlaceholder')}
                                 readOnly={Boolean(selectedVehicle)}
                                 {...register('model', {
-                                    required: 'El modelo es obligatorio',
-                                    minLength: { value: 2, message: 'El modelo debe tener al menos 2 caracteres.' },
-                                    maxLength: { value: 30, message: 'El modelo no debe superar 30 caracteres.' },
+                                    required: t('MaintenanceForm.requiredModel'),
+                                    minLength: { value: 2, message: t('MaintenanceForm.requiredModelMinLength') },
+                                    maxLength: { value: 30, message: t('MaintenanceForm.requiredModelMaxLength') },
                                     pattern: {
                                         value: /^[A-Za-z0-9\s\-]{2,30}$/,
-                                        message: 'El modelo solo puede contener letras, números y guiones.'
+                                        message: t('MaintenanceForm.formatInvalidModel')
                                     }
                                 })}
                             />
@@ -147,12 +150,12 @@ function MaintenanceForm() {
                         </div>
 
                         <div className={style['maintenance-form-input']}>
-                            <label htmlFor="date">Fecha:</label>
+                            <label htmlFor="date">{t('MaintenanceForm.date')}</label>
                             <input
                                 type="date"
-                                placeholder="Fecha"
+                                placeholder={t('MaintenanceForm.datePlaceholder')}
                                 {...register('date', {
-                                    required: 'La fecha es obligatoria',
+                                    required: t('MaintenanceForm.requiredDate'),
                                     validate: ValidateDate
                                 })}
                             />
@@ -165,19 +168,19 @@ function MaintenanceForm() {
 
                         <div className={style['maintenance-form-right']}>
                             <div className={style['maintenance-form-input']}>
-                                <label htmlFor="brand">Marca:</label>
+                                <label htmlFor="brand">{t('MaintenanceForm.brand')}</label>
                                 <input
                                     type="text"
-                                    placeholder="Ej: Chevrolet, Renault, Toyota...."
+                                    placeholder={t('MaintenanceForm.brandPlaceholder')}
                                     list="brand-options"
                                     readOnly={Boolean(selectedVehicle)}
                                     {...register('brand', {
-                                        required: 'La marca es obligatoria',
-                                        minLength: { value: 2, message: 'Mínimo 2 caracteres.' },
-                                        maxLength: { value: 30, message: 'Máximo 30 caracteres.' },
+                                        required: t('MaintenanceForm.requiredBrand'),
+                                        minLength: { value: 2, message: t('MaintenanceForm.minLenghtBrand') },
+                                        maxLength: { value: 30, message: t('MaintenanceForm.maxLenghtBrand') },
                                         pattern: {
                                             value: /^[A-Za-z0-9\s\-]{2,30}$/,
-                                            message: 'La marca solo puede contener letras, números y guiones.'
+                                            message: t('MaintenanceForm.ivalidBrand')
                                         }
                                     })}
                                 />
@@ -206,69 +209,38 @@ function MaintenanceForm() {
                                 )}
                             </div>
 
-                            <div className={style['maintenance-form-input']}>
-                                <label htmlFor="type">Seleccione el vehículo:</label>
-                                <select
-                                    {...register('vehicleType', {
-                                        required: 'Debes seleccionar el tipo de vehículo.',
-                                        validate: (value) => value !== '' || 'Debes seleccionar el tipo de vehículo.'
-                                    })}
-                                    defaultValue=""
-                                >
-                                    <option value="" disabled>Selecciona un tipo...</option>
-                                    <optgroup label="Automóviles">
-                                        <option value="Sedán">Sedán</option>
-                                        <option value="Hatchback">Hatchback</option>
-                                        <option value="SUV">SUV</option>
-                                        <option value="Camioneta">Camioneta</option>
-                                        <option value="Pickup">Pickup</option>
-                                        <option value="Van">Van</option>
-                                        <option value="Coupé">Coupé</option>
-                                    </optgroup>
-                                    <optgroup label="Carga">
-                                        <option value="Camión">Camión</option>
-                                        <option value="Tractocamión">Tractocamión</option>
-                                        <option value="Furgón">Furgón</option>
-                                    </optgroup>
-                                </select>
-                                {errors.vehicleType && (
-                                    <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> {errors.vehicleType.message}
-                                    </p>
-                                )}
-                            </div>
 
                             <div className={style['maintenance-form-input']}>
-                                <label htmlFor="maintenanceType">Tipo de mantenimiento:</label>
+                                <label htmlFor="maintenanceType">{t("MaintenanceForm.Type")}</label>
                                 <input
                                     type="text"
-                                    placeholder="Ej: Cambio de aceite, Revisión de frenos..."
+                                    placeholder={t("MaintenanceForm.placeholderType")}
                                     list="maintenance-options"
                                     {...register('maintenanceType', {
-                                        required: 'El tipo de mantenimiento es obligatorio.',
-                                        minLength: { value: 3, message: 'Mínimo 3 caracteres.' },
-                                        maxLength: { value: 60, message: 'Máximo 60 caracteres.' },
+                                        required: t("MaintenanceForm.requiredType"),
+                                        minLength: { value: 3, message: t("MaintenanceForm.minLenghtType") },
+                                        maxLength: { value: 60, message: t("MaintenanceForm.maxLenghtType") },
                                         pattern: {
                                             value: /^[A-Za-zÀ-ÿ0-9\s\-\,\.]{3,60}$/,
-                                            message: 'Solo se permiten letras, números, guiones y comas.'
+                                            message: t("MaintenanceForm.invalidType")
                                         }
                                     })}
                                 />
                                 <datalist id="maintenance-options">
-                                    <option value="Cambio de aceite" />
-                                    <option value="Cambio de filtros" />
-                                    <option value="Revisión de frenos" />
-                                    <option value="Cambio de llantas" />
-                                    <option value="Alineación y balanceo" />
-                                    <option value="Revisión general" />
-                                    <option value="Reparación de motor" />
-                                    <option value="Reparación de frenos" />
-                                    <option value="Reparación eléctrica" />
-                                    <option value="Reparación de suspensión" />
-                                    <option value="Reparación de transmisión" />
-                                    <option value="Lavado" />
-                                    <option value="Pintura" />
-                                    <option value="Latonería" />
+                                    <option value={t("MaintenanceForm.options.option1")} />
+                                    <option value={t("MaintenanceForm.options.option2")} />
+                                    <option value={t("MaintenanceForm.options.option3")} />
+                                    <option value={t("MaintenanceForm.options.option4")} />
+                                    <option value={t("MaintenanceForm.options.option5")} />
+                                    <option value={t("MaintenanceForm.options.option6")} />
+                                    <option value={t("MaintenanceForm.options.option7")} />
+                                    <option value={t("MaintenanceForm.options.option8")} />
+                                    <option value={t("MaintenanceForm.options.option9")} />
+                                    <option value={t("MaintenanceForm.options.option10")} />
+                                    <option value={t("MaintenanceForm.options.option11")} />
+                                    <option value={t("MaintenanceForm.options.option12")} />
+                                    <option value={t("MaintenanceForm.options.option13")} />
+                                    <option value={t("MaintenanceForm.options.option14")} />
                                 </datalist>
 
                                 {errors.maintenanceType && (
@@ -281,14 +253,14 @@ function MaintenanceForm() {
 
                         <div className={style['maintenance-form-observations']}>
                             <div className={style['maintenance-form-input']}>
-                                <label htmlFor="maintenance-notes">Observaciones</label>
+                                <label htmlFor="maintenance-notes">{t("MaintenanceForm.observations")}</label>
                                 <textarea
-                                    placeholder="Observaciones"
+                                    placeholder={t("MaintenanceForm.placeholderObservations")}
                                     className={style['maintenance-observatios']}
                                     rows={2}
                                     {...register('observations', {
-                                        minLength: { value: 5, message: 'Mínimo 5 caracteres.' },
-                                        maxLength: { value: 200, message: 'Máximo 200 caracteres.' }
+                                        minLength: { value: 5, message: t("MaintenanceForm.minLenghtObservations") },
+                                        maxLength: { value: 200, message: t("MaintenanceForm.maxLenghtObservations") }
                                     })}
                                     onInput={(e) => {
                                         e.target.style.height = 'auto';
@@ -297,12 +269,12 @@ function MaintenanceForm() {
                                 />
                                 {errors.observations?.type === 'minLength' && (
                                     <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> La observación debe tener al menos 5 caracteres
+                                        <AiOutlineDashboard /> {errors.observations.message}
                                     </p>
                                 )}
                                 {errors.observations?.type === 'maxLength' && (
                                     <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> La observación no debe tener más de 200 caracteres
+                                        <AiOutlineDashboard /> {errors.observations.message}
                                     </p>
                                 )}
                             </div>
@@ -311,12 +283,14 @@ function MaintenanceForm() {
 
                     <div className={style['maintenance-form-buttons']}>
                         <button className="save" type="submit" disabled={isLoading}>
-                            {isLoading ? 'Agendando mantenimiento' : 'Agendar mantenimiento'}
+                            {isLoading ? t("MaintenanceForm.saving") : t("MaintenanceForm.save")}
                         </button>
                         <span className={style['vehicule-animation']}>
                             {mos && <Animation />}
                         </span>
-                        <button className="history" type="button">Historial de contratos</button>
+                        <button className="history" type="button" onClick={() => navigate('/History')}>
+                            {t("MaintenanceForm.history")}
+                        </button>
                     </div>
                 </div>
             </form>

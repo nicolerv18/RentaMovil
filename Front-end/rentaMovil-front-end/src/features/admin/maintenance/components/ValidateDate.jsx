@@ -13,10 +13,10 @@ function ValidateDate(value) {  //esta funcionn toma una gecha elgida por el usu
     limitDate.setMonth(limitDate.getMonth() + 2);// esto solo suna dos meses a la fecha actual
 
     if (selectDate < today) {
-        return 'La fecha no puede ser anterior a hoy';
+        return t("MaintenanceForm.minDate");
     }
     if (selectDate > limitDate) {
-        return 'La fecha no puede ser posterior a dos meses desde hoy';
+        return t("MaintenanceForm.maxDate");
     }
 
     return true;
