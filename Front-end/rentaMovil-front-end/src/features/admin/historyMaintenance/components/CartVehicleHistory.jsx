@@ -7,8 +7,7 @@ import { useState } from 'react';
 function CartVehicleHistory({ record = {}, onViewMore }) {
     const { t } = useTranslation();
     
-    const { plate, date, type, status, notes, img: recordImg, model } = record;
-    const [state, setState] = useState(status || 'Pendiente')
+    const { plate, date, type, state, notes, img: recordImg, model } = record;
     const statusClass = {
         'Pendiente': style['state--pendiente'],
         'En progreso': style['state--progreso'],
@@ -44,7 +43,7 @@ function CartVehicleHistory({ record = {}, onViewMore }) {
                 </div>
 
                 <div className={style['card-right']}>
-                    <span className={`${style['badge']} ${statusClass}`}>{state || 'Pendiente'}</span>
+                    <span className={`${style['badge']} ${statusClass}`}>{stateLabel || 'Pendiente'}</span>
                     <button className={style['card-btn']} onClick={() => onViewMore && onViewMore(record)}>{t("CartVehiculeMaintenance.seeMore")}</button>
                 </div>
             </div>

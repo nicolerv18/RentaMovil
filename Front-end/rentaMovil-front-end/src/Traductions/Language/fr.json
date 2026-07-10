@@ -541,5 +541,11 @@
     "IsDelete": "Êtes-vous sûr de vouloir supprimer cette maintenance ?",
     "confirm": "Confirmer",
     "close": "Fermer"
-  }
+  },
+    "FleetChartMaintenance":{
+    "pending":"En attente",
+    "inProgress":"En cours",
+    "completed":"Terminé",
+    "cancel":"Annulé"
+}
 }

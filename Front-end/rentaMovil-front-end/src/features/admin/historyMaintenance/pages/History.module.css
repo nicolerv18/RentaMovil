@@ -3,10 +3,12 @@
     margin: 40px auto;
     padding: 0 40px;
 }
-
+* {
+  outline: 1px solid red;
+}
 .list {
-display: grid;
-  grid-template-columns: repeat(2, 1fr);
+display: inline-block;
+margin-left: 53%;
   gap: 15px;
   padding: 24px 57px;
 

@@ -428,7 +428,7 @@
       "requiredPlateMinLength":"La placa debe tener al menos 2 caracteres",
       "requiredPlateMaxLength":"La placa no puede exceder los 30 caracteres",
       "formatInvalidPlate":"Formato de placa inválido",
- "model": "Modèle",
+ "model": "Modelo",
     "modelPlaceholder": "Exemple : Volkswagen Gol, Corolla, Tesla Model 3...",
     "requiredModel": "El modelo es obligatorio",
     "requiredModelMinLength": "El modelo debe tener al menos 2 caracteres",
@@ -556,5 +556,11 @@
       "IsDelete":"Estas seguro de que deseas eliminar este mantenimiento?",
       "confirm":"Confirmar",
       "close":"Cerrar"
-    }
+    },
+    "FleetChartMaintenance":{
+    "pending":"Pendiente",
+    "inProgress":"En progreso",
+    "completed":"Completado",
+    "cancel":"Cancelado"
+}
 }

@@ -6,43 +6,16 @@ import Footer from '../../../../shared/components/layout/Footer.jsx';
 import { useForm } from 'react-hook-form';
 import { AiOutlineDashboard } from 'react-icons/ai';
 import ValidateDate from '../../maintenance/components/ValidateDate.jsx';
-import img from "../../../../assets/carro.png";
 import FiltrerStatus from "../components/FiltrerHistory.jsx";
 import { useTranslation } from "react-i18next";
 import NavbarAdmin from '../../../../shared/components/layout/NavBarAdmin.jsx';
-const MOCK = [
-  { id: '1', plate: 'ABC1323', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Cancelado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '2', plate: 'XYZ987', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '3', plate: 'QWE4546', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '4', plate: 'ABC1223', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Completado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '5', plate: 'XYZ9847', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '6', plate: 'QWE4536', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '7', plate: 'ABC1243', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Cancelado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '8', plate: 'XYZ9827', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '9', plate: 'QWE45356', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '10', plate: 'ABC1523', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Completado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '12', plate: 'XYZ9867', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '13', plate: 'QWE4566', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '11', plate: 'ABC12633', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Completado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '14', plate: 'XYZ9857', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '15', plate: 'QWE4563', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '16', plate: 'ABC12223', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Completado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '17', plate: 'XYZ98457', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '18', plate: 'QWE456345', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '19', plate: 'ABC1234', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Completado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '20', plate: 'XYZ9f87', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '23', plate: 'QWE4q56', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '21', plate: 'ABC12343', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Completado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
-  { id: '22', plate: 'XYZ98r7', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
-  { id: '24', plate: 'QWE4546', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img },
-  { id: '25', plate: 'QWE4536', model: 'Renault Logan', date: '2025-03-02T09:20:00Z', type: 'Alineación y balanceo', status: 'Pendiente', notes: '', img }
-
-];
-
+import { CarsMock } from '../services/CarsMock.js';
+import FleetChartMaintenance from '../components/FleetChartMaintenance.jsx';
 function History() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+  
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
-  const [records, setRecords] = useState(MOCK);
+  const [records, setRecords] = useState(CarsMock); // Inicializa con los registros de mantenimiento del mock
   const [selected, setSelected] = useState(null);
   //agrega cambio de estado
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -50,23 +23,23 @@ function History() {
   // estados para facilitar la edicion de los apartados
   const [isEditing, setIsEditing] = useState(false);
   const [query, setSearch] = useState("");
-  const [filterState, setFilterState] = useState("Todos");// Estado para almacenar el estado de filtro seleccionado
+  const [filterState, setFilterState] = useState("");// Estado para almacenar el estado de filtro seleccionado
 
-const filteredRecords = records
-      .filter((c) => {
-        const fs = String(filterState || '').toLowerCase();
-        if (fs === 'todos' || fs === '') return true;
-        return String(c.status || '').toLowerCase() === fs;
-      })
-      .filter((c) => {
-        const q = String(query || '').trim().toLowerCase();
-        if (!q) return true;
-        return (
-          String(c.model || '').toLowerCase().includes(q) ||
-          String(c.plate || '').toLowerCase().includes(q) ||
-          String(c.type || '').toLowerCase().includes(q)
-        );
-      });
+  const filteredRecords = records
+    .filter((c) => {
+      const fs = String(filterState || '').toLowerCase();
+      if (fs === 'all' || fs === '') return true;
+      return String(c.state || '').toLowerCase() === fs;
+    })
+    .filter((c) => {
+      const q = String(query || '').trim().toLowerCase();
+      if (!q) return true;
+      return (
+        String(c.model || '').toLowerCase().includes(q) ||
+        String(c.plate || '').toLowerCase().includes(q) ||
+        String(c.type || '').toLowerCase().includes(q)
+      );
+    });
 
   const closeModal = () => {
     setSelected(null)
@@ -77,10 +50,10 @@ const filteredRecords = records
   const handleStatusChange = (este) => {
     const newState = este.target.value;
     //Actualizamos la lista completa de registros
-    const newRegisters = records.map(r => String(r.id) === String(selected.id) ? { ...r, status: newState } : r)
+    const newRegisters = records.map(r => String(r.id) === String(selected.id) ? { ...r, state: newState } : r)
     setRecords(newRegisters);
 
-    setSelected({ ...selected, status: newState });
+    setSelected({ ...selected, state: newState });
   }
 
   const deleteRecord = (id) => {
@@ -91,9 +64,26 @@ const filteredRecords = records
 
 
   const handleSaveEdit = (data) => {
-    const updated = records.map(r => r.id === selected.id ? { ...r, model: data.model, type: data.maintenanceType, date: data.date + 'T00:00:00Z', notes: data.observations, status: data.status, } : r);
+    const updated = records.map(r =>
+      r.id === selected.id
+        ? {
+          ...r,
+          model: data.model,
+          type: data.maintenanceType,
+          date: data.date + 'T00:00:00Z',
+          notes: data.observations,
+          state: data.status,
+        }
+        : r);
     setRecords(updated);
-    setSelected({ ...selected, model: data.model, type: data.maintenanceType, date: data.date, notes: data.observations, status: data.status, });// de estama manera se estaria sobre escribiendo los valores viejos por los nuevos
+    setSelected({
+      ...selected,
+      model: data.model,
+      type: data.maintenanceType,
+      date: data.date,
+      notes: data.observations,
+      state: data.status,
+    });// de estama manera se estaria sobre escribiendo los valores viejos por los nuevos
     setIsEditing(false);
   }
 
@@ -110,20 +100,21 @@ const filteredRecords = records
 
     <>
 
-      <NavbarAdmin/>
+      <NavbarAdmin />
       <div className={style["history-container"]}>
         <div className={style["card-container-setSearch"]}>
-        <h2 className={style["history-h2"]}>{t("History.title")}</h2>
+          <h2 className={style["history-h2"]}>{t("History.title")}</h2>
           <FiltrerStatus query={query} setSearch={setSearch} filterState={filterState} setFilterState={setFilterState} />
         </div>
+        <div className={style["card-container-fleetc"]}>
+          <FleetChartMaintenance records={filteredRecords} />
+        </div>
         <div className={style.list}>
-          {records.map(r => (
+          {filteredRecords.map(r => (
             <CartVehicleHistory
               key={r.id}
               record={r}
-              onViewMore={(rec) => {
-                setSelected(rec);
-              }}
+              onViewMore={setSelected}
             />
           ))}
         </div>
@@ -186,7 +177,7 @@ const filteredRecords = records
                     <option value={t("MaintenanceForm.options.option12")} />
                     <option value={t("MaintenanceForm.options.option13")} />
                     <option value={t("MaintenanceForm.options.option14")} />
- 
+
                   </datalist>
 
                   {errors.maintenanceType && (
@@ -228,7 +219,7 @@ const filteredRecords = records
 
 
                   <label>{t("FiltrerHistory.state")}</label>
-                  <select defaultValue={selected.status} {...register("status")}>
+                     <select defaultValue={selected.state} {...register("status")}>
                     <option value="Completado">{t("FiltrerHistory.completed")}</option>
                     <option value="Pendiente">{t("FiltrerHistory.pending")}</option>
                     <option value="En progreso">{t("FiltrerHistory.inProgress")}</option>
@@ -246,7 +237,7 @@ const filteredRecords = records
                   <p><strong>{t("History.model")}</strong> {selected.model}</p>
                   <p><strong>{t("MaintenanceForm.Type")}</strong> {selected.type}</p>
                   <p><strong>{t("MaintenanceForm.date")}</strong> {new Date(selected.date).toLocaleString()}</p>
-                  <p><strong>{t("History.status")}</strong> {selected.status}</p>
+                  <p><strong>{t("History.status")}</strong> {selected.state}</p>
                   <p><strong>{t("MaintenanceForm.observations")}</strong> {selected.notes || 'Sin observaciones'}</p>
 
 
