@@ -1,6 +1,6 @@
 .file-dialog {
 font-family: inherit;
-  background-color: aliceblue;
+  background: var(--card-bg);
   width: 90%;
   max-width: 559px;
   aspect-ratio: 19 / 11;
@@ -40,7 +40,7 @@ font-family: inherit;
 }
 
 .file-dialog:hover {
-    background-color: #f0f0f0;
+      background: #bbb;
 }
 @media (max-width: 480px) {
     .file-dialog {

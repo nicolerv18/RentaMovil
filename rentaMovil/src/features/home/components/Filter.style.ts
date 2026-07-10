@@ -1,22 +1,13 @@
     import { StyleSheet } from "react-native";
 
-    export const colors = {
-        input: "#ebe9e9",
-        cardBg: "#ffffff",
-        border: "#2A2F6E",
-        placeholder: "#c7c3c3",
-        button: "#16213E",
-        textBtn: "#FFFFFF",
-        error: "#FF4D4D",
-        label: "#000000",
-        };
 
-    export const filterStyles = StyleSheet.create({
+    export const filterStyles =(colors: any) =>
+    
+    StyleSheet.create({
     filter: {
-        backgroundColor: colors.cardBg,
+        backgroundColor: colors.backgroundCard,
         padding: 16,
         gap: 12,
-        width: "100%",
         borderRadius: 16,
     },
     row: {
@@ -35,7 +26,7 @@
     labelFilter: {
         marginLeft: 6,
         fontSize: 12,
-        color: colors.label,
+        color: colors.text,
     },
     inputContainer: {
         borderWidth: 1.5,
@@ -45,7 +36,7 @@
         paddingVertical: 12,
         backgroundColor: colors.input,
         fontSize: 14,
-        color: colors.label,
+        color: colors.text,
     },
     inputInvalid: {
         borderColor: colors.error,
@@ -59,22 +50,22 @@
         marginTop: 4,
     },
     btnSearchText: {
-        color: colors.textBtn,
+        color: colors.buttonText,
         fontSize: 16,
         fontWeight: "600",
     },
     sucursalDropdown: {
         borderWidth: 1,
-        borderColor: colors.input,
+        borderColor: colors.card,
         borderRadius: 16,
-        backgroundColor: colors.input,
+        backgroundColor: colors.card,
         maxHeight: 150,
     },
     sucursalDropdownItem: {
         paddingVertical: 10,
         paddingHorizontal: 16,
         fontSize: 14,
-        color: colors.label,
+        color: colors.text,
     },
     error: {
         color: colors.error,

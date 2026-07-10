@@ -8,7 +8,8 @@ import { AiOutlineDashboard } from 'react-icons/ai';
 import ValidateDate from '../../maintenance/components/ValidateDate.jsx';
 import img from "../../../../assets/carro.png";
 import FiltrerStatus from "../components/FiltrerHistory.jsx";
-
+import { useTranslation } from "react-i18next";
+import NavbarAdmin from '../../../../shared/components/layout/NavBarAdmin.jsx';
 const MOCK = [
   { id: '1', plate: 'ABC1323', model: 'Toyota Corolla', date: '2024-09-10T10:30:00Z', type: 'Cambio de aceite', status: 'Cancelado', notes: 'Cambio de aceite y filtro. Revisión sin observaciones.', img },
   { id: '2', plate: 'XYZ987', model: 'Kia Picanto', date: '2025-01-12T14:00:00Z', type: 'Revisión de frenos', status: 'En progreso', notes: 'Pastillas delanteras en reemplazo.', img },
@@ -39,6 +40,7 @@ const MOCK = [
 ];
 
 function History() {
+  const {t} = useTranslation();
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
   const [records, setRecords] = useState(MOCK);
   const [selected, setSelected] = useState(null);
@@ -107,10 +109,11 @@ const filteredRecords = records
   return (
 
     <>
-      <Navbar />
+
+      <NavbarAdmin/>
       <div className={style["history-container"]}>
         <div className={style["card-container-setSearch"]}>
-        <h2 className={style["history-h2"]}>Gestión de mantenimiento</h2>
+        <h2 className={style["history-h2"]}>{t("History.title")}</h2>
           <FiltrerStatus query={query} setSearch={setSearch} filterState={filterState} setFilterState={setFilterState} />
         </div>
         <div className={style.list}>
@@ -128,23 +131,23 @@ const filteredRecords = records
         {selected && (
           <div className={style.modalBackdrop} onClick={closeModal}>
             <div className={style["history-modal"]} onClick={(e) => e.stopPropagation()}>
-              <h3>Detalle - {selected.plate}</h3>
+              <h3>{t("History.detail")} - {selected.plate}</h3>
 
               {isEditing ? (
                 <form onSubmit={handleSubmit(handleSaveEdit)}>
 
-                  <label htmlFor="model">Modelo:</label>
+                  <label htmlFor="model">{t("MaintenanceForm.model")}</label>
                   <input
                     type="text"
-                    placeholder="Ej: Volkswagen Gol, Crolla, Tesla Model 3... "
+                    placeholder={t("MaintenanceForm.modelPlaceholder")}
 
                     {...register("model", {
-                      required: "El modeolo es obligatorio",
-                      minLength: { value: 2, message: "El modelo debe tener al menos 2 caracteres." },
-                      maxLength: { value: 30, message: "El modelo no debe superar 30 caracteres." },
+                      required: t("MaintenanceForm.requiredModel"),
+                      minLength: { value: 2, message: t("MaintenanceForm.ModelMinLength") },
+                      maxLength: { value: 30, message: t("MaintenanceForm.ModelMaxLength") },
                       pattern: {
                         value: /^[A-Za-z0-9\s\-]{2,30}$/,
-                        message: "El modelo solo puede contener letras, números y guiones."
+                        message: t("MaintenanceForm.formatInvalidModel")
                       }
                     })}
                   />
@@ -153,36 +156,37 @@ const filteredRecords = records
                       <AiOutlineDashboard /> {errors.model.message}
                     </p>
                   )}
-                  <label htmlFor="maintenanceType">Tipo de mantenimiento:</label>
+                  <label htmlFor="maintenanceType">{t("MaintenanceForm.Type")}:</label>
                   <input
                     type="text"
-                    placeholder="Ej: Cambio de aceite, Revisión de frenos..."
+                    placeholder={t("MaintenanceForm.placeholderType")}
                     list="maintenance-options"
                     {...register("maintenanceType", {
-                      required: "El tipo de mantenimiento es obligatorio.",
-                      minLength: { value: 3, message: "Mínimo 3 caracteres." },
-                      maxLength: { value: 60, message: "Máximo 60 caracteres." },
+                      required: t("MaintenanceForm.requiredType"),
+                      minLength: { value: 3, message: t("MaintenanceForm.minLengthType") },
+                      maxLength: { value: 60, message: t("MaintenanceForm.maxLengthType") },
                       pattern: {
                         value: /^[A-Za-zÀ-ÿ0-9\s\-\,\.]{3,60}$/,
-                        message: "Solo se permiten letras, números, guiones y comas."
+                        message: t("MaintenanceForm.invalidType")
                       }
                     })}
                   />
                   <datalist id="maintenance-options">
-                    <option value="Cambio de aceite" />
-                    <option value="Cambio de filtros" />
-                    <option value="Revisión de frenos" />
-                    <option value="Cambio de llantas" />
-                    <option value="Alineación y balanceo" />
-                    <option value="Revisión general" />
-                    <option value="Reparación de motor" />
-                    <option value="Reparación de frenos" />
-                    <option value="Reparación eléctrica" />
-                    <option value="Reparación de suspensión" />
-                    <option value="Reparación de transmisión" />
-                    <option value="Lavado" />
-                    <option value="Pintura" />
-                    <option value="Latonería" />
+                    <option value={t("MaintenanceForm.options.option1")} />
+                    <option value={t("MaintenanceForm.options.option2")} />
+                    <option value={t("MaintenanceForm.options.option3")} />
+                    <option value={t("MaintenanceForm.options.option4")} />
+                    <option value={t("MaintenanceForm.options.option5")} />
+                    <option value={t("MaintenanceForm.options.option6")} />
+                    <option value={t("MaintenanceForm.options.option7")} />
+                    <option value={t("MaintenanceForm.options.option8")} />
+                    <option value={t("MaintenanceForm.options.option9")} />
+                    <option value={t("MaintenanceForm.options.option10")} />
+                    <option value={t("MaintenanceForm.options.option11")} />
+                    <option value={t("MaintenanceForm.options.option12")} />
+                    <option value={t("MaintenanceForm.options.option13")} />
+                    <option value={t("MaintenanceForm.options.option14")} />
+ 
                   </datalist>
 
                   {errors.maintenanceType && (
@@ -190,10 +194,10 @@ const filteredRecords = records
                       <AiOutlineDashboard /> {errors.maintenanceType.message}
                     </p>
                   )}
-                  <label htmlFor="date">Fecha:</label>
-                  <input type="date" placeholder="Fecha"
+                  <label htmlFor="date">{t("MaintenanceForm.date")}</label>
+                  <input type="date" placeholder={t("MaintenanceForm.datePlaceholder")}
                     {...register("date", {
-                      required: "la fecha es obligatoria",
+                      required: t("MaintenanceForm.requiredDate"),
                       validate: ValidateDate
                     })}
                   />
@@ -202,16 +206,16 @@ const filteredRecords = records
                       <AiOutlineDashboard /> {errors.date.message}
                     </p>
                   )}
-                  <label htmlFor="maintenance-notes">Observaciones</label>
+                  <label htmlFor="maintenance-notes">{t("MaintenanceForm.observations")}</label>
                   {/* aca se registra las validaciones de el campo como observaciones, se requiere que el campo sea obligatorio con una longitud minima de 5 caracteres y maxima de 30 */}
                   <div className={style['history-form-observations']}>
                     <textarea
-                      placeholder="Observaciones"
+                      placeholder={t("MaintenanceForm.placeholderObservations")}
                       className={style["maintenance-observatios"]}
                       rows={2}
                       {...register("observations", {
-                        minLength: { value: 5, message: "Mínimo 5 caracteres." },
-                        maxLength: { value: 200, message: "Máximo 200 caracteres." }
+                        minLength: { value: 5, message: t("MaintenanceForm.minLengthObservations") },
+                        maxLength: { value: 200, message: t("MaintenanceForm.maxLengthObservations") }
                       })}
                       onInput={(e) => {
                         e.target.style.height = 'auto';         /* // resetea la altura */
@@ -219,49 +223,49 @@ const filteredRecords = records
                       }} />
                   </div>
                   {/* manejo de errores ], aca se senala el tipo de error y se le especifica el mensaje */}
-                  {errors.observations?.type === "minLength" && <p className={style['error-message']}><AiOutlineDashboard /> La observacion debe tener al menos 5 caracteres</p>}
-                  {errors.observations?.type === "maxLength" && <p className={style['error-message']}><AiOutlineDashboard /> La observacion no debe tener mas de 200 caracteres</p>}
+                  {errors.observations?.type === "minLength" && <p className={style['error-message']}><AiOutlineDashboard /> {errors.observations.message}</p>}
+                  {errors.observations?.type === "maxLength" && <p className={style['error-message']}><AiOutlineDashboard /> {errors.observations.message}</p>}
 
 
-                  <label>Estado:</label>
+                  <label>{t("FiltrerHistory.state")}</label>
                   <select defaultValue={selected.status} {...register("status")}>
-                    <option value="Completado">Completado</option>
-                    <option value="Pendiente">Pendiente</option>
-                    <option value="En progreso">En progreso</option>
-                    <option value="Cancelado">Cancelado</option>
+                    <option value="Completado">{t("FiltrerHistory.completed")}</option>
+                    <option value="Pendiente">{t("FiltrerHistory.pending")}</option>
+                    <option value="En progreso">{t("FiltrerHistory.inProgress")}</option>
+                    <option value="Cancelado">{t("CartVehiculeMaintenance.cancel")}</option>
                   </select>
 
-                  <button type="submit">Guardar</button>
-                  <button type="button" onClick={() => setIsEditing(false)}>Cancelar</button>
+                  <button type="submit">{t("History.save")}</button>
+                  <button type="button" onClick={() => setIsEditing(false)}>{t("History.cancel")}</button>
 
 
                 </form>
 
               ) : (
                 <>
-                  <p><strong>Modelo:</strong> {selected.model}</p>
-                  <p><strong>Tipo:</strong> {selected.type}</p>
-                  <p><strong>Fecha:</strong> {new Date(selected.date).toLocaleString()}</p>
-                  <p><strong>Estado:</strong> {selected.status}</p>
-                  <p><strong>Observaciones:</strong> {selected.notes || 'Sin observaciones'}</p>
+                  <p><strong>{t("History.model")}</strong> {selected.model}</p>
+                  <p><strong>{t("MaintenanceForm.Type")}</strong> {selected.type}</p>
+                  <p><strong>{t("MaintenanceForm.date")}</strong> {new Date(selected.date).toLocaleString()}</p>
+                  <p><strong>{t("History.status")}</strong> {selected.status}</p>
+                  <p><strong>{t("MaintenanceForm.observations")}</strong> {selected.notes || 'Sin observaciones'}</p>
 
 
                   <div className={style['modal-actions-btn']} >
-                    <button className={style['modal-button']} onClick={() => openEdit(selected)}>Editar</button>
+                    <button className={style['modal-button']} onClick={() => openEdit(selected)}>{t("History.edit")}</button>
 
                     {!confirmDelete && (
-                      <button className={style['modal-button']} onClick={() => setConfirmDelete(true)}>Eliminar</button>
+                      <button className={style['modal-button']} onClick={() => setConfirmDelete(true)}>{t("History.delete")}</button>
                     )}
 
                     {confirmDelete && (
                       <div className={style["modal-confirm"]}>
-                        <p>¿Seguro que quieres eliminar este registro?</p>
-                        <button className={style['modal-button']} onClick={() => deleteRecord(selected.id)}>Confirmar</button>
-                        <button className={style['modal-button']} onClick={() => setConfirmDelete(false)}>Cancelar</button>
+                        <p>{t("History.isDelete")}</p>
+                        <button className={style['modal-button']} onClick={() => deleteRecord(selected.id)}>{t("History.confirm")}</button>
+                        <button className={style['modal-button']} onClick={() => setConfirmDelete(false)}>{t("History.cancel")}</button>
                       </div>
                     )}
 
-                    <button className={style['modal-button']} onClick={closeModal}>Cerrar</button>
+                    <button className={style['modal-button']} onClick={closeModal}>{t("History.close")}</button>
                   </div>
 
                 </>

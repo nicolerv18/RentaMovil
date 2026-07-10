@@ -1,10 +1,19 @@
-import { ThemeProvider } from '@react-navigation/native';
-import Colors from '../constants/Colors';
+import { ThemeProvider } from '../theme/themeContext';
+import { themes } from '../theme/themes';
+import { useTheme } from '../theme/useTheme';
+
+import {
+  DefaultTheme,
+  ThemeProvider as NavigationThemeProvider,
+} from '@react-navigation/native';
+
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+
 import 'react-native-reanimated';
-import { useColorScheme } from 'react-native';
+import { ReservationProvider } from '../features/Reservation/context/ReservationContext';
+import '../traslation/i18n';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -19,28 +28,62 @@ export default function RootLayout() {
     SplashScreen.hideAsync();
   }, []);
 
-  return <RootLayoutNav />;
+  return (
+    <ThemeProvider>
+        <ReservationProvider>
+
+        <InnerNav />
+
+      </ReservationProvider>
+    </ThemeProvider>
+  );
 }
 
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+function InnerNav() {
+  const { themeName } = useTheme();
+
+  const currentTheme = themes[themeName];
+
+  const navigationTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: currentTheme.background,
+      card: currentTheme.card,
+      text: currentTheme.text,
+      border: currentTheme.border,
+      primary: currentTheme.primary,
+    },
+  };
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? Colors.dark : Colors.light}>
+    <NavigationThemeProvider value={navigationTheme}>
       <Stack
         screenOptions={{
           title: 'Renta Móvil',
+
           headerStyle: {
-            backgroundColor: Colors[colorScheme ?? 'light'].colors.background,
+            backgroundColor: currentTheme.background,
           },
-          headerTintColor: Colors[colorScheme ?? 'light'].colors.text,
+
+          headerTintColor: currentTheme.text,
         }}
       >
-        <Stack.Screen name="auth/login" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen
+          name="auth/login"
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="modal"
+          options={{ presentation: 'modal' }}
+        />
       </Stack>
-    </ThemeProvider>
-    
+    </NavigationThemeProvider>
   );
 }

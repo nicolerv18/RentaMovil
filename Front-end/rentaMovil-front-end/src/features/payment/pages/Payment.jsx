@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ButtonBack from "../../../shared/components/buttonBack";
-import ImgMapa from "../../../assets/MapaNeivaPago.png";
 import Navbar from "../../../shared/components/layout/Navbar";
 import Footer from "../../../shared/components/layout/Footer";
 import "./Payment.css";
 import { useTranslation } from "react-i18next";
-import { createPayment } from "../pages/services/PaymentServices";
+import { createPayment } from "../services/PaymentServices";
 
 function Payment() {
   const { t } = useTranslation();
@@ -171,8 +170,6 @@ function Payment() {
             {/* LEFT */}
             <div className="pay-left">
               <div className="pay-map-card">
-                <img src={ImgMapa} alt="Mapa" className="pay-map-img" />
-
                 <div className="pay-locations">
                   <div className="pay-loc">
                     <span className="pay-loc-dot start"></span>

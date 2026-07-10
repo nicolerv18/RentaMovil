@@ -2,16 +2,16 @@
     display: grid;
     grid-template-columns: 150px 1fr 160px;
     gap: 0;
-    width:87%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 760px;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 20px;
+    padding: 18px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     transition: box-shadow 0.3s;
     align-items: center;
-    margin: 0px 44px 14px;
+    margin: 0 auto 14px;
 }
 
 .card-vehicule:hover {
@@ -68,7 +68,7 @@
     display: flex;
     gap: 16px;
     padding-top: 10px;
-    border-top: 1px solid rgba(0, 30, 70, 0.1);
+    border-top: 1px var(--border)(0, 30, 70, 0.1);
     width: 100%;
     flex-wrap: wrap;
 }
@@ -160,11 +160,14 @@
     color: #fff;
 }
 
-/* ── Responsive ── */
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .card-vehicule {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
+        width: 85%;
+        max-width: 85%;
+        padding: 16px;
+        margin-top:auto ;
     }
 
     .img-car-vehicule {
@@ -181,5 +184,14 @@
         padding-left: 0;
         flex-direction: row;
         justify-content: space-between;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .card-actions {
+        flex-direction: column;
+        width: 88%;
+        margin: 0 auto;
     }
 }

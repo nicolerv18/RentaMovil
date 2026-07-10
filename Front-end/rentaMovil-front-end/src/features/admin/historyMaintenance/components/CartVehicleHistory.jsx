@@ -1,9 +1,12 @@
 import React from 'react';
 import style from './CartVehicleHistory.module.css';
 import carImg from "../../../../assets/carro.png";
+import { useTranslation } from "react-i18next";
 
 import { useState } from 'react';
 function CartVehicleHistory({ record = {}, onViewMore }) {
+    const { t } = useTranslation();
+    
     const { plate, date, type, status, notes, img: recordImg, model } = record;
     const [state, setState] = useState(status || 'Pendiente')
     const statusClass = {
@@ -11,14 +14,15 @@ function CartVehicleHistory({ record = {}, onViewMore }) {
         'En progreso': style['state--progreso'],
         'Completado': style['state--completado'],
         'Cancelado': style['state--cancelado'],
-    }[state] || '';
+    }[state] || ''
+    const stateLabel = {
+        'Pendiente': t("CartVehiculeMaintenance.pending"),
+        'En progreso': t("CartVehiculeMaintenance.inProgress"),
+        'Completado': t("CartVehiculeMaintenance.completed"),
+        'Cancelado': t("CartVehiculeMaintenance.cancel")
+    }[state] || state;
 
 
-    const changeState = () =>{
-        if(state === "Pendiente"){
-            setState('Cancelado')
-        }
-    }
     const formattedDate = date ? new Date(date).toLocaleString() : 'Sin fecha';
 
     return (
@@ -36,12 +40,12 @@ function CartVehicleHistory({ record = {}, onViewMore }) {
                         <span className={style['card-date']}>{formattedDate}</span>
                     </div>
                     <div className={style['card-type']}>{type || 'Mantenimiento'}</div>
-                    <p className={style['card-notes']}>{notes ? notes.slice(0, 140) : 'Sin observaciones'}</p>
+                    <p className={style['card-notes']}>{notes ? notes.slice(0, 140) : t("CartVehiculeMaintenance.offObservations")}</p>
                 </div>
 
                 <div className={style['card-right']}>
                     <span className={`${style['badge']} ${statusClass}`}>{state || 'Pendiente'}</span>
-                    <button className={style['card-btn']} onClick={() => onViewMore && onViewMore(record)}>Ver más</button>
+                    <button className={style['card-btn']} onClick={() => onViewMore && onViewMore(record)}>{t("CartVehiculeMaintenance.seeMore")}</button>
                 </div>
             </div>
     

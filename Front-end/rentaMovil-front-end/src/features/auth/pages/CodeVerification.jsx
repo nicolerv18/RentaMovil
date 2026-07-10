@@ -70,7 +70,8 @@ function CodeVerification() {
         <>
             <NavbarTwo />
             <div className={style["container-code"]}>
-                <label>Ingrese el código enviado a su correo</label>
+                <label>Ingrese el código enviado a su correo electrónico:
+                </label>
                 <form onSubmit={handleVerify}>
                     <div className={style["code-inputs"]}>
                         {code.map((c, i) => (

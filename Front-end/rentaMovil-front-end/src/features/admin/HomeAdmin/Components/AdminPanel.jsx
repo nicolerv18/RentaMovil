@@ -32,6 +32,7 @@ function AdminPanel({ open, onClose }) {
             <div className="admin-subsection">
               <Link to="/RegisterVehicle" className="admin-subitem" onClick={onClose}>• {t('adminPanel.ve-agg')}</Link>
               <Link to="/CheckStatus" className="admin-subitem" onClick={onClose}>• {t('adminPanel.ve-state')}</Link>
+              <Link to="/VehicleInventary" className="admin-subitem" onClick={onClose}>• {t('adminPanel.ve-inventory')}</Link>
             </div>
           )}
         </div>
@@ -63,7 +64,7 @@ function AdminPanel({ open, onClose }) {
           {expandedSection === 'mantenimiento' && (
             <div className="admin-subsection">
               <Link to="/Maintenance" className="admin-subitem" onClick={onClose}>• {t('adminPanel.man-new')}</Link>
-              <Link to="/Maintenance" className="admin-subitem" onClick={onClose}>• {t('adminPanel.man-history')}</Link>
+              <Link to="/History" className="admin-subitem" onClick={onClose}>• {t('adminPanel.man-history')}</Link>
             </div>
           )}
         </div>

@@ -18,16 +18,6 @@ function Login() {
 
             <div className="login-container">
 
-                {/* Botón para cambiar */}
-                <div className="btn">
-                    <button
-                        className={`auth-toggle-btn ${!isLoginMode ? "active" : ""}`}
-                        onClick={() => setIsLoginMode(!isLoginMode)}
-                    >
-                        {isLoginMode ? t("login.createAccount") : t("login.iniciarSesion")}
-                    </button>
-                </div>
-
                 {/* Formularios */}
                 <div className="login-form-container">
                     {isLoginMode ? (
@@ -35,12 +25,14 @@ function Login() {
                             onSubmit={async (data) => {
                                 console.log("Login:", data);
                             }}
+                            onSwitchToRegister={() => setIsLoginMode(false)}
                         />
                     ) : (
                         <RegisterForm
                             onSubmit={async (data) => {
                                 console.log("Registro:", data);
                             }}
+                            onSwitchToLogin={() => setIsLoginMode(true)}
                         />
                     )}
                 </div>
