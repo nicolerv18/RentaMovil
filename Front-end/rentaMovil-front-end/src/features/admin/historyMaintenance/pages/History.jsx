@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import NavbarAdmin from '../../../../shared/components/layout/NavBarAdmin.jsx';
 import { CarsMock } from '../services/CarsMock.js';
 import FleetChartMaintenance from '../components/FleetChartMaintenance.jsx';
+import MonthlyChart from '../components/MonthlyChart.jsx';
 function History() {
   const { t } = useTranslation();
   
@@ -62,7 +63,6 @@ function History() {
     closeModal()
   }
 
-
   const handleSaveEdit = (data) => {
     const updated = records.map(r =>
       r.id === selected.id
@@ -96,6 +96,7 @@ function History() {
       observations: rec.notes,
     })
   }
+  console.log(MonthlyChart)
   return (
 
     <>
@@ -109,6 +110,7 @@ function History() {
         <div className={style["card-container-fleetc"]}>
           <FleetChartMaintenance records={filteredRecords} />
         </div>
+        <MonthlyChart records={filteredRecords} />
         <div className={style.list}>
           {filteredRecords.map(r => (
             <CartVehicleHistory
