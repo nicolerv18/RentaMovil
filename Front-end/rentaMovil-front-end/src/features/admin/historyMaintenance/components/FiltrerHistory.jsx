@@ -15,6 +15,7 @@ function FiltrerHistory({ query, setSearch, filterState, setFilterState }) {
 
     return (
         <>
+        <div className={style["filter-container"]}>
             <div className={style["container-filter"]}>
                 <input value={query} onChange={(e) => setSearch(e.target.value)}
                     placeholder={t("FiltrerHistory.placeholder")} />
@@ -32,6 +33,7 @@ function FiltrerHistory({ query, setSearch, filterState, setFilterState }) {
                         {state.label}
                     </button>
                 ))}
+            </div>
             </div>
         </>
 

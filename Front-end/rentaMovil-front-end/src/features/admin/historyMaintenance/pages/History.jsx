@@ -103,8 +103,9 @@ function History() {
 
       <NavbarAdmin />
       <div className={style["history-container"]}>
-        <div className={style["card-container-setSearch"]}>
           <h2 className={style["history-h2"]}>{t("History.title")}</h2>
+        <div className={style["card-container-setSearch"]}>
+         2
           <FiltrerStatus query={query} setSearch={setSearch} filterState={filterState} setFilterState={setFilterState} />
         </div>
         <div className={style["card-container-fleetc"]}>
@@ -228,8 +229,8 @@ function History() {
                     <option value="Cancelado">{t("CartVehiculeMaintenance.cancel")}</option>
                   </select>
 
-                  <button type="submit">{t("History.save")}</button>
-                  <button type="button" onClick={() => setIsEditing(false)}>{t("History.cancel")}</button>
+                  <button  className={style['modal-button']} type="submit">{t("History.save")}</button>
+                  <button  className={style['modal-button']} type="button" onClick={() => setIsEditing(false)}>{t("History.cancel")}</button>
 
 
                 </form>
@@ -252,7 +253,7 @@ function History() {
 
                     {confirmDelete && (
                       <div className={style["modal-confirm"]}>
-                        <p>{t("History.isDelete")}</p>
+                        <p>{t("History.delete")}:</p>
                         <button className={style['modal-button']} onClick={() => deleteRecord(selected.id)}>{t("History.confirm")}</button>
                         <button className={style['modal-button']} onClick={() => setConfirmDelete(false)}>{t("History.cancel")}</button>
                       </div>

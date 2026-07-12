@@ -555,7 +555,13 @@
       "delete":"Eliminar",
       "IsDelete":"Estas seguro de que deseas eliminar este mantenimiento?",
       "confirm":"Confirmar",
-      "close":"Cerrar"
+      "close":"Cerrar",
+      "title2":"Estado de mantenimiento",
+      "title3":"Mantenimientos por mes",
+      "months": [
+      "Ene","Feb","Mar","Abr","May","Jun",
+      "Jul","Ago","Sep","Oct","Nov","Dic"
+      ]
     },
     "FleetChartMaintenance":{
     "pending":"Pendiente",

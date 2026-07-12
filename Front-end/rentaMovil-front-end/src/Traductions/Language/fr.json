@@ -540,12 +540,28 @@
     "delete": "Supprimer",
     "IsDelete": "Êtes-vous sûr de vouloir supprimer cette maintenance ?",
     "confirm": "Confirmer",
-    "close": "Fermer"
+    "close": "Fermer",
+    "title2": "État de la maintenance",
+    "title3": "Maintenances par mois",
+    "months": [
+      "Jan",
+      "Fév",
+      "Mar",
+      "Avr",
+      "Mai",
+      "Juin",
+      "Juil",
+      "Août",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Déc"
+    ]
   },
-    "FleetChartMaintenance":{
-    "pending":"En attente",
-    "inProgress":"En cours",
-    "completed":"Terminé",
-    "cancel":"Annulé"
-}
+  "FleetChartMaintenance": {
+    "pending": "En attente",
+    "inProgress": "En cours",
+    "completed": "Terminé",
+    "cancel": "Annulé"
+  }
 }

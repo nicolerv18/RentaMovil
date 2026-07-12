@@ -24,7 +24,10 @@ function FleetChartMaintenance({ records }) {
     const total = records.length
     return (
         <div className={style["fleet-chart-container"]}>
+                 <h3>{t("History.title2")}:</h3>
+
             <div className={style["fleet-chart"]}>
+
                 <PieChart width={160} height={160}>
                     <Pie data={data} cx={80} cy={80} innerRadius={45} outerRadius={70} dataKey="value">{
                         data.map((entry) => (
