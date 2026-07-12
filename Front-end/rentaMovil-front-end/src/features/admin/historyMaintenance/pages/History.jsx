@@ -105,7 +105,7 @@ function History() {
       <div className={style["history-container"]}>
           <h2 className={style["history-h2"]}>{t("History.title")}</h2>
         <div className={style["card-container-setSearch"]}>
-         2
+         
           <FiltrerStatus query={query} setSearch={setSearch} filterState={filterState} setFilterState={setFilterState} />
         </div>
         <div className={style["card-container-fleetc"]}>

@@ -99,6 +99,9 @@
     width: 100%;
     height: auto;
   }
+  .fleet-chart-container h3{
+  margin-left: 10px;
+}
 
   .fleet-chart-chart {
     width: 140px;
