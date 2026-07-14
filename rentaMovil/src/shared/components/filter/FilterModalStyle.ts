@@ -4,7 +4,7 @@
     overlay: {
         flex: 1,
         justifyContent: "flex-end",
-        backgroundColor: "rgba(0,0,0,0.4)",
+        backgroundColor: "rgba(255, 255, 255, 0.4)",
     },
 
     container: {

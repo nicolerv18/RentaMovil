@@ -14,6 +14,8 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { ReservationProvider } from '../features/Reservation/context/ReservationContext';
 import '../traslation/i18n';
+import { AuthProvider } from '../features/auth/context/AuthContext';
+import { PaymentProvider } from '../features/auth/context/PaymentContext';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -30,11 +32,13 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
+      <AuthProvider>
         <ReservationProvider>
-
-        <InnerNav />
-
+          <PaymentProvider>
+            <InnerNav />
+          </PaymentProvider>
       </ReservationProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

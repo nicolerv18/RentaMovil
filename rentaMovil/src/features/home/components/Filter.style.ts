@@ -9,6 +9,7 @@
         padding: 16,
         gap: 12,
         borderRadius: 16,
+        marginTop: 10,
     },
     row: {
         flexDirection: "row",

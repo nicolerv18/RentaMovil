@@ -2,20 +2,37 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
   const { t } = useTranslation();
   const router = useRouter();
+  const {login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleLogin() {
-    console.log({
-      email,
-      password,
-    });
-    router.replace('/');
-  }
+async function handleLogin() {
+
+    try {
+
+        await login({
+            email,
+            password,
+        });
+        console.log("login exitoso");
+
+
+        router.replace("/");
+
+    } catch (error) {
+
+        console.log(
+            error
+        );
+
+    }
+
+}
 
   return (
     <View style={styles.container}>

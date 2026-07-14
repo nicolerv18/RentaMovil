@@ -22,6 +22,7 @@ export default function HomePage() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [searchData, setSearchData] = useState<SearchData | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const hasSearched = searchData !==null;
   const [emptyMessage, setEmptyMessage] = useState(
     "Primero debe realizar una búsqueda."
   );
@@ -134,21 +135,25 @@ export default function HomePage() {
           <View>
             <FilterCalendar onSearch={handleSearch} />
 
+            {hasSearched && (
             <TouchableOpacity
               onPress={() => setShowFilters(true)}
               style={{
                 marginTop: 10,
                 padding: 12,
-                backgroundColor: "#f41919",
+                backgroundColor: "#d9d8d8",
                 borderRadius: 10,
+                marginBottom :10,
               }}
             >
               <Text>Filtrar vehículos</Text>
             </TouchableOpacity>
+            )}
           </View>
         }
       />
 
+      { hasSearched && (
       <FilterModal
         visible={showFilters}
         onClose={() => setShowFilters(false)}
@@ -156,7 +161,7 @@ export default function HomePage() {
         setFilters={setFilters}
         onApply={handleApplyFilters}
         onClear={handleClearFilters}
-      />
+      />)}
     </>
   );
 }
