@@ -1,4 +1,4 @@
-import CountPage from '@/src/features/Count/pages/Count';
+import CountPage from '../features/Count/pages/Count';
 
 export default function CountRoute() {
   return <CountPage />;

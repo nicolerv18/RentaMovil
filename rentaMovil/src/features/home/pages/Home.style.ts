@@ -17,4 +17,16 @@ export const HomeStyles = (colors: any) =>
         headerContainer: {
         paddingBottom: 10,
         },
+
+        emptyState: {
+        paddingVertical: 24,
+        alignItems: "center",
+        justifyContent: "center",
+        },
+
+        emptyStateText: {
+        color: colors.text,
+        fontSize: 16,
+        textAlign: "center",
+        },
     });

@@ -1,74 +1,61 @@
 import { StyleSheet } from "react-native";
 
-import { Spacing } from "../../..//theme/constants/spacing";
-import { Typography } from "../../..//theme/constants/typography";
 import { Radius } from "../../../theme/constants/radius";
+import { Spacing } from "../../../theme/constants/spacing";
+import { Typography } from "../../../theme/constants/typography";
 
 export const createStyles = (colors: any) =>
   StyleSheet.create({
-
     image: {
-
       width: "100%",
-
-      height: 190,
-
-      borderRadius: Radius.md,
-
+      height: 200,
+      borderRadius: Radius.lg,
+      resizeMode: "cover",
+      marginBottom: Spacing.lg,
     },
 
     content: {
-
-      marginTop: Spacing.lg,
-
+      gap: Spacing.sm,
     },
 
     name: {
-
       color: colors.text,
-
-      fontSize: Typography.h2,
-
+      fontSize: 24,
       fontWeight: "700",
-
     },
 
     model: {
-
       color: colors.textSecondary,
-
-      marginTop: Spacing.xs,
-
       fontSize: Typography.body,
-
+      marginBottom: Spacing.md,
     },
 
     infoContainer: {
-
-      marginTop: Spacing.lg,
-
-      rowGap: Spacing.sm,
-
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: Spacing.sm,
+      marginVertical: Spacing.md,
     },
 
-    info: {
+    badge: {
+      backgroundColor: colors.cardSecondary,
+      borderRadius: Radius.pill,
+      paddingHorizontal: 14,
+      paddingVertical: 8,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
 
+    badgeText: {
       color: colors.text,
-
-      fontSize: Typography.body,
-
+      fontSize: 14,
+      fontWeight: "600",
     },
 
     price: {
-
-      marginTop: Spacing.xl,
-
+      marginTop: Spacing.lg,
       color: colors.primary,
-
-      fontSize: Typography.h2,
-
+      fontSize: 30,
       fontWeight: "700",
-
     },
-
   });

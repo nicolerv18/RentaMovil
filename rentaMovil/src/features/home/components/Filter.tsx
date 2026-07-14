@@ -27,7 +27,6 @@ import { filterStyles } from "./Filter.style";
     };
 
     export default function FilterCalendar({ onSearch }: Props) {
-    const { t } = useTranslation();
     const { themeName } = useTheme();
     const colors = themes[themeName];
     const styles = filterStyles(colors);
@@ -38,7 +37,7 @@ import { filterStyles } from "./Filter.style";
         t.setDate(t.getDate() + 1);
         return t;
     };
-    
+    const { t } = useTranslation();
     const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState<Branch[]>([]);
     const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);

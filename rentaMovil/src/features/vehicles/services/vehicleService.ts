@@ -1,8 +1,9 @@
 import { vehicles } from "../data/vehicles";
+import {Branch} from "../../../types/branch";
 
 type VehicleFilters = {
   brand?: string;
-  branch?: string;
+  branch?: Branch;
   category?: string;
   transmission?: string;
   fuelType?: string;
@@ -11,6 +12,8 @@ type VehicleFilters = {
   maxPrice?: number;
 
   search?: string;
+  startDate?: Date;
+  endDate?: Date;
 };
 
 const delay = (ms: number) =>
@@ -26,9 +29,9 @@ export const vehicleService = {
 
     // Sucursal
     if (filters?.branch) {
+      const selectedBranchId = filters.branch.id;
       data = data.filter(
-        (vehicle) =>
-          vehicle.branch.name === filters.branch
+        (vehicle) => vehicle.branch.id === selectedBranchId
       );
     }
 

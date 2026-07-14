@@ -1,8 +1,4 @@
-import {
-    Image,
-    Text,
-    View,
-} from "react-native";
+import { Image, Text, View } from "react-native";
 
 import AppCard from "../../../shared/components/appCard/AppCard";
 
@@ -22,7 +18,6 @@ type Props = {
 export default function VehicleSummaryCard({
   vehicle,
 }: Props) {
-
   const { t } = useTranslation();
 
   const { themeName } = useTheme();
@@ -32,52 +27,57 @@ export default function VehicleSummaryCard({
   const styles = createStyles(colors);
 
   return (
+<AppCard>
 
-    <AppCard>
-
-      <Image
+    <Image
         source={vehicle.image}
         style={styles.image}
-      />
+    />
 
-      <View style={styles.content}>
+    <View style={styles.content}>
 
         <Text style={styles.name}>
-          {vehicle.name}
+            {vehicle.name}
         </Text>
 
         <Text style={styles.model}>
-          {vehicle.brand} • {vehicle.model}
+            {vehicle.brand} • {vehicle.model}
         </Text>
 
         <View style={styles.infoContainer}>
 
-          <Text style={styles.info}>
-            {"🚗 "}{vehicle.category}
-          </Text>
+            <View style={styles.badge}>
+                <Text style={styles.badgeText}>
+                    🚗 {vehicle.category}
+                </Text>
+            </View>
 
-          <Text style={styles.info}>
-            ⛽ {vehicle.transmission}
-          </Text>
+            <View style={styles.badge}>
+                <Text style={styles.badgeText}>
+                    ⚙️ {vehicle.transmission}
+                </Text>
+            </View>
 
-          <Text style={styles.info}>
-            💺 {vehicle.seats} {t("cartVehicule.doors")}
-          </Text>
+            <View style={styles.badge}>
+                <Text style={styles.badgeText}>
+                    💺 {vehicle.seats} {t("cartVehicule.doors")}
+                </Text>
+            </View>
 
-          <Text style={styles.info}>
-            🧳 {vehicle.bags} {t("cartVehicule.bags")}
-          </Text>
+            <View style={styles.badge}>
+                <Text style={styles.badgeText}>
+                    🧳 {vehicle.bags} {t("cartVehicule.bags")}
+                </Text>
+            </View>
 
         </View>
 
         <Text style={styles.price}>
-          ${vehicle.price.toLocaleString()} COP / día
+            ${vehicle.price.toLocaleString()} COP / día
         </Text>
 
-      </View>
+    </View>
 
-    </AppCard>
-
+</AppCard>
   );
-
 }

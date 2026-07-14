@@ -1,38 +1,149 @@
-import { useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
+import { router } from "expo-router";
+import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { Vehicle } from "../../../types/vehicles";
-import { vehicleService } from "../../vehicles/services/vehicleService";
+
+import { useReservation } from "../context/ReservationContext";
+
+import ContinueButton from "../components/ContinueButton";
+import InsuranceSelector from "../components/InsuranceSelector";
+import ReservationInfoCard from "../components/ReservationInfoCard";
 import VehicleSummaryCard from "../components/VehicleSummaryCard";
+import BranchSelectorModal from "../components/BranchSelectorModal";
+
+import { branches } from "../../branches/data/branches";
+import {insurance} from "../../Insurance/data/mocks/insurance";
+
 
 export default function ReservationPage() {
-    const {vehicleId} = useLocalSearchParams();
-    const [vehicle, setVehicle] = useState<Vehicle | null>(null);
-    const loadVehicle = async () => {
 
-    const data =
-        await vehicleService.getVehicleById(
-            Number(vehicleId)
-        );
+const {
+    reservation,
+    updateReturnBranch,
+} = useReservation();
+const [
+    showReturnModal,
+    setShowReturnModal
+] = useState(false);
 
-    if (data) {
-        setVehicle(data);
-    }
+
+
+if (!reservation?.vehicle) {
+
+    return (
+
+    <View
+        style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 24
+        }}
+    >
+
+        <Text>
+            No hay una reserva activa en este momento.
+        </Text>
+
+    </View>
+
+    );
+
+}
+
+
+const handleChangePickup = () => {
+
+    router.push("/" as never);
 
 };
-useEffect(() => {
-    loadVehicle();
-}, []);
-if (!vehicle) {
-    return (
-        <View>
-            <Text>Cargando vehículo...</Text>
-        </View>
-    );
-}
+
+
+
+const handleChangeReturnBranch = () => {
+
+    setShowReturnModal(true);
+
+};
+
+
+
 return (
-    <ScrollView>
-        <VehicleSummaryCard vehicle={vehicle} />
-    </ScrollView>
+
+<ScrollView
+    contentContainerStyle={{
+        padding:16,
+        gap:12
+    }}
+>
+
+
+<VehicleSummaryCard
+    vehicle={reservation.vehicle}
+/>
+
+
+
+<ReservationInfoCard
+
+    title="Tu reserva"
+
+    subtitle="Revisa los datos antes de continuar"
+
+    onChangePickup={handleChangePickup}
+
+    onChangeReturnBranch={handleChangeReturnBranch}
+
+/>
+
+
+
+<BranchSelectorModal
+
+    visible={showReturnModal}
+
+    branches={branches}
+
+    onClose={()=>{
+
+        setShowReturnModal(false);
+
+    }}
+
+    onSelect={(branch)=>{
+
+        updateReturnBranch(branch);
+
+    }}
+
+/>
+
+
+
+<InsuranceSelector
+    options={insurance.map((i) => ({
+        id: i.id,
+        name: i.name,
+        description: i.description,
+        price:i.price
+    }))}
+/>
+
+
+
+<ContinueButton
+
+    title="Continuar"
+
+    onPress={() =>{
+        router.push("/payment")
+    }}
+
+/>
+
+
+
+</ScrollView>
+
 );
+
 }

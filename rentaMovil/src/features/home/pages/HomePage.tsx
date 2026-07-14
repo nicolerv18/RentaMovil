@@ -1,11 +1,10 @@
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 import { themes } from "../../../theme/themes";
 import { useTheme } from "../../../theme/useTheme";
 import { HomeStyles } from "./Home.style";
-
 
 import FilterModal, {
   Filters,
@@ -15,22 +14,17 @@ import FilterCalendar, { SearchData } from "../components/Filter";
 import { vehicleService } from "../../vehicles/services/vehicleService";
 import VehicleCard from "../components/VehicleCard";
 
-import SelectLanguage from "../../../shared/components/select/selectLanguage";
-import ThemeSelector from "../../../shared/components/select/selectTheme";
 
 import { Vehicle } from "../../../types/vehicles";
 import { useReservation } from "../../Reservation/context/ReservationContext";
 
 export default function HomePage() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-
-  const [searchData, setSearchData] = useState<{
-    branch: string;
-    startDate: Date;
-    endDate: Date;
-  } | null>(null);
-
+  const [searchData, setSearchData] = useState<SearchData | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [emptyMessage, setEmptyMessage] = useState(
+    "Primero debe realizar una búsqueda."
+  );
 
   const [filters, setFilters] = useState<Filters>({
     brand: "",
@@ -43,31 +37,39 @@ export default function HomePage() {
 
   const { createReservation } = useReservation();
 
-  useEffect(() => {
-    loadVehicles();
-  }, []);
+  const runSearch = async (currentSearchData: SearchData | null, currentFilters: Filters) => {
+    if (!currentSearchData) {
+      setVehicles([]);
+      setEmptyMessage("Primero debe realizar una búsqueda.");
+      return;
+    }
 
-  const loadVehicles = async () => {
-    const data = await vehicleService.getVehicles();
-    setVehicles(data);
+    setEmptyMessage("");
+
+    const filteredVehicles = await vehicleService.getVehicles({
+      ...currentFilters,
+      branch: currentSearchData.branch,
+      startDate: currentSearchData.startDate,
+      endDate: currentSearchData.endDate,
+    });
+
+    setVehicles(filteredVehicles);
+
+    if (filteredVehicles.length === 0) {
+      setEmptyMessage("No hay vehículos disponibles para los filtros seleccionados.");
+    } else {
+      setEmptyMessage("");
+    }
   };
 
-const handleSearch = (data: SearchData) => {
-  const { branch, startDate, endDate } = data;
+  const handleSearch = async (data: SearchData) => {
+    setSearchData(data);
+    await runSearch(data, filters);
+  };
 
-  console.log("Sucursal seleccionada:", branch); // objeto completo
-  console.log("Nombre:", branch.name);
-  console.log("ID:", branch.id);
-  console.log("Fecha inicio:", startDate);
-  console.log("Fecha fin:", endDate);
-
-};
   const handleApplyFilters = async () => {
     setShowFilters(false);
-
-    const filtered = await vehicleService.getVehicles(filters);
-
-    setVehicles(filtered);
+    await runSearch(searchData, filters);
   };
 
   const handleClearFilters = async () => {
@@ -82,31 +84,29 @@ const handleSearch = (data: SearchData) => {
 
     setFilters(reset);
 
-    const data = await vehicleService.getVehicles();
-    setVehicles(data);
+    if (searchData) {
+      await runSearch(searchData, reset);
+      return;
+    }
+
+    setVehicles([]);
+    setShowFilters(true);
+
+    setEmptyMessage("Primero debe realizar una búsqueda.");
   };
 
   const handleContinue = (vehicle: Vehicle) => {
-    console.log("Entró a handleContinue");
-
-    console.log(vehicle);
-
-    console.log(searchData);
-
     if (!searchData) {
-      console.log("No hay búsqueda");
       return;
     }
 
     createReservation(
       vehicle,
-      vehicle.branch,
-      vehicle.branch,
+      searchData.branch,
+      searchData.branch,
       searchData.startDate,
       searchData.endDate
     );
-
-    console.log("Reserva creada");
 
     router.push("/reservation");
   };
@@ -121,29 +121,25 @@ const handleSearch = (data: SearchData) => {
         data={vehicles}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <VehicleCard
-            vehicle={item}
-            onContinue={handleContinue}
-          />
+          <VehicleCard vehicle={item} onContinue={handleContinue} />
         )}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyStateText}>{emptyMessage}</Text>
+          </View>
+        }
         ListHeaderComponent={
           <View>
-            <SelectLanguage />
-
-            <ThemeSelector />
-
-            <FilterCalendar
-              onSearch={handleSearch}
-            />
+            <FilterCalendar onSearch={handleSearch} />
 
             <TouchableOpacity
               onPress={() => setShowFilters(true)}
               style={{
                 marginTop: 10,
                 padding: 12,
-                backgroundColor: "#ddd",
+                backgroundColor: "#f41919",
                 borderRadius: 10,
               }}
             >
