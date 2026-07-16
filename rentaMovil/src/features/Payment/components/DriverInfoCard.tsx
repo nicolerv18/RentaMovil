@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 import { useAuth } from "../../auth/hooks/useAuth";
 
-import { usePayment } from "../../auth/context/PaymentContext";
+import { usePayment } from "../../Payment/context/PaymentContext";
 
 
 export default function DriverInfoCard(){

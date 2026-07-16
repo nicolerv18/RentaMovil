@@ -15,7 +15,7 @@ import 'react-native-reanimated';
 import { ReservationProvider } from '../features/Reservation/context/ReservationContext';
 import '../traslation/i18n';
 import { AuthProvider } from '../features/auth/context/AuthContext';
-import { PaymentProvider } from '../features/auth/context/PaymentContext';
+import { PaymentProvider } from '../features/Payment/context/PaymentContext';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -35,6 +35,7 @@ export default function RootLayout() {
       <AuthProvider>
         <ReservationProvider>
           <PaymentProvider>
+
             <InnerNav />
           </PaymentProvider>
       </ReservationProvider>

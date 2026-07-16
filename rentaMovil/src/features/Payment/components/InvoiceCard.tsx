@@ -4,6 +4,8 @@ import { useReservation } from "../../Reservation/context/ReservationContext";
 
 import { calculateDays } from "../utils/calculateDays";
 
+import { insurance } from "../../Insurance/data/mocks/insurance";
+
 
 export default function InvoiceCard(){
 
@@ -27,10 +29,18 @@ export default function InvoiceCard(){
         );
 
 
-    const total =
+    const subtotal =
         days * vehicle.price;
 
+        const SelectInsurance =insurance.find(
+            item => item.id == reservation.insuranceId
+        )
 
+        const insurancePrice =
+        SelectInsurance?.price ??  0;
+
+        const total =
+        subtotal +insurancePrice;
 
     return (
 
@@ -58,6 +68,15 @@ export default function InvoiceCard(){
                 {days}
             </Text>
 
+            <Text>
+                Seguro:
+                {SelectInsurance?.name ?? "Sin seguro"}
+            </Text>
+
+            <Text>
+                Valor Seguro:
+                ${insurancePrice}
+            </Text>
 
             <Text>
                 Total:
