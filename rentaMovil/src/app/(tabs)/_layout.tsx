@@ -45,6 +45,17 @@ function MenuTabBarIcon({
   );
 }
 
+function ReservationTabIcon({
+  color,
+}: Readonly<{ color: string }>) {
+  return (
+    <TabBarIcon
+      name="book"
+      color={color}
+    />
+  );
+}
+
 function HeaderRightButton() {
   const { themeName } = useTheme();
   const colors = themes[themeName];
@@ -118,6 +129,18 @@ export default function TabLayout() {
           tabBarIcon: MenuTabBarIcon,
         }}
       />
+
+
+      <Tabs.Screen
+        name="reservation"
+        options={{
+          title: "Rentamóvil",
+          tabBarLabel: "Reservation",
+          tabBarIcon: ReservationTabIcon,
+        }}
+      />
     </Tabs>
+
+    
   );
 }

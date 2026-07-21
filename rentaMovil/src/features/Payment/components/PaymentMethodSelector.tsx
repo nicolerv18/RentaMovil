@@ -10,78 +10,215 @@ import { paymentMethods } from "../data/paymentMethod";
 
 import { usePayment } from "../context/PaymentContext";
 
+import { useTheme } from "../../../theme/useTheme";
+import { themes } from "../../../theme/themes";
 
-export default function PaymentMethodSelector(){
+import { createStyles } from "./PaymentMethodSelector.style";
+
+
+export default function PaymentMethodSelector() {
+
 
     const {
+
         selectedPaymentMethod,
+
         setSelectedPaymentMethod,
+
     } = usePayment();
+
+
+    const {
+        themeName,
+    } = useTheme();
+
+
+    const colors =
+        themes[themeName];
+
+
+    const styles =
+        createStyles(colors);
 
 
     return (
 
+
         <AppCard>
 
-            <Text>
+
+            <Text
+                style={styles.title}
+            >
+
                 Método de pago
+
             </Text>
 
 
-            {paymentMethods.map(method => {
+            <Text
+                style={styles.subtitle}
+            >
 
-                const selected =
-                    selectedPaymentMethod?.id === method.id;
+                Selecciona cómo deseas pagar tu reserva
+
+            </Text>
 
 
-                return (
+            <View
+                style={styles.methodsContainer}
+            >
 
-                    <TouchableOpacity
 
-                        key={method.id}
+                {
+                    paymentMethods.map(
 
-                        disabled={!method.enabled}
+                        method => {
 
-                        onPress={() =>
-                            setSelectedPaymentMethod(method)
+
+                            const selected =
+
+                                selectedPaymentMethod?.id ===
+                                method.id;
+
+
+                            return (
+
+
+                                <TouchableOpacity
+
+
+                                    key={method.id}
+
+
+                                    disabled={
+                                        !method.enabled
+                                    }
+
+
+                                    onPress={() =>
+
+                                        setSelectedPaymentMethod(
+                                            method
+                                        )
+
+                                    }
+
+
+                                    style={[
+
+                                        styles.methodCard,
+
+
+                                        selected &&
+                                        styles.selectedMethod,
+
+
+                                        !method.enabled &&
+                                        styles.disabledMethod,
+
+                                    ]}
+
+
+                                >
+
+
+                                    <View
+                                        style={styles.methodInfo}
+                                    >
+
+
+                                        <Text
+                                            style={styles.methodName}
+                                        >
+
+                                            {
+                                                method.name
+                                            }
+
+                                        </Text>
+
+
+                                        <Text
+                                            style={styles.description}
+                                        >
+
+                                            {
+                                                method.description
+                                            }
+
+                                        </Text>
+
+
+                                        {
+                                            !method.enabled && (
+
+
+                                                <Text
+                                                    style={
+                                                        styles.unavailable
+                                                    }
+                                                >
+
+                                                    No disponible
+
+                                                </Text>
+
+
+                                            )
+                                        }
+
+
+                                    </View>
+
+
+                                    <View
+
+                                        style={[
+
+                                            styles.radio,
+
+
+                                            selected &&
+                                            styles.radioSelected,
+
+                                        ]}
+
+                                    >
+
+                                        {
+                                            selected && (
+
+                                                <View
+                                                    style={
+                                                        styles.radioDot
+                                                    }
+                                                />
+
+                                            )
+                                        }
+
+                                    </View>
+
+
+                                </TouchableOpacity>
+
+
+                            );
+
                         }
 
-                    >
-
-                        <View>
-
-                            <Text>
-                                {method.name}
-                            </Text>
-
-                            <Text>
-                                {method.description}
-                            </Text>
+                    )
 
 
-                            {!method.enabled && (
-
-                                <Text>
-                                    No disponible
-                                </Text>
-
-                            )}
-
-                        </View>
+                }
 
 
-                        <Text>
-                            {selected ? "●" : "○"}
-                        </Text>
+            </View>
 
-
-                    </TouchableOpacity>
-
-                );
-
-            })}
 
         </AppCard>
+
 
     );
 

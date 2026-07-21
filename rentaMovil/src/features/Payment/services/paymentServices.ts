@@ -1,9 +1,12 @@
-import { PaymentRequest } from "../types/payment";
+import {
+    PaymentRequest,
+    PaymentResponse,
+} from "../types/payment";
 
 
 export async function createPayment(
     data: PaymentRequest
-){
+): Promise<PaymentResponse> {
 
     console.log(
         "Procesando pago",
@@ -11,12 +14,22 @@ export async function createPayment(
     );
 
 
-    // futuro:
-    // return api.post("/payments", data);
+    // Futuro:
+
+    // return api.post(
+    //     "/payments",
+    //     data
+    // );
 
 
     return {
-        success:true
+
+        transactionId:
+            "mock-transaction-123",
+
+        status:
+            "APPROVED",
+
     };
 
 }

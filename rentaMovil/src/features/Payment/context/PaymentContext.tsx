@@ -6,7 +6,17 @@ import {
 } from "react";
 
 import { DriverData } from "../types/driver";
-import { PaymentMethod } from "../types/payment";
+import { PaymentMethod, PaymentRequest, PaymentResponse } from "../types/payment";
+import { createPayment } from "../services/paymentServices";
+
+
+type PaymentStatus =
+| "IDLE"
+    | "PENDING"
+    | "APPROVED"
+    | "DECLINED"
+    | "CANCELLED";
+
 
 
 type PaymentContextType = {
@@ -24,6 +34,21 @@ type PaymentContextType = {
         method: PaymentMethod | null
     ) => void;
 
+    paymentStatus: PaymentStatus;
+
+setPaymentStatus: (
+    status: PaymentStatus
+) => void;
+
+    transactionId: string | null;
+
+setTransactionId: (
+    id: string | null
+) => void;
+
+processPayment: (
+    data: PaymentRequest
+) => Promise<PaymentResponse>;
 
     clearPayment: () => void;
 
@@ -51,6 +76,7 @@ useState<DriverData | null>(null);
 
 
 
+
 const [
     selectedPaymentMethod,
     setSelectedPaymentMethod
@@ -59,19 +85,73 @@ useState<PaymentMethod | null>(null);
 
 
 
-function clearPayment(){
+function clearPayment() {
 
     setDriver(null);
 
     setSelectedPaymentMethod(null);
 
+    setTransactionId(null);
+
 }
 
 
+const [
+    paymentStatus,
+    setPaymentStatus
+] =
+    useState<PaymentStatus>("IDLE");
+
+const [
+    transactionId,
+    setTransactionId
+] =
+    useState<string | null>(null);
+
+
+async function processPayment(
+    data: PaymentRequest
+): Promise<PaymentResponse> {
+
+    setPaymentStatus("PENDING");
+
+
+    try {
+
+        const response =
+            await createPayment(data);
+
+
+        setTransactionId(
+            response.transactionId
+        );
+
+
+        setPaymentStatus(
+            response.status
+        );
+
+
+        return response;
+
+
+    } catch (error) {
+
+        setPaymentStatus(
+            "DECLINED"
+        );
+
+
+        throw error;
+
+    }
+
+}
 
 return(
 
 <PaymentContext.Provider
+
 
 value={{
 
@@ -82,6 +162,15 @@ value={{
     selectedPaymentMethod,
 
     setSelectedPaymentMethod,
+
+    paymentStatus,
+
+setPaymentStatus,
+
+transactionId,
+ setTransactionId,
+
+ processPayment,
 
     clearPayment,
 

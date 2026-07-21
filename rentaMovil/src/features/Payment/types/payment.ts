@@ -15,3 +15,13 @@ export type PaymentRequest = {
     paymentMethodId: number;
 
 };
+
+export type PaymentResponse = {
+    transactionId: string;
+
+    status:
+        | "PENDING"
+        | "APPROVED"
+        | "DECLINED"
+        | "CANCELLED";
+};

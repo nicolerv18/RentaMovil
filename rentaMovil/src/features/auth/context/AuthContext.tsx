@@ -2,8 +2,11 @@ import {
     createContext,
     ReactNode,
     useContext,
-    useState
+    useEffect,
+    useState,
 } from "react";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { User } from "../types/user";
 
@@ -14,7 +17,7 @@ import {
 
 import {
     LoginRequest,
-    RegisterRequest
+    RegisterRequest,
 } from "../types/auth";
 
 
@@ -26,6 +29,8 @@ type AuthContextType = {
 
     isAuthenticated: boolean;
 
+    isLoading: boolean;
+
     login: (
         data: LoginRequest
     ) => Promise<void>;
@@ -34,7 +39,11 @@ type AuthContextType = {
         data: RegisterRequest
     ) => Promise<void>;
 
-    logout: () => void;
+    updateUser: (
+        user: User
+    ) => Promise<void>;
+
+    logout: () => Promise<void>;
 
 };
 
@@ -43,13 +52,16 @@ export const AuthContext =
 
 
 type Props = {
+
     children: ReactNode;
+
 };
 
 
 export function AuthProvider({
     children,
 }: Props) {
+
 
     const [user, setUser] =
         useState<User | null>(null);
@@ -58,6 +70,60 @@ export function AuthProvider({
     const [token, setToken] =
         useState<string | null>(null);
 
+
+    const [isLoading, setIsLoading] =
+        useState(true);
+
+
+    useEffect(() => {
+
+        async function restoreSession() {
+
+            try {
+
+                const storedUser =
+                    await AsyncStorage.getItem("user");
+
+
+                const storedToken =
+                    await AsyncStorage.getItem("token");
+
+
+                if (
+                    storedUser &&
+                    storedToken
+                ) {
+
+                    setUser(
+                        JSON.parse(storedUser)
+                    );
+
+
+                    setToken(
+                        storedToken
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Error restaurando sesión:",
+                    error
+                );
+
+            } finally {
+
+                setIsLoading(false);
+
+            }
+
+        }
+
+
+        restoreSession();
+
+    }, []);
 
 
     async function login(
@@ -72,10 +138,22 @@ export function AuthProvider({
 
         setToken(response.token);
 
+
+        await AsyncStorage.setItem(
+            "user",
+            JSON.stringify(response.user)
+        );
+
+
+        await AsyncStorage.setItem(
+            "token",
+            response.token
+        );
+
+
         console.log(response);
 
     }
-
 
 
     async function register(
@@ -90,22 +168,56 @@ export function AuthProvider({
 
         setToken(response.token);
 
+
+        await AsyncStorage.setItem(
+            "user",
+            JSON.stringify(response.user)
+        );
+
+
+        await AsyncStorage.setItem(
+            "token",
+            response.token
+        );
+
     }
 
+    async function updateUser(
+    updatedUser: User
+) {
+
+    setUser(updatedUser);
 
 
-    function logout() {
+    await AsyncStorage.setItem(
+        "user",
+        JSON.stringify(updatedUser)
+    );
+
+}
+
+
+    async function logout() {
 
         setUser(null);
 
         setToken(null);
+
+
+        await AsyncStorage.removeItem(
+            "user"
+        );
+
+
+        await AsyncStorage.removeItem(
+            "token"
+        );
 
     }
 
 
     const isAuthenticated =
         user !== null;
-
 
 
     return (
@@ -120,9 +232,13 @@ export function AuthProvider({
 
                 isAuthenticated,
 
+                isLoading,
+
                 login,
 
                 register,
+
+                updateUser,
 
                 logout,
 

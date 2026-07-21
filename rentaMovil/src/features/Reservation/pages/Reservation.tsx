@@ -4,7 +4,7 @@ import { ScrollView, Text, View } from "react-native";
 
 import { useReservation } from "../context/ReservationContext";
 
-import ContinueButton from "../components/ContinueButton";
+import ContinueButton from "../../../shared/components/button/ContinueButton";
 import InsuranceSelector from "../components/InsuranceSelector";
 import ReservationInfoCard from "../components/ReservationInfoCard";
 import VehicleSummaryCard from "../components/VehicleSummaryCard";

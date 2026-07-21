@@ -1,45 +1,83 @@
 import {
     Text,
     TextInput,
-    View,
+    TouchableOpacity,
 } from "react-native";
 
 import { useEffect, useState } from "react";
 
 import { useAuth } from "../../auth/hooks/useAuth";
 
-import { usePayment } from "../../Payment/context/PaymentContext";
+import {
+    usePayment,
+} from "../../Payment/context/PaymentContext";
+
+import AppCard from "../../../shared/components/appCard/AppCard";
+
+import { themes } from "../../../theme/themes";
+
+import { useTheme } from "../../../theme/useTheme";
+
+import {
+    createStyles,
+} from "./DriverInfoCard.style";
 
 
-export default function DriverInfoCard(){
+export default function DriverInfoCard() {
 
     const { user } = useAuth();
 
+
     const {
         driver,
-        setDriver
+        setDriver,
     } = usePayment();
 
 
+    const {
+        themeName,
+    } = useTheme();
 
-    const [name, setName] =
+
+    const colors =
+        themes[themeName];
+
+
+    const styles =
+        createStyles(colors);
+
+
+    const [
+        isOpen,
+        setIsOpen,
+    ] =
+        useState(false);
+
+
+    const [
+        name,
+        setName,
+    ] =
         useState("");
 
-    const [phone, setPhone] =
+
+    const [
+        phone,
+        setPhone,
+    ] =
         useState("");
 
 
+    useEffect(() => {
 
-    useEffect(()=>{
-
-        if(user && !driver){
+        if (user && !driver) {
 
             setDriver({
 
                 email: user.email,
 
                 name:
-                `${user.firstName} ${user.lastName}`,
+                    `${user.firstName} ${user.lastName}`,
 
                 phone: user.phone,
 
@@ -57,104 +95,162 @@ export default function DriverInfoCard(){
 
         }
 
-    },[user]);
-
+    }, [user]);
 
 
     function handleNameChange(
-        value:string
-    ){
+        value: string
+    ) {
 
         setName(value);
 
-
-        if(!driver) return;
+        if (!driver) return;
 
 
         setDriver({
 
             ...driver,
 
-            name:value,
+            name: value,
 
         });
 
     }
-
 
 
     function handlePhoneChange(
-        value:string
-    ){
+        value: string
+    ) {
 
         setPhone(value);
 
-
-        if(!driver) return;
+        if (!driver) return;
 
 
         setDriver({
 
             ...driver,
 
-            phone:value,
+            phone: value,
 
         });
 
     }
-
 
 
     return (
 
-        <View>
+        <AppCard>
 
-            <Text>
-                Datos del conductor
-            </Text>
+            <TouchableOpacity
 
+                style={styles.header}
 
-            <Text>
-                Correo
-            </Text>
-
-            <Text>
-                {driver?.email}
-            </Text>
-
-
-
-            <Text>
-                Nombre
-            </Text>
-
-            <TextInput
-
-                value={name}
-
-                onChangeText={
-                    handleNameChange
+                onPress={() =>
+                    setIsOpen(!isOpen)
                 }
 
-            />
+            >
+
+                <Text
+                    style={styles.title}
+                >
+
+                    Datos del conductor
+
+                </Text>
 
 
+                <Text
+                    style={styles.arrow}
+                >
 
-            <Text>
-                Teléfono
-            </Text>
+                    {isOpen ? "▲" : "▼"}
 
-            <TextInput
+                </Text>
 
-                value={phone}
+            </TouchableOpacity>
 
-                onChangeText={
-                    handlePhoneChange
-                }
 
-            />
+            {isOpen && (
 
-        </View>
+                <>
+
+                    <Text
+                        style={styles.label}
+                    >
+
+                        Correo
+
+                    </Text>
+
+
+                    <TextInput
+
+                        style={[
+                            styles.input,
+                            styles.disabledInput,
+                        ]}
+
+                        value={
+                            driver?.email ?? ""
+                        }
+
+                        editable={false}
+
+                    />
+
+
+                    <Text
+                        style={styles.label}
+                    >
+
+                        Nombre
+
+                    </Text>
+
+
+                    <TextInput
+
+                        style={styles.input}
+
+                        value={name}
+
+                        onChangeText={
+                            handleNameChange
+                        }
+
+                    />
+
+
+                    <Text
+                        style={styles.label}
+                    >
+
+                        Teléfono
+
+                    </Text>
+
+
+                    <TextInput
+
+                        style={styles.input}
+
+                        value={phone}
+
+                        onChangeText={
+                            handlePhoneChange
+                        }
+
+                        keyboardType="phone-pad"
+
+                    />
+
+                </>
+
+            )}
+
+        </AppCard>
 
     );
 
