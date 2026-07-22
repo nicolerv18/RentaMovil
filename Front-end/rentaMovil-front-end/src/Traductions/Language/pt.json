@@ -350,7 +350,23 @@
     "PmaxLenghtObservations": "A observação não pode ter mais de 200 caracteres",
     "sheduling": "Agendando manutenção",
     "shedule": "Agendar manutenção",
-    "button": "Histórico de manutenções"
+    "button": "Histórico de manutenções",
+    "options": {
+      "option1": "Troca de óleo",
+      "option2": "Troca de filtros",
+      "option3": "Revisão dos travões",
+      "option4": "Troca de pneus",
+      "option5": "Alinhamento e balanceamento",
+      "option6": "Revisão geral",
+      "option7": "Reparação do motor",
+      "option8": "Reparação dos travões",
+      "option9": "Reparação elétrica",
+      "option10": "Reparação da suspensão",
+      "option11": "Reparação da transmissão",
+      "option12": "Lavagem",
+      "option13": "Pintura",
+      "option14": "Funilaria"
+    }
   },
   "notifications": {
     "unread": "Não lidas",
@@ -410,6 +426,7 @@
     "all_f": "Todas"
   },
   "CheckStatus": {
+    "checkStatus": "Consultar status",
     "modal": {
       "title": "Editar veículo",
       "close": "Fechar modal",

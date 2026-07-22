@@ -310,6 +310,7 @@
     "requiredModel": "El modelo es obligatorio",
     "placeholderModel": "Ej: Volkswagen Gol, Crolla, Tesla Model 3... ",
     "minLenghtModel": "El modelo debe tener al menos 2 caracteres",
+    
     "maxLenghtModel": "El modelo no puede tener más de 30 caracteres",
     "invalidModel": "El modelo solo puede contener letras, números y guiones.",
     "date": "Fecha",
@@ -335,6 +336,16 @@
     "minLenghtMaintenance": "Minimo 3 caracteres. ",
     "maxLenght": "Maximo 60 caracteres ",
     "invalidMaintenance": "Solo se permiten letras, números, guiones y comas.",
+
+    "placeholderObservations": "Observaciones",
+    "minLenghtObservations": "Minimo 5 caracteres",
+    "maxLenghtObservations": "Maximo 200 caracteres ",
+    "PminLenghtObservations": "La observacion debe tener al menos 5 caracteres",
+    "PmaxLenghtObservations": "La observacion no debe tener mas de 200 caracteres",
+    "sheduling": "Agendando mantenimiento",
+    "shedule": "Agendar mantenimiento",
+    "button": "Historial de mantenimientos",
+    "options": {
     "option1": "Cambio de aceite",
     "option2": "Cambio de filtros",
     "option3": "Revision de frenos",
@@ -349,15 +360,8 @@
     "option12": "Lavado",
     "option13": "Pintura",
     "option14": "Latonería",
-    "observations": "Observaciones",
-    "placeholderObservations": "Observaciones",
-    "minLenghtObservations": "Minimo 5 caracteres",
-    "maxLenghtObservations": "Maximo 200 caracteres ",
-    "PminLenghtObservations": "La observacion debe tener al menos 5 caracteres",
-    "PmaxLenghtObservations": "La observacion no debe tener mas de 200 caracteres",
-    "sheduling": "Agendando mantenimiento",
-    "shedule": "Agendar mantenimiento",
-    "button": "Historial de mantenimientos"
+    "observations": "Observaciones"
+     }
   },
   "notifications": {
     "unread": "Sin leer",
@@ -418,6 +422,7 @@
       "all_f": "Todas"
   },
   "CheckStatus":{
+    "checkStatus": "Consultar estado",
     "modal":{
       "title":"Editar vehículo",
       "close":"Cerrar modal",

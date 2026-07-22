@@ -119,6 +119,8 @@ function CheckStatus() {
     return (
         <>
             <NavBarAdmin />
+                <h2 className={style["status-h2"]}>{t("CheckStatus.checkStatus")}</h2>
+
             <div className={style["card-check"]}>
                 <div className={style["card-container-left"]}>
                     <div className={style["card-container-setSearch"]}>

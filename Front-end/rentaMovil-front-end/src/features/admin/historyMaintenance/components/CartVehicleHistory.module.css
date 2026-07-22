@@ -99,25 +99,25 @@ width: 174px;
 }
 
 .state--pendiente {
-  background: #FFF4E5;
-  color: #B85C00
+    background: #FFF7E6;
+    color: #D97706;
 }
 
 .state--progreso {
-  background: #E8F3FF;
-  color: #0563A7
+    background: #F3EEFF;
+    color: #8B5CF6;
 }
 
+
 .state--completado {
-  background: #E6FFEF;
-  color: #0A7A3F
+    background: #EAFBF2;
+    color: #16A34A;
 }
 
 .state--cancelado {
-  background: #FFE6E6;
-  color: #A71D1D
+    background: #FDECEC;
+    color: #DC2626;
 }
-
 .card-btn {
 
   border: none;

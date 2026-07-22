@@ -350,7 +350,23 @@
     "PmaxLenghtObservations": "L'observation ne peut pas dépasser 200 caractères",
     "sheduling": "Planification de la maintenance",
     "shedule": "Planifier la maintenance",
-    "button": "Historique des maintenances"
+    "button": "Historique des maintenances",
+      "options": {
+      "option1": "Vidange",
+      "option2": "Remplacement des filtres",
+      "option3": "Révision des freins",
+      "option4": "Remplacement des pneus",
+      "option5": "Alignement et équilibrage",
+      "option6": "Révision générale",
+      "option7": "Réparation du moteur",
+      "option8": "Réparation des freins",
+      "option9": "Réparation électrique",
+      "option10": "Réparation de la suspension",
+      "option11": "Réparation de la transmission",
+      "option12": "Lavage",
+      "option13": "Peinture",
+      "option14": "Carrosserie"
+    }
   },
   "notifications": {
     "unread": "Non lues",
@@ -410,6 +426,7 @@
     "all_f": "Toutes"
   },
   "CheckStatus": {
+    "checkStatus": "Consulter le statut",
     "modal": {
       "title": "Modifier le véhicule",
       "close": "Fermer la fenêtre",

@@ -351,7 +351,23 @@
     "PmaxLenghtObservations": "Observation cannot exceed 200 characters",
     "sheduling": "Scheduling maintenance",
     "shedule": "Schedule maintenance",
-    "button": "Maintenance history"
+    "button": "Maintenance history",
+      "options": {
+      "option1": "Oil change",
+      "option2": "Filter replacement",
+      "option3": "Brake inspection",
+      "option4": "Tire replacement",
+      "option5": "Wheel alignment and balancing",
+      "option6": "General inspection",
+      "option7": "Engine repair",
+      "option8": "Brake repair",
+      "option9": "Electrical repair",
+      "option10": "Suspension repair",
+      "option11": "Transmission repair",
+      "option12": "Car wash",
+      "option13": "Painting",
+      "option14": "Bodywork"
+    }
   },
   "notifications": {
     "unread": "Unread",
@@ -411,6 +427,7 @@
     "all_f": "All"
   },
   "CheckStatus": {
+    "checkStatus": "Check status",
     "modal": {
       "title": "Edit vehicle",
       "close": "Close modal",

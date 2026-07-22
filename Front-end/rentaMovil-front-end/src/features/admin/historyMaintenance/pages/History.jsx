@@ -130,18 +130,18 @@ function History() {
               {isEditing ? (
                 <form onSubmit={handleSubmit(handleSaveEdit)}>
 
-                  <label htmlFor="model">{t("MaintenanceForm.model")}</label>
+                  <label htmlFor="model">{t("maintenanceForm.model")}</label>
                   <input
                     type="text"
-                    placeholder={t("MaintenanceForm.modelPlaceholder")}
+                    placeholder={t("maintenanceForm.placeholderModel")}
 
                     {...register("model", {
-                      required: t("MaintenanceForm.requiredModel"),
-                      minLength: { value: 2, message: t("MaintenanceForm.ModelMinLength") },
-                      maxLength: { value: 30, message: t("MaintenanceForm.ModelMaxLength") },
+                      required: t("maintenanceForm.requiredModel"),
+                      minLength: { value: 2, message: t("maintenanceForm.minLenghtModel") },
+                      maxLength: { value: 30, message: t("maintenanceForm.maxLenghtModel") },
                       pattern: {
                         value: /^[A-Za-z0-9\s\-]{2,30}$/,
-                        message: t("MaintenanceForm.formatInvalidModel")
+                        message: t("maintenanceForm.invalidModel")
                       }
                     })}
                   />
@@ -150,36 +150,36 @@ function History() {
                       <AiOutlineDashboard /> {errors.model.message}
                     </p>
                   )}
-                  <label htmlFor="maintenanceType">{t("MaintenanceForm.Type")}:</label>
+                  <label htmlFor="maintenanceType">{t("maintenanceForm.TypeMaintenance")}</label>
                   <input
                     type="text"
-                    placeholder={t("MaintenanceForm.placeholderType")}
+                    placeholder={t("maintenanceForm.placeholderMaintenance")}
                     list="maintenance-options"
                     {...register("maintenanceType", {
-                      required: t("MaintenanceForm.requiredType"),
-                      minLength: { value: 3, message: t("MaintenanceForm.minLengthType") },
-                      maxLength: { value: 60, message: t("MaintenanceForm.maxLengthType") },
+                      required: t("maintenanceForm.requiredMaintenance"),
+                      minLength: { value: 3, message: t("maintenanceForm.minLenghtMaintenance") },
+                      maxLength: { value: 60, message: t("maintenanceForm.maxLenght") },
                       pattern: {
                         value: /^[A-Za-zÀ-ÿ0-9\s\-\,\.]{3,60}$/,
-                        message: t("MaintenanceForm.invalidType")
+                        message: t("maintenanceForm.invalidMaintenance")
                       }
                     })}
                   />
                   <datalist id="maintenance-options">
-                    <option value={t("MaintenanceForm.options.option1")} />
-                    <option value={t("MaintenanceForm.options.option2")} />
-                    <option value={t("MaintenanceForm.options.option3")} />
-                    <option value={t("MaintenanceForm.options.option4")} />
-                    <option value={t("MaintenanceForm.options.option5")} />
-                    <option value={t("MaintenanceForm.options.option6")} />
-                    <option value={t("MaintenanceForm.options.option7")} />
-                    <option value={t("MaintenanceForm.options.option8")} />
-                    <option value={t("MaintenanceForm.options.option9")} />
-                    <option value={t("MaintenanceForm.options.option10")} />
-                    <option value={t("MaintenanceForm.options.option11")} />
-                    <option value={t("MaintenanceForm.options.option12")} />
-                    <option value={t("MaintenanceForm.options.option13")} />
-                    <option value={t("MaintenanceForm.options.option14")} />
+                    <option value={t("maintenanceForm.options.option1")} />
+                    <option value={t("maintenanceForm.options.option2")} />
+                    <option value={t("maintenanceForm.options.option3")} />
+                    <option value={t("maintenanceForm.options.option4")} />
+                    <option value={t("maintenanceForm.options.option5")} />
+                    <option value={t("maintenanceForm.options.option6")} />
+                    <option value={t("maintenanceForm.options.option7")} />
+                    <option value={t("maintenanceForm.options.option8")} />
+                    <option value={t("maintenanceForm.options.option9")} />
+                    <option value={t("maintenanceForm.options.option10")} />
+                    <option value={t("maintenanceForm.options.option11")} />
+                    <option value={t("maintenanceForm.options.option12")} />
+                    <option value={t("maintenanceForm.options.option13")} />
+                    <option value={t("maintenanceForm.options.option14")} />
 
                   </datalist>
 
@@ -188,10 +188,10 @@ function History() {
                       <AiOutlineDashboard /> {errors.maintenanceType.message}
                     </p>
                   )}
-                  <label htmlFor="date">{t("MaintenanceForm.date")}</label>
-                  <input type="date" placeholder={t("MaintenanceForm.datePlaceholder")}
+                  <label htmlFor="date">{t("maintenanceForm.date")}</label>
+                  <input type="date" placeholder={t("maintenanceForm.datePlaceholder")}
                     {...register("date", {
-                      required: t("MaintenanceForm.requiredDate"),
+                      required: t("maintenanceForm.requiredDate"),
                       validate: ValidateDate
                     })}
                   />
@@ -200,16 +200,16 @@ function History() {
                       <AiOutlineDashboard /> {errors.date.message}
                     </p>
                   )}
-                  <label htmlFor="maintenance-notes">{t("MaintenanceForm.observations")}</label>
+                  <label htmlFor="maintenance-notes">{t("maintenanceForm.observations")}</label>
                   {/* aca se registra las validaciones de el campo como observaciones, se requiere que el campo sea obligatorio con una longitud minima de 5 caracteres y maxima de 30 */}
                   <div className={style['history-form-observations']}>
                     <textarea
-                      placeholder={t("MaintenanceForm.placeholderObservations")}
+                      placeholder={t("maintenanceForm.placeholderObservations")}
                       className={style["maintenance-observatios"]}
                       rows={2}
                       {...register("observations", {
-                        minLength: { value: 5, message: t("MaintenanceForm.minLengthObservations") },
-                        maxLength: { value: 200, message: t("MaintenanceForm.maxLengthObservations") }
+                        minLength: { value: 5, message: t("maintenanceForm.PminLenghtObservations") },
+                        maxLength: { value: 200, message: t("maintenanceForm.PmaxLenghtObservations") }
                       })}
                       onInput={(e) => {
                         e.target.style.height = 'auto';         /* // resetea la altura */
@@ -237,11 +237,11 @@ function History() {
 
               ) : (
                 <>
-                  <p><strong>{t("History.model")}</strong> {selected.model}</p>
-                  <p><strong>{t("MaintenanceForm.Type")}</strong> {selected.type}</p>
-                  <p><strong>{t("MaintenanceForm.date")}</strong> {new Date(selected.date).toLocaleString()}</p>
-                  <p><strong>{t("History.status")}</strong> {selected.state}</p>
-                  <p><strong>{t("MaintenanceForm.observations")}</strong> {selected.notes || 'Sin observaciones'}</p>
+                  <p><strong>{t("History.model")} :</strong> {selected.model}</p>
+                  <p><strong>{t("maintenanceForm.TypeMaintenance")}</strong> {selected.type}</p>
+                  <p><strong>{t("maintenanceForm.date")} :</strong> {new Date(selected.date).toLocaleString()}</p>
+                  <p><strong>{t("History.status")} :</strong> {selected.state}</p>
+                  <p><strong>{t("maintenanceForm.observations")}: </strong> {selected.notes || t("maintenanceForm.placeholderObservations")}</p>
 
 
                   <div className={style['modal-actions-btn']} >

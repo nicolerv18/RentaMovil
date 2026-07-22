@@ -10,10 +10,10 @@ function FleetChartMaintenance({ records }) {
         cancel: "Cancelado",
     };
     const COLORS = {// Definir los colores para cada estado de los vehículos
-        pending: "#004ef8",
-        inProgress: "#fc00fc",
-        completed: '#1eff00',
-        cancel: "#ba1717",
+    pending: "#F59E0B",     
+    inProgress: "#8B5CF6",  
+    completed: "#22C55E",  
+    cancel: "#EF4444", 
     }
     const desiredOrder = ["pending", "inProgress", "completed", "cancel"]
     const data = desiredOrder.map((stateKey) => ({
