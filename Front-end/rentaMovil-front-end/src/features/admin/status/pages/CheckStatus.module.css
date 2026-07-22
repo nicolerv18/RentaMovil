@@ -66,7 +66,7 @@
 
 .modal-modal {
     width: min(95vw, 900px);
-    max-width: 889px;
+    max-width: 100%;
     max-height: calc(89vh - 80px);
     height: auto;
     background: var(--card-bg);

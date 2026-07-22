@@ -9,7 +9,7 @@ import FleetChart from "../components/FleetChart";
 import Animation from "../../../../shared/components/layout/Animation";
 import style from "../pages/CheckStatus.module.css";
 import FileDialog from "../../../../shared/components/layout/FileDialog";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { AiOutlineDashboard } from "react-icons/ai";
 
 function CheckStatus() {
@@ -101,14 +101,14 @@ function CheckStatus() {
             prev.map((vehicle) =>
                 vehicle.plate === selectedVehicle.plate
                     ? {
-                          ...vehicle,
-                          name: data.name,
-                          plate: data.plate,
-                          state: data.state,
-                          ubication: data.ubication,
-                          text: data.description,
-                          img: newImage,
-                      }
+                        ...vehicle,
+                        name: data.name,
+                        plate: data.plate,
+                        state: data.state,
+                        ubication: data.ubication,
+                        text: data.description,
+                        img: newImage,
+                    }
                     : vehicle
             )
         );
@@ -162,36 +162,37 @@ function CheckStatus() {
                                             minLength: { value: 3, message: t("CheckStatus.modal.requiredNameMinLength") },
                                             maxLength: { value: 50, message: t("CheckStatus.modal.requiredNameMaxLength") },
                                             pattern: {
-                                                value: /^[A-Za-z0-9\s\-]{2,30}$/, 
+                                                value: /^[A-Za-z0-9\s\-]{2,30}$/,
                                                 message: t("CheckStatus.modal.formatInvalid")
                                             }
                                         })}
                                     />
                                     {errors.name && (
-                                    <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> {errors.name.message}
-                                    </p>
+                                        <p className={style['error-message']}>
+                                            <AiOutlineDashboard /> {errors.name.message}
+                                        </p>
                                     )}
                                 </label>
-                                <label>   
+
+                                <label>
                                     {t("CheckStatus.modal.plate")}
                                     <input
                                         className={style["modal-input"]}
                                         {...register("plate", {
-                                        required: t("CheckStatus.modal.requiredPlate"),
-                                        minLength: { value: 2, message: t("CheckStatus.modal.requiredPlateMinLength") },
-                                        maxLength: { value: 30, message: t("CheckStatus.modal.requiredPlateMaxLength") },
-                                        pattern: {
-                                            value: /^[A-Z]{3}[0-9]{2}[A-Z0-9]?$/,
-                                            message: t("CheckStatus.modal.formatInvalidPlate")
-                                        },
-                                        onChange: (e) => { e.target.value = e.target.value.toUpperCase() }
-                                    })}
+                                            required: t("CheckStatus.modal.requiredPlate"),
+                                            minLength: { value: 2, message: t("CheckStatus.modal.requiredPlateMinLength") },
+                                            maxLength: { value: 30, message: t("CheckStatus.modal.requiredPlateMaxLength") },
+                                            pattern: {
+                                                value: /^[A-Z]{3}[0-9]{2}[A-Z0-9]?$/,
+                                                message: t("CheckStatus.modal.formatInvalidPlate")
+                                            },
+                                            onChange: (e) => { e.target.value = e.target.value.toUpperCase() }
+                                        })}
                                     />
                                     {errors.plate && (
-                                    <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> {errors.plate.message}
-                                    </p>
+                                        <p className={style['error-message']}>
+                                            <AiOutlineDashboard /> {errors.plate.message}
+                                        </p>
                                     )}
                                 </label>
                                 <label>
@@ -218,35 +219,35 @@ function CheckStatus() {
                                                 message: t("CheckStatus.modal.formatInvalidUbication")
                                             }
                                         })}
-                                />
-                                {errors.ubication && (
-                                    <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> {errors.ubication.message}
-                                    </p>
-                                )}
+                                    />
+                                    {errors.ubication && (
+                                        <p className={style['error-message']}>
+                                            <AiOutlineDashboard /> {errors.ubication.message}
+                                        </p>
+                                    )}
                                 </label>
                                 <label>
                                     {t("CheckStatus.modal.description")}
                                     <textarea
                                         className={style["modal-textarea"]}
                                         {...register("description", {
-                                        minLength: { value: 5, message: t("CheckStatus.modal.requiredDescriptionMinLength") },
-                                        maxLength: { value: 200, message: t("CheckStatus.modal.requiredDescriptionMaxLength") }
-                                    })}
+                                            minLength: { value: 5, message: t("CheckStatus.modal.requiredDescriptionMinLength") },
+                                            maxLength: { value: 200, message: t("CheckStatus.modal.requiredDescriptionMaxLength") }
+                                        })}
                                         onInput={(e) => {
-                                        e.target.style.height = 'auto';         /* // resetea la altura */
-                                        e.target.style.height = e.target.scrollHeight + 'px'; // crece según el contenido
-                                    }}                                        
+                                            e.target.style.height = 'auto';         /* // resetea la altura */
+                                            e.target.style.height = e.target.scrollHeight + 'px'; // crece según el contenido
+                                        }}
                                     />
                                     {errors.description && (
                                         <p className={style['error-message']}>
                                             <AiOutlineDashboard /> {errors.description.message}
                                         </p>
-                                        )}
+                                    )}
                                 </label>
                             </div>
                             <div className={style.modalFileDialogWrapper}>
-                
+
                                 <FileDialog onFileChange={handleFileChange} file={vehicleFile} />
                             </div>
                         </div>

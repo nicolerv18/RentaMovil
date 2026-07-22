@@ -127,9 +127,9 @@ function VehicleForm() {
                                     placeholder={t('vehicleForm.placeholderModel')}
                                     {...register("model", {
 
-                                        required: "El modelo es obligatorio",
-                                        minLength: { value: 2, message: "El modelo debe tener al menos 2 caracteres." },
-                                        maxLength: { value: 30, message: "El modelo no debe superar 30 caracteres." },
+                                        required: t("MaintenanceForm.requiredModel"),
+                                        minLength: { value: 2, message: t("MaintenanceForm.requiredModelMinLength") },
+                                        maxLength: { value: 30, message: t("MaintenanceForm.requiredModelMinLength") },
 
                                         pattern: {
                                             value: /^[A-Za-z0-9\s\-]{2,30}$/,
@@ -144,16 +144,16 @@ function VehicleForm() {
                                 )}
                             </div>
                                 <div className={style['vehicle-form-input']}>
-                                <label htmlFor="price">Precio:</label>
+                                <label htmlFor="price">{t("vehicleForm.price")}</label>
                                 <input
                                     type="number"
                                     placeholder="Ej: 100000"
                                     step="100"
                                     {...register('price', {
-                                        required: 'El precio es obligatorio',
+                                        required: t("vehicleForm.priceRequired"),
                                         valueAsNumber: true,
-                                        min: { value: 0, message: 'El precio debe ser mayor o igual a 0' },
-                                        max: { value: 100000000, message: 'El precio no debe superar 100000000' }
+                                        min: { value: 0, message: t("vehicleForm.minLenghtPrice") },
+                                        max: { value: 100000000, message: t("vehicleForm.maxLenghtPrice") }
                                     })}
                                 />
                                 {errors.price && (
