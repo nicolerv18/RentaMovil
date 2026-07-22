@@ -10,11 +10,11 @@ function FleetChart({ vehicles }) {
         reserved: "Reservado",
     };
     const COLORS = {// Definir los colores para cada estado de los vehículos
-        available: "#8cff00",
-        maintenance: "#afafaf",
-        inUse: '#2853ff',
-        reserved: "#ba1717",
-    }
+    available: "#16A34A",    
+    inUse: "#2563EB",         
+    maintenance: "#EA580C",   
+    reserved: "#9333EA",     
+};
     const desiredOrder = ["available", "inUse", "reserved", "maintenance"];
     const data = desiredOrder.map((stateKey) => ({ // Crear un array de objetos con el nombre del estado y la cantidad de vehículos en ese estado
         name: stateKey, // El nombre del estado
@@ -24,6 +24,9 @@ function FleetChart({ vehicles }) {
     const total = vehicles.length
     return (
         <div className={style["fleet-chart-container"]}>
+                 <h3>{t("History.availableVehicles")}:</h3>
+
+            <div className={style["fleet-chart-position"]}>
             <div className={style["fleet-chart-chart"]}>
                 <PieChart width={160} height={160}>{/*crear el gráfico circular */}
                     <Pie data={data} cx={75} cy={75} innerRadius={50} outerRadius={75} dataKey="value"> {/* configurar el gráfico circular con los datos de estado de los vehículos */}
@@ -48,6 +51,7 @@ function FleetChart({ vehicles }) {
                         </div>
                     )
                 })}
+            </div>
             </div>
         </div>
     )

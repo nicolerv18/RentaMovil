@@ -22,49 +22,47 @@
     font-size: 10px;
     margin: 0 0 0 0;
     height: 37px;
-    width: auto;
 
 }
 .container-filter {
-    display: flex;
-    gap: 10px;
-    padding: 16px 14px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
+display: flex;
+  gap: 10px;
+  padding: 16px 14px;
+  justify-content: center;
+  align-items: center;
+  width: auto;
 }
 .container-chips {
-    display: flex;
-    gap: 8px ;
-    justify-content: center;
-    align-items: center;
-    margin: 0px 0px 0px ;
-    padding-left: 14px;
-    padding: 12px;
+display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0%;
+  flex-wrap: wrap;
+  margin-left: -17%;
 }
 .container-filter input {
-    padding: 8px 42px 8px 16px;
-    border-radius: 6px;
-    border: 1px solid rgba(28, 77, 68, 0.15);
-    width: 100%;
-    max-width: 900px;
-    height: 30px;
-    background-color: aliceblue;
-    color: #1f2937;
-    font-family: 'poppins', sans-serif;
-    font-size: 15px;
+padding: 20px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(28, 77, 68, 0.15);
+  width: 100%;
+  max-width: 900px;
+  height: 42px;
+  background-color: aliceblue;
+  color: #1f2937;
+  font-family: 'poppins', sans-serif;
+  font-size: 15px;
 }
 
 .icon-search {
-    position: absolute;
-    right: 57px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    color: #1f2937;
-    pointer-events: none;
+width: 100px;
+  height: 20px;
+  color: #1f2937;
+  position: relative;
+  right: 55px;
+  display: flex;
+  position: static;
+  right: unset;
 }
 
 @media (max-width: 768px) {
@@ -73,6 +71,9 @@
         align-items: stretch;
         padding: 10px 0px;
     }
+.icon-search {
+  display: none;
+}
 
     .container-chips {
         padding-left: 7px;
@@ -80,7 +81,7 @@
     }
 
     .container-filter input {
-        max-width: 80%;
+        max-width: 87%;
         margin: 0 26px auto;
         width: 100%;
     }

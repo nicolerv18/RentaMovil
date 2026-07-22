@@ -12,6 +12,8 @@
   --filterContractOpacity: #0034c2;
   --NBtext: #000000;
   --adminP : #070707;
+  --error: #D12400;
+
   /* Fondos */
   --bg: #F5F7FA;
   --card-bg: #FFFFFF;
@@ -89,6 +91,7 @@
   --textFooter: #FFFFFF;
   --text-btn: #FFFFFF;
   --placeholder: #9ca3af;
+  --error: #D12400;
 
 
   /* Fondos */
@@ -165,6 +168,7 @@
 
 :root.dark {
  /* Colores de texto */
+ 
   --text: #ffffff;
   --text-h: #aeb1b3;
   --textNavabar: #FFFFFF;
@@ -175,6 +179,8 @@
   --filterContractOpacity: rgb(134, 21, 247);
   --NBtext: #ffffff;
   --adminP : #464646;
+  --error: #D12400;
+
   /* Fondos */
   --bg:  #020617;
   --card-bg: #0f172a;
@@ -253,6 +259,7 @@
   --textFooter: #FFFFFF;
   --text-btn: #FFFFFF;
   --placeholder: #9ca3af;
+  --error: #D12400;
 
 
   /* Fondos */

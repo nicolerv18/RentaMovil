@@ -540,6 +540,7 @@
   "close":"Close",
 "title2": "Maintenance status",
 "title3": "Maintenance per month",
+"availableVehicles": "Available vehicles",
   "months": [
   "Jan","Feb","Mar","Apr","May","Jun",
   "Jul","Aug","Sep","Oct","Nov","Dec"

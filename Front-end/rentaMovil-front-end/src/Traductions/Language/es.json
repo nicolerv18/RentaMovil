@@ -558,6 +558,7 @@
       "close":"Cerrar",
       "title2":"Estado de mantenimiento",
       "title3":"Mantenimientos por mes",
+      "availableVehicles": "Vehículos disponibles",
       "months": [
       "Ene","Feb","Mar","Abr","May","Jun",
       "Jul","Ago","Sep","Oct","Nov","Dic"

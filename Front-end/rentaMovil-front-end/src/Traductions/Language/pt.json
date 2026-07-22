@@ -542,6 +542,7 @@
     "close": "Fechar",
     "title2": "Estado da manutenção",
     "title3": "Manutenções por mês",
+    "availableVehicles": "Veículos disponíveis",
     "months": [
       "Jan",
       "Fev",

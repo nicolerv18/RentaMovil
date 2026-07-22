@@ -1,55 +1,77 @@
-.fleet-chart-container{
+.fleet-chart-container {
   display: flex;
   align-items: center;
+
+
+  background: var(--card-bg);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, .08);
+  border: var(--border);
+  transition: all 0.3s ease;
   gap: 30px;
-  width: 29%;
+  width: 156%;
   height: 200px;
+  border-radius: 14px;
+  color: var(--text);
 }
 
-.fleet-chart-chart{
-    position: relative;
-    width: 160px;
-    height: 160px;
-    flex: 0 0 160px;
+.fleet-chart-container h3 {
+  margin-right: 134px;
+  margin-left: 11px;
+
 }
 
-.fleet-chart-info{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    pointer-events: none;
+.fleet-chart-position {
+  display: flex;
+  align-items: center;
+  margin-left: -11%;
+
 }
 
-.fleet-chart-total{
-    font-size: 28px;
-    font-weight: 500;
+.fleet-chart-chart {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  flex: 0 0 160px;
+  margin-left: -19%;
 }
 
-.fleet-chart-label{
-    font-size: 11px;
-    color: #ac0202;
+.fleet-chart-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
 }
 
-.fleet-chart-legend{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-.legend-item{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: #222;
+.fleet-chart-total {
+  font-size: 28px;
+  font-weight: 500;
 }
 
-.legend-color{
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    flex: 0 0 12px;
+.fleet-chart-label {
+  font-size: 11px;
+  color: #ac0202;
+}
+
+.fleet-chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: 0 0 12px;
 }
 
 @media (max-width: 768px) {
@@ -79,23 +101,47 @@
 
 @media (max-width: 768px) {
   .fleet-chart-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
     width: 100%;
     height: auto;
-  }
 
-  .fleet-chart-chart {
-    width: 140px;
-    height: 140px;
-  }
-
-  .fleet-chart-legend {
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
+
+    gap: 20px;
+    padding: 18px;
   }
+
+  .fleet-chart-container h3 {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .fleet-chart-position {
+    margin-left: -24px;
+    justify-content: center;
+  }
+
+
+    .fleet-chart-chart {
+      margin-left: 0;
+      width: 150px;
+      height: 150px;
+    }
+
+
+.fleet-chart-legend{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
 }
+
+.legend-item{
+    width:45%;
+}
+
+  }
