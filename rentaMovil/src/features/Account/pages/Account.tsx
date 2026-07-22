@@ -13,7 +13,7 @@ import {
 
 import { themes } from "../../../theme/themes";
 import { useTheme } from "../../../theme/useTheme";
-import { CountStyles } from "./Count.Style";
+import { CountStyles } from "./Account.Style";
 
 import SelectLanguage from "../../../shared/components/select/selectLanguage";
 import ThemeSelector from "../../../shared/components/select/selectTheme";
@@ -26,7 +26,7 @@ const defaultUser =
     require("@/assets/images/login.png");
 
 
-export default function Count() {
+export default function Account() {
 
     const router = useRouter();
 
