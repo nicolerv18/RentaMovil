@@ -144,43 +144,7 @@
                     </select>
                     </div>
 
-                    <label className="labelR">{t("reservation.responsible")}</label>
-
-                    <input
-                    type="text"
-                    placeholder={t("reservation.placeholderResponsible")}
-                    value={nameR}
-                    onChange={(e) => setNameR(e.target.value)}
-                    required
-                    />
-
-                    <label className="labelR">{t("reservation.dateOfBirth")}</label>
-
-                    <input
-                    type="date"
-                    value={birthDate}
-                    onChange={(e) => setBirthDate(e.target.value)}
-                    className={errorEdad ? "inputInvalidP" : ""}
-                    required
-                    />
-
-                    {errorEdad && <p className="error2">{errorEdad}</p>}
-
-                    <label className="labelR">{t("reservation.document")}</label>
-
-                    <input
-                    type="text"
-                    placeholder="12345"
-                    value={document}
-                    onChange={(e) => setDocument(e.target.value)}
-                    required
-                    />
-
-                    <label className="labelR">{t("reservation.phone")}</label>
-
-                    <input type="text" placeholder="###" required />
-
-                    <button type="submit">{t("reservation.submit")}</button>
+                    
                 </form>
                 </div>
             </div>
