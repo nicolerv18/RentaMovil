@@ -286,6 +286,7 @@ function MaintenanceForm() {
                             {isLoading ? t("MaintenanceForm.saving") : t("MaintenanceForm.save")}
                         </button>
                         <span className={style['vehicule-animation']}>
+                            
                             {mos && <Animation />}
                         </span>
                         <button className="history" type="button" onClick={() => navigate('/History')}>

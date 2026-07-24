@@ -1,9 +1,5 @@
 .animation-container{
-    padding: 100px;
-    position: absolute;
-    top: 120%;
-    left: 70%;
-    transform: translate(-50%, -50%);
+
 }
 .animation-cc{
     display: flex;

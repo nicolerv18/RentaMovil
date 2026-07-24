@@ -15,8 +15,9 @@ function VehicleForm() {
 
     const handleFileChange = (file) => {
         setVehicleFile(file);
+
         if (file) clearErrors('vehicleImage');
-    }
+    } 
 
     async function insert(data) {
         if (!vehicleFile) {
