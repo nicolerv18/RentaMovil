@@ -52,7 +52,8 @@ import CodeVerification from "./features/auth/pages/CodeVerification.jsx";
 
 import ChangePasswordLogin from './features/auth/pages/ChangePasswordLogin.jsx';
 
-
+// check-user
+import CheckUser from './features/admin/users/pages/CheckUser.jsx'
 
 function App() {
   const [theme, setTheme] = useState(
@@ -92,6 +93,8 @@ function App() {
         <Route path="/EmailVerification" element={<EmailVerification />} />
         <Route path="/CodeVerification" element={<CodeVerification />} />
         <Route path="/ChangePasswordLogin" element={<ChangePasswordLogin />} />
+        <Route path="/CheckUser" element={<CheckUser />} />
+
 
       </Routes>
     </BrowserRouter>

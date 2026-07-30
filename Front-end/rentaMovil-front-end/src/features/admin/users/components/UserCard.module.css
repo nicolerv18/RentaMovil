@@ -1,0 +1,50 @@
+.user-card{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: .8rem;
+    justify-content: center;
+    background: var(--card-bg);
+    margin: auto;
+}
+
+.user-card-header{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.user-card-avatar{
+width: 83px;
+  height: 84px;
+    border-radius: 1000px;
+}
+.user-card-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 6px;
+}
+.user-card-infoUsername{
+    opacity: .6;
+}
+.user-card-aside{
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    gap: 9px;
+}
+.user-card-status{
+    display: flex;
+    justify-content: center;
+}
+.card-user-btnVermas{
+    padding: 6px 16px;
+  font-weight: bold;
+  border: 0;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.2s, color 0.2s;
+  background-color: var(--button);
+  margin-left: 16px;
+  cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.body{
+    margin: 0;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+}
+.check-cards-user{
+    display:  flex;
+    flex-direction: column;
+    gap: 26px;    
+}

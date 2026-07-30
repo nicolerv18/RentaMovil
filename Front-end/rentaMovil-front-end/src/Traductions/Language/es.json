@@ -345,6 +345,8 @@
     "sheduling": "Agendando mantenimiento",
     "shedule": "Agendar mantenimiento",
     "button": "Historial de mantenimientos",
+    "observations": "Observaciones",
+
     "options": {
     "option1": "Cambio de aceite",
     "option2": "Cambio de filtros",
@@ -359,9 +361,8 @@
     "option11": "Reparación de transmisión",
     "option12": "Lavado",
     "option13": "Pintura",
-    "option14": "Latonería",
-    "observations": "Observaciones"
-     }
+    "option14": "Latonería"
+    }
   },
   "notifications": {
     "unread": "Sin leer",
