@@ -11,36 +11,75 @@ import espanish from "../../../assets/img/espana.png";
 import english from "../../../assets/img/eeuu.png";
 import french from "../../../assets/img/francia2.png";
 import portuguese from "../../../assets/img/portugal.png";
+import { useAuth } from "../../../contexts/AuthContext.jsx";
 
 function Count({ theme, setTheme }) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const { currentUser, isAuthenticated, updateProfile } = useAuth();
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showLangModal, setShowLangModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-const [user, setUser] = useState(() => {
-  const saved = localStorage.getItem("user");
-  return saved
-    ? JSON.parse(saved)
-    : {
-        nombre: "Sharik Rojas",
-        telefono: "3145556",
-        email: "sha@example.com",
-        password: "123456",
-      };
-});
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem("user");
+    return saved
+      ? JSON.parse(saved)
+      : {
+          nombre: "Sharik Rojas",
+          telefono: "3145556",
+          email: "sha@example.com",
+          password: "123456",
+        };
+  });
 
-const [image, setImage] = useState(() => {
-  const saved = localStorage.getItem("user");
-  if (saved) {
-    const parsed = JSON.parse(saved);
-    return parsed.image || login;
-  }
-  return login;
-});
+  const [image, setImage] = useState(() => {
+    const saved = localStorage.getItem("user");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return parsed.image || login;
+    }
+    return login;
+  });
+
+  useEffect(() => {
+    if (isAuthenticated && currentUser) {
+      const profile = {
+        nombre: currentUser.nombre || currentUser.name || "",
+        telefono: currentUser.telefono || "",
+        email: currentUser.email || "",
+        password: currentUser.password || currentUser.pass || "",
+        image: currentUser.image || login,
+      };
+      setUser(profile);
+      setImage(profile.image);
+      localStorage.setItem("user", JSON.stringify(profile));
+      return;
+    }
+
+    const saved = localStorage.getItem("user");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setUser(parsed);
+      setImage(parsed.image || login);
+    }
+  }, [currentUser, isAuthenticated]);
 
   const handleSave = () => {
-    localStorage.setItem("user", JSON.stringify(user));
+    const updatedUser = {
+      ...user,
+      nombre: user.nombre || "",
+      telefono: user.telefono || "",
+      email: user.email || "",
+      password: user.password || "",
+    };
+
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    if (isAuthenticated && currentUser) {
+      updateProfile(updatedUser);
+    }
+
+    setUser(updatedUser);
     setIsEditing(false);
   };
 
@@ -122,7 +161,7 @@ const [image, setImage] = useState(() => {
               <input
                 className={`inputC ${isEditing ? "editing" : ""}`}
                 type="text"
-                value={user.telefono}
+                value={user.telefono || ""}
                 onChange={(e) => setUser({ ...user, telefono: e.target.value })}
                 disabled={!isEditing}
               />
@@ -149,7 +188,7 @@ const [image, setImage] = useState(() => {
               <input
                 className="inputC"
                 type="password"
-                value={user.password}
+                value={user.password || ""}
                 readOnly
               />
               <div className="accountLink">

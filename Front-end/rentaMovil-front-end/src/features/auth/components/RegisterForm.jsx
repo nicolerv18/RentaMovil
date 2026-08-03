@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import "./RegisterForm.css";
 import Quotes from '../../../shared/components/Quotes';
-import { useTranslation } from 'react-i18next'; 
-
+import { useTranslation } from 'react-i18next';
 
 function RegisterForm({ onSubmit, onSwitchToLogin }) {
   const { t } = useTranslation();
@@ -48,10 +47,11 @@ function RegisterForm({ onSubmit, onSwitchToLogin }) {
       await onSubmit({
         first_name: firstName,
         last_name: lastName,
+        nombre: `${firstName} ${lastName}`.trim(),
         email,
         phone,
         username,
-        password
+        password,
       });
     } catch (err) {
       setError(err.message || t('register.errorCreate'));
@@ -62,113 +62,100 @@ function RegisterForm({ onSubmit, onSwitchToLogin }) {
 
   return (
     <>
-    <section className="register">
+      <section className="register">
+        <form className="register-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>{t('register.firstName')}</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder={t('register.firstNamePlaceholder')}
+              required
+            />
+          </div>
 
-      <form className="register-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>{t('register.lastName')}</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder={t('register.lastNamePlaceholder')}
+              required
+            />
+          </div>
 
-        {/* Nombre */}
-        <div className="form-group">
-          <label>{t('register.firstName')}</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder={t('register.firstNamePlaceholder')}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>{t('register.phone')}</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder={t('register.phonePlaceholder')}
+              required
+            />
+          </div>
 
-        {/* Apellido */}
-        <div className="form-group">
-          <label>{t('register.lastName')}</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder={t('register.lastNamePlaceholder')}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>{t('register.username')}</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder={t('register.usernamePlaceholder')}
+              required
+            />
+          </div>
 
-        {/* Teléfono */}
-        <div className="form-group">
-          <label>{t('register.phone')}</label>
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder={t('register.phonePlaceholder')}
-            required
-          />
-        </div>
+          <div className="form-group full">
+            <label>{t('register.email')}</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={t('register.emailPlaceholder')}
+              required
+            />
+          </div>
 
-        {/* Usuario */}
-        <div className="form-group">
-          <label>{t('register.username')}</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder={t('register.usernamePlaceholder')}
-            required
-          />
-        </div>
+          <div className="form-group full">
+            <label>{t('register.password')}</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={t('register.passwordPlaceholder')}
+              required
+            />
+          </div>
 
-        {/* Email */}
-        <div className="form-group full">
-          <label>{t('register.email')}</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={t('register.emailPlaceholder')}
-            required
-          />
-        </div>
+          <div className="form-group full">
+            <label>{t('register.confirmPassword')}</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder={t('register.passwordPlaceholder')}
+              required
+            />
+          </div>
 
-        {/* Contraseña */}
-        <div className="form-group full">
-          <label>{t('register.password')}</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder={t('register.passwordPlaceholder')}
-            required
-          />
-        </div>
+          {error && <div className="register-error">{error}</div>}
 
-        {/* Confirmar contraseña */}
-        <div className="form-group full">
-          <label>{t('register.confirmPassword')}</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder={t('register.passwordPlaceholder')}
-            required
-          />
-        </div>
+          <button type="button" className="register-link" onClick={onSwitchToLogin}>
+            {t('register.haveAccount')}
+          </button>
 
-        {/* Error */}
-        {error && <div className="register-error">{error}</div>}
-
-        {/* Link */}
-        <button type="button" className="register-link" onClick={onSwitchToLogin}>
-          {t('register.haveAccount')}
-        </button>
-        
-        <button className="register-btn" type="submit" disabled={loading}>
-          {loading ? t('register.submitting') : t('register.submit')}
-        </button>
-
-      </form>
-    </section>
-    <div>
-    <Quotes />
-    </div>
-      </>
-    
+          <button className="register-btn" type="submit" disabled={loading}>
+            {loading ? t('register.submitting') : t('register.submit')}
+          </button>
+        </form>
+      </section>
+      <div>
+        <Quotes />
+      </div>
+    </>
   );
 }
 

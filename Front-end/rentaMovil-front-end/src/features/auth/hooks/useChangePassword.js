@@ -7,8 +7,10 @@
     getCurrentPasswordClassName,
     getPasswordClassName,
     } from "../utils/changePasswordUtils.js";
+    import { useAuth } from "../../../contexts/AuthContext.jsx";
 
     function useChangePassword(t) {
+    const { currentUser, updateProfile } = useAuth();
     const [currentPassword, setCurrentPassword] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,14 +33,13 @@
         setLoading(true);
 
         try {
-        await changePasswordService(
-            {
-            currentPassword,
-            newPassword: password,
-            confirmPassword,
-            },
-            t("changePassword.errorPassword")
-        );
+        if (currentUser && currentPassword !== currentUser.password && currentPassword !== currentUser.pass) {
+            throw new Error(t("changePassword.errorPassword") || "La contraseña actual no coincide");
+        }
+
+        if (currentUser) {
+            updateProfile({ password });
+        }
 
         window.alert(t("changePassword.successPassword"));
 

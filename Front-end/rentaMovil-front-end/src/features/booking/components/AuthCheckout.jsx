@@ -1,116 +1,102 @@
 import React, { useState, useEffect } from "react";
-import "./AuthCheckout.css"; // Para los estilos visuales que verás abajo
-
-// MOCK LOCAL (Base de datos temporal de prueba)
-const MOCK_USUARIOS_REGISTRADOS = [
-  { email: "thiago@gmail.com", pass: "123456", nombre: "Thiago", telefono: "3001234567" }
-];
+import { useAuth } from "../../../contexts/AuthContext.jsx";
+import "./AuthCheckout.css";
 
 export default function AuthCheckout({ onAuthSuccess }) {
-  // Estados para controlar el flujo
-  const [step, setStep] = useState("CHECK_EMAIL"); // CHECK_EMAIL | LOGIN | REGISTER | LOGGED_IN
+  const { currentUser, login, register, logout, isAuthenticated } = useAuth();
+  const [step, setStep] = useState("CHECK_EMAIL");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nombre, setNombre] = useState("");
   const [telefono, setTelefono] = useState("");
-  const [currentUser, setCurrentUser] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // 1. Al cargar el componente, verificamos si ya existe una sesión en localStorage
   useEffect(() => {
-    const session = localStorage.getItem("user_session");
-    if (session) {
-      const user = JSON.parse(session);
-      setCurrentUser(user);
+    if (isAuthenticated && currentUser) {
       setStep("LOGGED_IN");
-      if (onAuthSuccess) onAuthSuccess(user);
+      if (onAuthSuccess) onAuthSuccess(currentUser);
+      return;
     }
-  }, []);
 
-  // 2. Comprobar si el correo existe
+    setStep("CHECK_EMAIL");
+  }, [currentUser, isAuthenticated, onAuthSuccess]);
+
   const handleCheckEmail = async (e) => {
     e.preventDefault();
     if (!email.trim()) return;
 
-    /* 
-       CONEXIÓN BACKEND (FUTURA):
-      const res = await fetch('/api/v1/usuarios/check-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      const data = await res.json();
-      const existe = data.exists;
-    */
-
-    // SIMULACIÓN ACTUAL:
-    const existe = MOCK_USUARIOS_REGISTRADOS.some((u) => u.email === email);
+    const normalizedEmail = email.trim().toLowerCase();
+    const storedUsers = JSON.parse(localStorage.getItem("registered_users") || "[]");
+    const existe = storedUsers.some((u) => String(u.email || "").trim().toLowerCase() === normalizedEmail);
 
     if (existe) {
       setStep("LOGIN");
+      setErrorMessage("");
     } else {
       setStep("REGISTER");
+      setErrorMessage("");
     }
   };
 
-  // 3A. Iniciar sesión (Usuario registrado)
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
-    /* 
-       CONEXIÓN BACKEND (FUTURA):
-      const res = await fetch('/api/v1/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      const user = await res.json();
-    */
-
-    // SIMULACIÓN ACTUAL:
-    const user = MOCK_USUARIOS_REGISTRADOS.find(
-      (u) => u.email === email && u.pass === password
-    );
-
-    if (user) {
-      localStorage.setItem("user_session", JSON.stringify(user));
-      setCurrentUser(user);
+    try {
+      const user = login({ email, password });
       setStep("LOGGED_IN");
       if (onAuthSuccess) onAuthSuccess(user);
-    } else {
-      alert("Contraseña incorrecta. (Prueba con: 123456)");
+    } catch (error) {
+      setErrorMessage(error.message || "No se pudo iniciar sesión");
     }
   };
 
-  // 3B. Registro (Usuario nuevo)
   const handleRegister = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
-    const newUser = { email, pass: password, nombre, telefono };
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage("Ingresa un correo válido");
+      return;
+    }
 
-    /* 
-       CONEXIÓN BACKEND (FUTURA):
-      const res = await fetch('/api/v1/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUser)
+    if (!nombre.trim()) {
+      setErrorMessage("El nombre es obligatorio");
+      return;
+    }
+
+    if (!/^[0-9]{10}$/.test(telefono)) {
+      setErrorMessage("El teléfono debe tener 10 dígitos");
+      return;
+    }
+
+    if (password.length < 6) {
+      setErrorMessage("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+
+    try {
+      const user = register({
+        nombre,
+        email,
+        password,
+        telefono,
       });
-      const user = await res.json();
-    */
-
-    // SIMULACIÓN ACTUAL:
-    MOCK_USUARIOS_REGISTRADOS.push(newUser);
-    localStorage.setItem("user_session", JSON.stringify(newUser));
-    setCurrentUser(newUser);
-    setStep("LOGGED_IN");
-    if (onAuthSuccess) onAuthSuccess(newUser);
+      setStep("LOGGED_IN");
+      if (onAuthSuccess) onAuthSuccess(user);
+    } catch (error) {
+      setErrorMessage(error.message || "No se pudo crear la cuenta");
+    }
   };
 
-  // Cerrar Sesión / Cambiar de cuenta
   const handleLogout = () => {
-    localStorage.removeItem("user_session");
-    setCurrentUser(null);
+    logout();
     setEmail("");
     setPassword("");
+    setNombre("");
+    setTelefono("");
+    setErrorMessage("");
     setStep("CHECK_EMAIL");
     if (onAuthSuccess) onAuthSuccess(null);
   };
@@ -153,6 +139,7 @@ export default function AuthCheckout({ onAuthSuccess }) {
               <button type="submit" className="btn-primary-green">
                 Continuar con correo electrónico
               </button>
+              {errorMessage && <p className="login-error">{errorMessage}</p>}
             </form>
 
             <div className="auth-divider">
@@ -189,6 +176,7 @@ export default function AuthCheckout({ onAuthSuccess }) {
               <button type="submit" className="btn-primary-green">Iniciar Sesión</button>
               <button type="button" className="btn-link" onClick={() => setStep("CHECK_EMAIL")}>Volver</button>
             </div>
+            {errorMessage && <p className="login-error">{errorMessage}</p>}
           </form>
         </div>
       )}
@@ -227,6 +215,7 @@ export default function AuthCheckout({ onAuthSuccess }) {
               <button type="submit" className="btn-primary-green">Registrarse y Avanzar</button>
               <button type="button" className="btn-link" onClick={() => setStep("CHECK_EMAIL")}>Volver</button>
             </div>
+            {errorMessage && <p className="login-error">{errorMessage}</p>}
           </form>
         </div>
       )}
