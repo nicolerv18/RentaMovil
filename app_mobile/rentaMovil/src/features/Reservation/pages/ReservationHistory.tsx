@@ -1,6 +1,7 @@
 import {
     ScrollView,
     Text,
+    TouchableOpacity,
     View,
 } from "react-native";
 
@@ -10,6 +11,22 @@ import {
 } from "react";
 
 import {
+    router,
+} from "expo-router";
+
+import {
+    createStyles,
+} from "./Reservation";
+
+import {
+    themes,
+} from "../../../theme/themes";
+
+import {
+    useTheme,
+} from "../../../theme/useTheme";
+
+import {
     getMyReservations,
 } from "../services/reservationServices";
 
@@ -17,11 +34,18 @@ import {
     Reservation,
 } from "../types/reservastion";
 
-import ReservationCard from "../components/History/card";
+import ReservationCard
+    from "../components/History/card";
+
+import ReservationFilters
+    from "../components/filter";
+
+import {
+    useReservationFilters,
+} from "../hooks/useReservationFilter";
 
 
 export default function ReservationHistoryScreen() {
-
 
     const [
 
@@ -41,61 +65,96 @@ export default function ReservationHistoryScreen() {
     ] = useState(true);
 
 
-    useEffect(() => {
+    const {
 
+        selectedFilter,
+
+        setSelectedFilter,
+
+        filteredReservations,
+
+    } = useReservationFilters(
+        reservations
+    );
+
+
+    const {
+
+        themeName,
+
+    } = useTheme();
+
+
+    const colors =
+        themes[themeName];
+
+
+    const styles =
+        createStyles(colors);
+
+
+    useEffect(() => {
 
         async function loadReservations() {
 
-
             try {
 
-
                 const data =
-
                     await getMyReservations();
-
 
                 setReservations(data);
 
-
             } catch (error) {
 
-
                 console.log(
-
                     "Error cargando reservas:",
-
                     error
-
                 );
-
 
             } finally {
 
-
                 setLoading(false);
-
 
             }
 
-
         }
 
-
         loadReservations();
-
 
     }, []);
 
 
-    if (loading) {
+    function handlePress(
+        reservationId: string
+    ) {
 
+        router.push({
+
+            pathname:
+                "/reservation-detail",
+
+            params: {
+
+                id: reservationId,
+
+            },
+
+        });
+
+    }
+
+
+    if (loading) {
 
         return (
 
-
-            <View>
-
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
 
                 <Text>
 
@@ -103,64 +162,96 @@ export default function ReservationHistoryScreen() {
 
                 </Text>
 
-
             </View>
 
-
         );
-
 
     }
 
 
     return (
 
-
         <ScrollView>
 
+            <View
+                style={styles.container}
+            >
 
-            <Text>
+                <Text
+                    style={styles.title}
+                >
 
-                Mis reservas
+                    Mis reservas
 
-            </Text>
+                </Text>
+
+            </View>
+
+
+            <ReservationFilters
+
+                selectedFilter={
+                    selectedFilter
+                }
+
+                onChangeFilter={
+                    setSelectedFilter
+                }
+
+            />
 
 
             {
 
-                reservations.length === 0 ? (
+                filteredReservations.length === 0 ? (
 
-
-                    <Text>
+                    <Text
+                        style={styles.subtitle}
+                    >
 
                         No tienes reservas todavía.
 
                     </Text>
 
-
                 ) : (
 
+                    filteredReservations.map(
 
-reservations.map(
+                        reservation => (
 
-    reservation => (
+                            <TouchableOpacity
 
-        <ReservationCard
+                                key={
+                                    reservation.id
+                                }
 
-            key={reservation.id}
+                                activeOpacity={0.8}
 
-            reservation={reservation}
+                                onPress={() =>
+                                    handlePress(
+                                        reservation.id
+                                    )
+                                }
 
-        />
+                            >
 
-    )
+                                <ReservationCard
 
-)
+                                    reservation={
+                                        reservation
+                                    }
+
+                                />
+
+                            </TouchableOpacity>
+
+                        )
+
+                    )
 
                 )
 
             }
-
 
         </ScrollView>
 

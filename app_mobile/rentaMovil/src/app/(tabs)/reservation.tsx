@@ -1,5 +1,4 @@
-import ReservationHistoryScreen
-    from "../../features/Reservation/pages/ReservationHistory";
+import ReservationHistoryScreen from "../../features/Reservation/pages/ReservationHistory";
 
 export default function ReservationRoute() {
 
