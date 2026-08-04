@@ -4,7 +4,7 @@
     color: #fff;
     font-size: .8rem;
     justify-content: center;
-    background: var(--card-bg);
+   /* background: var(--card-bg);*/
     margin: auto;
 }
 

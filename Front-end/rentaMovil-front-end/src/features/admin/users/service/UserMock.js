@@ -10,7 +10,7 @@ export const UserMock =
     email: "pedro@gmail.com",
     phone: "332323232",
     status: "active",
-    dateCreated: "24/03/2020",
+    date: "24/01/2026",
   },
   {
     id: "2",
@@ -19,8 +19,8 @@ export const UserMock =
     avatar: img,
     email: "valentina@gmail.com",
     phone: "3104567890",
-    status: "active",
-    dateCreated: "12/07/2021",
+    status: "suspende",
+    date: "12/01/2021",
   },
   {
     id: "3",
@@ -30,7 +30,7 @@ export const UserMock =
     email: "carlos@gmail.com",
     phone: "3159876541",
     status: "inactive",
-    dateCreated: "18/11/2022",
+    date: "18/01/2022",
   },
   {
     id: "4",
@@ -40,7 +40,7 @@ export const UserMock =
     email: "laura@gmail.com",
     phone: "3204561237",
     status: "active",
-    dateCreated: "05/01/2023",
+    date: "05/01/2023",
   },
   {
     id: "5",
@@ -50,7 +50,7 @@ export const UserMock =
     email: "santiago@gmail.com",
     phone: "3012345678",
     status: "suspended",
-    dateCreated: "30/09/2021",
+    date: "30/09/2021",
   },
   {
     id: "6",
@@ -60,7 +60,7 @@ export const UserMock =
     email: "camila@gmail.com",
     phone: "3187654321",
     status: "active",
-    dateCreated: "16/06/2024",
+    date: "16/06/2024",
   },
   {
     id: "7",
@@ -70,7 +70,7 @@ export const UserMock =
     email: "andres@gmail.com",
     phone: "3119874563",
     status: "inactive",
-    dateCreated: "08/12/2020",
+    date: "08/12/2020",
   },
   {
     id: "8",
@@ -79,8 +79,8 @@ export const UserMock =
     avatar: img,
     email: "natalia@gmail.com",
     phone: "3142589637",
-    status: "active",
-    dateCreated: "14/02/2022",
+    status: "inactive",
+    date: "14/02/2022",
   },
   {
     id: "9",
@@ -90,7 +90,7 @@ export const UserMock =
     email: "juan@gmail.com",
     phone: "3197531598",
     status: "active",
-    dateCreated: "20/08/2023",
+    date: "20/08/2023",
   },
   {
     id: "10",
@@ -99,8 +99,8 @@ export const UserMock =
     avatar: img,
     email: "sofia@gmail.com",
     phone: "3001234567",
-    status: "pending",
-    dateCreated: "10/04/2025",
+    status: "inactive",
+    date: "10/04/2025",
   
 }
 ]
