@@ -61,6 +61,27 @@ entity Audit {
   date : DATETIME
   detail : TEXT
 }
+
+entity Verification_Code {
+  +verification_code_id : INT <<PK>>
+  user_id : INT <<FK>>
+  code : VARCHAR(10)
+  type : VARCHAR(30)
+  created_at : DATETIME
+  expires_at : DATETIME
+  used : BOOLEAN
+}
+
+entity Session {
+  +session_id : INT <<PK>>
+  user_id : INT <<FK>>
+  refresh_token : VARCHAR(255)
+  created_at : DATETIME
+  expires_at : DATETIME
+  ip_address : VARCHAR(45)
+  user_agent : VARCHAR(255)
+  revoked : BOOLEAN
+}
 }
 
 package "Operational & Fleet" {
@@ -229,6 +250,8 @@ Role ||--{ User_Role
 Role ||--{ Role_Permission
 Permission ||--{ Role_Permission
 User ||--{ Audit
+User ||--{ Verification_Code
+User ||--{ Session
 
 ' Relaciones Vehículo & Flota
 Brand ||--{ Vehicle_Model

@@ -66,6 +66,27 @@ entity Auditoria {
   fecha : DATETIME
   detalle : TEXT
 }
+
+entity Codigo_Verificacion {
+  +id_codigo_verificacion : INT <<PK>>
+  id_usuario : INT <<FK>>
+  codigo : VARCHAR(10)
+  tipo : VARCHAR(30)
+  fecha_creacion : DATETIME
+  fecha_expiracion : DATETIME
+  usado : BOOLEAN
+}
+
+entity Sesion {
+  +id_sesion : INT <<PK>>
+  id_usuario : INT <<FK>>
+  refresh_token : VARCHAR(255)
+  fecha_creacion : DATETIME
+  fecha_expiracion : DATETIME
+  ip_origen : VARCHAR(45)
+  user_agent : VARCHAR(255)
+  revocada : BOOLEAN
+}
 }
 
 package "Operacional y Flota" {
@@ -234,6 +255,8 @@ Rol ||--{ Usuario_Rol
 Rol ||--{ Rol_Permiso
 Permiso ||--{ Rol_Permiso
 Usuario ||--{ Auditoria
+Usuario ||--{ Codigo_Verificacion
+Usuario ||--{ Sesion
 
 ' Relaciones de Vehículo y Flota
 Marca ||--{ Modelo_Vehiculo
