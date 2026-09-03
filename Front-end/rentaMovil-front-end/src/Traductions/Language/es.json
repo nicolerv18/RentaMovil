@@ -441,12 +441,32 @@
     "modal":{
       "title":"Editar vehículo",
       "close":"Cerrar modal",
+      "sections": {
+        "general": "Información general",
+        "technical": "Detalles técnicos",
+        "location": "Ubicación y descripción",
+        "image": "Imagen del vehículo"
+      },
       "name":"Nombre",
       "requiredName":"El nombre es obligatorio",
       "requiredNameMinLength":"El nombre debe tener al menos 3 caracteres",
       "requiredNameMaxLength":"El nombre no puede exceder los 50 caracteres",
       "formatInvalid":"El nombre solo puede contener letras, números y guiones.",
       "plate":"Placa",
+      "age":"Año",
+      "mileage":"Kilometraje",
+      "distanceUnit":"km",
+      "fuelType":"Tipo de combustible",
+      "fuelOptions":{
+        "gasoline":"Gasolina",
+        "diesel":"Diesel",
+        "hybrid":"Híbrido",
+        "electric":"Eléctrico",
+        "naturalGas":"Gas natural",
+        "propaneGas":"Gas propano"
+      },
+      "price":"Precio",
+      "perDay":"día",
       "platePlaceholder":"Placa ejemplo: ABC123",
       "requiredPlate":"La placa es obligatoria",
       "requiredPlateMinLength":"La placa debe tener al menos 2 caracteres",
@@ -459,7 +479,7 @@
     "requiredModelMaxLength": "El modelo no puede exceder los 30 caracteres",
     "formatInvalidModel": "El modelo solo puede contener letras, números y guiones.",
       "state":"Estado",
-      "seeMore":"Ver más",
+      "edit":"Editar vehículo",
       "stateOptions":{
         "available":"Disponible",
         "maintenance":"En mantenimiento",

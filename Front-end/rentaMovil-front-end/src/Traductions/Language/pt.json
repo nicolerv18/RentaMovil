@@ -445,6 +445,12 @@
     "modal": {
       "title": "Editar veículo",
       "close": "Fechar modal",
+      "sections": {
+        "general": "Informações gerais",
+        "technical": "Detalhes técnicos",
+        "location": "Localização e descrição",
+        "image": "Imagem do veículo"
+      },
       "name": "Nome",
       "requiredName": "O nome é obrigatório",
       "requiredNameMinLength": "O nome deve ter pelo menos 3 caracteres",
@@ -456,7 +462,7 @@
       "requiredPlateMaxLength": "A placa não pode exceder 30 caracteres",
       "formatInvalidPlate": "Formato de placa inválido",
       "state": "Status",
-      "seeMore": "Ver mais",
+      "edit": "Editar veículo",
       "stateOptions": {
         "available": "Disponível",
         "maintenance": "Em manutenção",
@@ -493,6 +499,20 @@
     "noFound": "Nenhum veículo encontrado.",
     "newMaintenance": "Registrar uma nova manutenção",
     "plate": "Placa",
+      "age": "Ano",
+      "mileage": "Quilometragem",
+      "distanceUnit": "km",
+      "fuelType": "Tipo de combustível",
+      "fuelOptions": {
+        "gasoline": "Gasolina",
+        "diesel": "Diesel",
+        "hybrid": "Híbrido",
+        "electric": "Elétrico",
+        "naturalGas": "Gás natural",
+        "propaneGas": "Gás propano"
+      },
+      "price": "Preço",
+      "perDay": "dia",
     "platePlaceholder": "Exemplo de placa: ABC123",
     "requiredPlate": "A placa é obrigatória",
     "formatInvalidPlate": "Formato de placa inválido",
