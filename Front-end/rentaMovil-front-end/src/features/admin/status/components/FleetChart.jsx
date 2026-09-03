@@ -10,15 +10,16 @@ function FleetChart({ vehicles }) {
         reserved: "Reservado",
     };
     const COLORS = {// Definir los colores para cada estado de los vehículos
-    available: "#16A34A",    
+    available: "#22C55E",    
     inUse: "#2563EB",         
-    maintenance: "#EA580C",   
-    reserved: "#9333EA",     
+    maintenance: "#F59E0B",   
+    reserved: "#8B5CF6",     
 };
+
     const desiredOrder = ["available", "inUse", "reserved", "maintenance"];
     const data = desiredOrder.map((stateKey) => ({ // Crear un array de objetos con el nombre del estado y la cantidad de vehículos en ese estado
         name: stateKey, // El nombre del estado
-        value: vehicles.filter((v) => v.state === stateMap[stateKey]).length, // Contar la cantidad de vehículos que tienen ese estado
+        value: vehicles.filter((v) => v.status === stateMap[stateKey]).length, // Contar la cantidad de vehículos que tienen ese estado
     }))
 
     const total = vehicles.length

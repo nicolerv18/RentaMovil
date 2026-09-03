@@ -1,88 +1,105 @@
-.chip {
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #001e46;
-    background-color: aliceblue;
-    cursor: pointer;
-    font-size: 10px;
-    margin: 0 0 0 0;
-    color: #1f2937;
-    font-family: 'poppins', sans-serif;
-    height: 37px;
-    width: auto;
-}
-
-.chip-active {
-    padding: 6px ;
-    border-radius: 6px;
-    border: 1px solid #001e46;
-    background: #001e46;
-    color: white;
-    cursor: pointer;
-    font-size: 10px;
-    margin: 0 0 0 0;
-    height: 37px;
-
-}
-.container-filter {
-display: flex;
-  gap: 10px;
-  padding: 16px 14px;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-}
-.container-chips {
-display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
-  padding-left: 0%;
-  flex-wrap: wrap;
-  margin-left: -17%;
-}
-.container-filter input {
-padding: 20px 16px;
-  border-radius: 6px;
-  border: 1px solid rgba(28, 77, 68, 0.15);
-  width: 100%;
-  max-width: 900px;
-  height: 42px;
-  background-color: aliceblue;
-  color: #1f2937;
-  font-family: 'poppins', sans-serif;
-  font-size: 15px;
-}
-
-.icon-search {
-width: 100px;
-  height: 20px;
-  color: #1f2937;
-  position: relative;
-  right: 55px;
+.filter-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--text) 8%, transparent);
   display: flex;
-  position: static;
-  right: unset;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+  color: var(--text-h);
+  font-family: var(--sans);
 }
 
-@media (max-width: 768px) {
-    .container-filter {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 10px 0px;
-    }
-.icon-search {
-  display: none;
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--input, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 12px;
+  transition: all 0.2s ease-in-out;
 }
 
-    .container-chips {
-        padding-left: 7px;
-        margin-top: auto;
-    }
+.search-box:focus-within {
+  border-color: var(--primary);
+  background-color: var(--card-bg);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 15%, transparent);
+}
 
-    .container-filter input {
-        max-width: 87%;
-        margin: 0 26px auto;
-        width: 100%;
-    }
+.search-icon {
+  color: var(--icon, var(--placeholder));
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  color: var(--text-h);
+  font-family: inherit;
+}
+
+.search-input::placeholder {
+  color: var(--placeholder);
+}
+
+.clear-btn {
+  background: transparent;
+  border: none;
+  color: var(--icon, var(--placeholder));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.clear-btn:hover {
+  color: var(--text-h);
+  background-color: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+/* Contenedor de Chips responsivo */
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Botones / Chips */
+.chip {
+  border: 1px solid var(--border);
+  background-color: var(--input, var(--card-bg));
+  color: var(--text-h);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.80rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.chip:hover {
+  background-color: color-mix(in srgb, var(--button) 10%, var(--card-bg));
+  color: var(--text-h);
+  border-color: var(--button);
+}
+
+.chip--active {
+  background-color: var(--button);
+  color: var(--text-btn, #ffffff);
+  border-color: var(--button);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--button) 30%, transparent);
+}
+
+.chip--active:hover {
+  background-color: color-mix(in srgb, var(--button) 85%, var(--text));
 }

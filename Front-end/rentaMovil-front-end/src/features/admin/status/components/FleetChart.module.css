@@ -8,16 +8,15 @@
   border: var(--border);
   transition: all 0.3s ease;
   gap: 30px;
-  width: 156%;
+  width: 170%;
   height: 200px;
   border-radius: 14px;
   color: var(--text);
 }
 
 .fleet-chart-container h3 {
-  margin-right: 134px;
-  margin-left: 11px;
-
+ margin-right: 49px;
+  margin-left: 34px;
 }
 
 .fleet-chart-position {
