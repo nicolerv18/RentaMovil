@@ -4,7 +4,7 @@ import Navbar from "../../../shared/components/layout/Navbar.jsx";
 import Footer from "../../../shared/components/layout/Footer.jsx";
 import img from "../../../assets/carts/car1.jpg";
 import { useTranslation } from "react-i18next";
-import { useReservations } from "../hooks/useReservations";
+import { useReservations } from "../hooks/useReservations.js";
 
 function HistorialReservation() {
   const { t } = useTranslation();

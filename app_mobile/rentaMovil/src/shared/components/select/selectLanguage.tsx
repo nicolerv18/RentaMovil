@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import i18n from "../../../traslation/i18n";
-import { styles } from "./selectLanguage.styles";
+import { createStyles } from "./selectLanguage.styles";
+import { themes } from "../../../theme/themes";
+import { useTheme } from "../../../theme/useTheme";
 
 const languages = [
   { code: "es", label: "🇨🇴 Español" },
@@ -12,6 +14,8 @@ const languages = [
 ];
 
 export default function SelectLanguage() {
+  const { themeName } = useTheme();
+  const styles = createStyles(themes[themeName]);
   const [selectedLanguage, setSelectedLanguage] = useState(
     i18n.language || "es"
   );

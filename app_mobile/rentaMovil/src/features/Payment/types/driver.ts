@@ -1,3 +1,5 @@
+import type { DrivingLicenseCategory } from "../../../shared/components/select/DrivingLicenseCategorySelector";
+
 export type DriverData = {
 
     email:string;
@@ -5,5 +7,9 @@ export type DriverData = {
     name:string;
 
     phone:string;
+
+    licenseCategory?: DrivingLicenseCategory;
+
+    licenseExpirationDate?: Date;
 
 };

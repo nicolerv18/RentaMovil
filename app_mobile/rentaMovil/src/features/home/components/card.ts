@@ -48,7 +48,7 @@
     },
 
     feature: {
-        backgroundColor: "#F5F5F5",
+        backgroundColor: colors.background,
         borderRadius: 10,
         paddingHorizontal: 14,
         paddingVertical: 10,
@@ -56,7 +56,7 @@
 
     featureText: {
         fontSize: 13,
-        color: "#222222",
+        color: colors.text,
     },
 
     content: {
@@ -116,7 +116,7 @@
         width: 56,
         height: 56,
         borderRadius: 16,
-        backgroundColor: "#F5F5F5",
+        backgroundColor: colors.background,
         justifyContent: "center",
         alignItems: "center",
         marginRight: 14,
@@ -147,7 +147,7 @@
     },
 
     recommended: {
-        color: "#18A05F",
+        color: colors.success,
         fontWeight: "700",
         fontSize: 17,
         marginBottom: 12,
@@ -159,27 +159,27 @@
     },
 
     company: {
-        backgroundColor: "#007A3D",
+        backgroundColor: colors.primary,
         paddingHorizontal: 18,
         paddingVertical: 12,
         borderRadius: 10,
     },
 
     companyText: {
-        color: "#FFFFFF",
+        color: colors.textBtn,
         fontWeight: "700",
         fontSize: 16,
     },
 
     rating: {
-        backgroundColor: "#0057D9",
+        backgroundColor: colors.primary,
         paddingHorizontal: 18,
         paddingVertical: 12,
         borderRadius: 10,
     },
 
     ratingText: {
-        color: "#FFFFFF",
+        color: colors.textBtn,
         fontWeight: "700",
         fontSize: 16,
     },
@@ -187,13 +187,13 @@
     price: {
         fontSize: 28,
         fontWeight: "900",
-        color: "#111111",
+        color: colors.text,
     },
 
 
     button: {
         marginTop: 28,
-        backgroundColor: "#19164c",
+        backgroundColor: colors.button,
         borderRadius: 16,
         paddingVertical: 16,
         justifyContent: "center",
@@ -201,7 +201,7 @@
     },
 
     buttonText: {
-        color: "#FFFFFF",
+        color: colors.buttonText,
         fontSize: 18,
         fontWeight: "700",
     },

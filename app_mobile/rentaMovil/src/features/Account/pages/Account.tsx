@@ -155,14 +155,14 @@ export default function Account() {
 
     return (
 
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.content}>
 
             {/* FOTO */}
 
-            <View
-                style={styles.photoContainer}
-            >
+            <View style={styles.profileHeader}>
+            <View style={styles.photoContainer}>
 
+                <View style={styles.photoRing}>
                 <Image
 
                     source={
@@ -174,6 +174,7 @@ export default function Account() {
                     style={styles.image}
 
                 />
+                </View>
 
 
                 <TouchableOpacity
@@ -196,6 +197,9 @@ export default function Account() {
 
                 </TouchableOpacity>
 
+            </View>
+            <Text style={styles.pageTitle}>{user ? `${user.firstName} ${user.lastName}` : "Mi cuenta"}</Text>
+            <Text style={styles.pageSubtitle}>Gestiona tu información y preferencias.</Text>
             </View>
 
 
@@ -240,7 +244,7 @@ export default function Account() {
             {
                 showSettings && (
 
-                    <AppCard>
+                    <AppCard style={styles.settingsCard}>
 
                         <View
                             style={
@@ -312,7 +316,7 @@ export default function Account() {
 
                     <TextInput
 
-                        style={styles.input}
+                        style={[styles.input, editing && styles.inputEditing]}
 
                         value={name}
 
@@ -342,7 +346,7 @@ export default function Account() {
 
                     <TextInput
 
-                        style={styles.input}
+                        style={[styles.input, editing && styles.inputEditing]}
 
                         value={phone}
 

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 import { Radius } from "../../../theme/constants/radius";
-import { Shadows } from "../../../theme/constants/shadows";
+import { createCardShadow } from "../../../theme/constants/shadows";
 import { Spacing } from "../../../theme/constants/spacing";
 
 export const createStyles = (colors: any) =>
@@ -18,7 +18,7 @@ export const createStyles = (colors: any) =>
 
             marginVertical: Spacing.sm,
 
-            ...Shadows.card,
+            ...createCardShadow(colors),
 
         },
 

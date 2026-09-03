@@ -25,7 +25,7 @@ export const createStyles = (colors: any) =>
     },
 
     model: {
-      color: colors.textSecondary,
+      color: colors.text,
       fontSize: Typography.body,
       marginBottom: Spacing.md,
     },

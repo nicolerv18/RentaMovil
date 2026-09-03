@@ -8,7 +8,7 @@ import "rc-slider/assets/index.css";
 function FiltrerPrice({ cars = [], onFilter }) {
   const { t } = useTranslation();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState("");
 
   const prices = cars.map((c) => c.price);

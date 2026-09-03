@@ -32,7 +32,7 @@ export default function BranchSelectorModal({
 
 const { themeName } = useTheme();
 
-const colors = themes[themeName];
+const colors = themes[themeName as keyof typeof themes];
 
 const styles = createStyles(colors);
 

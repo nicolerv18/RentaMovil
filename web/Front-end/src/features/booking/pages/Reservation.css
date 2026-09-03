@@ -5,7 +5,11 @@
 }
 
 .calendar-top {
-    margin-bottom: 20px;
+width: 80%;
+margin: 0 auto 20px;
+box-sizing: border-box;
+margin-top: 10px;
+
 }
 
 .contentR {
@@ -20,7 +24,7 @@
 }
 
 .leftR {
-    width: 35%;
+    width: 40%;
 }
 
 .rightR {
@@ -92,6 +96,84 @@ select {
     background-color: var(--button);
     box-sizing: border-box;
 }
+.info-location {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0; /* Cambiado de margin: 10px para evitar desfases con los bordes de la pantalla */
+}
+
+.side-r, .side-left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Separa el título con el icono de la caja gris inferior */
+}
+
+.info-brand {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.icon-location {
+    color: var(--button);
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.card-address-box {
+    background-color: var(--card-bg) ;
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 70px;
+    box-sizing: border-box;
+    border-color: var(--border);
+}
+
+.card-address-box.empty {
+    justify-content: center;
+    opacity: 0.6;
+    border-style: dashed;
+}
+
+.branch-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.branch-street {
+    font-size: 13px;
+    color: var(--text);
+    opacity: 0.8;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.title-brand{
+    color: var(--button);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .info-location {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
 
 .error2 {
     font-size: 14px;
@@ -101,17 +183,23 @@ select {
 }
 
 @media (max-width: 992px) {
+    .calendar-top{
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+        .contentR {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 ;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
     .card-location {
         display: none;
-    }
-
-    .contentR {
-        flex-direction: column;
-        gap: 20px;
-        padding: 0 15px;
-        width: 100%;
-        box-sizing: border-box;
     }
 
     .leftR,

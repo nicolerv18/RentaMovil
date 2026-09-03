@@ -9,14 +9,14 @@ export const branches = [
   {
     id: 2,
     name: "Sucursal El Dorado",
-    address: "Aeropuerto El Dorado",
+    address: "Calle 26 N.° 103-09",
     lat: 4.7016,
     lng: -74.1469
   },
   {
     id: 3,
     name: "Sucursal Salitre",
-    address: "Terminal Salitre",
+    address: "Diagonal 23 # 69 - 55",
     lat: 4.6566,
     lng: -74.1110
   }

@@ -10,75 +10,104 @@ import Banner from "../../../shared/components/layout/Banner.jsx";
 import img1 from "../../../assets/img/img1.png";
 import img2 from "../../../assets/img/img2.jpg";
 import img3 from "../../../assets/img/img3.webp";
+import { useLocation, useNavigate } from "react-router-dom";
+import ProcessSteps from "../components/CardsInfo.jsx";
 import FilterCalendar from "../components/FilterCalendar.jsx";
 import { useState, useEffect, useRef } from "react";
-import { getCars } from "../Services/carsService.js"
+import { getCars } from "../Services/carsService.js";
 import { useIsMobile } from "../../../shared/hooks/useIsMobile.js";
-import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { FaSearch, FaBars } from "react-icons/fa";
 import { filterAvailableVehicles } from "../utils/filterAvilableCars.js";
 import { filterVehicles } from "../utils/vehiclesFilters.js";
 
 function Home() {
   const [cars, setCars] = useState([]);
+  const [hasSearchedCars, setHasSearchedCars] = useState(false);
   const [carsFiltered, setCarsFiltered] = useState([]);
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const [brandFilter, setBrandFilter] = useState("");
   const [priceFilter, setPriceFilter] = useState(null);
   const [typeFilter, setTypeFilter] = useState("");
   const [modelFilter, setModelFilter] = useState(null);
-  const [activeTab, setActiveTab] = useState("availability");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const [showFiltersModal, setShowFiltersModal] = useState(false);
   const filterCalendarRef = useRef(null);
 
   const isMobile = useIsMobile();
-  
+
   useEffect(() => {
-    getCars().then((data) => {
-      setCars(data);
-      setCarsFiltered(data);
-    });
+    const loadCars = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getCars();
+        setCars(data);
+      } catch (err) {
+        console.error("Error cargando vehículos:", err);
+        setError("No fue posible cargar los vehículos.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadCars();
   }, []);
 
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === "Escape") {
-        setShowFiltersModal(false);
-      }
-    };
+    if (location.state?.triggerSearch && location.state?.rentalSearch && cars.length > 0) {
+        const { branch, startDate, endDate } = location.state.rentalSearch;
 
-    if (showFiltersModal) {
-      document.addEventListener(
-        "keydown",
-        handleEscape
-      );
-      document.body.style.overflow = "hidden";
+        // 1. Rellenamos el calendario del Home con las nuevas fechas
+        setSearchData({ branch, startDate, endDate });
+
+        // 2. Ejecutamos tu función de filtrado nativa
+        const disponibles = filterAvailableVehicles(cars, branch, startDate, endDate);
+        setCarsFiltered(disponibles);
+        setHasSearchedCars(true);
+
+        // 3. Limpiamos el estado de la ruta para que no se repita el filtro al recargar la web
+        navigate(location.pathname, { replace: true, state: {} });
     }
+}, [location.state, cars, navigate]);
 
-    return () => {
-      document.removeEventListener(
-        "keydown",
-        handleEscape
-      );
-      document.body.style.overflow = "unset";
+const handleSearch = async ({ branch, startDate, endDate }) => {
+  try {
+    setLoading(true);
+    setError(null);
+
+    const newSearchData = {
+      branch,
+      startDate,
+      endDate
     };
-  }, [showFiltersModal]);
 
-const handleSearch = ({
-  branch,
-  startDate,
-  endDate,
-}) => {
+    setSearchData(newSearchData);
 
-  const disponibles = filterAvailableVehicles(
-    cars,
-    branch,
-    startDate,
-    endDate
-  );
+    const disponibles = filterAvailableVehicles(
+      cars,
+      branch,
+      startDate,
+      endDate
+    );
 
-  setCarsFiltered(disponibles);
+    setCarsFiltered(disponibles);
+    setHasSearchedCars(true);
+
+  } catch (err) {
+    console.error("Error buscando vehículos:", err);
+
+    setCarsFiltered([]);
+    setHasSearchedCars(false);
+
+    setError("No fue posible realizar la búsqueda.");
+
+  } finally {
+    setLoading(false);
+  }
 };
+
   const handleClearFilters = () => {
     setBrandFilter("");
     setPriceFilter(null);
@@ -86,26 +115,11 @@ const handleSearch = ({
     setTypeFilter("");
   };
 
-const handleApplyFilters = () => {
-
-  if (activeTab === "availability") {
-
-    const valid =
-      filterCalendarRef.current?.submit();
-
-    if (!valid) return;
-  }
-
-  setShowFiltersModal(false);
-};
-
-const handleClearAllFilters = () => {
-
-  handleClearFilters();
-
-  filterCalendarRef.current?.clear();
-};
-
+  const [searchData, setSearchData] = useState({
+    branch: null,
+    startDate: "",
+    endDate: ""
+});
   const visibleCars = filterVehicles(carsFiltered, {
     brand: brandFilter,
     type: typeFilter,
@@ -117,201 +131,86 @@ const handleClearAllFilters = () => {
     <>
       <Navbar />
 
+      {/* 1. SECCIÓN INICIAL: Banner y Calendario de búsqueda (Siempre visibles arriba) */}
       <div className="banner-wrapper">
         <div className="banner-container">
           <Banner imgs={[img1, img2, img3]} />
-
           <FilterCalendar
+            ref={filterCalendarRef}
             onSearch={handleSearch}
+            value={searchData}
+            onChange={setSearchData}
           />
         </div>
       </div>
 
-      <section className="home-container">
+      {/* 2. PASOS HORIZONTALES: Solo se renderizan si NO se ha realizado una búsqueda */}
+      {!hasSearchedCars && <ProcessSteps />}
 
-        <div className="main-column">
+      {/* 3. SECCIÓN DE RESULTADOS: Solo aparece cuando hasSearchedCars es true */}
+      {hasSearchedCars && (
+        <section className="catalog-layout-container">
+          
+          {/* BARRA LATERAL IZQUIERDA (Filtros estables de ancho fijo) */}
+          {!isMobile && (
+            <aside className="catalog-sidebar">
+              <div className="sidebar-sticky-content">
+                <h3 className="filters-title">Flota Disponible</h3>
+                <p className="filters-subtitle">Encuentra el vehículo perfecto para tu viaje.</p>
 
-          {isMobile && (
-            <div className="filters-mobile-header">
-              <button
-                className="filters-toggle-btn"
-                onClick={() =>
-                  setShowFiltersModal(true)
-                }
-              >
-                <FaBars />
-                <span>Filtros</span>
-              </button>
-            </div>
+                <FiltrerBrand cars={carsFiltered} onFilter={setBrandFilter} />
+                <FiltrerPrice cars={carsFiltered} onFilter={setPriceFilter} />
+                <FiltrerModel cars={carsFiltered} onFilter={setModelFilter} />
+                <FiltrerType cars={carsFiltered} onFilter={setTypeFilter} />
+
+                <button className="btn-clear-filters" onClick={handleClearFilters}>
+                  Limpiar filtros
+                </button>
+              </div>
+            </aside>
           )}
 
-          <div className="card-vehicule-container">
-            {visibleCars.length === 0 ? (
-              <p className="notFound">
-                No hay vehículos disponibles
-                <FaSearch />
-              </p>
-            ) : (
-              visibleCars.map((car) => (
-                <CartVehicule
-                  key={car.id}
-                  name={car.name}
-                  price={car.price}
-                  img={car.img}
-                  branch={car.branch}
-                  model={car.model}
-                  type={car.type}
-                  door= {car.door}
-                  capacity={car.capacity}
-                  beneficios={car.beneficios}
-                />
-              ))
+          {/* COLUMNA DERECHA (Mensajes de carga, errores y tarjetas de vehículos) */}
+          <div className="catalog-main-content">
+            {isMobile && (
+              <div className="filters-mobile-header">
+                <button className="filters-toggle-btn" onClick={() => setShowFiltersModal(true)}>
+                  <FaBars /> <span>Filtrar Flota</span>
+                </button>
+              </div>
             )}
-          </div>
 
-        </div>
+            <div className="card-vehicule-container">
+              {loading && <p className="search-message">Buscando vehículos...</p>}
+              {!loading && error && <p className="notFound">{error}</p>}
+              
+              {!loading && !error && visibleCars.length === 0 && (
+                <p className="notFound">
+                  No hay vehículos disponibles con esos filtros <FaSearch />
+                </p>
+              )}
 
-        {!isMobile && (
-          <aside className="sidebar-container">
-            <h3 className="filters-title">
-              Filtros
-            </h3>
-
-            <FiltrerBrand
-              cars={cars}
-              onFilter={setBrandFilter}
-            />
-
-            <FiltrerPrice
-              cars={cars}
-              onFilter={setPriceFilter}
-            />
-
-            <FiltrerModel
-              cars={cars}
-              onFilter={setModelFilter}
-            />
-
-            <FiltrerType
-              cars={cars}
-              onFilter={setTypeFilter}
-            />
-
-            <button
-              className="btn-clear-filters"
-              onClick={handleClearFilters}
-            >
-              Limpiar filtros
-            </button>
-          </aside>
-        )}
-
-        {isMobile && showFiltersModal && (
-          <>
-            <div
-              className="filters-modal-backdrop"
-              onClick={() =>
-                setShowFiltersModal(false)
-              }
-            />
-
-            <div className="filters-modal">
-
-                <div className="filters-modal-header">
-
-                <div className="filters-tabs">
-                  <button
-                    className={`tab-btn ${
-                      activeTab === "availability" ? "active" : ""
-                    }`}
-                    onClick={() => setActiveTab("availability")}
-                    type="button"
-                  >
-                    Disponibilidad
-                  </button>
-
-                  <button
-                    className={`tab-btn ${
-                      activeTab === "features" ? "active" : ""
-                    }`}
-                    onClick={() => setActiveTab("features")}
-                    type="button"
-                  >
-                    Características
-                  </button>
-                </div>
-
-                <button
-                  className="btn-close-modal"
-                  onClick={() => setShowFiltersModal(false)}
-                >
-                  <FaTimes />
-                </button>
-              </div>
-
-              <div className="filters-modal-content">
-
-                {activeTab === "availability" && (
-                  <FilterCalendar
-                    ref={filterCalendarRef}
-                    onSearch={handleSearch}
-                    variant="normal"
+              {!loading && !error && visibleCars.length > 0 &&
+                visibleCars.map((car) => (
+                  <CartVehicule
+                    key={car.id}
+                    name={car.name}
+                    price={car.price}
+                    img={car.img}
+                    branch={car.branch}
+                    model={car.model}
+                    type={car.type}
+                    door={car.door}
+                    capacity={car.capacity}
+                    beneficios={car.beneficios}
+                    rentalSearch={searchData}
                   />
-                )}
-
-                {activeTab === "features" && (
-                  <>
-                    <FiltrerBrand
-                      cars={cars}
-                      onFilter={setBrandFilter}
-                    />
-
-                    <FiltrerPrice
-                      cars={cars}
-                      onFilter={setPriceFilter}
-                    />
-
-                    <FiltrerModel
-                      cars={cars}
-                      onFilter={setModelFilter}
-                    />
-
-                    <FiltrerType
-                      cars={cars}
-                      onFilter={setTypeFilter}
-                    />
-                  </>
-                )}
-
-              </div>
-
-              <div className="filters-modal-footer">
-
-                <button
-                  className="btn-clear-filters"
-                  onClick={() => {
-                    handleClearAllFilters();
-                    setShowFiltersModal(false);
-                  }}
-                >
-                  Limpiar
-                </button>
-
-                <button
-                  type="button"
-                  className="btn-apply-filters"
-                  onClick={handleApplyFilters}
-                >
-                  Aplicar
-                </button>
-
-              </div>
-
+                ))
+              }
             </div>
-          </>
-        )}
-
-      </section>
+          </div>
+        </section>
+      )}
 
       <Footer />
     </>

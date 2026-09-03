@@ -29,8 +29,9 @@ export default function HomePage() {
 
   const [filters, setFilters] = useState<Filters>({
     brand: "",
+    model: "",
     category: "",
-    transmission: "",
+    fuelType: "",
     minPrice: 0,
     maxPrice: 1000000,
     search: "",
@@ -76,8 +77,9 @@ export default function HomePage() {
   const handleClearFilters = async () => {
     const reset: Filters = {
       brand: "",
+      model: "",
       category: "",
-      transmission: "",
+      fuelType: "",
       minPrice: 0,
       maxPrice: 1000000,
       search: "",
@@ -113,7 +115,7 @@ export default function HomePage() {
   };
 
   const { themeName } = useTheme();
-  const colors = themes[themeName];
+  const colors = themes[themeName as keyof typeof themes];
   const styles = HomeStyles(colors);
 
   return (

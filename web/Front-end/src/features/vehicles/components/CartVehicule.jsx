@@ -3,9 +3,40 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 
-function CartVehicule({img,name,model,price, branch,type, door, capacity, beneficios}){
+function CartVehicule({
+    img,
+    name,
+    model,
+    price,
+    branch,
+    type,
+    door,
+    capacity,
+    beneficios,
+    rentalSearch,
+    showActions = true,
+}){
     const {t} = useTranslation();
     const navigate = useNavigate();
+
+    const handleContinue = () => {
+        if (!showActions) return;
+        navigate("/Reservation", {
+            state: {
+                img,
+                name,
+                price,
+                branch,
+                model,
+                type,
+                door,
+                capacity,
+                beneficios,
+                rentalSearch,
+            },
+        });
+    };
+
     return(
 <div className="card-vehicule">
     <div className="car-img">
@@ -22,26 +53,31 @@ function CartVehicule({img,name,model,price, branch,type, door, capacity, benefi
         </div>
 
         <div className="benefits">
-            {beneficios?.map((beneficio, index) => (
-                <span key={index}>
+            {beneficios?.map((beneficio) => (
+                <span key={beneficio}>
                     ✓ {beneficio}
                 </span>
             ))}
         </div>
 
-        <div className='location-container'>
-            <div className='location-box'>
-                <p className='location-text'>✈️</p>
+        {branch?.name && (
+            <div className='location-container'>
+                <div className='location-box'>
+                    <p className='location-text'>✈️</p>
+                </div>
+                <div className='location-box'>
+                    <p className='location-text'> {branch.name} </p>
+                </div>
             </div>
-            <div className='location-box'>
-                <p className='location-text'> {branch.name} </p>
-            </div>
-        </div>
+        )}
     </div>
     <div className="car-price">
         <p className="price">${price}</p>
         <span className="free">{t('cartVehicule.cancellation')}</span>
-        <button  onClick={() => navigate("/Reservation", { state: { img, name, price, branch } })}>{t('cartVehicule.continue')}</button>
+
+        {showActions && (
+            <button type="button" onClick={handleContinue}>{t('cartVehicule.continue')}</button>
+        )}
     </div>
 
 </div>

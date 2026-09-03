@@ -16,7 +16,7 @@ import {
 
 import {
     createStyles,
-} from "./Reservation";
+} from "./ReservationHistory.style";
 
 import {
     themes,
@@ -148,13 +148,7 @@ export default function ReservationHistoryScreen() {
 
         return (
 
-            <View
-                style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
+            <View style={styles.loadingContainer}>
 
                 <Text>
 
@@ -171,19 +165,16 @@ export default function ReservationHistoryScreen() {
 
     return (
 
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.screen}>
 
             <View
                 style={styles.container}
             >
 
-                <Text
-                    style={styles.title}
-                >
-
-                    Mis reservas
-
-                </Text>
+                <Text style={styles.eyebrow}>TU ACTIVIDAD</Text>
+                <Text style={styles.title}>Mis reservas</Text>
+                <Text style={styles.subtitle}>Consulta y administra tus próximos viajes.</Text>
+                <Text style={styles.count}>{reservations.length} reserva{reservations.length === 1 ? "" : "s"} registrada{reservations.length === 1 ? "" : "s"}</Text>
 
             </View>
 

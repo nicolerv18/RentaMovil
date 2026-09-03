@@ -70,9 +70,7 @@ export default function ReservationCard({
                 </Text>
 
 
-                <Text
-                    style={styles.status}
-                >
+                <Text style={[styles.status, reservation.status === "CANCELLED" && styles.cancelledStatus, reservation.status === "COMPLETED" && styles.completedStatus]}>
 
                     {
                         reservation

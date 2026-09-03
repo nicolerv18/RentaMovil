@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 
-function CartVehicule({img,name,model,price, branch,type, door, capacity}){
+function CartVehicule({img,name,model,price, branch,type, door, capacity, rentalSearch}){
     const {t} = useTranslation();
     const navigate = useNavigate();
     return(
@@ -27,14 +27,16 @@ function CartVehicule({img,name,model,price, branch,type, door, capacity}){
                 <p className='location-text'>✈️</p> 
             </div>
             <div className='location-box'>
-                <p className='location-text'> {branch} </p> 
+                <p className='location-text'> {branch?.name} </p> 
             </div>
         </div>
     </div>
     <div className="car-price">
         <p className="price">${price}</p>
         <span className="free">{t('cartVehicule.cancellation')}</span>
-        <button  onClick={() => navigate("/reservation", { state: { img, name, price, branch } })}>{t('cartVehicule.continue')}</button>
+        <button onClick={() => navigate("/reservation", {
+            state: { img, name, price, branch, model, type, door, capacity, rentalSearch }
+        })}>{t('cartVehicule.continue')}</button>
     </div>
 
 </div>

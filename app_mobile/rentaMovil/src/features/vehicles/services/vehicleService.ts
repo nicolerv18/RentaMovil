@@ -3,9 +3,9 @@ import {Branch} from "../../../types/branch";
 
 type VehicleFilters = {
   brand?: string;
+  model?: string;
   branch?: Branch;
   category?: string;
-  transmission?: string;
   fuelType?: string;
 
   minPrice?: number;
@@ -51,12 +51,19 @@ export const vehicleService = {
       );
     }
 
-    // Transmisión
-    if (filters?.transmission) {
+    // Modelo
+    if (filters?.model) {
       data = data.filter(
         (vehicle) =>
-          vehicle.transmission ===
-          filters.transmission
+          vehicle.model === filters.model
+      );
+    }
+
+    // Tipo de combustible
+    if (filters?.fuelType) {
+      data = data.filter(
+        (vehicle) =>
+          vehicle.fuelType === filters.fuelType
       );
     }
 

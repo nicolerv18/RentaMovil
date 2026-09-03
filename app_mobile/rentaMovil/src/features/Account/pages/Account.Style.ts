@@ -1,159 +1,31 @@
-    import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
-    export const CountStyles = (colors: any) =>
-    StyleSheet.create({
-        container: {
-        flex: 1,
-        backgroundColor: colors.background,
-        paddingHorizontal: 20,
-        paddingTop: 25,
-        },
-
-        // FOTO
-        photoContainer: {
-        alignItems: "center",
-        marginBottom: 25,
-        },
-
-        image: {
-        width: 120,
-        height: 120,
-        borderRadius: 60,
-        borderWidth: 3,
-        borderColor: colors.primary,
-        },
-
-        selectButton: {
-        marginTop: 12,
-        paddingHorizontal: 18,
-        paddingVertical: 8,
-        borderRadius: 20,
-        backgroundColor: colors.primary,
-        },
-
-        selectButtonText: {
-        color: "#fff",
-        fontWeight: "600",
-        fontSize: 14,
-        },
-
-        // CONFIGURACIÓN
-        settingsButton: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        backgroundColor: colors.card,
-        padding: 16,
-        borderRadius: 14,
-        marginBottom: 18,
-        elevation: 2,
-        },
-
-        settingsTitle: {
-        fontSize: 17,
-        fontWeight: "700",
-        color: colors.text,
-        },
-
-        arrow: {
-        fontSize: 18,
-        color: colors.textSecondary,
-        },
-
-        settingItem: {
-        marginVertical: 10,
-        },
-
-        settingLabel: {
-        fontSize: 15,
-        fontWeight: "600",
-        marginBottom: 8,
-        color: colors.text,
-        },
-
-        // TARJETAS
-        sectionTitle: {
-        fontSize: 18,
-        fontWeight: "700",
-        color: colors.text,
-        marginBottom: 18,
-        },
-
-        inputContainer: {
-        marginBottom: 18,
-        },
-
-        label: {
-        fontSize: 14,
-        fontWeight: "600",
-        color: colors.textSecondary,
-        marginBottom: 6,
-        },
-
-        input: {
-        borderWidth: 1,
-        borderColor: colors.border,
-        backgroundColor: colors.surface,
-        borderRadius: 12,
-        paddingHorizontal: 15,
-        paddingVertical: 12,
-        fontSize: 15,
-        color: colors.text,
-        },
-
-        // CAMBIAR CONTRASEÑA
-        passwordButton: {
-        marginTop: 8,
-        alignSelf: "flex-start",
-        },
-
-        passwordText: {
-        color: colors.primary,
-        fontWeight: "600",
-        fontSize: 15,
-        },
-
-        // BOTONES
-        buttonsRow: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 25,
-        marginBottom: 35,
-        gap: 12,
-        },
-
-        editButton: {
-        flex: 1,
-        backgroundColor: colors.primary,
-        paddingVertical: 14,
-        borderRadius: 14,
-        alignItems: "center",
-        },
-
-        buttonEditar: {
-        color: "#fff",
-        fontWeight: "700",
-        fontSize: 15,
-        },
-
-        outCesionButton: {
-        flex: 1,
-        backgroundColor: "#E53935",
-        paddingVertical: 14,
-        borderRadius: 14,
-        alignItems: "center",
-        },
-
-        outCesionButtonText: {
-        color: "#fff",
-        fontWeight: "700",
-        fontSize: 15,
-        },
-    content: {
-    flexGrow: 1,
-    paddingHorizontal: 20,
-    paddingTop: 25,
-    paddingBottom: 40,
-    backgroundColor: colors.background,
-    },
-    });
+export const CountStyles = (colors: any) => StyleSheet.create({
+    content: { flexGrow: 1, padding: 20, paddingBottom: 36, backgroundColor: colors.background },
+    profileHeader: { alignItems: "center", marginBottom: 24 },
+    photoContainer: { position: "relative", alignItems: "center" },
+    image: { width: 108, height: 108, borderRadius: 54, borderWidth: 4, borderColor: colors.card, backgroundColor: colors.input },
+    photoRing: { padding: 4, borderRadius: 60, backgroundColor: colors.primary },
+    selectButton: { marginTop: -14, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 999, backgroundColor: colors.primary, borderWidth: 2, borderColor: colors.background },
+    selectButtonText: { color: colors.buttonText, fontWeight: "700", fontSize: 13 },
+    pageTitle: { marginTop: 14, fontSize: 25, fontWeight: "800", color: colors.text },
+    pageSubtitle: { marginTop: 4, fontSize: 14, color: colors.secondaryText },
+    settingsButton: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 12, padding: 17, borderRadius: 16, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.card },
+    settingsTitle: { fontSize: 16, fontWeight: "700", color: colors.text },
+    arrow: { fontSize: 15, color: colors.primary },
+    settingsCard: { marginTop: 0 },
+    settingItem: { paddingVertical: 9 },
+    settingLabel: { fontSize: 14, fontWeight: "700", marginBottom: 8, color: colors.text },
+    sectionTitle: { fontSize: 19, fontWeight: "800", color: colors.text, marginBottom: 18 },
+    inputContainer: { marginBottom: 16 },
+    label: { fontSize: 13, fontWeight: "700", color: colors.secondaryText, marginBottom: 7 },
+    input: { borderWidth: 1, borderColor: colors.border, backgroundColor: colors.input, borderRadius: 12, paddingHorizontal: 14, paddingVertical: 12, fontSize: 15, color: colors.text },
+    inputEditing: { borderColor: colors.primary, backgroundColor: colors.card },
+    passwordButton: { marginTop: 4, paddingTop: 14, borderTopWidth: 1, borderTopColor: colors.border },
+    passwordText: { color: colors.primary, fontWeight: "700", fontSize: 15 },
+    buttonsRow: { flexDirection: "row", marginTop: 16, gap: 12 },
+    editButton: { flex: 1, backgroundColor: colors.primary, paddingVertical: 14, borderRadius: 12, alignItems: "center" },
+    buttonEditar: { color: colors.buttonText, fontWeight: "700", fontSize: 15 },
+    outCesionButton: { flex: 1, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.error, paddingVertical: 14, borderRadius: 12, alignItems: "center" },
+    outCesionButtonText: { color: colors.error, fontWeight: "700", fontSize: 15 },
+});

@@ -40,7 +40,7 @@ export default function DriverInfoCard() {
 
 
     const colors =
-        themes[themeName];
+        themes[themeName as keyof typeof themes];
 
 
     const styles =
@@ -98,31 +98,14 @@ export default function DriverInfoCard() {
     }, [user]);
 
 
-    function handleNameChange(
-        value: string
-    ) {
-
-        setName(value);
-
-        if (!driver) return;
-
-
-        setDriver({
-
-            ...driver,
-
-            name: value,
-
-        });
-
-    }
-
-
     function handlePhoneChange(
         value: string
     ) {
 
-        setPhone(value);
+        const numbersOnly = value.replace(/[^0-9]/g, "");
+
+
+        setPhone(numbersOnly);
 
         if (!driver) return;
 
@@ -131,7 +114,7 @@ export default function DriverInfoCard() {
 
             ...driver,
 
-            phone: value,
+            phone: numbersOnly,
 
         });
 
@@ -175,6 +158,7 @@ export default function DriverInfoCard() {
             {isOpen && (
 
                 <>
+                    <p>Si desea dejar otro responsable de la reserva, puede crear otra cuenta o iniciar sesion dese otra cuenta</p>
 
                     <Text
                         style={styles.label}
@@ -186,7 +170,6 @@ export default function DriverInfoCard() {
 
 
                     <TextInput
-
                         style={[
                             styles.input,
                             styles.disabledInput,
@@ -201,6 +184,7 @@ export default function DriverInfoCard() {
                     />
 
 
+                    
                     <Text
                         style={styles.label}
                     >
@@ -212,13 +196,13 @@ export default function DriverInfoCard() {
 
                     <TextInput
 
-                        style={styles.input}
+                        style={[styles.input,
+                            styles.disabledInput
+                        ]}
 
                         value={name}
 
-                        onChangeText={
-                            handleNameChange
-                        }
+                        editable= {false}
 
                     />
 

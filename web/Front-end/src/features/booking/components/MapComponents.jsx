@@ -1,4 +1,35 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import L from "leaflet";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+const defaultMarkerIcon = L.icon({
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+});
+
+const selectedMarkerIcon = L.divIcon({
+    className: "selected-branch-marker",
+    html: "<span></span>",
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+});
+
+function MapFocus({ selectedBranch }) {
+    const map = useMap();
+
+    useEffect(() => {
+        if (selectedBranch) {
+            map.flyTo([selectedBranch.lat, selectedBranch.lng], 14, { duration: 0.6 });
+        }
+    }, [map, selectedBranch]);
+
+    return null;
+}
 
 function MapComponent({
     mode = "view",
@@ -30,8 +61,10 @@ function MapComponent({
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
+            {mode === "select" && <MapFocus selectedBranch={selectedBranch} />}
+
             {mode === "view" && branch && (
-                <Marker position={[branch.lat, branch.lng]}>
+                <Marker position={[branch.lat, branch.lng]} icon={defaultMarkerIcon}>
                     <Popup>
                         <strong>{branch.name}</strong>
                         <br />
@@ -45,8 +78,10 @@ function MapComponent({
                     <Marker
                         key={branch.id}
                         position={[branch.lat, branch.lng]}
+                        icon={branch.id === selectedBranch?.id ? selectedMarkerIcon : defaultMarkerIcon}
+                        zIndexOffset={branch.id === selectedBranch?.id ? 1000 : 0}
                         eventHandlers={{
-                            click: () => setSelectedBranch(branch)
+                            click: () => setSelectedBranch?.(branch)
                         }}
                     >
                         <Popup>

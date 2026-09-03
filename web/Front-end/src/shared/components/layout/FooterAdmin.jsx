@@ -13,7 +13,7 @@ return (
         <h3>{t("footer.links")}</h3>
         <div className="links">
         <Link to="/HomeAdmin">{t("footer.linkInit")}</Link>
-        <Link to="/notificationAdmin">{t("footer.linkNotifications")}</Link>
+        <Link to="/NotificationAdmin">{t("footer.linkNotifications")}</Link>
         <Link to="/count">{t("footer.linkCount")}</Link>
 
     </div>

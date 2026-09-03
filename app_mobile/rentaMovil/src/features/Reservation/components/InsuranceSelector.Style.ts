@@ -33,7 +33,7 @@
 
         description: {
         marginTop: 3,
-        color: colors.textSecondary,
+        color: colors.text,
         },
 
         radio: {

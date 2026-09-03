@@ -373,6 +373,39 @@
   "yes": "Oui, annuler",
   "no": "Non"
 },
+"process": {
+  "title": "3 étapes pour votre prochain voyage",
+  "subtitle": "Un processus simple et clair, pensé pour vous emmener plus loin.",
+  "steps": {
+    "search": {
+      "title": "1. Recherchez et choisissez",
+      "description": "Filtrez par lieu, dates et type de véhicule pour trouver la voiture idéale pour votre voyage."
+    },
+    "reserve": {
+      "title": "2. Réservez",
+      "description": "Choisissez votre couverture, vérifiez les détails et confirmez votre réservation par un paiement sécurisé."
+    },
+    "pickup": {
+      "title": "3. Récupérez et profitez",
+      "description": "Rendez-vous dans l'agence sélectionnée, présentez votre QR code et récupérez les clés sans attente inutile."
+    }
+  }
+},
+"requirements": {
+  "title": "Conditions pour louer un véhicule",
+  "license": "Permis de conduire",
+  "licenseDescription": "Présentez un permis valide pour le type de véhicule réservé.",
+  "insurance": "Assurance sélectionnée",
+  "insuranceDescription": "Choisissez la couverture la mieux adaptée aux besoins de votre voyage.",
+  "id": "Pièce d'identité",
+  "idDescription": "Apportez votre document original pour finaliser la remise du véhicule."
+},
+"title": {
+  "rentamovil": "Voyagez avec RentaMovil"
+},
+"description": {
+  "rentamovil": "Nous vous aidons à trouver le véhicule adapté grâce à des réservations simples, des options claires et un accompagnement attentif dans chaque agence."
+},
 "VehicleInventary": {
   "title": "Inventaire des Véhicules",
   "subtitle": "Consultez l'état et l'emplacement de toute la flotte",

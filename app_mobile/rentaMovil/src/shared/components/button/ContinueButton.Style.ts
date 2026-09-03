@@ -30,7 +30,7 @@ export const createStyles = (colors: any) =>
 
         text: {
 
-            color: "#fff",
+            color: colors.buttonText,
 
             fontSize: 16,
 

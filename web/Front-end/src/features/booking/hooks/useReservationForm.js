@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { calculateRentalDays, calculateTotal } from "../../../shared/utils/rental";
 import { hasInvalidDateRange, isAdult } from "../../../shared/utils/validation";
 
-export const useReservationForm = (price, navigate, t, initialBranch = null) => {
+export const useReservationForm = (price, navigate, t, initialBranch = null, initialSearch = {}) => {
   const [opcion, setOpcion] = useState("");
   const [selectedBranch, setSelectedBranch] = useState(initialBranch ?? null);
+  const [pickupBranch, setPickupBranch] = useState(initialSearch.branch ?? initialBranch ?? null);
   const [nameR, setNameR] = useState("");
   const [document, setDocument] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [pickupDate, setPickupDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
+  const [pickupDate, setPickupDate] = useState(initialSearch.startDate ?? "");
+  const [returnDate, setReturnDate] = useState(initialSearch.endDate ?? "");
   const [errorFecha, setErrorFecha] = useState("");
   const [errorEdad, setErrorEdad] = useState("");
   const [showFilters, setShowFilters] = useState(false);
@@ -59,6 +60,8 @@ export const useReservationForm = (price, navigate, t, initialBranch = null) => 
     setOpcion,
     selectedBranch,
     setSelectedBranch,
+    pickupBranch,
+    setPickupBranch,
     nameR,
     setNameR,
     document,

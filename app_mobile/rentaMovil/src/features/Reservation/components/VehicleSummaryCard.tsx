@@ -11,22 +11,22 @@ import { useTheme } from "../../../theme/useTheme";
 
 import { useTranslation } from "react-i18next";
 
-type Props = {
-  readonly vehicle: Vehicle;
-};
+    type Props = {
+    readonly vehicle: Vehicle;
+    };
 
-export default function VehicleSummaryCard({
-  vehicle,
-}: Props) {
-  const { t } = useTranslation();
+    export default function VehicleSummaryCard({
+    vehicle,
+    }: Props) {
+    const { t } = useTranslation();
 
-  const { themeName } = useTheme();
+    const { themeName } = useTheme();
 
-  const colors = themes[themeName];
+    const colors = themes[themeName];
 
-  const styles = createStyles(colors);
+    const styles = createStyles(colors);
 
-  return (
+    return (
 <AppCard>
 
     <Image

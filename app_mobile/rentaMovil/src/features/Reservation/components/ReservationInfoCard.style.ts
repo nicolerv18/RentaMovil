@@ -10,7 +10,7 @@
             },
 
             subtitle: {
-            color: colors.textSecondary,
+            color: colors.text,
             marginBottom: 20,
             marginTop: 4,
             },
@@ -26,7 +26,7 @@
 
             value: {
             marginVertical: 4,
-            color: colors.textSecondary,
+            color: colors.text,
             },
 
             link: {

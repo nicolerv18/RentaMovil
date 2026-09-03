@@ -11,12 +11,16 @@ import {
 } from "react-native";
 
 import { vehicles } from "../../../features/vehicles/data/vehicles";
-import { styles } from "./FilterModalStyle";
+import { createStyles } from "./FilterModalStyle";
+import { themes } from "../../../theme/themes";
+import { useTheme } from "../../../theme/useTheme";
 
 export interface Filters {
   brand: string;
+  model: string;
   category: string;
-  transmission: string;
+  fuelType: string;
+
   minPrice: number;
   maxPrice: number;
   search: string;
@@ -39,15 +43,25 @@ export default function FilterModal({
   onApply,
   onClear,
 }: Props) {
+const { themeName } = useTheme();
+const styles = createStyles(themes[themeName as keyof typeof themes]);
 
-const transmissions = [...new Set(vehicles.map(v => v.transmission))];
 const categories = [...new Set(vehicles.map(v => v.category))];
 const brand = [...new Set(vehicles.map(v => v.brand))];
+const models = [...new Set(vehicles.map(v => v.model))];
+const fuelTypes = [...new Set(vehicles.map(v => v.fuelType))];
 
-  const selectTransmission = (value: string) => {
+  const selectFuelType = (value: string) => {
     setFilters((prev) => ({
       ...prev,
-      transmission: prev.transmission === value ? "" : value,
+      fuelType: prev.fuelType === value ? "" : value,
+    }));
+  };
+
+  const toggleModel = (value: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      model: prev.model === value ? "" : value,
     }));
   };
 
@@ -140,24 +154,24 @@ const brand = [...new Set(vehicles.map(v => v.brand))];
                   </View>
 
                   {!isValidPrice && (
-                    <Text style={{ color: "red", marginTop: 5 }}>
+                    <Text style={styles.invalidPrice}>
                       El precio mínimo no puede ser mayor al máximo
                     </Text>
                   )}
                 </View>
 
-                {/* TRANSMISSION */}
+                {/* FUEL TYPE */}
                 <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>Transmisión</Text>
+                  <Text style={styles.sectionTitle}>Tipo de motor</Text>
 
-                  {transmissions.map((item) => (
+                  {fuelTypes.map((item) => (
                     <TouchableOpacity
                       key={item}
                       style={styles.option}
-                      onPress={() => selectTransmission(item)}
+                      onPress={() => selectFuelType(item)}
                     >
                       <Text style={styles.optionText}>
-                        {filters.transmission.includes(item) ? "✔️" : "⬜"} {item}
+                        {filters.fuelType.includes(item) ? "✔️" : "⬜"} {item}
                       </Text>
                     </TouchableOpacity>
                   ))}
@@ -173,6 +187,21 @@ const brand = [...new Set(vehicles.map(v => v.brand))];
                     >
                       <Text style={styles.optionText}>
                         {filters.brand.includes(item) ? "✔️" : "⬜"} {item}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>Modelo</Text>
+                  {models.map((item) => (
+                    <TouchableOpacity
+                      key={item}
+                      style={styles.option}
+                      onPress={() => toggleModel(item)}
+                    >
+                      <Text style={styles.optionText}>
+                        {filters.model === item ? "✔️" : "⬜"} {item}
                       </Text>
                     </TouchableOpacity>
                   ))}

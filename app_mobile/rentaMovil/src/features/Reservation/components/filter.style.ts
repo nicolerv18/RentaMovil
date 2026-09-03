@@ -10,29 +10,24 @@ export function createStyles(
 
         container: {
 
-            flexDirection:
-                "row",
+            flexDirection: "row",
+            flexWrap: "wrap",
 
-            paddingHorizontal:
-                16,
+            paddingHorizontal: 20,
 
-            paddingVertical:
-                12,
+            paddingVertical: 16,
 
-            gap: 8,
+            gap: 9,
 
         },
 
         button: {
 
-            paddingHorizontal:
-                16,
+            paddingHorizontal: 14,
 
-            paddingVertical:
-                10,
+            paddingVertical: 9,
 
-            borderRadius:
-                20,
+            borderRadius: 999,
 
             borderWidth:
                 1,
@@ -71,7 +66,7 @@ export function createStyles(
         activeText: {
 
             color:
-                "#FFFFFF",
+                colors.buttonText,
 
             fontWeight:
                 "700",

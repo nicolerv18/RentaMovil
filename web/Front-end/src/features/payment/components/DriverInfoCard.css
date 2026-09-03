@@ -1,0 +1,50 @@
+.pay-card{
+    color: var(--text-h);
+    background: var(--card-bg);
+    padding: 20px 15px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.pay-card-header{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+
+.pay-card-dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--navbar);
+}
+
+.pay-card-body{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pay-form-row{
+    display:grid;
+    gap:12px;
+}
+
+.pay-card-body label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.pay-card-body input{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text-h);
+}

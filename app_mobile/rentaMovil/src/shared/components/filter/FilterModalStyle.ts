@@ -1,132 +1,25 @@
-    import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
-    export const styles = StyleSheet.create({
-    overlay: {
-        flex: 1,
-        justifyContent: "flex-end",
-        backgroundColor: "rgba(255, 255, 255, 0.4)",
-    },
-
-    container: {
-        height: "90%",
-        borderTopLeftRadius: 24,
-        borderTopRightRadius: 24,
-        backgroundColor: "#FFF",
-        padding: 20,
-    },
-
-    header: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-    },
-
-    title: {
-        fontSize: 24,
-        fontWeight: "700",
-    },
-
-    close: {
-        fontSize: 24,
-    },
-
-    content: {
-        flex: 1,
-        paddingVertical: 20,
-    },
-
-    section: {
-        marginBottom: 24,
-    },
-
-    sectionTitle: {
-        fontSize: 16,
-        fontWeight: "600",
-        marginBottom: 12,
-        color: "#333",
-    },
-
-    option: {
-        paddingVertical: 12,
-        paddingHorizontal: 12,
-        marginVertical: 4,
-        borderRadius: 8,
-        backgroundColor: "#F5F5F5",
-    },
-
-    optionText: {
-        fontSize: 14,
-        color: "#333",
-    },
-
-    priceContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: 12,
-    },
-
-    priceInputContainer: {
-        flex: 1,
-    },
-
-    label: {
-        fontSize: 12,
-        color: "#666",
-        marginBottom: 6,
-    },
-
-    input: {
-        borderWidth: 1,
-        borderColor: "#DDD",
-        borderRadius: 8,
-        padding: 10,
-        fontSize: 14,
-        color: "#333",
-    },
-
-    priceSeparator: {
-        fontSize: 18,
-        color: "#999",
-        marginTop: 20,
-    },
-
-    footer: {
-        flexDirection: "row",
-        gap: 12,
-        justifyContent: "space-between",
-        paddingTop: 20,
-        borderTopWidth: 1,
-        borderTopColor: "#EEE",
-    },
-
-    clearButton: {
-        flex: 1,
-        paddingVertical: 12,
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: "#DDD",
-        alignItems: "center",
-    },
-
-    clearButtonText: {
-        fontSize: 14,
-        fontWeight: "600",
-        color: "#666",
-    },
-
-    applyButton: {
-        flex: 1,
-        paddingVertical: 12,
-        borderRadius: 8,
-        backgroundColor: "#007AFF",
-        alignItems: "center",
-    },
-
-    applyButtonText: {
-        fontSize: 14,
-        fontWeight: "600",
-        color: "#FFF",
-    },
-    
-    });
+export const createStyles = (colors: any) => StyleSheet.create({
+    overlay: { flex: 1, justifyContent: "flex-end", backgroundColor: colors.overlay },
+    container: { height: "90%", padding: 20, borderTopLeftRadius: 24, borderTopRightRadius: 24, backgroundColor: colors.card },
+    header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+    title: { fontSize: 24, fontWeight: "700", color: colors.text },
+    close: { fontSize: 24, color: colors.text },
+    content: { flex: 1, paddingVertical: 20 },
+    section: { marginBottom: 24 },
+    sectionTitle: { marginBottom: 12, fontSize: 16, fontWeight: "600", color: colors.text },
+    option: { paddingVertical: 12, paddingHorizontal: 12, marginVertical: 4, borderRadius: 8, backgroundColor: colors.input },
+    optionText: { fontSize: 14, color: colors.text },
+    priceContainer: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 12 },
+    priceInputContainer: { flex: 1 },
+    label: { marginBottom: 6, fontSize: 12, color: colors.secondaryText },
+    input: { padding: 10, borderWidth: 1, borderColor: colors.border, borderRadius: 8, fontSize: 14, color: colors.text },
+    priceSeparator: { marginTop: 20, fontSize: 18, color: colors.secondaryText },
+    invalidPrice: { marginTop: 5, color: colors.error },
+    footer: { flexDirection: "row", justifyContent: "space-between", gap: 12, paddingTop: 20, borderTopWidth: 1, borderTopColor: colors.border },
+    clearButton: { flex: 1, alignItems: "center", paddingVertical: 12, borderWidth: 1, borderColor: colors.border, borderRadius: 8 },
+    clearButtonText: { fontSize: 14, fontWeight: "600", color: colors.secondaryText },
+    applyButton: { flex: 1, alignItems: "center", paddingVertical: 12, borderRadius: 8, backgroundColor: colors.primary },
+    applyButtonText: { fontSize: 14, fontWeight: "600", color: colors.buttonText },
+});

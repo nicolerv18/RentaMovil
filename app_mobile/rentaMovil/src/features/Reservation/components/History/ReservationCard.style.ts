@@ -15,8 +15,8 @@ export function createStyles(colors: any) {
             padding:
                 16,
 
-            marginBottom:
-                16,
+            marginHorizontal: 20,
+            marginBottom: 14,
 
             borderWidth:
                 1,
@@ -56,17 +56,22 @@ export function createStyles(colors: any) {
         },
 
         status: {
-
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            borderRadius: 999,
             fontSize:
                 13,
 
             fontWeight:
                 "600",
 
-            color:
-                colors.primary,
+            color: colors.success,
+            backgroundColor: colors.successSurface,
 
         },
+
+        cancelledStatus: { color: colors.error, backgroundColor: colors.errorSurface },
+        completedStatus: { color: colors.primary, backgroundColor: colors.primarySurface },
 
         divider: {
 

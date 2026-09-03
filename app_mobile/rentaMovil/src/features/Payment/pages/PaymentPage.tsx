@@ -44,6 +44,27 @@ export default function PaymentPage() {
     } = useReservation();
 
 
+    const today = new Date();
+
+
+    const isLicenseValidForReservation =
+
+        !!driver?.licenseExpirationDate &&
+
+        driver.licenseExpirationDate >= new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate()
+        ) &&
+
+        (!reservation?.returnDate ||
+            driver.licenseExpirationDate >= new Date(
+                reservation.returnDate.getFullYear(),
+                reservation.returnDate.getMonth(),
+                reservation.returnDate.getDate()
+            ));
+
+
     const canReserve =
 
         !!driver?.email &&
@@ -51,6 +72,10 @@ export default function PaymentPage() {
         !!driver?.name.trim() &&
 
         !!driver?.phone.trim() &&
+
+        !!driver?.licenseCategory &&
+
+        isLicenseValidForReservation &&
 
         !!selectedPaymentMethod;
 

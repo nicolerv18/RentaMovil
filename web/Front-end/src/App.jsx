@@ -80,12 +80,15 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/Notification" element={<Notification />} />
         <Route path="/NotificationAdmin" element={<NotificationAdmin />} />
+        <Route path="/notificationAdmin" element={<NotificationAdmin />} />
         <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
         <Route path="/Maintenance" element={<Maintenance />} />
         <Route path="/CheckStatus" element={<CheckStatus />} />
         <Route path="/Contract" element={<Contract />} />
         <Route path="/ContractHistory" element={<ContractHistory />} />
         <Route path="/HomeAdmin" element={<HomeAdmin />} />
+        <Route path="/homeAdmin" element={<HomeAdmin />} />
+        <Route path="/home-admin" element={<HomeAdmin />} />
         <Route path="/History" element={<History />} />
         <Route path="/VehicleInventary" element={<VehicleInventary />} />
         <Route path="/Register" element={<RegisterForm />} />

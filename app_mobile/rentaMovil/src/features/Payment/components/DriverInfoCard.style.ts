@@ -49,4 +49,32 @@ export const createStyles = (colors: any) =>
             opacity: 0.7,
         },
 
+        dateButton: {
+            height: 48,
+            borderWidth: 1,
+            borderColor: colors.border,
+            borderRadius: 10,
+            paddingHorizontal: 14,
+            justifyContent: "center",
+            backgroundColor: colors.background,
+            marginBottom: 4,
+        },
+
+        dateButtonText: {
+            fontSize: 16,
+            color: colors.text,
+        },
+
+        helperText: {
+            fontSize: 12,
+            color: colors.textSecondary ?? colors.secondaryText,
+            marginBottom: 8,
+        },
+
+        errorText: {
+            fontSize: 12,
+            color: colors.error,
+            marginBottom: 8,
+        },
+
     });

@@ -44,7 +44,7 @@
     "brand": "Brand",
     "model": "Model",
     "price": "Price",
-    "type": "Vehicle Type",
+    "type": "Engine Type",
     "typeElectric": "Electric",
     "typeGasoline": "Gasoline",
     "typeHybrid": "Hybrid",
@@ -351,7 +351,7 @@
   },
   "notifications": {
   "unread": "Unread",
-  "all": "All",
+  "all": "All ",
   "confReservations": "Confirmed Reservations",
   "pays": "Payments",
   "cancel": "Cancelled",
@@ -373,6 +373,43 @@
   "sure": "Are you sure you want to cancel the reservation for",
   "yes": "Yes, cancel",
   "no": "No"
+},
+"process": {
+  "title": "3 steps to your next trip",
+  "subtitle": "A simple, clear process designed to help you go further.",
+  "steps": {
+    "search": {
+      "title": "Search and choose",
+      "description": "Filter by location, dates, and vehicle type to find the right car for your trip."
+    },
+    "reserve": {
+      "title": "Book",
+      "description": "Choose your coverage, review the details, and confirm your booking with a secure payment."
+    },
+    "pickup": {
+      "title": "Pick up and enjoy",
+      "description": "Visit your selected branch, show your QR code, and collect the keys without unnecessary waits."
+    }
+    ,"enjoy":{
+    "title": "Enjoy and Return",
+    "description": "At the end of your trip, return the vehicle to the corresponding branch and enjoy your experience."
+    }
+  }
+},
+"requirements": {
+  "title": "Requirements to rent a vehicle",
+  "license": "Driving license",
+  "licenseDescription": "Bring a valid license for the type of vehicle you booked.",
+  "insurance": "Selected insurance",
+  "insuranceDescription": "Choose the coverage that best fits your trip's needs.",
+  "id": "Identity document",
+  "idDescription": "Bring your original document to complete the vehicle handover."
+},
+"title": {
+  "rentamovil": "Travel with RentaMovil"
+},
+"description": {
+  "rentamovil": "We help you find the right vehicle with simple bookings, clear options, and friendly support at every branch."
 },
 "VehicleInventary": {
   "title": "Vehicle Inventory",

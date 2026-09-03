@@ -25,6 +25,7 @@ function Home() {
   const [typeFilter, setTypeFilter] = useState("");
   const [modelFilter, setModelFilter] = useState(null);
   const [activeTab, setActiveTab] = useState("availability");
+  const [calendarFilters, setCalendarFilters] = useState(null);
 
   const [showFiltersModal, setShowFiltersModal] = useState(false);
   const filterCalendarRef = useRef(null);
@@ -88,11 +89,16 @@ function Home() {
     startDate,
     endDate,
   }) => {
+    setCalendarFilters((current) => ({
+      ...current,
+      branch,
+      startDate,
+      endDate,
+    }));
+
     const disponibles = cars.filter(
       (car) =>
-        car.branch
-          .toLowerCase()
-          .includes(branch.toLowerCase()) &&
+        car.branch.id === branch.id &&
         isAvailable(
           car,
           startDate,
@@ -164,6 +170,8 @@ const handleClearAllFilters = () => {
 
           <FilterCalendar
             onSearch={handleSearch}
+            value={calendarFilters}
+            onChange={setCalendarFilters}
           />
         </div>
       </div>
@@ -204,6 +212,7 @@ const handleClearAllFilters = () => {
                   type={car.type}
                   door= {car.door}
                   capacity={car.capacity}
+                  rentalSearch={calendarFilters}
                 />
               ))
             )}
@@ -296,6 +305,8 @@ const handleClearAllFilters = () => {
                     ref={filterCalendarRef}
                     onSearch={handleSearch}
                     variant="normal"
+                    value={calendarFilters}
+                    onChange={setCalendarFilters}
                   />
                 )}
 

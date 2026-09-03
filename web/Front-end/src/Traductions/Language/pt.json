@@ -373,6 +373,39 @@
   "yes": "Sim, cancelar",
   "no": "Não"
 },
+"process": {
+  "title": "3 passos para sua próxima viagem",
+  "subtitle": "Um processo simples e claro, pensado para você ir mais longe.",
+  "steps": {
+    "search": {
+      "title": "1. Pesquise e escolha",
+      "description": "Filtre por local, datas e tipo de veículo para encontrar o carro ideal para sua viagem."
+    },
+    "reserve": {
+      "title": "2. Reserve",
+      "description": "Escolha sua cobertura, confira os detalhes e confirme sua reserva com um pagamento seguro."
+    },
+    "pickup": {
+      "title": "3. Retire e aproveite",
+      "description": "Vá até a filial escolhida, apresente seu código QR e receba as chaves sem esperas desnecessárias."
+    }
+  }
+},
+"requirements": {
+  "title": "Requisitos para alugar um veículo",
+  "license": "Carteira de motorista",
+  "licenseDescription": "Apresente uma carteira válida para o tipo de veículo reservado.",
+  "insurance": "Seguro selecionado",
+  "insuranceDescription": "Escolha a cobertura que melhor atende às necessidades da sua viagem.",
+  "id": "Documento de identidade",
+  "idDescription": "Leve seu documento original para concluir a entrega do veículo."
+},
+"title": {
+  "rentamovil": "Viaje com a RentaMovil"
+},
+"description": {
+  "rentamovil": "Ajudamos você a encontrar o veículo ideal com reservas simples, opções claras e atendimento próximo em cada filial."
+},
 "VehicleInventary": {
   "title": "Inventário de Veículos",
   "subtitle": "Consulte o estado e a localização de toda a frota",

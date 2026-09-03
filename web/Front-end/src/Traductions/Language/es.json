@@ -45,7 +45,7 @@
     "brand": "Marca",
     "model": "Modelo",
     "price": "Precio",
-    "type": "Tipo Vehiculo",
+    "type": "Tipo de motor",
     "typeElectric": "Eléctrico",
     "typeGasoline": "Gasolina",
     "typeHybrid": "Híbrido",
@@ -357,7 +357,7 @@
   },
   "notifications": {
     "unread": "Sin leer",
-    "all": "Todas",
+    "all": "Todas ",
     "confReservations": "Reservas Confirmadas",
     "pays": "Pagos",
     "cancel": "Canceladas",
@@ -380,6 +380,46 @@
     "yes": "Sí, cancelar",
     "no": "No",
     "confirm": "Confirmar"
+  },
+  "process": {
+    "title": "4 pasos para tu próximo viaje",
+    "subtitle": "Un proceso simple, claro y pensado para que llegues más lejos.",
+    "steps": {
+      "search": {
+        "title": "Busca y elige",
+        "description": "Filtra por ubicación, fechas y tipo de vehículo para encontrar el coche ideal para tu viaje."
+      },
+      "reserve": {
+        "title": "Reserva",
+        "description": "Elige tu cobertura, revisa los detalles y confirma tu reserva mediante un pago seguro."
+      },
+      "pickup": {
+        "title": "Recoge y disfruta",
+        "description": "Acércate a la sucursal seleccionada, muestra tu factura con tu licencia de conducción y recibe las llaves sin demoras ni filas innecesarias."
+      },
+
+      "return": {
+        "title": "Disfruta y Devuelve",
+        "description": "Al terminar tu viaje, devuelve el vehículo en la sucursal correspondiente y disfruta de tu experiencia."
+      }
+
+    }
+  },
+  "requirements": {
+    "title": "Requisitos para alquilar un vehículo",
+    "license": "Licencia de conducción",
+    "licenseDescription": "Presenta una licencia vigente y válida para el tipo de vehículo reservado.",
+    "insurance": "Seguro seleccionado",
+    "insuranceDescription": "Escoge la cobertura que mejor se adapte a las necesidades de tu viaje.",
+    "id": "Documento de identidad",
+    "idDescription": "Lleva tu documento original para completar la entrega del vehículo."
+  },
+  "title": {
+    "rentamovil": "Viaja con RentaMovil"
+  },
+  "description": {
+    "info-branches": "Nuestras sucursales están ubicadas en las principales ciudades del país, ofrecen su servicio de 8:00  hasta las 18:00."
+
   },
   "VehicleInventary": {
     "title": "Inventario de Vehículos",

@@ -26,7 +26,7 @@ import { useTheme } from "../../../theme/useTheme";
 
     const { themeName } = useTheme();
 
-    const colors = themes[themeName];
+    const colors = themes[themeName as keyof typeof themes];
 
     const styles = createStyles(colors);
 
