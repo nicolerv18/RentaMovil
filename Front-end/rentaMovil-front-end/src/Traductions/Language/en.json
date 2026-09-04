@@ -49,10 +49,10 @@
     "typeGasoline": "Gasoline",
     "typeHybrid": "Hybrid",
     "typeDiesel": "Diesel",
-    "Apply": "Apply filters",
-    "Clear": "Clear filters",
-    "min": "minimun",
-    "max": "maximun"
+    "apply": "Apply filters",
+    "clear": "Clear filters",
+    "min": "Minimum",
+    "max": "Maximum"
   },
   "reservation": {
     "ErrorDate": "Return date cannot be earlier than pickup date",
@@ -384,6 +384,9 @@
       "option14": "Bodywork"
     }
   },
+    "FilterVehicle":{
+    "placeholder":"Search by plate, brand or model..."
+  },
   "notifications": {
     "unread": "Unread",
     "all": "All",
@@ -418,12 +421,12 @@
     "inUse": "In Use ",
     "maintenance": "Maintenance ",
     "placeholderSearch": "Search by plate, brand or model...",
-    "gridTitle": "Grid",
-    "gridTitle2": "Table",
+    "cuadTitle": "Grid",
+    "cuadTitle2": "Table",
     "keyState": "State",
     "keyBranch": "Branch",
     "keyType": "Type",
-    "cleanFilters": " X Clear filters",
+    "CleanFilters": " X Clear filters",
     "resultsCount_one": "{{count}} vehicle found",
     "resultsCount_other": "{{count}} vehicles found",
     "notFound": "No vehicles found.",
@@ -453,6 +456,7 @@
         "image": "Vehicle image"
       },
       "name": "Name",
+      "brand": "Brand",
       "requiredName": "Name is required",
       "requiredNameMinLength": "Name must have at least 3 characters",
       "requiredNameMaxLength": "Name cannot exceed 50 characters",
@@ -477,6 +481,12 @@
       "requiredPlateMinLength": "License plate must have at least 2 characters",
       "requiredPlateMaxLength": "License plate cannot exceed 30 characters",
       "formatInvalidPlate": "Invalid plate format",
+      "model": "Model",
+      "modelPlaceholder": "Example: Volkswagen Gol, Corolla, Tesla Model 3...",
+      "requiredModel": "Model is required",
+      "requiredModelMinLength": "Model must have at least 2 characters",
+      "requiredModelMaxLength": "Model cannot exceed 30 characters",
+      "formatInvalidModel": "Model can only contain letters, numbers and hyphens.",
       "state": "Status",
       "edit": "Edit vehicle",
       "stateOptions": {
@@ -514,6 +524,10 @@
     "search": "Search by license plate or vehicle name",
     "noFound": "No vehicles found.",
     "newMaintenance": "Register a new maintenance",
+    "plate": "License plate",
+    "platePlaceholder": "Example plate: ABC123",
+    "requiredPlate": "License plate is required",
+    "formatInvalidPlate": "Invalid plate format",
     "date": "Date",
     "minDate": "The date cannot be earlier than today",
     "maxDate": "The date cannot be later than 30 days from today",
@@ -523,8 +537,8 @@
     "modelPlaceholder": "Example: Volkswagen Gol, Corolla, Tesla Model 3...",
     "requiredModel": "Model is required",
     "requiredModelMinLength": "Model must contain at least 2 characters",
-    "maxLenghtModelMaxLength": "Model cannot contain more than 30 characters",
-    "FormatInvalidModel": "Model can only contain letters, numbers and hyphens.",
+    "requiredModelMaxLength": "Model cannot contain more than 30 characters",
+    "formatInvalidModel": "Model can only contain letters, numbers and hyphens.",
     "brand": "Brand",
     "brandPlaceholder": "Example: Toyota, Chevrolet, Renault....",
     "requiredBrand": "Brand is required",

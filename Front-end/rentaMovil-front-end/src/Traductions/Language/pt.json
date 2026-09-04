@@ -51,7 +51,9 @@
     "typeHybrid": "Híbrido",
     "typeDiesel": "Diesel",
     "apply": "Aplicar filtros",
-    "clear": "Limpar filtros"
+    "clear": "Limpar filtros",
+    "min": "Mínimo",
+    "max": "Máximo"
   },
   "reservation": {
     "ErrorDate": "A data de devolução não pode ser anterior à data de retirada",
@@ -417,12 +419,12 @@
     "inUse": "Em uso ",
     "maintenance": "Manutenção ",
     "placeholderSearch": "Buscar por placa, marca ou modelo...",
-    "gridTitle": "Grade",
-    "gridTitle2": "Tabela",
+    "cuadTitle": "Grade",
+    "cuadTitle2": "Tabela",
     "keyState": "Estado",
     "keyBranch": "Filial",
     "keyType": "Tipo",
-    "cleanFilters": " X Limpar filtros",
+    "CleanFilters": " X Limpar filtros",
     "resultsCount_one": "{{count}} veículo encontrado",
     "resultsCount_other": "{{count}} veículos encontrados",
     "notFound": "Nenhum veículo encontrado.",
@@ -452,6 +454,7 @@
         "image": "Imagem do veículo"
       },
       "name": "Nome",
+      "brand": "Marca",
       "requiredName": "O nome é obrigatório",
       "requiredNameMinLength": "O nome deve ter pelo menos 3 caracteres",
       "requiredNameMaxLength": "O nome não pode exceder 50 caracteres",
@@ -461,6 +464,12 @@
       "requiredPlateMinLength": "A placa deve ter pelo menos 2 caracteres",
       "requiredPlateMaxLength": "A placa não pode exceder 30 caracteres",
       "formatInvalidPlate": "Formato de placa inválido",
+      "model": "Modelo",
+      "modelPlaceholder": "Exemplo: Volkswagen Gol, Corolla, Tesla Model 3...",
+      "requiredModel": "O modelo é obrigatório",
+      "requiredModelMinLength": "O modelo deve ter pelo menos 2 caracteres",
+      "requiredModelMaxLength": "O modelo não pode ter mais de 30 caracteres",
+      "formatInvalidModel": "O modelo só pode conter letras, números e hífens.",
       "state": "Status",
       "edit": "Editar veículo",
       "stateOptions": {
@@ -487,6 +496,9 @@
   "FiltrerStatus": {
     "placeholder": "Buscar por placa, marca ou modelo...",
     "all": "Todos"
+  },
+    "FilterVehicle":{
+    "placeholder":"Buscar por placa, marca ou modelo..."
   },
   "CartVehiculeStatus": {
     "veicle": "Veículo",

@@ -51,7 +51,9 @@
     "typeHybrid": "Híbrido",
     "typeDiesel": "Diesel",
     "apply": "Aplicar filtros",
-    "clear": "Limpiar filtros"
+    "clear": "Limpiar filtros",
+    "min": "Mínimo",
+    "max": "Máximo"
   },
 
   "reservation": {
@@ -448,6 +450,7 @@
         "image": "Imagen del vehículo"
       },
       "name":"Nombre",
+      "brand":"Marca",
       "requiredName":"El nombre es obligatorio",
       "requiredNameMinLength":"El nombre debe tener al menos 3 caracteres",
       "requiredNameMaxLength":"El nombre no puede exceder los 50 caracteres",
@@ -510,9 +513,12 @@
     "Maintenance":"Mantenimiento",
     "InMaintenance":"En mantenimiento"
   },
+  "FilterVehicle":{
+    "placeholder":"Buscar por placa, marca o modelo..."
+  },
   "MaintenanceForm":{
     "title":"Vehículos para mantenimiento",
-    "search":"Bususca por placa o nombre del vehículo",
+    "search":"Búsqueda por placa, marca o modelo...",
     "noFound":"No se encontraron vehículos.",
     "newMaintenance":"Registrar un nuevo mantenimiento",
     "plate":"Placa",

@@ -178,51 +178,6 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--accent, #00C853);
     flex-shrink: 0;
 }
-.vehicle-list{
-display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(259px, 3fr));
-  flex-wrap: wrap;
-  gap: 28px;
-  max-height: 1074px;
-  overflow-y: auto;
-  padding-right: 16px;
-  padding-left: 0px;
-  padding-right: 94px;
-}
-.vehicle-card {
-    display: flex;
-display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: 12px;
-  border: 2px solid var(--border);
-  border-radius: 15px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  width: 263px;
-  background: var(--card-bg);
-  color: var(--text-h);
-}
-.vehicle-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.vehicle-card--active {
-    border-color: var(--primary, #2D7FF9);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-.vehicle-card-top {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 8px;
-}
-.vehicle-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 8px;
-}   
 .panel-header p {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
@@ -245,25 +200,7 @@ width: 90%;
   font-weight: 700;
 }
 
-.state-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-  background: #999;
-}
 
-.vehicle-state.disponible .state-dot {
-  background: #16a34a;
-}
-.vehicle-state.en-uso .state-dot {
-  background: #2563eb;
-}
-
-
-.vehicle-state.reservado .state-dot {
-  background: #f59e0b;
-}
 @media (max-width: 768px) {
     .maintenance-form {
         grid-template-columns: 1fr;

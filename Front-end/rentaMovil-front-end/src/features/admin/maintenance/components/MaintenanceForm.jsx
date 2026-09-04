@@ -3,52 +3,85 @@ import { AiOutlineDashboard } from 'react-icons/ai';
 import Animation from '../../../../shared/components/layout/Animation';
 import { useMemo, useState } from 'react';
 import ValidateDate from './ValidateDate';
-import { vehicles } from '../service/CarsMock';
+import VehicleCard from './VehcileCard';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import FilterVehicle from './FilterVehicle';
+import { CarsMock } from '../service/CarsMock';
+import { createMaintenance } from '../hooks/useMaintenanceVehicles';
 function MaintenanceForm() {
+
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { register, formState: { errors }, handleSubmit, reset, setValue } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset, setValue, setError } = useForm();
     const [mos, setMos] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState('');
+    const [vehicles, setVehicles] = useState(CarsMock);
     const [selectedVehicle, setSelectedVehicle] = useState(null);
 
-    function insert(data) {
+    const filteredVehicles = useMemo(() => {
+        const searchTerm = search.trim().toLowerCase();
+        const availableStatuses = new Set(['disponible', 'en uso']);
+        return vehicles
+            .filter((vehicle) => availableStatuses.has(
+                String(vehicle.status || '').trim().toLowerCase()
+            ))
+            .filter((vehicle) => {
+                const vehicleName = [vehicle.brandName, vehicle.modelName]
+                    .filter(Boolean)
+                    .join(' ')
+                    .toLowerCase();
+                const plate = String(vehicle.plate || '').toLowerCase();
+
+                return !searchTerm || vehicleName.includes(searchTerm) || plate.includes(searchTerm);
+            });
+    }, [search, vehicles]);
+    function selectVehicle(vehicle) {
+        setSelectedVehicle(vehicle);
+        setValue('plate', vehicle.plate, { shouldValidate: true });
+        setValue('model', vehicle.modelName, { shouldValidate: true });
+        setValue('brand', vehicle.brandName, { shouldValidate: true });
+    }
+    async function insert(data) {
+        if (isLoading) return;
+
+        if (!selectedVehicle) {
+            setError('plate', {
+                type: 'manual',
+                message: t('MaintenanceForm.selectVehicle', {
+                    defaultValue: 'Selecciona un vehículo de la lista'
+                })
+            });
+            return;
+        }
         setIsLoading(true);
         setMos(true);
-
-        setTimeout(() => {
-            setMos(false);
+        //para en viar el id del vheiculo seleccionado.
+        const payload = {
+            ...data,
+            vehicleId: selectedVehicle?.id || null,
+            plate: data.plate.toUpperCase(),
+        };
+        try {
+            await createMaintenance(payload);
+            setVehicles((currentVehicles) => currentVehicles.map((vehicle) => (
+                vehicle === selectedVehicle
+                    ? { ...vehicle, status: 'En mantenimiento' }
+                    : vehicle
+            )));
             reset();
             setSelectedVehicle(null);
             setSearch('');
-            setIsLoading(false);
-        }, 2200);
-    }
-
-    const filteredVehicles = useMemo(() => {
-        const query = search.toLowerCase().trim();
-
-        if (!query) {
-            return vehicles;
+        } catch (error) {
+            console.error('Error al enviar los datos:', error);
         }
-
-        return vehicles.filter((vehicle) =>
-            [vehicle.placa, vehicle.name, vehicle.brand, vehicle.model, vehicle.state]
-                .some((value) => value?.toLowerCase().includes(query))
-        );
-    }, [search]);
-
-    function selectVehicle(vehicle) {
-        setSelectedVehicle(vehicle);
-        setValue('plate', vehicle.placa, { shouldValidate: true });
-        setValue('model', vehicle.model, { shouldValidate: true });
-        setValue('brand', vehicle.brand, { shouldValidate: true });
+        finally {
+            setMos(false);
+            setIsLoading(false);
+        }
     }
-
     return (
         <div className={style['maintenance-container']}>
             <div className={style['maintenance-sidebar']}>
@@ -59,48 +92,21 @@ function MaintenanceForm() {
                             <p>{t('MaintenanceForm.search')}</p>
                         </div>
                     </div>
-
-                    <input
-                        type="text"
-                        className={style['vehicle-search']}
-                        placeholder={t('MaintenanceForm.search')}
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                    <FilterVehicle query={search} setSearch={setSearch} />
+                    <VehicleCard
+                        vehicles={filteredVehicles}
+                        selectedVehicle={selectedVehicle}
+                        onSelect={selectVehicle}
+                        emptyMessage={t('MaintenanceForm.noFound')}
                     />
 
-                    <div className={style['vehicle-list']}>
-                        {filteredVehicles.length > 0 ? (
-                            filteredVehicles.map((vehicle) => (
-                                <button
-                                    key={vehicle.id}
-                                    type="button"
-                                    className={`${style['vehicle-card']} ${selectedVehicle?.id === vehicle.id ? style['vehicle-card--active'] : ''}`}
-                                    onClick={() => selectVehicle(vehicle)}
-                                >
-                                    <div className={style['vehicle-card-top']}>
-                                        <strong>{vehicle.placa}</strong>
-                                        <span className={`${style['vehicle-state']} ${style[vehicle.state.replace(' ', '-').toLowerCase()]}`}>
-                                            <span className={style['state-dot']} />
-                                            {vehicle.state}
-                                        </span>
-                                    </div>
-                                    <img src={vehicle.img} alt={vehicle.name} />
-                                    <p>{vehicle.name}</p>
-                                    <small>{vehicle.brand} • {vehicle.model}</small>
-                                </button>
-                            ))
-                        ) : (
-                            <p className={style['vehicle-empty']}>{t('MaintenanceForm.noFound')}</p>
-                        )}
-                    </div>
+
                 </div>
             </div>
-
             <form className={style['maintenance-form']} onSubmit={handleSubmit(insert)}>
                 <div className={style['maintenance-form-left']}>
                     <div className={style['maintenance-continerfor']}>
                         <h2>{t('MaintenanceForm.newMaintenance')}</h2>
-
                         <div className={style['maintenance-form-input']}>
                             <label htmlFor="plate">{t('CheckStatus.modal.plate')}</label>
                             <input
@@ -148,24 +154,6 @@ function MaintenanceForm() {
                                 </p>
                             )}
                         </div>
-
-                        <div className={style['maintenance-form-input']}>
-                            <label htmlFor="date">{t('MaintenanceForm.date')}</label>
-                            <input
-                                type="date"
-                                placeholder={t('MaintenanceForm.datePlaceholder')}
-                                {...register('date', {
-                                    required: t('MaintenanceForm.requiredDate'),
-                                    validate: ValidateDate
-                                })}
-                            />
-                            {errors.date && (
-                                <p className={style['error-message']}>
-                                    <AiOutlineDashboard /> {errors.date.message}
-                                </p>
-                            )}
-                        </div>
-
                         <div className={style['maintenance-form-right']}>
                             <div className={style['maintenance-form-input']}>
                                 <label htmlFor="brand">{t('MaintenanceForm.brand')}</label>
@@ -208,8 +196,41 @@ function MaintenanceForm() {
                                     </p>
                                 )}
                             </div>
-
-
+                            <div className={style['maintenance-form-input']}>
+                                <label htmlFor="date">{t('MaintenanceForm.date')}</label>
+                                <input
+                                    type="date"
+                                    placeholder={t('MaintenanceForm.datePlaceholder')}
+                                    {...register('date', {
+                                        required: t('MaintenanceForm.requiredDate'),
+                                        validate: ValidateDate
+                                    })}
+                                />
+                                {errors.date && (
+                                    <p className={style['error-message']}>
+                                        <AiOutlineDashboard /> {errors.date.message}
+                                    </p>
+                                )}
+                            </div>
+                            <div className={style['maintenance-form-input']}>
+                                <label htmlFor="price">{t("vehicleForm.price")}</label>
+                                <input
+                                    type="number"
+                                    placeholder="Ej: 100000"
+                                    step="100"
+                                    {...register('price', {
+                                        required: t("vehicleForm.priceRequired"),
+                                        valueAsNumber: true,
+                                        min: { value: 0, message: t("vehicleForm.minLenghtPrice") },
+                                        max: { value: 100000000, message: t("vehicleForm.maxLenghtPrice") }
+                                    })}
+                                />
+                                {errors.price && (
+                                    <p className={style['error-message']}>
+                                        <AiOutlineDashboard /> {errors.price.message}
+                                    </p>
+                                )}
+                            </div>
                             <div className={style['maintenance-form-input']}>
                                 <label htmlFor="maintenanceType">{t("MaintenanceForm.Type")}</label>
                                 <input
@@ -250,7 +271,6 @@ function MaintenanceForm() {
                                 )}
                             </div>
                         </div>
-
                         <div className={style['maintenance-form-observations']}>
                             <div className={style['maintenance-form-input']}>
                                 <label htmlFor="maintenance-notes">{t("MaintenanceForm.observations")}</label>
@@ -280,13 +300,12 @@ function MaintenanceForm() {
                             </div>
                         </div>
                     </div>
-
                     <div className={style['maintenance-form-buttons']}>
                         <button className="save" type="submit" disabled={isLoading}>
                             {isLoading ? t("MaintenanceForm.saving") : t("MaintenanceForm.save")}
                         </button>
                         <span className={style['vehicule-animation']}>
-                            
+
                             {mos && <Animation />}
                         </span>
                         <button className="history" type="button" onClick={() => navigate('/History')}>
