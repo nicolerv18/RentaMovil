@@ -1,8 +1,7 @@
-import { useState } from "react";
 import style from "./FiltrerHistory.module.css"
-import { ImSearch } from "react-icons/im";
-
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
+
 function FiltrerHistory({ query, setSearch, filterState, setFilterState }) {
     const { t } = useTranslation();
     const states = [
@@ -15,25 +14,38 @@ function FiltrerHistory({ query, setSearch, filterState, setFilterState }) {
 
     return (
         <>
-        <div className={style["filter-container"]}>
-            <div className={style["container-filter"]}>
-                <input value={query} onChange={(e) => setSearch(e.target.value)}
-                    placeholder={t("FiltrerHistory.placeholder")} />
-                <ImSearch className={style["icon-search"]} />
-            </div>
-            <div className={style["container-chips"]}>
-                {states.map((state) => (
-                    <button
-                        key={state.key}
-                        onClick={() => setFilterState(state.key)}
-                        className={filterState === state.key
-                            ? style["chip-active"]
-                            : style["chip"]}
-                    >
-                        {state.label}
-                    </button>
-                ))}
-            </div>
+            <div className={style['filter-card']}>
+                <div className={style['search-box']}>
+                    <AiOutlineSearch className={style['search-icon']} />
+                    <input value={query} onChange={(e) => setSearch(e.target.value)}
+                        placeholder={t("FiltrerHistory.placeholder")}
+                        className={style['search-input']}
+                    />
+                    {query && (
+                        <button
+                            type="button"
+                            onClick={() => setSearch('')}
+                            className={style['clear-btn']}
+                        >
+                            <AiOutlineClose />
+                        </button>
+                    )}
+                </div>
+                <div className={style['chips-container']}>
+                    {states.map((state) => {
+                        const isActive = filterState === state.key;
+
+                        return (
+                            <button
+                                key={state.key}
+                                onClick={() => setFilterState(state.key)}
+                                className={`${style['chip']} ${isActive ? style['chip--active'] : ''}`}
+                            >
+                                {state.label}
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
         </>
 

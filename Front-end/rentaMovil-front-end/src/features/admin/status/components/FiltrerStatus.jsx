@@ -17,8 +17,7 @@ function FiltrerStatus({ query, setSearch, filterState, setFilterState }) {
                     <AiOutlineSearch className={style['search-icon']} />
                     <input
                         type="text"
-                        value={query}
-                        onChange={(e) => setSearch(e.target.value)}
+                        value={query} onChange={(e) => setSearch(e.target.value)}
                         placeholder={t("FiltrerStatus.placeholder")}
                         className={style['search-input']}
                     />
