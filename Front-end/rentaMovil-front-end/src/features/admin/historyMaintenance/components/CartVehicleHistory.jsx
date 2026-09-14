@@ -1,54 +1,79 @@
-import React from 'react';
-import style from './CartVehicleHistory.module.css';
 import carImg from "../../../../assets/carro.png";
 import { useTranslation } from "react-i18next";
+import statusStyle from '../../status/components/CartVehiculeStatus.module.css';
 
-import { useState } from 'react';
 function CartVehicleHistory({ record = {}, onViewMore }) {
     const { t } = useTranslation();
-    
-    const { plate, date, type, state, notes, img: recordImg, model } = record;
-    const statusClass = {
-        'Pendiente': style['state--pendiente'],
-        'En progreso': style['state--progreso'],
-        'Completado': style['state--completado'],
-        'Cancelado': style['state--cancelado'],
-    }[state] || ''
+    const { location,plate, date, typeMaintenance, status, description, imageUrl: recordImg, modelName } = record;
+
+    const stateClass = {
+        'Pendiente': statusStyle['state--mantenimiento'],
+        'En progreso': statusStyle['state--en-uso'],
+        'Completado': statusStyle['state--disponible'],
+        'Cancelado': statusStyle['state--reservado'],
+    }[status] || '';
+
     const stateLabel = {
         'Pendiente': t("CartVehiculeMaintenance.pending"),
         'En progreso': t("CartVehiculeMaintenance.inProgress"),
         'Completado': t("CartVehiculeMaintenance.completed"),
-        'Cancelado': t("CartVehiculeMaintenance.cancel")
-    }[state] || state;
-
+        'Cancelado': t("CartVehiculeMaintenance.cancel"),
+    }[status] || status;
 
     const formattedDate = date ? new Date(date).toLocaleString() : 'Sin fecha';
+    const imgSrc = recordImg || carImg;
 
     return (
-       
-            <div className={style['history-card-container']}>
-                <div className={style['card-left']}>
-                    <div className={style['card-img-wrap']}>
-                        <img src={recordImg || carImg || 'https://via.placeholder.com/160x100?text=Auto'} alt={model || plate} />
-                    </div>
-                </div>
+        <div className={statusStyle['card-vehicule']}>
+            <div className={statusStyle['img-car-vehicule']}>
+                <img src={imgSrc} alt={`${modelName || 'Vehículo'}`} />
+            </div>
 
-                <div className={style['card-center']}>
-                    <div className={style['card-meta']}>
-                        <strong className={style['card-plate']}>{plate || 'N/A'}</strong>
-                        <span className={style['card-date']}>{formattedDate}</span>
-                    </div>
-                    <div className={style['card-type']}>{type || 'Mantenimiento'}</div>
-                    <p className={style['card-notes']}>{notes ? notes.slice(0, 140) : t("CartVehiculeMaintenance.offObservations")}</p>
-                </div>
+            <div className={statusStyle['text-vehicule']}>
+                <h3 className={statusStyle['name-car-vehicule']}>
+                    {modelName || 'Vehículo'}
+                    {<span className={statusStyle['model-vehicule']}>{plate}</span>}
+                </h3>
 
-                <div className={style['card-right']}>
-                    <span className={`${style['badge']} ${statusClass}`}>{stateLabel || 'Pendiente'}</span>
-                    <button className={style['card-btn']} onClick={() => onViewMore && onViewMore(record)}>{t("CartVehiculeMaintenance.seeMore")}</button>
+                {description && <p className={statusStyle['desc-vehicule']}>{description}</p>}
+
+                <div className={statusStyle['container-info']}>
+                    <div className={statusStyle['info-item']}>
+                        <span className={statusStyle['info-label']}>{t("CheckStatus.modal.plate")}</span>
+                        <span className={statusStyle['plate']}>{plate}</span>
+                    </div>
+
+                    {typeMaintenance && (
+                        <div className={statusStyle['info-item']}>
+                            <span className={statusStyle['info-label']}>{t("CheckStatus.modal.ubication")}</span>
+                            <span className={statusStyle['info-value']}>{typeMaintenance}</span>
+                        </div>
+                    )}
+
+                    {formattedDate && (
+                        <div className={statusStyle['info-item']}>
+                            <span className={statusStyle['info-label']}>{t("maintenanceForm.date") || 'Fecha'}</span>
+                            <span className={statusStyle['info-value']}>{formattedDate}</span>
+                        </div>
+                    )}
+
+                    {location && (
+                        <div className={statusStyle['info-item']}>
+                            <span className={statusStyle['info-label']}>{t("CheckStatus.modal.location")}</span>
+                            <span className={statusStyle['info-value']}>{location}</span>
+                        </div>
+                    )}
                 </div>
             </div>
-    
-    )
+
+            <diclassNv ame={statusStyle['card-actions']}>
+                <span className={`${statusStyle['state-badge']} ${stateClass}`}>{stateLabel}</span>
+                <button className={statusStyle['btn-ver-mas']} onClick={() => onViewMore && onViewMore(record)}>
+                    {t("CartVehiculeMaintenance.seeMore")}
+                </button>
+            </diclassNv>
+        </div>
+    );
 }
 
 export default CartVehicleHistory;

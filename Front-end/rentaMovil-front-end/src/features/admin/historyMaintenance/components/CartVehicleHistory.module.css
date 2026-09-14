@@ -1,95 +1,149 @@
-.history-card-container {
-display: flex;
-  flex-direction: row;
-  gap: 2px;
-  width: 100%;
+.card-vehicule {
+display: grid;
+  grid-template-columns: 150px 1fr 160px;
+  gap: 0;
+  width: 77%;
+  max-width: 801px;
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 13px;
+  padding: 45px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s;
-  min-height: 176px;
   align-items: center;
-  margin: 0px 47px 26px;
-  width: 82%;
+  margin: 0 auto 28px;
 }
 
-.history-card-container:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.card-vehicule:hover {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.13);
 }
 
-
-.card-left {
-  flex: 0 0 110px;
-}
-
-.card-img-wrap img {
-width: 174px;
-  height: 128px;
+/* ── Imagen ── */
+.img-car-vehicule {
+  width: 140px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   overflow: hidden;
+  border-radius: 6px;
   background: rgba(0, 30, 70, 0.04);
-  border-radius: 11px;
 }
 
-.card-center {
-  flex: 1;
-  padding: 0 17px;
+.img-car-vehicule img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ── Texto central ── */
+.text-vehicule {
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   border-left: 1px solid rgba(0, 30, 70, 0.1);
   border-right: 1px solid rgba(0, 30, 70, 0.1);
+  min-width: 0; /* evita que el grid lo desborde con textos largos */
 }
 
-.card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px
-}
-
-.card-plate {
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.card-date {
-  font-size: 12px;
-  color: var(--placeholder);
-
-
-}
-
-.card-type {
-  font-size: 16px;
-  color: var(--placeholder);
-
-  margin-bottom: 6px
-}
-
-.card-notes {
+.name-car-vehicule {
+  font-size: 18px;
+  color: var(--text-h);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
   margin: 0;
-  color: var(--placeholder);
-
-  font-size: 14px
+  line-height: 1.3;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-.card-right {
+.model-vehicule {
+  font-weight: 400;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.8em;
+}
+
+.desc-vehicule {
+  font-size: 13px;
+  color: var(--text-secondary, #6b7280);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; /* corta descripciones largas en vez de romper el layout */
+}
+
+/* ── Grid de datos (placa, ubicación, edad, km, combustible, precio) ── */
+.container-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 8px;
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(0, 30, 70, 0.1);
+  width: 100%;
+}
+
+.info-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  align-self: stretch;
-  gap: 8px;
-  padding-left: 16px;
+  gap: 2px;
+  min-width: 0;
 }
 
-.badge {
+.info-label {
+  font-size: 10px;
+  color: var(--text-secondary, #9ca3af);
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.plate {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-h);
+  font-family: 'Poppins', sans-serif;
+}
+
+.info-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-h);
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price-vehicule {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-h);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── Acciones ── */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-left: 20px;
+}
+
+.state-badge {
   font-size: 12px;
+  font-weight: 500;
   font-family: 'Poppins', sans-serif;
   padding: 5px 14px;
   border-radius: 999px;
@@ -98,78 +152,70 @@ width: 174px;
   width: 100%;
 }
 
-.state--pendiente {
-    background: #FFF7E6;
-    color: #D97706;
+.state--disponible {
+  background: #DCFCE7;
+  color: #166534;
 }
 
-.state--progreso {
-    background: #F3EEFF;
-    color: #8B5CF6;
+.state--en-uso {
+  background: #DBEAFE;
+  color: #1D4ED8;
 }
 
-
-.state--completado {
-    background: #EAFBF2;
-    color: #16A34A;
+.state--mantenimiento {
+  background: #FEF3C7;
+  color: #B45309;
 }
 
-.state--cancelado {
-    background: #FDECEC;
-    color: #DC2626;
+.state--reservado {
+  background: #EDE9FE;
+  color: #6D28D9;
 }
-.card-btn {
 
-font-size: 15px;
+.btn-ver-mas {
+  font-size: 15px;
   font-weight: 600;
   border: none;
   padding: 8px 10px;
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
-  transition: 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
   background-color: var(--button);
-  margin-left: 10px;
+  margin-left: 26px;
   margin-top: auto;
   cursor: pointer;
-
 }
 
-.btn:hover {
-  opacity: 0.95
-}
-
+/* ── Responsive ── */
 @media (max-width: 500px) {
-    .history-card-container {
-  margin: 0px 20px 14px;
-      
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .card-vehicule {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    width: 85%;
+    max-width: 85%;
+    padding: 16px;
+    margin-top: auto;
+  }
 
-    .card-left {
-        width: 100%;
-        flex: none;
-    }
+  .img-car-vehicule {
+    width: 100%;
+    height: 160px;
+  }
 
-    .card-img-wrap img {
-        width: 100%;
-        height: 165px;
-    }
+  .text-vehicule {
+    padding: 0;
+    border: none;
+  }
 
-    .card-center {
-        border-left: none;
-        border-right: none;
-        border-top: 1px solid rgba(0,30,70,0.1);
-        border-bottom: 1px solid rgba(0,30,70,0.1);
-        padding: 12px 0;
-        width: 100%;
-    }
+  .container-info {
+    grid-template-columns: 1fr 1fr; /* se mantiene en 2 columnas, más legible que apilar todo */
+  }
 
-    .card-right {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding-left: 0;
-    }
+  .card-actions {
+    padding-left: 0;
+    flex-direction: column;
+    width: 88%;
+    margin: 0 auto;
+    gap: 10px;
+  }
 }

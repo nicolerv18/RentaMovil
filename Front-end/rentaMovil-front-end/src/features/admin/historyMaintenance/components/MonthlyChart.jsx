@@ -3,16 +3,17 @@ import { useTranslation } from "react-i18next";
 
 import {ResponsiveContainer, BarChart,Bar,XAxis,YAxis, CartesianGrid,Tooltip} from "recharts";
 function MonthlyChart({ records }) {
-    const {t} = useTranslation()
-const months =  t("History.months", { returnObjects: true });
+    const { t } = useTranslation();
+    const months = t("History.months", { returnObjects: true });
 
-const monthlyData = months.map((month, index) => ({
-    month,
-    total: records.filter(record => {
-        const recordMonth = new Date(record.date).getMonth();
-        return recordMonth === index;
-    }).length
-}));
+    const monthlyData = months.map((month, index) => ({
+        month,
+        total: records.filter((record) => {
+            const date = record.date ? new Date(record.date) : null;
+            if (!date || Number.isNaN(date.getTime())) return false;
+            return date.getMonth() === index;
+        }).length,
+    }));
     return (
         
 <div className={style["chart-container"]}>

@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import style from '../components/CartVehiculeStatus.module.css'
 function CardVehiculeStatus({ brandName, modelName,age, plate, dailyPrice, mileage, engineTypeName, branchName,status, imageUrl, description,onVerMas }) {
     const { t, i18n } = useTranslation();
+
+    // mmontar esto en el backend:
     const fuelTypeKey = {
         gasolina: 'gasoline',
         diesel: 'diesel',

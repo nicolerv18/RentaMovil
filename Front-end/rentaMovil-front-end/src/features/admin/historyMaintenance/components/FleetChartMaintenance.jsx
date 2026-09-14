@@ -9,19 +9,19 @@ function FleetChartMaintenance({ records }) {
         completed: "Completado",
         cancel: "Cancelado",
     };
-    const COLORS = {// Definir los colores para cada estado de los vehículos
-    pending: "#F59E0B",     
-    inProgress: "#8B5CF6",  
-    completed: "#22C55E",  
-    cancel: "#EF4444", 
-    }
-    const desiredOrder = ["pending", "inProgress", "completed", "cancel"]
+    const COLORS = {
+        pending: "#F59E0B",
+        inProgress: "#8B5CF6",
+        completed: "#22C55E",
+        cancel: "#EF4444",
+    };
+    const desiredOrder = ["pending", "inProgress", "completed", "cancel"];
     const data = desiredOrder.map((stateKey) => ({
-        name: stateKey, // El nombre del estado
-        value: records.filter((v) => v.state === stateMap[stateKey]).length, // Contar la cantidad de vehículos que tienen ese estado
-    }))
-    console.log(data)
-    const total = records.length
+        name: stateKey,
+        value: records.filter((v) => String(v.status || v.state || '').trim() === stateMap[stateKey]).length,
+    }));
+
+    const total = records.length;
     return (
         <div className={style["fleet-chart-container"]}>
                  <h3>{t("History.title2")}:</h3>

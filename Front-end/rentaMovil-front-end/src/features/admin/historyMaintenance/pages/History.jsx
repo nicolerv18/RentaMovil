@@ -30,15 +30,15 @@ function History() {
     .filter((c) => {
       const fs = String(filterState || '').toLowerCase();
       if (fs === 'all' || fs === '') return true;
-      return String(c.state || '').toLowerCase() === fs;
+      return String(c.status || c.state || '').toLowerCase() === fs;
     })
     .filter((c) => {
       const q = String(query || '').trim().toLowerCase();
       if (!q) return true;
       return (
-        String(c.model || '').toLowerCase().includes(q) ||
+        String(c.modelName || c.model || '').toLowerCase().includes(q) ||
         String(c.plate || '').toLowerCase().includes(q) ||
-        String(c.type || '').toLowerCase().includes(q)
+        String(c.typeMaintenance || c.type || '').toLowerCase().includes(q)
       );
     });
 

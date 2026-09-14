@@ -30,6 +30,7 @@ function FiltrerHistory({ query, setSearch, filterState, setFilterState }) {
                             <AiOutlineClose />
                         </button>
                     )}
+                    
                 </div>
                 <div className={style['chips-container']}>
                     {states.map((state) => {
