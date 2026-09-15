@@ -8,9 +8,11 @@ display: flex;
   margin-left: 120px;
 }
 .maintenance-sidebar {
-    width: 100%;
-    order: 2;
-    margin-top: 51px;
+width: 100%;
+  order: 3;
+  margin-top: 51px;
+  margin-left: -14%;
+  display: inline-table;
 }
 .maintenance-container{
     display: grid;
@@ -83,6 +85,11 @@ display: flex;
     overflow: hidden;           /* oculta el scrollbar mientras crece */
     transition: height 0.1s ease;
 }
+.vehicule-animation{
+    margin: 2% -32% -14%;
+    margin-top: 2%;
+    margin-top: auto;
+}
 .maintenance-container h2 {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 19px;
@@ -118,19 +125,31 @@ display: flex;
     font-weight: bold;
 }
 .maintenance-form-buttons button{
-    padding: 12px 20px; 
-    font-size: 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    min-width: 120px;
+font-size: 15px;
+  font-weight: 600;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.2s, color 0.2s;
+  background-color: var(--button);
+  margin-left: 10px;
+  margin-top: auto;
+  cursor: pointer;
 }
 .error-message {
-    color: red;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 0px;
+font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  padding: 6px 10px;
+  background: rgba(239,68,68,0.08);
+  border-radius: 8px;
+  border-left: 3px solid #ef4444;
 }
 .panel-header {
     display: flex;
@@ -159,51 +178,6 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--accent, #00C853);
     flex-shrink: 0;
 }
-.vehicle-list{
-display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(259px, 3fr));
-  flex-wrap: wrap;
-  gap: 28px;
-  max-height: 1074px;
-  overflow-y: auto;
-  padding-right: 16px;
-  padding-left: 0px;
-  padding-right: 94px;
-}
-.vehicle-card {
-    display: flex;
-display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: 12px;
-  border: 2px solid var(--border);
-  border-radius: 15px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  width: 263px;
-  background: var(--card-bg);
-  color: var(--text-h);
-}
-.vehicle-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.vehicle-card--active {
-    border-color: var(--primary, #2D7FF9);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-.vehicle-card-top {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 8px;
-}
-.vehicle-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 8px;
-}   
 .panel-header p {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
@@ -226,25 +200,7 @@ width: 90%;
   font-weight: 700;
 }
 
-.state-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-  background: #999;
-}
 
-.vehicle-state.disponible .state-dot {
-  background: #16a34a;
-}
-.vehicle-state.en-uso .state-dot {
-  background: #2563eb;
-}
-
-
-.vehicle-state.reservado .state-dot {
-  background: #f59e0b;
-}
 @media (max-width: 768px) {
     .maintenance-form {
         grid-template-columns: 1fr;
@@ -255,3 +211,6 @@ width: 90%;
         grid-column: span 1;
     }
 }
+/* {
+  outline: 1px solid red;
+}*/

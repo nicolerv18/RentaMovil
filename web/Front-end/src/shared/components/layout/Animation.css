@@ -1,9 +1,5 @@
 .animation-container{
-    padding: 100px;
-    position: absolute;
-    top: 120%;
-    left: 70%;
-    transform: translate(-50%, -50%);
+
 }
 .animation-cc{
     display: flex;
@@ -15,7 +11,7 @@
 .animation-car{
     position: absolute;
     left: 0;
-    width: 40px;
+    width: 60px;
     color: #055c0f;
     height: 20px;   
     margin-bottom: 15px; 

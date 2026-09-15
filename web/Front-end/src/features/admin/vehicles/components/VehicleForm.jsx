@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Animation from '../../../../shared/components/layout/Animation';
 import FileDialog from "../../../../shared/components/layout/FileDialog";
 import { useTranslation } from 'react-i18next';
+import { getValidVehicleYearRange, validateVehicleYear } from '../../../../shared/utils/calculateAge';
 
 function VehicleForm() {
     const { t } = useTranslation();
@@ -12,9 +13,10 @@ function VehicleForm() {
     const [mos, setmos] = useState(false);
     const [vehicleFile, setVehicleFile] = useState(null); // esto verificará el estado del fileDialog
     const [isLoading, setIsLoading] = useState(false);// agrega un estado de carga 
-
+    const { minYear, maxYear, currentYear } = getValidVehicleYearRange(1); // optiene el rango de los vehiclos permitidos
     const handleFileChange = (file) => {
         setVehicleFile(file);
+
         if (file) clearErrors('vehicleImage');
     }
 
@@ -127,9 +129,9 @@ function VehicleForm() {
                                     placeholder={t('vehicleForm.placeholderModel')}
                                     {...register("model", {
 
-                                        required: "El modelo es obligatorio",
-                                        minLength: { value: 2, message: "El modelo debe tener al menos 2 caracteres." },
-                                        maxLength: { value: 30, message: "El modelo no debe superar 30 caracteres." },
+                                        required: t("MaintenanceForm.requiredModel"),
+                                        minLength: { value: 2, message: t("MaintenanceForm.requiredModelMinLength") },
+                                        maxLength: { value: 30, message: t("MaintenanceForm.requiredModelMinLength") },
 
                                         pattern: {
                                             value: /^[A-Za-z0-9\s\-]{2,30}$/,
@@ -143,17 +145,17 @@ function VehicleForm() {
                                     </p>
                                 )}
                             </div>
-                                <div className={style['vehicle-form-input']}>
-                                <label htmlFor="price">Precio:</label>
+                            <div className={style['vehicle-form-input']}>
+                                <label htmlFor="price">{t("vehicleForm.price")}</label>
                                 <input
                                     type="number"
                                     placeholder="Ej: 100000"
                                     step="100"
                                     {...register('price', {
-                                        required: 'El precio es obligatorio',
+                                        required: t("vehicleForm.priceRequired"),
                                         valueAsNumber: true,
-                                        min: { value: 0, message: 'El precio debe ser mayor o igual a 0' },
-                                        max: { value: 100000000, message: 'El precio no debe superar 100000000' }
+                                        min: { value: 0, message: t("vehicleForm.minLenghtPrice") },
+                                        max: { value: 100000000, message: t("vehicleForm.maxLenghtPrice") }
                                     })}
                                 />
                                 {errors.price && (
@@ -162,6 +164,78 @@ function VehicleForm() {
                                     </p>
                                 )}
                             </div>
+                            <div className={style['vehicle-form-input']}>
+                                <label htmlFor='mileage'>{t("vehicleForm.mileage")}</label>
+                                <input
+                                    type="number"
+                                    placeholder="Ej: 10000"
+                                    id="mileage"
+                                    step="1000"
+                                    {...register('mileage', {
+                                        required: t("vehicleForm.mileageRequired"),
+                                        valueAsNumber: true,
+                                        min: { value: 0, message: t("vehicleForm.minLenghtMileage") },
+                                        max: { value: 1000000, message: t("vehicleForm.maxLenghtMileage") }
+                                    })}
+                                />
+                                {errors.mileage && (
+                                    <p className={style['error-message']}>
+                                        <AiOutlineDashboard /> {errors.mileage.message}
+                                    </p>
+                                )}
+                            </div>
+
+                            <div className={style['vehicle-form-input']}>
+                                <label htmlFor='age'>{t("vehicleForm.age")}</label>
+                                <input
+                                    type="number"
+                                    placeholder={`Ej: ${currentYear}`}
+                                    step="1"
+                                    {...register('age', {
+                                        required: t("vehicleForm.ageRequired"),
+                                        valueAsNumber: true,
+                                        validate: (value) => {
+                                            const validationResult = validateVehicleYear(value, 1);
+
+                                            if (validationResult === 'YEAR_TOO_LOW') {
+                                                return t("vehicleForm.minLenghtAge", { min: minYear }) || `El año debe ser mayor a ${minYear}`;
+                                            }
+                                            if (validationResult === 'YEAR_TOO_HIGH') {
+                                                return t("vehicleForm.maxLenghtAge", { max: maxYear }) || `El año no puede superar ${maxYear}`;
+                                            }
+                                            if (validationResult === 'INVALID_NUMBER') {
+                                                return t("vehicleForm.invalidAge") || "Ingresa un año válido";
+                                            }
+
+                                            return true;
+                                        }
+                                    })}
+                                />
+                                {errors.age && (
+                                    <p className={style['error-message']}>
+                                        <AiOutlineDashboard /> {errors.age.message}
+                                    </p>
+                                )}
+                            </div>
+                            <div className={style['vehicle-form-input']}>
+                                <label htmlFor='capacity'>{t('vehicleForm.capacity')}</label>
+                                <input
+                                    type="number"
+                                    placeholder="Ej: 5"
+                                    id="capacity"
+                                    {...register("capacity", {
+                                        required: t('vehicleForm.requiredCapacity'),
+                                        min: { value: 1, message: t('vehicleForm.minLenghtCapacity') },
+                                        max: { value: 100, message: t('vehicleForm.maxLenghtCapacity') }
+                                    })}
+                                />
+                                {errors.capacity && (
+                                    <p className={style['error-message']}>
+                                        <AiOutlineDashboard /> {errors.capacity.message}
+                                    </p>
+                                )}
+                            </div>
+
                             <div className={style['vehicle-form-input']}>
                                 <label htmlFor="type">{t('vehicleForm.Type')}</label>
                                 <select

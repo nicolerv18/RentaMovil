@@ -1,22 +1,53 @@
-import { useState } from "react";
+
 import style from "./FiltrerHistory.module.css"
-import { ImSearch } from "react-icons/im";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
+
 function FiltrerHistory({ query, setSearch, filterState, setFilterState }) {
-    const states = ["Todos", "Pendiente", "En progreso", "Completado", "Cancelado"];// Array de estados para el filtro, se puede modificar según los estados reales de los vehículos
+    const { t } = useTranslation();
+    const states = [
+        { key: "all", label: t("FiltrerHistory.all") },
+        { key: "Pendiente", label: t("FleetChartMaintenance.pending") },
+        { key: "En progreso", label: t("FleetChartMaintenance.inProgress") },
+        { key: "Completado", label: t("FleetChartMaintenance.completed") },
+        { key: "Cancelado", label: t("FleetChartMaintenance.cancel") },
+    ];// Array de estados para el filtro, se puede modificar según los estados reales de los vehículos
 
     return (
         <>
-            <div className={style["container-filter"]}>
-                <input value={query} onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Buscar por placa, marca o modelo" />
-                <ImSearch className={style["icon-search"]} />
-            </div>
-            <div className={style["container-chips"]}>
-                {states.map((state) => (
-                    <button key={state} onClick={() => setFilterState(state)} className={filterState === state ? style["chip-active"] : style["chip"]}>    {/* // Cambia el estilo del botón según si está activo o no  */}
-                        {state}
-                    </button>
-                ))}
+            <div className={style['filter-card']}>
+                <div className={style['search-box']}>
+                    <AiOutlineSearch className={style['search-icon']} />
+                    <input value={query} onChange={(e) => setSearch(e.target.value)}
+                        placeholder={t("FiltrerHistory.placeholder")}
+                        className={style['search-input']}
+                    />
+                    {query && (
+                        <button
+                            type="button"
+                            onClick={() => setSearch('')}
+                            className={style['clear-btn']}
+                        >
+                            <AiOutlineClose />
+                        </button>
+                    )}
+                    
+                </div>
+                <div className={style['chips-container']}>
+                    {states.map((state) => {
+                        const isActive = filterState === state.key;
+
+                        return (
+                            <button
+                                key={state.key}
+                                onClick={() => setFilterState(state.key)}
+                                className={`${style['chip']} ${isActive ? style['chip--active'] : ''}`}
+                            >
+                                {state.label}
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
         </>
 
