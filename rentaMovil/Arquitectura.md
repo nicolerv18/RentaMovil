@@ -72,6 +72,15 @@ rentaMovil/
 ```
 
 ---
+src/ 
+|-app/
+|-assets/
+|-features/
+|-shared/
+|-state/
+|-theme/
+|-traslation/
+|-types/
 
 # assets/
 
