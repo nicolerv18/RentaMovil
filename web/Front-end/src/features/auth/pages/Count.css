@@ -280,7 +280,7 @@
     }
 
     .theme-card.active {
-        border-color: var(--modal-button);
+        border-color: var(--modal-hover);
         background-color: var(--modal-hover);
     }
 

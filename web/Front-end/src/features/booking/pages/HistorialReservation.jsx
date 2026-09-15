@@ -1,34 +1,24 @@
+import { useState } from "react";
 import "./HistorialReservation.css";
-import { useState, useEffect } from "react";
 import Navbar from "../../../shared/components/layout/Navbar.jsx";
 import Footer from "../../../shared/components/layout/Footer.jsx";
-import img from "../../../assets/carts/car1.jpg";
+import ReservationDetailModal from "../components/HistoryReservationDetail.jsx";
 import { useTranslation } from "react-i18next";
 import { useReservations } from "../hooks/useReservations.js";
 
 function HistorialReservation() {
   const { t } = useTranslation();
+  
   const {
-  reservas,
-  selectedReserva,
-  showCancelModal,
-  setSelectedReserva,
-  setShowCancelModal,
-  handleCancelReservation,
-} = useReservations();
+    reservas,
+    selectedReserva,
+    showCancelModal,
+    setSelectedReserva,
+    setShowCancelModal,
+    handleCancelReservation,
+  } = useReservations();
 
-
-  const cancelarReserva = (id) => {
-    setReservas((prev) =>
-      prev.map((r) =>
-        r.id === id
-          ? { ...r, status: "cancelada" }
-          : r
-      )
-    );
-
-    setShowCancelModal(false);
-  };
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   return (
     <>
@@ -36,158 +26,143 @@ function HistorialReservation() {
 
       <div className="historial-page">
         <div className="cards-container">
-
+          
           <h2 className="title">
-            {t("historyReservation.myReservations")}
+            {t("historyReservation.myReservations", "Mis Reservas")}
           </h2>
 
           {reservas.map((r) => (
-            <div
-              key={r.id}
-              className="card-reserva"
-            >
-              <div className="card-content">
-                
-                  <span
-                    className={`status ${r.status}`}
-                  >
-                    {r.status}
+            <article key={r.id} className="reserva-card">
+              
+              {/* Barra superior de metadatos de la reserva */}
+              <header className="reserva-header">
+                <div className="reserva-meta">
+                  <span className="reserva-id">#{r.id}</span>
+                  <span className="reserva-creada">
+                    {t("historyReservation.created", "Creada el")} {r.created_at}
                   </span>
-                <img
-                  src={r.vehicle.img}
-                  alt={`${r.vehicle.brand} ${r.vehicle.model}`}
-                  className="img-historial"
-                />
+                </div>
+                <span className={`reserva-badge estado-${r.status}`}>
+                  {t(`historyReservation.status.${r.status}`, r.status)}
+                </span>
+              </header>
 
-                <div className="card-body">
+              {/* El contenedor del cuerpo de la tarjeta */}
+              <div className="reserva-body">
+                
+                {/* COLUMNA 1: Vehículo */}
+                <section className="reserva-vehiculo">
+                  <div className="vehiculo-imagen-wrapper">
+                    <img src={r.vehicle.img} alt={`${r.vehicle.brand} ${r.vehicle.model}`} />
+                    <span className="vehiculo-placa">{r.vehicle.plate}</span>
+                  </div>
+                  
+                  <div className="vehiculo-info">
+                    <span className="vehiculo-categoria">{r.vehicle.category?.toUpperCase()}</span>
+                    <h4 className="titulo-card">{r.vehicle.brand} {r.vehicle.model}</h4>
+                    <div className="vehiculo-specs">
+                      <span>⚙️ {r.vehicle.transmission}</span>
+                      <span>👥 {r.vehicle.seats} {t("historyReservation.seats", "Pasajeros")}</span>
+                    </div>
+                    {r.branch && (
+                      <div className="vehiculo-sucursal">
+                        📍 {r.branch.name}, {r.branch.city}
+                      </div>
+                    )}
+                  </div>
+                </section>
 
-                  <h4 className="car-name">
-                    {r.vehicle.brand}{" "}
-                    {r.vehicle.model}
-                  </h4>
+                {/* COLUMNA 2: Fechas y Duración (Estilo pasaje/ticket) */}
+                <section className="reserva-tiempos">
+                  <div className="tiempo-bloque">
+                    <span className="tiempo-label">{t("historyReservation.pickup", "ENTREGA")}</span>
+                    <span className="tiempo-fecha">{r.tiempos.start_date.split(' ').slice(0, 3).join(' ')}</span>
+                    <span className="tiempo-hora">{r.tiempos.start_date.split(' ').slice(3).join(' ')}</span>
+                  </div>
+                  
+                  <div className="tiempo-bloque">
+                    <span className="tiempo-label">{t("historyReservation.return", "DEVOLUCIÓN")}</span>
+                    <span className="tiempo-fecha">{r.tiempos.end_date.split(' ').slice(0, 3).join(' ')}</span>
+                    <span className="tiempo-hora">{r.tiempos.end_date.split(' ').slice(3).join(' ')}</span>
+                  </div>
+                  
+                  <div className="tiempo-duracion">
+                    <span className="tiempo-label">{t("historyReservation.duration", "Duración:")}</span>
+                    <span className="badge-duracion">{r.tiempos.days} {t("historyReservation.days", "Días")}</span>
+                  </div>
+                </section>
 
-                  <div className="info-grid">
-
-                    <p>
-                      <strong>
-                        {t(
-                          "historyReservation.date"
-                        )}
-                      </strong>
-                      <br />
-                      {r.start_date} →{" "}
-                      {r.end_date}
-                    </p>
-
-                    <p>
-                      <strong>
-                        {t(
-                          "historyReservation.days"
-                        )}
-                      </strong>
-                      <br />
-                      {r.days}
-                    </p>
-
-                    <p>
-                      <strong>
-                        {t(
-                          "historyReservation.total"
-                        )}
-                      </strong>
-                      <br />$
-                      {r.total_price.toLocaleString()}
-                    </p>
-
+                {/* COLUMNA 3: Precios y BOTONES (Aquí adentro se acomodan perfecto) */}
+                <section className="reserva-acciones">
+                  <div className="facturacion-resumen">
+                    <span className="facturacion-label">{t("historyReservation.totalAmount", "MONTO FACTURADO")}</span>
+                    <div className="facturacion-precio">
+                      <span className="precio-monto">${r.billing.total_price.toLocaleString()}</span>
+                      <span className="precio-moneda">{r.currency}</span>
+                    </div>
+                    {r.billing.insurance_included && (
+                      <span className="facturacion-cobertura">✓ {t("historyReservation.insuranceIncluded", "Cobertura incluida")}</span>
+                    )}
                   </div>
 
-                  {r.status === "activa" && (
-                    <div className="btn-container">
+                  {/* Caja contenedora estricta de botones */}
+                  <div className="acciones-botones">
+                    <button 
+                      className="btn btn-primario"
+                      onClick={() => {
+                        setSelectedReserva(r);
+                        setShowDetailsModal(true);
+                      }}
+                    >
+                      {t("historyReservation.details", "Ver Detalles")}
+                    </button>
+                    
+                    {r.status === "activa" && (
                       <button
-                        className="btn-cancel"
+                        className="btn btn-secundario"
                         onClick={() => {
                           setSelectedReserva(r);
-                          setShowCancelModal(
-                            true
-                          );
+                          setShowCancelModal(true);
                         }}
                       >
-                        {t(
-                          "historyReservation.cancel"
-                        )}
+                        {t("historyReservation.cancel", "Cancelar Reserva")}
                       </button>
-                    </div>
-                  )}
-
-                </div>
+                    )}
+                  </div>
+                </section>
 
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
 
-      {showCancelModal &&
-        selectedReserva && (
-          <div
-            className="modal-overlay"
-            onClick={() =>
-              setShowCancelModal(false)
-            }
-          >
-            <div
-              className="modal-content"
-              onClick={(e) =>
-                e.stopPropagation()
-              }
-            >
-              <p>
-                {t(
-                  "historyReservation.sure"
-                )}{" "}
-                <strong>
-                  {
-                    selectedReserva.vehicle
-                      .brand
-                  }{" "}
-                  {
-                    selectedReserva.vehicle
-                      .model
-                  }
-                </strong>
-                ?
-              </p>
-
-              <div className="modal-actions">
-
-                <button
-                  className="btn-negative"
-                  onClick={() =>
-                    setShowCancelModal(
-                      false
-                    )
-                  }
-                >
-                  {t(
-                    "historyReservation.no"
-                  )}
-                </button>
-
-                <button
-                  className="btn-danger"
-                  onClick={() =>
-  handleCancelReservation(selectedReserva.id)
-}
-                >
-                  {t(
-                    "historyReservation.yes"
-                  )}
-                </button>
-
-              </div>
+      {/* MODAL DE CONFIRMACIÓN DE CANCELACIÓN */}
+      {showCancelModal && selectedReserva && (
+        <div className="modal-overlay" onClick={() => setShowCancelModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <p>
+              {t("historyReservation.sure", "¿Deseas cancelar la reserva del vehículo?")}{" "}
+              <strong>{selectedReserva.vehicle.brand} {selectedReserva.vehicle.model}</strong>?
+            </p>
+            <div className="modal-actions">
+              <button className="btn-negative" onClick={() => setShowCancelModal(false)}>
+                {t("historyReservation.no", "No")}
+              </button>
+              <button className="btn-danger" onClick={() => handleCancelReservation(selectedReserva.id)}>
+                {t("historyReservation.yes", "Sí, Cancelar")}
+              </button>
             </div>
           </div>
-        )}
+        </div>
+      )}
+
+      {/* COMPONENTE MODAL DE DESGLOSE FINANCIERO */}
+      <ReservationDetailModal 
+        isOpen={showDetailsModal} 
+        reserva={selectedReserva} 
+        onClose={() => setShowDetailsModal(false)} 
+      />
 
       <Footer />
     </>

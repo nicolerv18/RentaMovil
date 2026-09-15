@@ -2,7 +2,7 @@ import "./HomeAdmin.css";
 import NavbarAdmin from "../../../../shared/components/layout/NavBarAdmin.jsx";
 import FooterAdmin from "../../../../shared/components/layout/FooterAdmin.jsx";
 import CartVehicule from "../../../vehicles/components/CartVehicule";
-import FiltrerType from "../../../vehicles/components/FiltrerType.jsx";
+import FiltrerType from "../../../vehicles/components/FilterType.jsx";
 import FiltrerBrand from "../../../vehicles/components/FiltrerBrand.jsx";
 import FiltrerPrice from "../../../vehicles/components/FiltrerPrice.jsx";
 import FiltrerModel from "../../../vehicles/components/FiltrerModel.jsx";

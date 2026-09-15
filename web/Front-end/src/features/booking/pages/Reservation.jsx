@@ -240,7 +240,9 @@
 
                     <InsuranceSelector options={insurance} />
 
-                    <button type="submit">{t("reservation.submit")}</button>
+                    <button className="btn-booking" type="submit">
+                        {t("reservation.submit")}
+                    </button>
                 </form>
                 </div>
             </div>

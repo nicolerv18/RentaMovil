@@ -3,15 +3,36 @@ import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { brandsMock } from "../data/mocks/brand.js";
+import { vehicleModelsMock } from "../data/mocks/vehicle_model.js";
+
 function FiltrerBrand({ cars = [], onFilter }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const brands = [...new Set(cars.map((c) => c.brand))];
+
+  const brands = [
+    ...new Set(
+      cars
+        .map((car) => {
+          const model = vehicleModelsMock.find(
+            (item) => String(item.model_id) === String(car.model_id)
+          );
+
+          const brand = brandsMock.find(
+            (item) => String(item.brand_id) === String(model?.brand_id)
+          );
+
+          return brand?.name;
+        })
+        .filter(Boolean)
+    ),
+  ].sort();
 
   const handleSelect = (brand) => {
     const newSelected = selected === brand ? "" : brand;
+
     setSelected(newSelected);
     onFilter(newSelected);
   };
@@ -27,7 +48,10 @@ function FiltrerBrand({ cars = [], onFilter }) {
           >
             <div className="btn-filtrar-content">
               <FaCar className="icon2" />
-              <span>{selected || t("filtersHome.brand")}</span>
+
+              <span>
+                {selected || t("filtersHome.brand")}
+              </span>
             </div>
 
             <FaArrowAltCircleDown
@@ -51,7 +75,9 @@ function FiltrerBrand({ cars = [], onFilter }) {
                         onChange={() => handleSelect(brand)}
                       />
 
-                      <span className="item-label">{brand}</span>
+                      <span className="item-label">
+                        {brand}
+                      </span>
                     </label>
                   </li>
                 ))}

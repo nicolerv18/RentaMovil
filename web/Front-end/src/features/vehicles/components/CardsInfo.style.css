@@ -306,7 +306,7 @@
     width: 42px;
     height: 40px;
     margin-bottom: 20px;
-    color: var(--navbar);
+    color: var(--button);
     flex-shrink: 0;
     }
 

@@ -4,7 +4,7 @@ import Footer from "../../../shared/components/layout/Footer.jsx";
 import CartVehicule from "../components/CartVehiculeS.jsx";
 import FiltrerBrand from "../components/FiltrerBrand.jsx";
 import FiltrerPrice from "../components/FiltrerPrice.jsx";
-import FiltrerType from "../components/FiltrerType.jsx";
+import FiltrerType from "../components/FilterType.jsx";
 import FiltrerModel from "../components/FiltrerModel.jsx";
 import Banner from "../../../shared/components/layout/Banner.jsx";
 import img1 from "../../../assets/img/img1.png";

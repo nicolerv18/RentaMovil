@@ -8,7 +8,7 @@
   padding: 20px;
 }
 
-.btn{
+.login-container .btn{
     position: absolute;
     top: 40px;
     right: 40px;

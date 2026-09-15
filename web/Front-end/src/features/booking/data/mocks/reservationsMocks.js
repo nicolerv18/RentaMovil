@@ -1,43 +1,119 @@
     import img from "../../../../assets/carts/car1.jpg";
-
+    
     export const reservationsMock = [
     {
-        id: 1,
+        id: "RES-9428",
+        created_at: "24 Abr 2026",
         status: "activa",
-        start_date: "2026-05-01",
-        end_date: "2026-05-05",
-        days: 4,
-        total_price: 400000,
+        currency: "COP",
+        
         vehicle: {
+        id: "CAR-101",
         brand: "Toyota",
-        model: "Corolla",
-        img,
+        model: "Corolla 2024",
+        category: "Sedán Ejecutivo",
+        transmission: "Automático",
+        seats: 5,
+        plate: "ABC-984",
+        img: img
         },
+        
+        branch: {
+        id: "BR-01",
+        name: "Aeropuerto El Dorado",
+        city: "Bogotá"
+        },
+        
+        tiempos: {
+        start_date: "01 May 2026 10:00 AM",
+        end_date: "05 May 2026 10:00 AM",
+        days: 4
+        },
+        
+
+        billing: {
+        price_per_day: 80000,
+        subtotal_vehicle: 320000,
+        insurance_per_day: 20000,
+        subtotal_insurance: 80000,
+        total_price: 400000,
+        insurance_included: true
+        }
     },
     {
-        id: 2,
-        status: "cancelada",
-        start_date: "2026-04-20",
-        end_date: "2026-04-22",
-        days: 2,
-        total_price: 200000,
+        id: "RES-3152",
+        created_at: "10 Mar 2026",
+        status: "completada",
+        currency: "COP",
+        
         vehicle: {
+        id: "CAR-204",
         brand: "Mazda",
-        model: "CX-5",
-        img,
+        model: "CX-5 2025",
+        category: "SUV Premium",
+        transmission: "Automático",
+        seats: 5,
+        plate: "XYZ-123",
+        img: img
         },
+        
+        branch: {
+        id: "BR-02",
+        name: "El Poblado",
+        city: "Medellín"
+        },
+        
+        tiempos: {
+        start_date: "15 Mar 2026 08:00 AM",
+        end_date: "18 Mar 2026 08:00 AM",
+        days: 3
+        },
+        
+        billing: {
+        price_per_day: 120000,
+        subtotal_vehicle: 360000,
+        insurance_per_day: 30000,
+        subtotal_insurance: 90000,
+        total_price: 450000,
+        insurance_included: true
+        }
     },
     {
-        id: 3,
-        status: "pagada",
-        start_date: "2026-04-10",
-        end_date: "2026-04-15",
-        days: 5,
-        total_price: 500000,
+        id: "RES-1044",
+        created_at: "02 Feb 2026",
+        status: "cancelada",
+        currency: "COP",
+        
         vehicle: {
-        brand: "Kia",
-        model: "Rio",
-        img,
+        id: "CAR-055",
+        brand: "Chevrolet",
+        model: "Onix 2023",
+        category: "Compacto",
+        transmission: "Mecánico",
+        seats: 5,
+        plate: "KMS-456",
+        img: img
         },
-    },
+        
+        branch: {
+        id: "BR-01",
+        name: "Aeropuerto El Dorado",
+        city: "Bogotá"
+        },
+        
+        tiempos: {
+        start_date: "10 Feb 2026 02:00 PM",
+        end_date: "12 Feb 2026 02:00 PM",
+        days: 2
+        },
+        
+        billing: {
+        price_per_day: 65000,
+        subtotal_vehicle: 130000,
+        insurance_per_day: 15000,
+        subtotal_insurance: 30000,
+        total_price: 160000,
+        insurance_included: false
+        }
+    }
     ];

@@ -1,14 +1,14 @@
-    import { isAvailable } from "./isAvailable";
+import { isAvailable } from "./isAvailable.js";
 
-    export const filterAvailableVehicles = (
+export const filterAvailableVehicles = (
     cars,
     branch,
     startDate,
     endDate
-    ) => {
+) => {
     return cars.filter(
         (car) =>
-        car.branch.id === branch.id &&
-        isAvailable(car, startDate, endDate)
+            car.branch_id === branch.id &&
+            isAvailable(car, startDate, endDate)
     );
-    };
+};

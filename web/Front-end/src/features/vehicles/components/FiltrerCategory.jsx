@@ -2,13 +2,26 @@ import "./Filtrer.css";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { categoriesMock } from "../data/mocks/category.js";
 
-function FiltrerType({ cars = [], onFilter }) {
+function FiltreCategory({ cars = [], onFilter }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const types = [...new Set(cars.map((c) => c.type))];
+  const types = [
+    ...new Set(
+      cars
+        .map((car) => {
+          const category = categoriesMock.find(
+            (item) => String(item.category_id) === String(car.category_id)
+          );
+
+          return category?.name;
+        })
+        .filter(Boolean)
+    ),
+  ].sort();
 
   const handleSelect = (type) => {
     const newSelected = selected === type ? "" : type;
@@ -27,7 +40,7 @@ function FiltrerType({ cars = [], onFilter }) {
           >
             <div className="btn-filtrar-content">
               <FaCar className="icon2" />
-              <span>{selected || t("filtersHome.type")}</span>
+              <span>{selected || t("filtersHome.category")}</span>
             </div>
 
             <FaArrowAltCircleDown
@@ -38,7 +51,7 @@ function FiltrerType({ cars = [], onFilter }) {
           <div className="dropdown">
             <div className="dropdown-section">
               <h4 className="dropdown-title">
-                {t("filtersHome.type") || "Categorías"}
+                {t("filtersHome.type") || "Type"}
               </h4>
 
               <ul>
@@ -64,4 +77,4 @@ function FiltrerType({ cars = [], onFilter }) {
   );
 }
 
-export default FiltrerType;
+export default FiltreCategory;

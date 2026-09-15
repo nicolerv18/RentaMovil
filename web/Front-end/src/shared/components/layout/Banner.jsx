@@ -1,4 +1,5 @@
     import './Banner.css'
+    import img from "../../../assets/img/img1.png";
 
     function Banner({imgs,text}){
         return(

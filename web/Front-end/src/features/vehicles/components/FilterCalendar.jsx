@@ -350,9 +350,6 @@ const FilterCalendar = forwardRef(
           }}
         >
 
-          {/* =====================================================
-              SUCURSAL
-          ====================================================== */}
 
           <div
             className="field"
@@ -409,10 +406,6 @@ const FilterCalendar = forwardRef(
           </div>
 
 
-          {/* =====================================================
-              FECHA DE RECOGIDA
-          ====================================================== */}
-
           <div className="field">
 
             <label className="label-filter1">
@@ -441,10 +434,6 @@ const FilterCalendar = forwardRef(
 
           </div>
 
-
-          {/* =====================================================
-              HORA DE RECOGIDA
-          ====================================================== */}
 
           <div className="field">
 
@@ -477,10 +466,6 @@ const FilterCalendar = forwardRef(
           </div>
 
 
-          {/* =====================================================
-              FECHA DE DEVOLUCIÓN
-          ====================================================== */}
-
           <div className="field">
 
             <label className="label-filter1">
@@ -499,10 +484,6 @@ const FilterCalendar = forwardRef(
 
           </div>
 
-
-          {/* =====================================================
-              HORA DE DEVOLUCIÓN
-          ====================================================== */}
 
           <div className="field">
 
@@ -535,9 +516,6 @@ const FilterCalendar = forwardRef(
           </div>
 
 
-          {/* =====================================================
-              BOTÓN BUSCAR
-          ====================================================== */}
 
           <button
             type="submit"

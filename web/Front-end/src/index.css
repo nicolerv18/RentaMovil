@@ -1,19 +1,26 @@
 @import url('https://googleapis.com');
 
+:root {
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --heading: 'Poppins', system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+}
+
 :root.skylight {
-  --text: #0F172A;
+  --text: #000206;
   --text-h: #334155;
   --textNavabar: #FFFFFF;
   --textFooter: #FFFFFF;
-  --text-btn: #070F1E;
+  --text-btn: #000206;
   --placeholder: #94A3B8;
   --card-brand: #F8FAFC;
   --card-location: #F0F4F8;
   --bordercard: #E2E8F0;
+  --placeCards: #f4f7fc;
   
   --filterContract: #1E3A8A;
   --filterContractOpacity: rgba(30, 58, 138, 0.1);
-  --NBtext: #0F172A;
+  --NBtext: #000206;
   --adminP : #0F172A;
 
   /* Fondos */
@@ -35,14 +42,14 @@
 
   /* Botones*/
   --buttonLoading: #F3E5AB;
-  --button: #C59B27;
+  --button:#F2C063;
   --button-success: #16A34A;
 
   /* Bordes y detalles */
   --border: rgba(15, 23, 42, 0.08);
 
   /* Acentos */
-  --accent: #C59B27;
+  --accent: #F2C063;
   --accent-bg: rgba(197, 155, 39, 0.08);
   --accent-border: rgba(197, 155, 39, 0.2);
   --accent-hover: rgba(197, 155, 39, 0.15);
@@ -51,15 +58,15 @@
   --code-bg: #F1F5F9;
   --social-bg: rgba(248, 250, 252, 0.6);
   --input: #F1F5F9;
-  --modal-text: #0F172A;
-  --modal-title: #0A192F;
+  --modal-text: #000206;
+  --modal-title: #000206;
   --modal-subtext: #475569;
   --modal-card-bg: #F8FAFC;
-  --modal-card-text: #0F172A;
+  --modal-card-text: #000206;
   --modal-card-border: #E2E8F0;
   --modal-button: #0A192F;
   --modal-button-text: #FFFFFF;
-  --modal-hover: #1E3A8A;
+  --modal-hover: #e9c152c2;
   --modal-bg: #FFFFFF;
   --notification: #E2E8F0;
   --background: #16A34A;
@@ -71,10 +78,6 @@
     rgba(15, 23, 42, 0.04) 0 4px 6px -2px;
 
   /* CORRECCIÓN DE FUENTES */
-  --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --heading: 'Poppins', system-ui, -apple-system, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
   font: 16px/150% var(--sans);
   letter-spacing: 0.15px;
   color-scheme: light;
@@ -88,85 +91,85 @@
 
 
 :root.light {
-  /* Colores de texto (Grafito profundo para alta gama) */
-  --text: #1F2937;              
-  --text-h: #111827;            
-  --textNavabar: #1F2937;        
-  --textFooter: #1F2937;         
-  --text-btn: #121212;          /* Letras oscuras sobre botón dorado */
+  /* Colores de texto  */
+  --text: #1F2937;
+  --text-h: #111827;
+  --textNavabar: #1F2937;
+  --textFooter: #1F2937;
+  --text-btn: #121212;
   --placeholder: #9CA3AF;
   
   /* Detalles de tarjetas con toques del verde Trustpilot sutiles */
   --card-brand: #F9FAFB;
-  --card-location: #E6F8F2;     /* Fondo verde menta ultralimpio para locaciones */
-  --bordercard: #A3E2CD;        /* Borde suave en armonía con el verde corporativo */
+  --card-location: #E6F8F2;
+  --bordercard: #A3E2CD;
   
-  --filterContract: #00B67A;    /* ¡EL VERDE DE LA IMAGEN! Para filtros activos */
+  --filterContract: #00B67A;
   --filterContractOpacity: rgba(0, 182, 122, 0.1);
   --NBtext: #111827;
   --adminP : #1F2937;
 
   /* Fondos Unificados en Blanco Seda Mate */
-  --bg: #FAFAFA;                
-  --card-bg: #FFFFFF;           
-  --navbar: #FAFAFA;            
-  --primary: #00B67A;           /* Color interactivo principal basado en tu imagen */
-  --primary-dark: #009463;      
+  --bg: #FAFAFA;
+  --card-bg: #FFFFFF;
+  --navbar: #FAFAFA;
+  --primary: #00B67A;
+  --primary-dark: #009463;
   
   /* ESTADOS EXITOSOS Y ALERTAS */
-  --success: #00B67A;           /* El verde de confianza absoluta */
+  --success: #00B67A;
   --button-success: #00B67A;
-  --background: #111827;        
+  --background: #111827;
   
   --filter: #FFFFFF;
   --border-filter: #E5E7EB;
 
   /* Iconos (Ajustados al verde exacto de la foto) */
-  --icon: #00B67A;              /* Iconos de características en verde Trustpilot */
+  --icon: #00B67A;
 
   /* Modales */
   --card: #FFFFFF;
   --border-Card: #E5E7EB;
 
   /* BOTONES (Equilibrio de Oro y Esmeralda) */
-  --buttonLoading: #F2E6C4;     
-  --button: #C59B27;            /* Tu dorado estrella exclusivo para "Rentar Ahora" */
-  --modal-button: #00B67A;      /* Botones de modales en el verde de confianza */
-  --modal-button-text: #FFFFFF;
-  --modal-hover: #009463;
+  --buttonLoading: #F2E6C4;
+  --button:#F2C063;
+  --modal-button: #00B67A;
+  --modal-button-text: #191717;
+  --modal-hover: #e9c152c2;
 
   /* Bordes y detalles */
-  --border: rgba(0, 182, 122, 0.12); 
+  --border: rgba(0, 182, 122, 0.12);
 
   /* Acentos */
-  --accent: #C59B27;            
-  --accent-bg: rgba(197, 155, 39, 0.05);     
-  --accent-border: rgba(0, 182, 122, 0.25);  
+  --accent:#F2C063;
+  --accent-bg: rgba(197, 155, 39, 0.05);
+  --accent-border: rgba(0, 182, 122, 0.25);
   --accent-hover: rgba(0, 182, 122, 0.1);
+  --cancel: #ef4444;
 
   /* Extras */
   --code-bg: #F3F4F6;
   --social-bg: rgba(250, 250, 250, 0.6);
-  --input: #F3F4F6;             
+  --input: #F3F4F6;
   --modal-text: #1F2937;
-  --modal-title: #111827;       
+  --modal-title: #111827;
   --modal-subtext: #4B5563;
   --modal-card-bg: #FAFAFA;
-  --modal-card-text: #1F2937;
+  --modal-card-text: #161717;
   --modal-card-border: #A3E2CD;
   --modal-bg: #FFFFFF;
   --notification: #E6F8F2;
   --hover: #F3F4F6;
   --iconEmail: #1F2937;
+  
 
-  --shadow: rgba(0, 182, 122, 0.02) 0 8px 12px -3px; 
+  --shadow: rgba(0, 182, 122, 0.02) 0 8px 12px -3px;
 
   /* FUENTES */
-  --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --heading: 'Poppins', system-ui, -apple-system, sans-serif;
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light;          
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
 }
@@ -180,7 +183,7 @@
 
 :root.dark {
   --text: #F8FAFC;
-  --text-h: #94A3B8;
+  --text-h: #e8e8e8;
   --textNavabar: #FFFFFF;
   --textFooter: #E2E8F0;
   --text-btn: #121212;
@@ -188,6 +191,7 @@
   --card-brand: #262626;
   --card-location: #1A1A1A;
   --bordercard: #262626;
+  --placeCards: #2d2e2f;
   
   --filterContract: #C59B27;
   --filterContractOpacity: rgba(197, 155, 39, 0.15);
@@ -214,6 +218,7 @@
   /* Botones  */
   --buttonLoading: #404040;
   --button: #C59B27;
+  --buttonborder:var(--NBtext);
   --button-success: #22C55E;
 
   /* Bordes y detalles */
@@ -237,7 +242,7 @@
   --modal-card-border: #262626;
   --modal-button: #C59B27;
   --modal-button-text: #121212;
-  --modal-hover: #AA820A;
+  --modal-hover: #e9c152c2;
   --modal-bg: #1C1C1C;
   --notification: #1A1A1A;
   --background: #22C55E;
@@ -251,10 +256,6 @@
 
   color-scheme: dark;
 
-
-    --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --heading: 'Poppins', system-ui, -apple-system, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -276,8 +277,8 @@
   --text-btn: #030712;
   --placeholder: #475569;
   --card-brand: #1E293B;
-  --card-location: #0B1528;     
-  --bordercard: #111E33;        
+  --card-location: #0B1528;
+  --bordercard: #111E33;
   
   --filterContract: #C59B27;
   --filterContractOpacity: rgba(197, 155, 39, 0.15);
@@ -289,7 +290,7 @@
   --navbar: #070F22;
   --primary: #C59B27;
   --primary-dark: #AA820A;
-  --success: #10B981;
+  --success: #137310;
   --filter: #070F22;
   --border-filter: #111E33;
 
@@ -302,7 +303,7 @@
   /* Botones (El dorado es el rey absoluto de la acción) */
   --buttonLoading: #111E33;
   --button: #C59B27;
-  --button-success: #10B981;
+  --button-success: #137310;
 
   /* Bordes y detalles sutiles */
   --border: rgba(255, 255, 255, 0.04);
@@ -319,16 +320,16 @@
   --input: #0B1528;
   --modal-text: #F8FAFC;
   --modal-title: #C59B27;
-  --modal-subtext: #94A3B8;
+  --modal-subtext: #f0f3f6;
   --modal-card-bg: #030712;
   --modal-card-text: #F8FAFC;
   --modal-card-border: #111E33;
   --modal-button: #C59B27;
-  --modal-button-text: #030712;
-  --modal-hover: #AA820A;
+  --modal-button-text: #f5f6fa;
+  --modal-hover: #e9c152c2;
   --modal-bg: #070F22;
   --notification: #0B1528;
-  --background: #10B981;
+  --background: #137310;
   --hover: #111E33;
   --iconEmail: #FFFFFF;
 
@@ -341,10 +342,6 @@
 
 
   /* CORRECCIÓN DE FUENTES */
-  --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --heading: 'Poppins', system-ui, -apple-system, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;

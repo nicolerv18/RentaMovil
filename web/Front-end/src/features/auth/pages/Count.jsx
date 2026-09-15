@@ -179,7 +179,7 @@ const [image, setImage] = useState(() => {
                 <button
                   key={id}
                   type="button"
-                  className={`theme-card ${theme === id ? "active" : ""}`}
+                  className={`theme-card ${theme === id ? "active2" : ""}`}
                   onClick={() => setTheme(id)}
                 >
                   <div className={`theme-preview preview-${id}`}></div>

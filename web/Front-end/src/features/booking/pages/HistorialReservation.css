@@ -1,284 +1,329 @@
 .historial-page {
   width: 100%;
-  padding: 30px 20px;
+  padding: 40px 20px;
   box-sizing: border-box;
 }
 
 .title {
   text-align: center;
-  color: var(--button);
+  color: var(--text);
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .cards-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
-
-  justify-items: center;
 }
 
-
-.card-reserva {
-  width: 100%;
-  max-width: 1050px;
-
+.reserva-card {
   background: var(--card-bg);
-
   border: 1px solid var(--border);
-  border-radius: 20px;
-
-  padding: 20px;
-
-  box-sizing: border-box;
-
-  transition: all .25s ease;
-
-  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   position: relative;
+  box-sizing: border-box;
 }
 
-.card-reserva:hover {
-  transform: translateY(-4px);
-
-  border-color: var(--button);
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, .10);
-}
-
-
-.card-header {
+.reserva-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-
   border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
 }
 
-.card-header h4 {
-  margin: 0;
-
+.reserva-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
-
-  font-size: 16px;
-  font-weight: 600;
-
-  color: var(--button);
-}
-
-
-.status {
-  position: absolute;
-
-  top: 16px;
-  right: 16px;
-
-  padding: 5px 10px;
-
-  border-radius: 999px;
-
-  font-size: 10px;
-  font-weight: 700;
-
-  text-transform: uppercase;
-  letter-spacing: .5px;
-
-  width: fit-content;
-
-  z-index: 2;
-}
-
-.status.activa {
-  background: rgba(34, 197, 94, .15);
-  color: #16a34a;
-}
-
-.status.cancelada {
-  background: rgba(239, 68, 68, .15);
-  color: #dc2626;
-}
-
-.status.pagada {
-  background: rgba(59, 130, 246, .15);
-  color: #2563eb;
-}
-
-
-.card-content {
-  display: flex;
-  gap: 22px;
-  align-items: center;
-}
-
-.img-historial {
-  width: 240px;
-  height: 150px;
-
-  object-fit: contain;
-
-  background: var(--input);
-
-  border-radius: 14px;
-
-  padding: 12px;
-
-  flex-shrink: 0;
-
-  transition: .25s ease;
-}
-
-.card-reserva:hover .img-historial {
-  transform: scale(1.03);
-}
-
-.card-body {
-  flex: 1;
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.car-name {
-  margin: 0 0 14px;
-
-  font-size: 22px;
-  font-weight: 700;
-
-  color: var(--text);
-}
-
-
-.info-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
   gap: 12px;
 }
 
-.info-grid p {
-  margin: 0;
-
-  padding: 12px;
-
-  background: var(--input);
-
-  border-radius: 12px;
-
-  line-height: 1.5;
-
-  color: var(--text);
-
-  font-size: 14px;
-}
-
-.price {
-  color: var(--button);
-
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.btn-container {
-  margin-top: 18px;
-}
-
-.btn-cancel {
-  min-width: 170px;
-
-  border: none;
-  border-radius: 12px;
-
-  padding: 12px 18px;
-
-  background: linear-gradient(
-    135deg,
-    #ef4444,
-    #dc2626
-  );
-
-  color: white;
-
-  font-size: 14px;
+.reserva-id {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: var(--code-bg);
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--text-h);
   font-weight: 600;
-
-  cursor: pointer;
-
-  transition: .25s ease;
 }
 
-.btn-cancel:hover {
-  transform: translateY(-2px);
+.reserva-creada {
+  font-size: 13px;
+  color: var(--placeholder);
+}
 
-  box-shadow:
-    0 8px 20px rgba(220, 38, 38, .25);
+.reserva-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.estado-activa {
+  background: var(--filterContractOpacity);
+  color: var(--filterContract);
+}
+
+.estado-cancelada {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--cancel);
+}
+
+.estado-completada {
+  background: var(--accent-bg);
+  color: var(--accent);
 }
 
 
+.reserva-body {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
 
+.reserva-vehiculo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.vehiculo-imagen-wrapper {
+  position: relative;
+  width: 160px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--input);
+  border: 1px solid var(--bordercard);
+  border-radius: 12px;
+  padding: 8px;
+  flex-shrink: 0;
+}
 
-  padding: 20px;
+.vehiculo-imagen-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 
+.vehiculo-placa {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--button);
+  color: var(--text-btn);
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.vehiculo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vehiculo-categoria {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--placeholder);
+  letter-spacing: 0.5px;
+}
+
+.vehiculo-specs {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.vehiculo-sucursal {
+  font-size: 13px;
+  color: var(--placeholder);
+}
+
+.reserva-tiempos {
+  background: var(--card-bg);
+  border: 1px solid var(--bordercard);
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-content: space-between;
+}
+
+.tiempo-bloque {
+  display: flex;
+  flex-direction: column;
+}
+
+.tiempo-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--placeholder);
+}
+
+.tiempo-fecha {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.tiempo-hora {
+  font-size: 12px;
+  color: var(--placeholder);
+}
+
+.tiempo-duracion {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+.badge-duracion {
+  background: var(--filterContractOpacity);
+  color: var(--filterContract);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.reserva-acciones {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  border-left: 1px solid var(--border);
+  padding-left: 24px;
+}
+
+.facturacion-resumen {
+  display: flex;
+  flex-direction: column;
+}
+
+.facturacion-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--placeholder);
+}
+
+.facturacion-precio {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.precio-monto {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.precio-moneda {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--placeholder);
+}
+
+.facturacion-cobertura {
+  font-size: 12px;
+  color: var(--success);
+}
+
+
+.acciones-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+
+.btn {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.btn-primario {
+  background: var(--button);
+  color: var(--text-btn);
+}
+
+.btn-primario:hover {
+  background: var(--modal-hover);
+}
+
+.btn-secundario {
+  background: transparent;
+  border: 1px solid var(--bordercard);
+  color: var(--text);
+}
+
+.btn-secundario:hover {
+  background: var(--hover);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Modales Base */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   backdrop-filter: blur(4px);
-  background: rgba(0, 0, 0, .45);
-
-  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .modal-content {
-  width: 100%;
-  max-width: 400px;
-
   background: var(--modal-bg);
   color: var(--modal-text);
-
-  border-radius: 18px;
-
+  border: 1px solid var(--border-Card);
+  border-radius: 16px;
   padding: 24px;
-
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-
   box-sizing: border-box;
-
-  box-shadow:
-    0 20px 40px rgba(0,0,0,.25);
-
-  animation: fadeIn .25s ease;
-}
-
-@keyframes fadeIn {
-
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .modal-actions {
@@ -286,130 +331,20 @@
   gap: 12px;
 }
 
-.btn-danger,
-.btn-negative {
-  flex: 1;
+.btn-danger { background: #ef4444; color: white; border: none; border-radius: 8px; padding: 10px; cursor: pointer; font-weight: 600; flex: 1;}
+.btn-negative { background: var(--hover); color: var(--text); border: 1px solid var(--bordercard); border-radius: 8px; padding: 10px; cursor: pointer; font-weight: 600; flex: 1;}
 
-  border: none;
-  border-radius: 10px;
-
-  padding: 12px;
-
-  cursor: pointer;
-
-  font-weight: 600;
-
-  transition: .2s;
+/* Responsive Adapters */
+@media (max-width: 968px) {
+  .reserva-body { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .reserva-acciones { grid-column: span 2; border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 16px; flex-direction: row; justify-content: space-between; align-items: center; }
+  .acciones-botones { flex-direction: row; width: auto; min-width: 280px; }
 }
 
-.btn-danger {
-  background: linear-gradient(
-    135deg,
-    #ef4444,
-    #dc2626
-  );
-
-  color: white;
-}
-
-.btn-negative {
-  background: var(--button);
-  color: var(--textNavabar);
-}
-
-.btn-danger:hover,
-.btn-danger:hover,
-.btn-negative:hover {
-  transform: translateY(-2px);
-}
-
-
-@media (max-width: 900px) {
-
-  .card-content {
-    gap: 16px;
-  }
-
-  .img-historial {
-    width: 190px;
-    height: 120px;
-  }
-
-  .info-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-
-@media (max-width: 768px) {
-
-  .historial-page {
-    padding: 20px 12px;
-  }
-
-  .cards-container {
-    gap: 18px;
-  }
-
-  .card-reserva {
-    padding: 16px;
-  }
-
-  .card-content {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .img-historial {
-    width: 100%;
-    height: 180px;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-cancel {
-    width: 100%;
-  }
-
-  .modal-actions {
-    flex-direction: column;
-  }
-}
-@media (max-width: 768px) {
-  .status {
-    top: 12px;
-    right: 12px;
-
-    font-size: 9px;
-    padding: 4px 8px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .title {
-    font-size: 22px;
-  }
-
-  .card-reserva {
-    padding: 14px;
-  }
-
-  .car-name {
-    font-size: 18px;
-  }
-
-  .img-historial {
-    height: 150px;
-  }
-
-  .status {
-    font-size: 10px;
-  }
-
-  .info-grid p {
-    font-size: 13px;
-  }
+@media (max-width: 640px) {
+  .reserva-body { grid-template-columns: 1fr; }
+  .reserva-acciones { grid-column: span 1; flex-direction: column; align-items: stretch; }
+  .acciones-botones { flex-direction: column; width: 100%; }
+  .reserva-vehiculo { flex-direction: column; align-items: flex-start; }
+  .vehiculo-imagen-wrapper { width: 100%; height: 120px; }
 }

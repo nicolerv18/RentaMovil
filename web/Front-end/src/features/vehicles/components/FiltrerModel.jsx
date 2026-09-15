@@ -2,18 +2,31 @@ import "./Filtrer.css";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { vehicleModelsMock } from "../data/mocks/vehicle_model.js";
 
 function FiltrerModel({ cars = [], onFilter }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const models = [...new Set(cars.map((c) => c.model))].sort();
+  const models = [
+    ...new Set(
+      cars
+        .map((car) => {
+          const model = vehicleModelsMock.find(
+            (item) => String(item.model_id) === String(car.model_id)
+          );
+
+          return model?.name;
+        })
+        .filter(Boolean)
+    ),
+  ].sort();
 
   const handleSelect = (model) => {
     const newSelected = selected === model ? "" : model;
     setSelected(newSelected);
-    onFilter(newSelected ? { min: model, max: model } : null);
+    onFilter(newSelected || "");
   };
 
   return (

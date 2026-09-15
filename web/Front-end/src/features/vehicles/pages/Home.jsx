@@ -4,7 +4,8 @@ import Footer from "../../../shared/components/layout/Footer.jsx";
 import CartVehicule from "../components/CartVehicule";
 import FiltrerBrand from "../components/FiltrerBrand";
 import FiltrerPrice from "../components/FiltrerPrice";
-import FiltrerType from "../components/FiltrerType";
+import FiltrerType from "../components/FilterType";
+import FiltreCategory from '../components/FiltrerCategory.jsx';
 import FiltrerModel from "../components/FiltrerModel.jsx";
 import Banner from "../../../shared/components/layout/Banner.jsx";
 import img1 from "../../../assets/img/img1.png";
@@ -29,6 +30,7 @@ function Home() {
   const [brandFilter, setBrandFilter] = useState("");
   const [priceFilter, setPriceFilter] = useState(null);
   const [typeFilter, setTypeFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
   const [modelFilter, setModelFilter] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -113,6 +115,7 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
     setPriceFilter(null);
     setModelFilter(null);
     setTypeFilter("");
+    setCategoryFilter("");
   };
 
   const [searchData, setSearchData] = useState({
@@ -123,6 +126,7 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
   const visibleCars = filterVehicles(carsFiltered, {
     brand: brandFilter,
     type: typeFilter,
+    category: categoryFilter,
     model: modelFilter,
     price: priceFilter
   });
@@ -162,7 +166,7 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
                 <FiltrerPrice cars={carsFiltered} onFilter={setPriceFilter} />
                 <FiltrerModel cars={carsFiltered} onFilter={setModelFilter} />
                 <FiltrerType cars={carsFiltered} onFilter={setTypeFilter} />
-
+                <FiltreCategory cars={carsFiltered} onFilter={setCategoryFilter} />
                 <button className="btn-clear-filters" onClick={handleClearFilters}>
                   Limpiar filtros
                 </button>
@@ -193,16 +197,8 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
               {!loading && !error && visibleCars.length > 0 &&
                 visibleCars.map((car) => (
                   <CartVehicule
-                    key={car.id}
-                    name={car.name}
-                    price={car.price}
-                    img={car.img}
-                    branch={car.branch}
-                    model={car.model}
-                    type={car.type}
-                    door={car.door}
-                    capacity={car.capacity}
-                    beneficios={car.beneficios}
+                    key={car.vehicle_id}
+                    vehicle={car}
                     rentalSearch={searchData}
                   />
                 ))
