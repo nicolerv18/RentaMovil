@@ -1,17 +1,17 @@
 .card-vehicule {
 display: grid;
-  grid-template-columns: 150px 1fr 160px;
+  grid-template-columns: 150px 1fr 109px;
   gap: 0;
-  width: 77%;
-  max-width: 801px;
+  width: 80%;
+  max-width: 795px;
   background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 45px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 9px solid var(--border);
+  border-radius: 19px;
+  padding: 22px;
+  box-shadow: 0 19px 29px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s;
   align-items: center;
-  margin: 0 auto 28px;
+  margin: 0 auto 7px;
 }
 
 .card-vehicule:hover {
@@ -155,21 +155,26 @@ display: grid;
 .state--disponible {
   background: #DCFCE7;
   color: #166534;
+  margin-left: 16px;
+
 }
 
 .state--en-uso {
   background: #DBEAFE;
   color: #1D4ED8;
+  margin-left: 17px;
 }
 
 .state--mantenimiento {
   background: #FEF3C7;
   color: #B45309;
+  margin-left: 20px;
 }
 
 .state--reservado {
   background: #EDE9FE;
   color: #6D28D9;
+  margin-left: 20px;
 }
 
 .btn-ver-mas {
@@ -181,7 +186,7 @@ display: grid;
   font-family: 'Poppins', sans-serif;
   transition: background-color 0.2s, color 0.2s;
   background-color: var(--button);
-  margin-left: 26px;
+  margin-left: 25px;
   margin-top: auto;
   cursor: pointer;
 }

@@ -68,21 +68,21 @@ function History() {
       r.id === selected.id
         ? {
           ...r,
-          model: data.model,
-          type: data.maintenanceType,
+          modelName: data.model,
+          typeMaintenance: data.maintenanceType,
           date: data.date + 'T00:00:00Z',
-          notes: data.observations,
-          state: data.status,
+          description: data.observations,
+          status: data.status,
         }
         : r);
     setRecords(updated);
     setSelected({
       ...selected,
-      model: data.model,
-      type: data.maintenanceType,
+      modelName: data.model,
+      typeMaintenance: data.maintenanceType,
       date: data.date,
-      notes: data.observations,
-      state: data.status,
+      description: data.observations,
+      status: data.status,
     });// de estama manera se estaria sobre escribiendo los valores viejos por los nuevos
     setIsEditing(false);
   }
@@ -90,13 +90,13 @@ function History() {
   const openEdit = (rec) => {
     setIsEditing(true);
     reset({
-      model: rec.model,
-      maintenanceType: rec.type,
+      model: rec.modelName,
+      maintenanceType: rec.typeMaintenance,
       date: rec.date.slice(0, 10),
-      observations: rec.notes,
+      observations: rec.description,
+      status: rec.status,
     })
   }
-  console.log(MonthlyChart)
   return (
 
     <>
@@ -125,10 +125,13 @@ function History() {
         {selected && (
           <div className={style.modalBackdrop} onClick={closeModal}>
             <div className={style["history-modal"]} onClick={(e) => e.stopPropagation()}>
-              <h3>{t("History.detail")} - {selected.plate}</h3>
+              <div className={style["history-modal-header"]}>
+                <h3>{t("History.detail")} - {selected.plate}</h3>
+                <button type="button" className={style["history-modal-close"]} onClick={closeModal} aria-label={t("CheckStatus.modal.close")}>×</button>
+              </div>
 
               {isEditing ? (
-                <form onSubmit={handleSubmit(handleSaveEdit)}>
+                <form className={style["history-form"]} onSubmit={handleSubmit(handleSaveEdit)}>
 
                   <label htmlFor="model">{t("maintenanceForm.model")}</label>
                   <input
@@ -200,12 +203,12 @@ function History() {
                       <AiOutlineDashboard /> {errors.date.message}
                     </p>
                   )}
-                  <label htmlFor="maintenance-notes">{t("maintenanceForm.observations")}</label>
+                  <label htmlFor="maintenance-notes">{t("MaintenanceForm.observations")}</label>
                   {/* aca se registra las validaciones de el campo como observaciones, se requiere que el campo sea obligatorio con una longitud minima de 5 caracteres y maxima de 30 */}
                   <div className={style['history-form-observations']}>
                     <textarea
                       placeholder={t("maintenanceForm.placeholderObservations")}
-                      className={style["maintenance-observatios"]}
+                      className={style["MaintenanceForm.observations"]}
                       rows={2}
                       {...register("observations", {
                         minLength: { value: 5, message: t("maintenanceForm.PminLenghtObservations") },
@@ -229,37 +232,42 @@ function History() {
                     <option value="Cancelado">{t("CartVehiculeMaintenance.cancel")}</option>
                   </select>
 
-                  <button  className={style['modal-button']} type="submit">{t("History.save")}</button>
-                  <button  className={style['modal-button']} type="button" onClick={() => setIsEditing(false)}>{t("History.cancel")}</button>
+                  <div className={style['modal-footer']}>
+                    <button className={style['modal-button-secondary']} type="button" onClick={() => setIsEditing(false)}>{t("History.cancel")}</button>
+                    <button className={style['modal-button-primary']} type="submit">{t("History.save")}</button>
+                  </div>
 
 
                 </form>
 
               ) : (
                 <>
-                  <p><strong>{t("History.model")} :</strong> {selected.model}</p>
-                  <p><strong>{t("maintenanceForm.TypeMaintenance")}</strong> {selected.type}</p>
-                  <p><strong>{t("maintenanceForm.date")} :</strong> {new Date(selected.date).toLocaleString()}</p>
-                  <p><strong>{t("History.status")} :</strong> {selected.state}</p>
-                  <p><strong>{t("maintenanceForm.observations")}: </strong> {selected.notes || t("maintenanceForm.placeholderObservations")}</p>
+                  <div className={style["history-details"]}>
+                    <p><strong>{t("History.model")} :</strong> <span>{selected.modelName}</span></p>
+                    <p><strong>{t("maintenanceForm.TypeMaintenance")} :</strong> <span>{selected.typeMaintenance}</span></p>
+                    <p><strong>{t("maintenanceForm.date")} :</strong> <span>{new Date(selected.date).toLocaleString()}</span></p>
+                    <p><strong>{t("CheckStatus.modal.ubication")} :</strong> <span>{selected.location || 'Sin ubicación'}</span></p>
+                    <p><strong>{t("History.status")} :</strong> <span>{selected.status}</span></p>
+                    <p><strong>{t("MaintenanceForm.observations")} :</strong> <span>{selected.description || t("maintenanceForm.placeholderObservations")}</span></p>
+                  </div>
 
 
                   <div className={style['modal-actions-btn']} >
-                    <button className={style['modal-button']} onClick={() => openEdit(selected)}>{t("History.edit")}</button>
+                    <button className={style['modal-button-primary']} onClick={() => openEdit(selected)}>{t("History.edit")}</button>
 
                     {!confirmDelete && (
-                      <button className={style['modal-button']} onClick={() => setConfirmDelete(true)}>{t("History.delete")}</button>
+                      <button className={style['modal-button-danger']} onClick={() => setConfirmDelete(true)}>{t("History.delete")}</button>
                     )}
 
                     {confirmDelete && (
                       <div className={style["modal-confirm"]}>
                         <p>{t("History.delete")}:</p>
-                        <button className={style['modal-button']} onClick={() => deleteRecord(selected.id)}>{t("History.confirm")}</button>
-                        <button className={style['modal-button']} onClick={() => setConfirmDelete(false)}>{t("History.cancel")}</button>
+                        <button className={style['modal-button-danger']} onClick={() => deleteRecord(selected.id)}>{t("History.confirm")}</button>
+                        <button className={style['modal-button-secondary']} onClick={() => setConfirmDelete(false)}>{t("History.cancel")}</button>
                       </div>
                     )}
 
-                    <button className={style['modal-button']} onClick={closeModal}>{t("History.close")}</button>
+                    <button className={style['modal-button-secondary']} onClick={closeModal}>{t("History.close")}</button>
                   </div>
 
                 </>

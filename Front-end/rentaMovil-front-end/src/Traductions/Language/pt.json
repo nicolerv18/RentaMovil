@@ -88,6 +88,7 @@
     "submit": "Entrar",
     "noAccount": "Não tem uma conta? Cadastre-se",
     "forgotPassword": "Esqueceu sua senha?",
+    "changePassword": "Deseja atualizar sua senha?",
     "error": "Erro"
   },
   "register": {
@@ -408,7 +409,8 @@
     "cancel": "Cancelar reserva",
     "sure": "Tem certeza de que deseja cancelar a reserva de",
     "yes": "Sim, cancelar",
-    "no": "Não"
+    "no": "Não",
+    "confirm": "Confirmar"
   },
   "VehicleInventary": {
     "title": "Inventário de Veículos",
@@ -460,6 +462,21 @@
       "requiredNameMaxLength": "O nome não pode exceder 50 caracteres",
       "formatInvalid": "O nome só pode conter letras, números e hífens.",
       "plate": "Placa",
+      "age": "Ano",
+      "mileage": "Quilometragem",
+      "distanceUnit": "km",
+      "fuelType": "Tipo de combustível",
+      "fuelOptions": {
+        "gasoline": "Gasolina",
+        "diesel": "Diesel",
+        "hybrid": "Híbrido",
+        "electric": "Elétrico",
+        "naturalGas": "Gás natural",
+        "propaneGas": "Gás propano"
+      },
+      "price": "Preço",
+      "perDay": "dia",
+      "platePlaceholder": "Exemplo de placa: ABC123",
       "requiredPlate": "A placa é obrigatória",
       "requiredPlateMinLength": "A placa deve ter pelo menos 2 caracteres",
       "requiredPlateMaxLength": "A placa não pode exceder 30 caracteres",

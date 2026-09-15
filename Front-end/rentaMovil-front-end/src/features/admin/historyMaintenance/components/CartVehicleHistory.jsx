@@ -1,6 +1,6 @@
 import carImg from "../../../../assets/carro.png";
 import { useTranslation } from "react-i18next";
-import statusStyle from '../../status/components/CartVehiculeStatus.module.css';
+import statusStyle from '../../historyMaintenance/components/CartVehicleHistory.module.css';
 
 function CartVehicleHistory({ record = {}, onViewMore }) {
     const { t } = useTranslation();
@@ -45,7 +45,7 @@ function CartVehicleHistory({ record = {}, onViewMore }) {
 
                     {typeMaintenance && (
                         <div className={statusStyle['info-item']}>
-                            <span className={statusStyle['info-label']}>{t("CheckStatus.modal.ubication")}</span>
+                            <span className={statusStyle['info-label']}>{t("CartVehiculeStatus.Maintenance")}</span>
                             <span className={statusStyle['info-value']}>{typeMaintenance}</span>
                         </div>
                     )}
@@ -59,7 +59,7 @@ function CartVehicleHistory({ record = {}, onViewMore }) {
 
                     {location && (
                         <div className={statusStyle['info-item']}>
-                            <span className={statusStyle['info-label']}>{t("CheckStatus.modal.location")}</span>
+                            <span className={statusStyle['info-label']}>{t("CheckStatus.modal.ubication")}</span>
                             <span className={statusStyle['info-value']}>{location}</span>
                         </div>
                     )}

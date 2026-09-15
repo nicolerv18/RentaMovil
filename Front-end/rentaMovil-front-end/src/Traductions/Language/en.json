@@ -28,7 +28,8 @@
     "deliveryDate": "Pickup date",
     "deliveryHour": "Pickup time",
     "returnDate": "Return date",
-    "returnHour": "Return time"
+    "returnHour": "Return time",
+    "search": "Search"
   },
   "cartVehicule": {
     "gasoline": "Gasoline",
@@ -87,6 +88,7 @@
     "submit": "Log in",
     "noAccount": "Don't have an account? Sign up",
     "forgotPassword": "Forgot your password?",
+    "changePassword": "Do you want to update your password?",
     "error": "Error"
   },
   "register": {
@@ -410,7 +412,8 @@
     "cancel": "Cancel Reservation",
     "sure": "Are you sure you want to cancel the reservation for",
     "yes": "Yes, cancel",
-    "no": "No"
+    "no": "No",
+    "confirm": "Confirm"
   },
   "VehicleInventary": {
     "title": "Vehicle Inventory",
@@ -525,6 +528,20 @@
     "noFound": "No vehicles found.",
     "newMaintenance": "Register a new maintenance",
     "plate": "License plate",
+    "age": "Year",
+    "mileage": "Mileage",
+    "distanceUnit": "km",
+    "fuelType": "Fuel type",
+    "fuelOptions": {
+      "gasoline": "Gasoline",
+      "diesel": "Diesel",
+      "hybrid": "Hybrid",
+      "electric": "Electric",
+      "naturalGas": "Natural gas",
+      "propaneGas": "Propane gas"
+    },
+    "price": "Price",
+    "perDay": "day",
     "platePlaceholder": "Example plate: ABC123",
     "requiredPlate": "License plate is required",
     "formatInvalidPlate": "Invalid plate format",

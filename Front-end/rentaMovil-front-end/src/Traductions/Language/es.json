@@ -404,6 +404,7 @@
     "sure": "¿Seguro que deseas cancelar la reserva de",
     "yes": "Sí, cancelar",
     "no": "No",
+    "confirm": "Confirmar",
     "confirm": "Confirmar"
   },
   "VehicleInventary": {
@@ -522,6 +523,20 @@
     "noFound":"No se encontraron vehículos.",
     "newMaintenance":"Registrar un nuevo mantenimiento",
     "plate":"Placa",
+    "age":"Año",
+    "mileage":"Kilometraje",
+    "distanceUnit":"km",
+    "fuelType":"Tipo de combustible",
+    "fuelOptions":{
+      "gasoline":"Gasolina",
+      "diesel":"Diesel",
+      "hybrid":"Híbrido",
+      "electric":"Eléctrico",
+      "naturalGas":"Gas natural",
+      "propaneGas":"Gas propano"
+    },
+    "price":"Precio",
+    "perDay":"día",
     "platePlaceholder":"Placa ejemplo: ABC123",
     "requiredPlate":"La placa es obligatoria",
     "formatInvalidPlate":"Formato de placa inválido",

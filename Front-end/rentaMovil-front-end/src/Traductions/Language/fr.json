@@ -88,6 +88,7 @@
     "submit": "Se connecter",
     "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous",
     "forgotPassword": "Mot de passe oublié ?",
+    "changePassword": "Voulez-vous mettre à jour votre mot de passe ?",
     "error": "Erreur"
   },
   "register": {
@@ -408,7 +409,8 @@
     "cancel": "Annuler la réservation",
     "sure": "Êtes-vous sûr de vouloir annuler la réservation de",
     "yes": "Oui, annuler",
-    "no": "Non"
+    "no": "Non",
+    "confirm": "Confirmer"
   },
   "VehicleInventary": {
     "title": "Inventaire des Véhicules",
@@ -526,6 +528,20 @@
     "noFound": "Aucun véhicule trouvé.",
     "newMaintenance": "Enregistrer une nouvelle maintenance",
     "plate": "Plaque d'immatriculation",
+    "age": "Année",
+    "mileage": "Kilométrage",
+    "distanceUnit": "km",
+    "fuelType": "Type de carburant",
+    "fuelOptions": {
+      "gasoline": "Essence",
+      "diesel": "Diesel",
+      "hybrid": "Hybride",
+      "electric": "Électrique",
+      "naturalGas": "Gaz naturel",
+      "propaneGas": "Gaz propane"
+    },
+    "price": "Prix",
+    "perDay": "jour",
     "platePlaceholder": "Exemple de plaque : ABC123",
     "requiredPlate": "La plaque d'immatriculation est obligatoire",
     "formatInvalidPlate": "Format de plaque invalide",

@@ -9,8 +9,8 @@
   margin-bottom: 20px;
   color: var(--text-h);
   font-family: var(--sans);
-    width: 36%;
-    margin: 1% 57%;
+width: 42%;
+  margin: 1% 52%;
 }
 
 .search-box {
@@ -71,6 +71,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-left: 15%;
 }
 
 /* Botones / Chips */
