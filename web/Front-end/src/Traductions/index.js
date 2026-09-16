@@ -27,4 +27,9 @@ i18n
     },
   });
 
+document.documentElement.lang = savedLang;
+i18n.on("languageChanged", (lang) => {
+  document.documentElement.lang = lang;
+});
+
 export default i18n;

@@ -52,6 +52,10 @@ import CodeVerification from "./features/auth/pages/CodeVerification.jsx";
 
 import ChangePasswordLogin from './features/auth/pages/ChangePasswordLogin.jsx';
 
+// Super Admin
+import UserManagement from './features/admin/users/pages/UserManagement.jsx';
+import BankAccounts from './features/admin/bankAccounts/pages/BankAccounts.jsx';
+
 
 
 function App() {
@@ -95,6 +99,8 @@ function App() {
         <Route path="/EmailVerification" element={<EmailVerification />} />
         <Route path="/CodeVerification" element={<CodeVerification />} />
         <Route path="/ChangePasswordLogin" element={<ChangePasswordLogin />} />
+        <Route path="/admin/users" element={<UserManagement />} />
+        <Route path="/admin/bank-accounts" element={<BankAccounts />} />
 
       </Routes>
     </BrowserRouter>

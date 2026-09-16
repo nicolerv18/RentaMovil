@@ -172,7 +172,10 @@
     "man-history": "Histórico de manutenções",
     "contracts": "Contratos",
     "con-new": "Novo contrato",
-    "con-history": "Histórico de contratos"
+    "con-history": "Histórico de contratos",
+    "superadmin": "Super Administração",
+    "sa-users": "Usuários e funções",
+    "sa-bank": "Contas bancárias"
   },
   "changePassword": {
     "caracters": "Pelo menos 8 caracteres",
@@ -648,5 +651,101 @@
     "inProgress": "Em andamento",
     "completed": "Concluído",
     "cancel": "Cancelado"
+  },
+  "bankAccounts": {
+    "title": "Contas bancárias",
+    "subtitle": "Gerencie as contas receptoras e os códigos QR autorizados para pagamentos por transferência bancária da frota.",
+    "btnAdd": "Nova conta bancária",
+    "breadcrumbAdmin": "Painel de Administração",
+    "securityLevel": "Nível de Acesso: Super Admin",
+    "securitySession": "Sessão autorizada e auditada",
+    "securityDescription": "Console central de recebimentos: configuração de recebimentos e gateways de pagamento auditada sob protocolos de segurança financeira.",
+    "total": "Contas Registradas",
+    "active": "Contas Ativas",
+    "inactive": "Contas Inativas",
+    "badgeActive": "Ativa",
+    "badgeInactive": "Inativa",
+    "lastPayment": "Último pagamento recebido:",
+    "totalTransactions": "Total de transações associadas:",
+    "reservationsCount": "{{count}} reserva",
+    "reservationsCount_other": "{{count}} reservas",
+    "noPaymentsYet": "Ainda sem pagamentos",
+    "integrityTitle": "Nota de integridade contábil:",
+    "integrityText": "As contas bancárias não podem ser excluídas do sistema para não quebrar a rastreabilidade histórica dos comprovantes de pagamento emitidos. Só podem ser ativadas ou desativadas.",
+    "modal": {
+      "title": "Nova conta bancária",
+      "close": "Fechar",
+      "bankName": "Nome do banco",
+      "bankNamePlaceholder": "Ex. Bancolombia, Davivienda, Banco Popular...",
+      "holderName": "Titular da conta",
+      "holderNamePlaceholder": "Ex. RentaMovil S.A.S. / NIT 901.482.109-4",
+      "accountNumber": "Número da conta / Identificador",
+      "accountNumberPlaceholder": "Ex. Poupança 459-002194-12 ou linha QR 311 000 0000",
+      "qr": "Código QR de recebimento",
+      "dropText": "Arraste a imagem do QR aqui ou procurar",
+      "dropActive": "Solte a imagem aqui...",
+      "dropHint": "PNG, JPG ou SVG (máx. 2MB)",
+      "qrRequired": "Você deve anexar o código QR da conta antes de salvar.",
+      "cancel": "Cancelar",
+      "save": "Salvar conta bancária"
+    },
+    "confirm": {
+      "title": "Desativar esta conta?",
+      "text": "Ela deixará de aparecer como opção de pagamento para novos clientes, mas os pagamentos anteriores que a usaram permanecerão registrados.",
+      "cancel": "Cancelar",
+      "accept": "Desativar conta"
+    }
+  },
+  "userManagement": {
+    "title": "Usuários e funções",
+    "subtitle": "Gerencie as contas de acesso, atribuição de permissões de frota e privilégios administrativos do sistema.",
+    "breadcrumbAdmin": "Painel de Administração",
+    "securityLevel": "Nível de Acesso: Super Administrador",
+    "securitySession": "Sessão autorizada e auditada",
+    "securityDescription": "Console central de privilégios: as alterações de função aplicam-se imediatamente às autorizações de inventário, finanças e auditoria.",
+    "placeholderSearch": "Buscar por nome ou email...",
+    "kpiTotal": "Total de Usuários",
+    "kpiTotalHint": "contas registradas no sistema",
+    "kpiAdmins": "Admins e Super Admins",
+    "kpiAdminsHint": "com acesso ativo ao painel de gestão",
+    "kpiActive": "Contas Ativas",
+    "kpiActiveHint": "nível de operatividade dos usuários",
+    "chipAll": "Todos",
+    "chipClients": "Clientes",
+    "chipAdmins": "Administradores",
+    "chipSuperAdmins": "Super Admins",
+    "name": "Nome Completo",
+    "email": "Email",
+    "role": "Função Atual",
+    "status": "Estado",
+    "actions": "Ações",
+    "registeredOn": "Registrado em {{date}}",
+    "changeRole": "Alterar função",
+    "notFound": "Nenhum usuário encontrado com esses critérios.",
+    "showingCount": "Mostrando {{count}} usuário",
+    "showingCount_other": "Mostrando {{count}} usuários",
+    "roles": {
+      "CLIENT": "Cliente",
+      "ADMIN": "Administrador",
+      "SUPER_ADMIN": "Super Admin"
+    },
+    "roleDescClient": "Acesso padrão a reservas, comprovantes e perfil de aluguel.",
+    "roleDescAdmin": "Gestão de filiais, veículos, contratos e controle de frota.",
+    "roleDescSuperAdmin": "Controle total do sistema, segurança, gestão de funções e configuração financeira.",
+    "statusLabel": {
+      "ACTIVE": "Ativa",
+      "INACTIVE": "Inativa",
+      "BLOCKED": "Bloqueada"
+    },
+    "modal": {
+      "title": "Alterar função do usuário",
+      "close": "Fechar",
+      "selectRole": "Selecione o novo nível de função:",
+      "maxLevel": "Nível Máximo",
+      "warningTitle": "Aviso de segurança:",
+      "warningText": "Esta função tem acesso total ao sistema, incluindo gestão de contas bancárias, auditoria e privilégios de outros usuários.",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar alteração de função"
+    }
   }
 }

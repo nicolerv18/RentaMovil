@@ -172,7 +172,10 @@
     "man-history": "Maintenance history",
     "contracts": "Contracts",
     "con-new": "New contract",
-    "con-history": "Contract history"
+    "con-history": "Contract history",
+    "superadmin": "Super Admin",
+    "sa-users": "Users & roles",
+    "sa-bank": "Bank accounts"
   },
   "changePassword": {
     "caracters": "At least 8 characters",
@@ -648,5 +651,101 @@
     "inProgress": "In progress",
     "completed": "Completed",
     "cancel": "Cancelled"
+  },
+  "bankAccounts": {
+    "title": "Bank accounts",
+    "subtitle": "Manage the receiving accounts and authorized QR codes for bank transfer payments across the fleet.",
+    "btnAdd": "New bank account",
+    "breadcrumbAdmin": "Admin Panel",
+    "securityLevel": "Access Level: Super Admin",
+    "securitySession": "Authorized and audited session",
+    "securityDescription": "Central collections console: payment gateway and collection settings audited under financial security protocols.",
+    "total": "Registered Accounts",
+    "active": "Active Accounts",
+    "inactive": "Inactive Accounts",
+    "badgeActive": "Active",
+    "badgeInactive": "Inactive",
+    "lastPayment": "Last payment received:",
+    "totalTransactions": "Total associated transactions:",
+    "reservationsCount": "{{count}} reservation",
+    "reservationsCount_other": "{{count}} reservations",
+    "noPaymentsYet": "No payments yet",
+    "integrityTitle": "Accounting integrity note:",
+    "integrityText": "Bank accounts cannot be deleted from the system to avoid breaking the historical traceability of issued payment receipts. They can only be activated or deactivated.",
+    "modal": {
+      "title": "New bank account",
+      "close": "Close",
+      "bankName": "Bank name",
+      "bankNamePlaceholder": "E.g. Bancolombia, Davivienda, Banco Popular...",
+      "holderName": "Account holder",
+      "holderNamePlaceholder": "E.g. RentaMovil S.A.S. / Tax ID 901.482.109-4",
+      "accountNumber": "Account number / Identifier",
+      "accountNumberPlaceholder": "E.g. Savings 459-002194-12 or QR line 311 000 0000",
+      "qr": "Collection QR code",
+      "dropText": "Drag the QR image here or browse",
+      "dropActive": "Drop the image here...",
+      "dropHint": "PNG, JPG or SVG (max. 2MB)",
+      "qrRequired": "You must attach the account's QR code before saving.",
+      "cancel": "Cancel",
+      "save": "Save bank account"
+    },
+    "confirm": {
+      "title": "Deactivate this account?",
+      "text": "It will no longer appear as a payment option for new customers, but past payments that used it will remain recorded.",
+      "cancel": "Cancel",
+      "accept": "Deactivate account"
+    }
+  },
+  "userManagement": {
+    "title": "Users & roles",
+    "subtitle": "Manage access accounts, fleet permission assignment and administrative privileges of the system.",
+    "breadcrumbAdmin": "Admin Panel",
+    "securityLevel": "Access Level: Super Administrator",
+    "securitySession": "Authorized and audited session",
+    "securityDescription": "Central privileges console: role changes apply immediately to inventory, finance and audit authorizations.",
+    "placeholderSearch": "Search by name or email...",
+    "kpiTotal": "Total Users",
+    "kpiTotalHint": "accounts registered in the system",
+    "kpiAdmins": "Admins & Super Admins",
+    "kpiAdminsHint": "with active access to the management panel",
+    "kpiActive": "Active Accounts",
+    "kpiActiveHint": "user operability level",
+    "chipAll": "All",
+    "chipClients": "Clients",
+    "chipAdmins": "Admins",
+    "chipSuperAdmins": "Super Admins",
+    "name": "Full Name",
+    "email": "Email",
+    "role": "Current Role",
+    "status": "Status",
+    "actions": "Actions",
+    "registeredOn": "Registered on {{date}}",
+    "changeRole": "Change role",
+    "notFound": "No users found matching those criteria.",
+    "showingCount": "Showing {{count}} user",
+    "showingCount_other": "Showing {{count}} users",
+    "roles": {
+      "CLIENT": "Client",
+      "ADMIN": "Admin",
+      "SUPER_ADMIN": "Super Admin"
+    },
+    "roleDescClient": "Standard access to reservations, receipts and rental profile.",
+    "roleDescAdmin": "Management of branches, vehicles, contracts and fleet control.",
+    "roleDescSuperAdmin": "Full control of the system, security, role management and financial settings.",
+    "statusLabel": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "BLOCKED": "Blocked"
+    },
+    "modal": {
+      "title": "Change user role",
+      "close": "Close",
+      "selectRole": "Select the new role level:",
+      "maxLevel": "Max Level",
+      "warningTitle": "Security warning:",
+      "warningText": "This role has full access to the system, including bank account management, audits and other users' privileges.",
+      "cancel": "Cancel",
+      "confirm": "Confirm role change"
+    }
   }
 }
