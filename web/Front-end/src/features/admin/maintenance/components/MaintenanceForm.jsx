@@ -8,42 +8,44 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import FilterVehicle from './FilterVehicle';
-import { CarsMock } from '../service/CarsMock';
-import { createMaintenance } from '../hooks/useMaintenanceVehicles';
-function MaintenanceForm() {
+import { useVehicles } from '../../registerVehicle/hooks/useVehicles';
+import { vehicleService } from '../../registerVehicle/services/vehicleService';
+import { VEHICLE_STATUS } from '../../registerVehicle/constans/vehicleStatus';
+import { useCreateMaintenance } from '../hooks/useCreateMaintenance';
 
+function MaintenanceForm() {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const { register, formState: { errors }, handleSubmit, reset, setValue, setError } = useForm();
     const [mos, setMos] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState('');
-    const [vehicles, setVehicles] = useState(CarsMock);
     const [selectedVehicle, setSelectedVehicle] = useState(null);
+
+    const { vehicles, refetch } = useVehicles();
+    const { createMaintenance, isLoading } = useCreateMaintenance();
 
     const filteredVehicles = useMemo(() => {
         const searchTerm = search.trim().toLowerCase();
-        const availableStatuses = new Set(['disponible', 'en uso']);
+        const schedulableStatuses = new Set([VEHICLE_STATUS.AVAILABLE, VEHICLE_STATUS.IN_USE]);
         return vehicles
-            .filter((vehicle) => availableStatuses.has(
-                String(vehicle.status || '').trim().toLowerCase()
-            ))
+            .filter((vehicle) => schedulableStatuses.has(vehicle.status))
             .filter((vehicle) => {
                 const vehicleName = [vehicle.brandName, vehicle.modelName]
                     .filter(Boolean)
                     .join(' ')
                     .toLowerCase();
                 const plate = String(vehicle.plate || '').toLowerCase();
-
                 return !searchTerm || vehicleName.includes(searchTerm) || plate.includes(searchTerm);
             });
     }, [search, vehicles]);
+
     function selectVehicle(vehicle) {
         setSelectedVehicle(vehicle);
         setValue('plate', vehicle.plate, { shouldValidate: true });
         setValue('model', vehicle.modelName, { shouldValidate: true });
         setValue('brand', vehicle.brandName, { shouldValidate: true });
     }
+
     async function insert(data) {
         if (isLoading) return;
 
@@ -56,30 +58,25 @@ function MaintenanceForm() {
             });
             return;
         }
-        setIsLoading(true);
-        setMos(true);
-        //para en viar el id del vheiculo seleccionado.
+
         const payload = {
             ...data,
             vehicleId: selectedVehicle?.id || null,
             plate: data.plate.toUpperCase(),
         };
+
         try {
+            setMos(true);
             await createMaintenance(payload);
-            setVehicles((currentVehicles) => currentVehicles.map((vehicle) => (
-                vehicle === selectedVehicle
-                    ? { ...vehicle, status: 'En mantenimiento' }
-                    : vehicle
-            )));
+            await vehicleService.updateStatus(selectedVehicle.id, VEHICLE_STATUS.MAINTENANCE);
+            await refetch();
             reset();
             setSelectedVehicle(null);
             setSearch('');
         } catch (error) {
             console.error('Error al enviar los datos:', error);
-        }
-        finally {
+        } finally {
             setMos(false);
-            setIsLoading(false);
         }
     }
     return (

@@ -42,6 +42,35 @@
       "location": "333d",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789554772/278294_mvxgss.jpg",
       "id": "4ADet1UoXYc"
+    },
+    {
+      "plate": "WWQ123",
+      "brand": "qswdqw",
+      "model": "wdw",
+      "price": 100000,
+      "mileage": 2000,
+      "year": 2020,
+      "capacity": 2,
+      "vehicleType": "Camioneta",
+      "fuelType": "Diésel",
+      "location": "esta",
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789573088/278294_imjjnc.jpg",
+      "status": "DISPONIBLE",
+      "id": "1pMK8zWdNdM"
+    }
+  ],
+  "maintenances": [
+    {
+      "id": "1",
+      "vehicleId": "1",
+      "plate": "ABC12",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "date": "2026-09-20",
+      "cost": 150000,
+      "maintenanceType": "Cambio de aceite",
+      "observations": "",
+      "status": "PROGRAMADO"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
