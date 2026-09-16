@@ -1,0 +1,48 @@
+{
+  "vehicles": [
+    {
+      "id": "1",
+      "plate": "ABC12",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "price": 120000,
+      "mileage": 15000,
+      "age": 2022,
+      "capacity": 5,
+      "vehicleType": "Sedán",
+      "fuelType": "Gasolina",
+      "location": "Neiva, Huila",
+      "image": "https://...",
+      "status": "DISPONIBLE"
+    },
+    {
+      "plate": "ASD123",
+      "brand": "Nissan",
+      "model": "ASA",
+      "price": 100000,
+      "mileage": 10000,
+      "age": 2023,
+      "capacity": "3",
+      "vehicleType": "Furgón",
+      "fuelType": "Diésel",
+      "location": "333d",
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789554772/278294_hu1eyk.jpg",
+      "id": "rMWb0NcLQms"
+    },
+    {
+      "plate": "ASD123",
+      "brand": "Nissan",
+      "model": "ASA",
+      "price": 100000,
+      "mileage": 10000,
+      "age": 2023,
+      "capacity": "3",
+      "vehicleType": "Furgón",
+      "fuelType": "Diésel",
+      "location": "333d",
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789554772/278294_mvxgss.jpg",
+      "id": "4ADet1UoXYc"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

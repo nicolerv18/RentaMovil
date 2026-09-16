@@ -6,6 +6,8 @@ import Animation from '../../../../shared/components/layout/Animation';
 import FileDialog from "../../../../shared/components/layout/FileDialog";
 import { useTranslation } from 'react-i18next';
 import { getValidVehicleYearRange, validateVehicleYear } from '../../../../shared/utils/calculateAge';
+import { useCreateVehicle } from '../hooks/useCreateVehicle';
+import { useImageUpload } from '../../../../shared/hooks/useImageUpload';
 
 function VehicleForm() {
     const { t } = useTranslation();
@@ -14,42 +16,36 @@ function VehicleForm() {
     const [vehicleFile, setVehicleFile] = useState(null); // esto verificará el estado del fileDialog
     const [isLoading, setIsLoading] = useState(false);// agrega un estado de carga 
     const { minYear, maxYear, currentYear } = getValidVehicleYearRange(1); // optiene el rango de los vehiclos permitidos
+
+
+    const { createVehicle, isLoading: isCreating } = useCreateVehicle();
+    const { uploadImage, isUploading } = useImageUpload();
+
+
     const handleFileChange = (file) => {
         setVehicleFile(file);
 
         if (file) clearErrors('vehicleImage');
     }
 
+
     async function insert(data) {
         if (!vehicleFile) {
             setError('vehicleImage', { type: 'required', message: 'Este apartado es obligatorio' });
             return;
         }
-        setIsLoading(true);
-        // ejemplo: subir imagen a Cloudinary antes de resetear el formulario
         try {
-            const formData = new FormData();
-            formData.append('file', vehicleFile);
-            formData.append('upload_preset', 'dav32erzro');
-            formData.append('api_key', '172463377995151');
+            data.image = await uploadImage(vehicleFile);
+            await createVehicle(data);
 
-            const res = await fetch('https://api.cloudinary.com/v1_1/dz6ohgjub/image/upload', {
-                method: 'POST',
-                body: formData
-            });
-            const uploadResult = await res.json();
-            data.image = uploadResult.secure_url || uploadResult.url;
-            console.log('Formulario listo para enviar:', data);
-            setmos(true);//arranca la animacion 
+            setmos(true);
             setTimeout(() => {
-                setmos(false)
+                setmos(false);
                 setVehicleFile(null);
                 reset();
-            }, 2200);//esto programa que dentro de 2200 cambie el estato de stmos a false 
+            }, 2200);
         } catch (err) {
-            console.error('Error subiendo imagen:', err);
-        } finally {
-            setIsLoading(false);
+            console.error('Error al guardar el vehículo:', err);
         }
     }
     return (

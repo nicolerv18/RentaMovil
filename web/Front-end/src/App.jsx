@@ -26,7 +26,7 @@ import Notification from './features/notification/pages/Notification.jsx';
 import NotificationAdmin from './features/notification/pages/NotificationAdmin.jsx';
 
 // Admin - Vehicles
-import RegisterVehicle from './features/admin/vehicles/pages/RegisterVehicle.jsx';
+import RegisterVehicle from './features/admin/registerVehicle/pages/RegisterVehicle.jsx';
 
 // Admin - Maintenance
 import Maintenance from './features/admin/maintenance/pages/Maintenance.jsx';
