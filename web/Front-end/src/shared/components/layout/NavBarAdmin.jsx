@@ -1,55 +1,65 @@
 import "./NavBarAdmin.css";
 import { Link } from "react-router-dom";
-import { FaCar } from "react-icons/fa";
+import { FaCar, FaBars, FaTimes } from "react-icons/fa";
 import { MdPerson } from "react-icons/md";
-import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import AdminPanel from "../../../features/admin/HomeAdmin/Components/AdminPanel.jsx";
 import { useTranslation } from "react-i18next";
 
-function Navbar() {
+function NavbarAdmin() {
   const { t } = useTranslation();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
 
-  // Controla el menú de hamburguesa flotante de navegación
-  const handleToggleMenu = () => {
-    setMenuOpen(!menuOpen);
-    if (!menuOpen) setAdminOpen(false); // Si se abre este, cierra el Admin Panel
+  const closeAll = () => {
+    setOpen(false);
+    setAdminOpen(false);
   };
 
-  // Controla la apertura del Panel de Administración
-  const handleToggleAdmin = () => {
-    setAdminOpen(!adminOpen);
-    if (!adminOpen) setMenuOpen(false); // Si se abre este, cierra el menú de navegación
+  const toggleMenu = () => {
+    setOpen((prev) => !prev);
+    setAdminOpen(false);
+  };
+
+  const toggleAdminPanel = () => {
+    setAdminOpen((prev) => !prev);
+    setOpen(false);
   };
 
   return (
     <>
-      <header className="navbar">
-        <Link to="/HomeAdmin" className="logo-container">
-          <span className="logo-text">RentaMovil</span>
-          <FaCar className="logo-icon" />
-        </Link>
-
-        <div className="menu-toggle">
-          <FaBars className="icon-FaBars" onClick={handleToggleMenu} />
-        </div>
-
-        <nav className={`nav-links-container ${menuOpen ? "active" : ""}`}>
-          <Link to="/HomeAdmin">{t("navbar.linkInit")}</Link>
-          <Link to="/NotificationAdmin">{t("navbar.linkNotifications")}</Link>
-
-          <span
-            className={`nav-admin-link ${adminOpen ? "nav-admin-active" : ""}`}
-            onClick={handleToggleAdmin}
-          >
-            {t("navbar.linkPanelAdmin")}
-          </span>
-          <Link to="/CountAdmin">
-            <MdPerson className="icon-user" />
+      <header className="navbar-admin">
+        <div className="navbar-admin-content">
+          <Link to="/HomeAdmin" className="navbar-admin-logo" onClick={closeAll}>
+            <span className="navbar-admin-logo-text">RentaMovil</span>
+            <FaCar className="navbar-admin-logo-icon" />
           </Link>
-        </nav>
+
+          <nav className={`navbar-admin-links ${open ? "active" : ""}`}>
+            <Link to="/HomeAdmin" onClick={closeAll}>
+              {t("navbar.linkInit")}
+            </Link>
+
+            <Link to="/NotificationAdmin" onClick={closeAll}>
+              {t("navbar.linkNotifications")}
+            </Link>
+
+            <span
+              className={`navbar-admin-panel-toggle ${adminOpen ? "active" : ""}`}
+              onClick={toggleAdminPanel}
+            >
+              {t("navbar.linkPanelAdmin")}
+            </span>
+
+            <Link to="/CountAdmin" className="navbar-admin-profile" onClick={closeAll}>
+              <MdPerson />
+            </Link>
+          </nav>
+
+          <button className="navbar-admin-menu-button" onClick={toggleMenu}>
+            {open ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
       </header>
 
       <AdminPanel open={adminOpen} onClose={() => setAdminOpen(false)} />
@@ -57,4 +67,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarAdmin;
