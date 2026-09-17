@@ -1,97 +1,75 @@
 import React, { useState } from 'react';
-import CartVehicleHistory from '../components/CartVehicleHistory';
+import CartVehicleHistory from '../../historyMaintenance/components/CartVehicleHistory.jsx';
 import style from './History.module.css';
-import Navbar from '../../../../shared/components/layout/Navbar.jsx';
 import Footer from '../../../../shared/components/layout/Footer.jsx';
 import { useForm } from 'react-hook-form';
 import { AiOutlineDashboard } from 'react-icons/ai';
-import ValidateDate from '../../maintenance/components/ValidateDate.jsx';
-
-import FiltrerStatus from "../components/FiltrerHistory.jsx";
+import ValidateDate from '../../registerMaintenance/components/ValidateDate.jsx';
+import FiltrerStatus from "../../historyMaintenance/components/FiltrerHistory.jsx";
 import { useTranslation } from "react-i18next";
 import NavbarAdmin from '../../../../shared/components/layout/NavBarAdmin.jsx';
-import { CarsMock } from '../services/CarsMock.js';
-import FleetChartMaintenance from '../components/FleetChartMaintenance.jsx';
-import MonthlyChart from '../components/MonthlyChart.jsx';
+import FleetChartMaintenance from '../../historyMaintenance/components/FleetChartMaintenance.jsx';
+import MonthlyChart from '../../historyMaintenance/components/MonthlyChart.jsx';
+import { useMaintenances } from '../hooks/useMaintenances.js';
+import { useUpdateMaintenance } from '../hooks/useUpdateMaintenance.js';
+import { useDeleteMaintenance } from '../hooks/useDeleteMaintenance.js';
+import { MAINTENANCE_STATUS } from '../../maintenance/constans/maintenanceStatus.js';
 function History() {
   const { t } = useTranslation();
-  
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
-  const [records, setRecords] = useState(CarsMock); // Inicializa con los registros de mantenimiento del mock
+
+  const { records, refetch } = useMaintenances();
+  const { updateMaintenance } = useUpdateMaintenance();
+  const { deleteMaintenance } = useDeleteMaintenance();
 
   const [selected, setSelected] = useState(null);
-  //agrega cambio de estado
   const [confirmDelete, setConfirmDelete] = useState(false);
-  //agraga 
-  // estados para facilitar la edicion de los apartados
   const [isEditing, setIsEditing] = useState(false);
   const [query, setSearch] = useState("");
-
-  const [filterState, setFilterState] = useState("");// Estado para almacenar el estado de filtro seleccionado
+  const [filterState, setFilterState] = useState("");
 
   const filteredRecords = records
     .filter((c) => {
       const fs = String(filterState || '').toLowerCase();
       if (fs === 'all' || fs === '') return true;
-      return String(c.status || c.state || '').toLowerCase() === fs;
+      return String(c.status || '').toLowerCase() === fs;
     })
     .filter((c) => {
       const q = String(query || '').trim().toLowerCase();
       if (!q) return true;
       return (
-        String(c.modelName || c.model || '').toLowerCase().includes(q) ||
+        String(c.modelName || '').toLowerCase().includes(q) ||
         String(c.plate || '').toLowerCase().includes(q) ||
-        String(c.typeMaintenance || c.type || '').toLowerCase().includes(q)
+        String(c.typeMaintenance || '').toLowerCase().includes(q)
       );
     });
 
-
   const closeModal = () => {
-    setSelected(null)
-    setConfirmDelete(false)
-    setIsEditing(false)
-  }
-
-  const handleStatusChange = (este) => {
-    const newState = este.target.value;
-    //Actualizamos la lista completa de registros
-
-    const newRegisters = records.map(r => String(r.id) === String(selected.id) ? { ...r, state: newState } : r)
-    setRecords(newRegisters);
-
-    setSelected({ ...selected, state: newState });
-
-  }
-
-  const deleteRecord = (id) => {
-    //se filtra la lista para obtener el id recibido.
-    setRecords(records.filter(r => r.id !== id));
-    closeModal()
-  }
-
-  const handleSaveEdit = (data) => {
-    const updated = records.map(r =>
-      r.id === selected.id
-        ? {
-          ...r,
-          modelName: data.model,
-          typeMaintenance: data.maintenanceType,
-          date: data.date + 'T00:00:00Z',
-          description: data.observations,
-          status: data.status,
-        }
-        : r);
-    setRecords(updated);
-    setSelected({
-      ...selected,
-      modelName: data.model,
-      typeMaintenance: data.maintenanceType,
-      date: data.date,
-      description: data.observations,
-      status: data.status,
-    });// de estama manera se estaria sobre escribiendo los valores viejos por los nuevos
+    setSelected(null);
+    setConfirmDelete(false);
     setIsEditing(false);
-  }
+  };
+
+  const deleteRecord = async (id) => {
+    try {
+      await deleteMaintenance(id);
+      await refetch();
+      closeModal();
+    } catch (error) {
+      console.error('Error al eliminar el registro:', error);
+    }
+  };
+
+  const handleSaveEdit = async (data) => {
+    try {
+      await updateMaintenance(selected.id, data);
+      await refetch();
+      setIsEditing(false);
+      closeModal();
+    } catch (error) {
+      console.error('Error al actualizar el registro:', error);
+    }
+  };
 
   const openEdit = (rec) => {
     setIsEditing(true);
@@ -101,17 +79,15 @@ function History() {
       date: rec.date.slice(0, 10),
       observations: rec.description,
       status: rec.status,
-    })
-  }
+    });
+  };
+
   return (
-
     <>
-
       <NavbarAdmin />
       <div className={style["history-container"]}>
-          <h2 className={style["history-h2"]}>{t("History.title")}</h2>
+        <h2 className={style["history-h2"]}>{t("History.title")}</h2>
         <div className={style["card-container-setSearch"]}>
-         
           <FiltrerStatus query={query} setSearch={setSearch} filterState={filterState} setFilterState={setFilterState} />
         </div>
         <div className={style["card-container-fleetc"]}>
@@ -120,11 +96,7 @@ function History() {
         <MonthlyChart records={filteredRecords} />
         <div className={style.list}>
           {filteredRecords.map(r => (
-            <CartVehicleHistory
-              key={r.id}
-              record={r}
-              onViewMore={setSelected}
-            />
+            <CartVehicleHistory key={r.id} record={r} onViewMore={setSelected} />
           ))}
         </div>
 
@@ -138,27 +110,19 @@ function History() {
 
               {isEditing ? (
                 <form className={style["history-form"]} onSubmit={handleSubmit(handleSaveEdit)}>
-
                   <label htmlFor="model">{t("maintenanceForm.model")}</label>
                   <input
                     type="text"
                     placeholder={t("maintenanceForm.placeholderModel")}
-
                     {...register("model", {
                       required: t("maintenanceForm.requiredModel"),
                       minLength: { value: 2, message: t("maintenanceForm.minLenghtModel") },
                       maxLength: { value: 30, message: t("maintenanceForm.maxLenghtModel") },
-                      pattern: {
-                        value: /^[A-Za-z0-9\s\-]{2,30}$/,
-                        message: t("maintenanceForm.invalidModel")
-                      }
+                      pattern: { value: /^[A-Za-z0-9\s\-]{2,30}$/, message: t("maintenanceForm.invalidModel") }
                     })}
                   />
-                  {errors.model && (
-                    <p className={style['error-message']}>
-                      <AiOutlineDashboard /> {errors.model.message}
-                    </p>
-                  )}
+                  {errors.model && <p className={style['error-message']}><AiOutlineDashboard /> {errors.model.message}</p>}
+
                   <label htmlFor="maintenanceType">{t("maintenanceForm.TypeMaintenance")}</label>
                   <input
                     type="text"
@@ -168,49 +132,22 @@ function History() {
                       required: t("maintenanceForm.requiredMaintenance"),
                       minLength: { value: 3, message: t("maintenanceForm.minLenghtMaintenance") },
                       maxLength: { value: 60, message: t("maintenanceForm.maxLenght") },
-                      pattern: {
-                        value: /^[A-Za-zÀ-ÿ0-9\s\-\,\.]{3,60}$/,
-                        message: t("maintenanceForm.invalidMaintenance")
-                      }
+                      pattern: { value: /^[A-Za-zÀ-ÿ0-9\s\-\,\.]{3,60}$/, message: t("maintenanceForm.invalidMaintenance") }
                     })}
                   />
                   <datalist id="maintenance-options">
                     <option value={t("maintenanceForm.options.option1")} />
                     <option value={t("maintenanceForm.options.option2")} />
-                    <option value={t("maintenanceForm.options.option3")} />
-                    <option value={t("maintenanceForm.options.option4")} />
-                    <option value={t("maintenanceForm.options.option5")} />
-                    <option value={t("maintenanceForm.options.option6")} />
-                    <option value={t("maintenanceForm.options.option7")} />
-                    <option value={t("maintenanceForm.options.option8")} />
-                    <option value={t("maintenanceForm.options.option9")} />
-                    <option value={t("maintenanceForm.options.option10")} />
-                    <option value={t("maintenanceForm.options.option11")} />
-                    <option value={t("maintenanceForm.options.option12")} />
-                    <option value={t("maintenanceForm.options.option13")} />
-                    <option value={t("maintenanceForm.options.option14")} />
-
                   </datalist>
+                  {errors.maintenanceType && <p className={style['error-message']}><AiOutlineDashboard /> {errors.maintenanceType.message}</p>}
 
-                  {errors.maintenanceType && (
-                    <p className={style['error-message']}>
-                      <AiOutlineDashboard /> {errors.maintenanceType.message}
-                    </p>
-                  )}
                   <label htmlFor="date">{t("maintenanceForm.date")}</label>
                   <input type="date" placeholder={t("maintenanceForm.datePlaceholder")}
-                    {...register("date", {
-                      required: t("maintenanceForm.requiredDate"),
-                      validate: ValidateDate
-                    })}
+                    {...register("date", { required: t("maintenanceForm.requiredDate"), validate: ValidateDate })}
                   />
-                  {errors.date && (
-                    <p className={style['error-message']}>
-                      <AiOutlineDashboard /> {errors.date.message}
-                    </p>
-                  )}
+                  {errors.date && <p className={style['error-message']}><AiOutlineDashboard /> {errors.date.message}</p>}
+
                   <label htmlFor="maintenance-notes">{t("MaintenanceForm.observations")}</label>
-                  {/* aca se registra las validaciones de el campo como observaciones, se requiere que el campo sea obligatorio con una longitud minima de 5 caracteres y maxima de 30 */}
                   <div className={style['history-form-observations']}>
                     <textarea
                       placeholder={t("maintenanceForm.placeholderObservations")}
@@ -221,31 +158,27 @@ function History() {
                         maxLength: { value: 200, message: t("maintenanceForm.PmaxLenghtObservations") }
                       })}
                       onInput={(e) => {
-                        e.target.style.height = 'auto';         /* // resetea la altura */
-                        e.target.style.height = e.target.scrollHeight + 'px'; // crece según el contenido
-                      }} />
+                        e.target.style.height = 'auto';
+                        e.target.style.height = e.target.scrollHeight + 'px';
+                      }}
+                    />
                   </div>
-                  {/* manejo de errores ], aca se senala el tipo de error y se le especifica el mensaje */}
                   {errors.observations?.type === "minLength" && <p className={style['error-message']}><AiOutlineDashboard /> {errors.observations.message}</p>}
                   {errors.observations?.type === "maxLength" && <p className={style['error-message']}><AiOutlineDashboard /> {errors.observations.message}</p>}
 
-
                   <label>{t("FiltrerHistory.state")}</label>
-                     <select defaultValue={selected.state} {...register("status")}>
-                    <option value="Completado">{t("FiltrerHistory.completed")}</option>
-                    <option value="Pendiente">{t("FiltrerHistory.pending")}</option>
-                    <option value="En progreso">{t("FiltrerHistory.inProgress")}</option>
-                    <option value="Cancelado">{t("CartVehiculeMaintenance.cancel")}</option>
+                  <select defaultValue={selected.status} {...register("status")}>
+                    <option value={MAINTENANCE_STATUS.COMPLETED}>{t("FiltrerHistory.completed")}</option>
+                    <option value={MAINTENANCE_STATUS.PENDING}>{t("FiltrerHistory.pending")}</option>
+                    <option value={MAINTENANCE_STATUS.IN_PROGRESS}>{t("FiltrerHistory.inProgress")}</option>
+                    <option value={MAINTENANCE_STATUS.CANCELLED}>{t("CartVehiculeMaintenance.cancel")}</option>
                   </select>
 
                   <div className={style['modal-footer']}>
                     <button className={style['modal-button-secondary']} type="button" onClick={() => setIsEditing(false)}>{t("History.cancel")}</button>
                     <button className={style['modal-button-primary']} type="submit">{t("History.save")}</button>
                   </div>
-
-
                 </form>
-
               ) : (
                 <>
                   <div className={style["history-details"]}>
@@ -257,14 +190,11 @@ function History() {
                     <p><strong>{t("MaintenanceForm.observations")} :</strong> <span>{selected.description || t("maintenanceForm.placeholderObservations")}</span></p>
                   </div>
 
-
-                  <div className={style['modal-actions-btn']} >
+                  <div className={style['modal-actions-btn']}>
                     <button className={style['modal-button-primary']} onClick={() => openEdit(selected)}>{t("History.edit")}</button>
-
                     {!confirmDelete && (
                       <button className={style['modal-button-danger']} onClick={() => setConfirmDelete(true)}>{t("History.delete")}</button>
                     )}
-
                     {confirmDelete && (
                       <div className={style["modal-confirm"]}>
                         <p>{t("History.delete")}:</p>
@@ -272,10 +202,8 @@ function History() {
                         <button className={style['modal-button-secondary']} onClick={() => setConfirmDelete(false)}>{t("History.cancel")}</button>
                       </div>
                     )}
-
                     <button className={style['modal-button-secondary']} onClick={closeModal}>{t("History.close")}</button>
                   </div>
-
                 </>
               )}
             </div>

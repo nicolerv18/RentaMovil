@@ -4,7 +4,7 @@ import statusStyle from '../../historyMaintenance/components/CartVehicleHistory.
 
 function CartVehicleHistory({ record = {}, onViewMore }) {
     const { t } = useTranslation();
-    const { location,plate, date, typeMaintenance, status, description, imageUrl: recordImg, modelName } = record;
+    const { location,plate, date, typeMaintenance, status, description, image: recordImg, modelName } = record;
 
     const stateClass = {
         'Pendiente': statusStyle['state--mantenimiento'],

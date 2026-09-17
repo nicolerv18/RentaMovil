@@ -21,7 +21,7 @@ function VehicleCard({ vehicles, selectedVehicle, onSelect, emptyMessage }) {
                                     {vehicle.status}
                                 </span>
                             </div>
-                            <img src={vehicle.imgUrl} alt={vehicle.modelName} />
+                            <img src={vehicle.image} alt={vehicle.modelName} />
                             <p>{vehicle.modelName}</p>
                             <small>{vehicle.brandName} • {vehicle.year}</small>
                         </button>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { maintenanceService } from '../services/maintenanceService';
+import { maintenanceService } from '../../maintenance/service/maintenanceService';
 
 export function useCreateMaintenance() {
     const [isLoading, setIsLoading] = useState(false);

@@ -59,17 +59,17 @@ function MaintenanceForm() {
             return;
         }
 
-        const payload = {
-            ...data,
-            vehicleId: selectedVehicle?.id || null,
-            plate: data.plate.toUpperCase(),
-        };
-
         try {
             setMos(true);
-            await createMaintenance(payload);
+
+            data.vehicleId = selectedVehicle.id;
+            data.plate = data.plate.toUpperCase();
+            data.image = selectedVehicle.image || ''; // reutiliza la foto del registro del vehículo
+
+            await createMaintenance(data);
             await vehicleService.updateStatus(selectedVehicle.id, VEHICLE_STATUS.MAINTENANCE);
             await refetch();
+
             reset();
             setSelectedVehicle(null);
             setSearch('');
@@ -79,6 +79,7 @@ function MaintenanceForm() {
             setMos(false);
         }
     }
+
     return (
         <div className={style['maintenance-container']}>
             <div className={style['maintenance-sidebar']}>
@@ -96,8 +97,6 @@ function MaintenanceForm() {
                         onSelect={selectVehicle}
                         emptyMessage={t('MaintenanceForm.noFound')}
                     />
-
-
                 </div>
             </div>
             <form className={style['maintenance-form']} onSubmit={handleSubmit(insert)}>
@@ -121,7 +120,6 @@ function MaintenanceForm() {
                                     }
                                 })}
                             />
-
                             {errors.plate && (
                                 <p className={style['error-message']}>
                                     <AiOutlineDashboard /> {errors.plate.message}
@@ -186,7 +184,6 @@ function MaintenanceForm() {
                                     <option value="Bajaj" />
                                     <option value="Yamaha" />
                                 </datalist>
-
                                 {errors.brand && (
                                     <p className={style['error-message']}>
                                         <AiOutlineDashboard /> {errors.brand.message}
@@ -260,7 +257,6 @@ function MaintenanceForm() {
                                     <option value={t("MaintenanceForm.options.option13")} />
                                     <option value={t("MaintenanceForm.options.option14")} />
                                 </datalist>
-
                                 {errors.maintenanceType && (
                                     <p className={style['error-message']}>
                                         <AiOutlineDashboard /> {errors.maintenanceType.message}
@@ -302,7 +298,6 @@ function MaintenanceForm() {
                             {isLoading ? t("MaintenanceForm.saving") : t("MaintenanceForm.save")}
                         </button>
                         <span className={style['vehicule-animation']}>
-
                             {mos && <Animation />}
                         </span>
                         <button className="history" type="button" onClick={() => navigate('/History')}>

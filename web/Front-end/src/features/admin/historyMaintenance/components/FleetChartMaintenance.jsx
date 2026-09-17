@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Pie, PieChart, Cell, Tooltip } from "recharts";// Importar los componentes necesarios de Recharts para crear el gráfico circular
-import style from "../components/FleetChartMaintenance.module.css";
+import style from "./FleetChartMaintenance.module.css";
 function FleetChartMaintenance({ records }) {
     const { t } = useTranslation();
     const stateMap = {

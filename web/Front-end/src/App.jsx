@@ -29,7 +29,7 @@ import NotificationAdmin from './features/notification/pages/NotificationAdmin.j
 import RegisterVehicle from './features/admin/registerVehicle/pages/RegisterVehicle.jsx';
 
 // Admin - Maintenance
-import Maintenance from './features/admin/maintenance/pages/Maintenance.jsx';
+import Maintenance from './features/admin/registerMaintenance/pages/Maintenance.jsx';
 
 // Admin - Status
 import CheckStatus from './features/admin/status/pages/CheckStatus.jsx';
