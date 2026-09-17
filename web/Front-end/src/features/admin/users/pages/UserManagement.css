@@ -11,83 +11,6 @@
   gap: 20px;
 }
 
-/* ── Breadcrumb ── */
-.um-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--placeholder);
-}
-.um-breadcrumb a {
-  color: var(--placeholder);
-  text-decoration: none;
-}
-.um-breadcrumb a:hover {
-  color: var(--text-h);
-}
-.um-breadcrumb span {
-  color: var(--text-h);
-  font-weight: 600;
-}
-
-/* ── Banner de seguridad ── */
-.um-security-banner {
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  border-radius: 12px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.um-security-icon {
-  width: 20px;
-  height: 20px;
-  color: #b45309;
-  flex-shrink: 0;
-}
-.um-security-text {
-  flex: 1;
-  min-width: 220px;
-}
-.um-security-tags {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 2px;
-}
-.um-security-badge {
-  background: rgba(242, 192, 99, 0.35);
-  border: 1px solid rgba(242, 192, 99, 0.6);
-  color: #78350f;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 6px;
-}
-.um-security-tags span:last-child {
-  font-size: 12px;
-  font-weight: 600;
-  color: #78350f;
-}
-.um-security-text p {
-  font-size: 13px;
-  color: var(--text);
-  margin: 0;
-}
-.um-security-audit {
-  font-family: monospace;
-  font-size: 11px;
-  color: var(--placeholder);
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-
 /* ── Header + búsqueda ── */
 .um-header {
   display: flex;
@@ -266,32 +189,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.um-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 700 12px inherit;
-  border: 1px solid transparent;
-}
-.um-avatar.role-client {
-  background: var(--bg);
-  border-color: var(--border);
-  color: var(--text);
-}
-.um-avatar.role-admin {
-  background: rgba(29, 78, 216, 0.12);
-  border-color: rgba(29, 78, 216, 0.3);
-  color: #1d4ed8;
-}
-.um-avatar.role-super_admin {
-  background: rgba(245, 158, 11, 0.15);
-  border-color: rgba(245, 158, 11, 0.35);
-  color: #92400e;
 }
 .um-user-name {
   font-weight: 700;
@@ -487,55 +384,89 @@
 .um-role-options {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 .um-role-option {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
   border: 1.5px solid var(--border);
-  border-radius: 10px;
+  border-left: 3px solid var(--border);
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.15s;
 }
 .um-role-option:hover {
   border-color: var(--placeholder);
 }
-.um-role-option.selected {
-  border-color: var(--button);
-  background: rgba(242, 192, 99, 0.08);
-}
-.um-role-option.super.selected {
-  border-color: #f59e0b;
-  background: rgba(245, 158, 11, 0.08);
-}
 .um-role-option input {
-  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  flex-shrink: 0;
   accent-color: var(--navbar, #0a192f);
+}
+.um-role-option-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
 }
 .um-role-option-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  gap: 6px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--text-h);
 }
+.um-role-option-title svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
 .um-role-option-tag {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 5px;
+  padding: 1px 5px;
+  border-radius: 4px;
   background: rgba(245, 158, 11, 0.18);
   color: #92400e;
   border: 1px solid rgba(245, 158, 11, 0.4);
 }
 .um-role-option-desc {
   display: block;
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 1.3;
   color: var(--placeholder);
-  margin-top: 2px;
+}
+
+/* Color por rol */
+.um-role-option.role-client.selected {
+  border-color: var(--border);
+  border-left-color: var(--placeholder);
+  background: var(--bg);
+}
+.um-role-option.role-admin.selected {
+  border-color: rgba(29, 78, 216, 0.3);
+  border-left-color: #1d4ed8;
+  background: rgba(29, 78, 216, 0.06);
+}
+.um-role-option.role-admin .um-role-option-title svg {
+  color: #1d4ed8;
+}
+.um-role-option.role-super_admin.selected {
+  border-color: rgba(245, 158, 11, 0.4);
+  border-left-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+}
+.um-role-option.role-super_admin .um-role-option-title svg {
+  color: #b45309;
 }
 
 /* ── Advertencia super admin ── */

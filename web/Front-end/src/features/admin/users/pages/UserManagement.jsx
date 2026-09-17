@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   FiShield,
@@ -7,20 +6,15 @@ import {
   FiUser,
   FiStar,
   FiTrendingUp,
-  FiChevronRight,
   FiSearch,
   FiKey,
   FiX,
   FiAlertTriangle,
 } from "react-icons/fi";
 import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
-import Footer from "../../../../shared/components/layout/Footer";
+import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
 import { UsersMock } from "../services/UsersMock";
 import "./UserManagement.css";
-
-function initialsOf(user) {
-  return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase();
-}
 
 export default function UserManagement() {
   const { t } = useTranslation();
@@ -121,11 +115,6 @@ export default function UserManagement() {
       <NavBarAdmin />
 
       <div className="um-wrapper">
-        <nav className="um-breadcrumb" aria-label="Breadcrumb">
-          <Link to="/HomeAdmin">{t("userManagement.breadcrumbAdmin")}</Link>
-          <FiChevronRight />
-          <span>{t("userManagement.title")}</span>
-        </nav>
 
         <div className="um-header">
           <div>
@@ -186,12 +175,7 @@ export default function UserManagement() {
                   <tr key={u.id}>
                     <td>
                       <div className="um-user-cell">
-                        <span
-                          className={`um-avatar role-${u.role.toLowerCase()}`}
-                          translate="no"
-                        >
-                          {initialsOf(u)}
-                        </span>
+                      
                         <div>
                           <div className="um-user-name">
                             {u.firstName} {u.lastName}
@@ -244,7 +228,7 @@ export default function UserManagement() {
         </div>
       </div>
 
-      <Footer />
+      <FooterAdmin />
 
       {modalUser && (
         <div className="um-modal-overlay" onClick={closeRoleModal}>
@@ -270,12 +254,6 @@ export default function UserManagement() {
             >
               <div className="um-user-preview">
                 <div className="um-user-cell">
-                  <span
-                    className={`um-avatar role-${modalUser.role.toLowerCase()}`}
-                    translate="no"
-                  >
-                    {initialsOf(modalUser)}
-                  </span>
                   <div>
                     <div className="um-user-name">
                       {modalUser.firstName} {modalUser.lastName}
@@ -296,7 +274,7 @@ export default function UserManagement() {
                 {roleOptions.map(({ value, desc }) => (
                   <label
                     key={value}
-                    className={`um-role-option ${value === "SUPER_ADMIN" ? "super" : ""} ${draftRole === value ? "selected" : ""}`}
+                    className={`um-role-option role-${value.toLowerCase()} ${draftRole === value ? "selected" : ""}`}
                   >
                     <input
                       type="radio"
@@ -305,8 +283,10 @@ export default function UserManagement() {
                       checked={draftRole === value}
                       onChange={(e) => setDraftRole(e.target.value)}
                     />
-                    <div>
+                    <div className="um-role-option-body">
                       <span className="um-role-option-title">
+                        {value === "SUPER_ADMIN" && <FiStar />}
+                        {value === "ADMIN" && <FiUser />}
                         {roleLabel(value)}
                         {value === "SUPER_ADMIN" && (
                           <span className="um-role-option-tag">

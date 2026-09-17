@@ -7,8 +7,6 @@ export const BankAccountsMock = [
     holderName: "RentaMovil S.A.S. — NIT 901.482.109-4",
     qrImageUrl: null,
     isActive: true,
-    lastPayment: "Hace 45 min",
-    transactions: 142,
   },
   {
     id: 2,
@@ -18,8 +16,6 @@ export const BankAccountsMock = [
     holderName: "RentaMovil S.A.S. — NIT 901.482.109-4",
     qrImageUrl: null,
     isActive: true,
-    lastPayment: "Hace 2 horas",
-    transactions: 389,
   },
   {
     id: 3,
@@ -29,8 +25,6 @@ export const BankAccountsMock = [
     holderName: "RentaMovil S.A.S. — NIT 901.482.109-4",
     qrImageUrl: null,
     isActive: true,
-    lastPayment: "Ayer",
-    transactions: 84,
   },
   {
     id: 4,
@@ -40,7 +34,5 @@ export const BankAccountsMock = [
     holderName: "RentaMovil S.A.S. — NIT 901.482.109-4",
     qrImageUrl: null,
     isActive: false,
-    lastPayment: "18 Nov 2023",
-    transactions: 51,
   },
 ];

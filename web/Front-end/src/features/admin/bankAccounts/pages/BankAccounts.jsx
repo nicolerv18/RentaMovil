@@ -1,13 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDropzone } from "react-dropzone";
 import {
-  FiShield,
   FiCreditCard,
   FiCheckCircle,
   FiXCircle,
-  FiChevronRight,
   FiPlus,
   FiX,
   FiUploadCloud,
@@ -15,7 +12,7 @@ import {
   FiInfo,
 } from "react-icons/fi";
 import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
-import Footer from "../../../../shared/components/layout/Footer";
+import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
 import { BankAccountsMock } from "../services/BankAccountsMock";
 import "./BankAccounts.css";
 
@@ -114,8 +111,6 @@ export default function BankAccounts() {
         holderName: data.get("holderName"),
         qrImageUrl: qrFile ? URL.createObjectURL(qrFile) : null,
         isActive: true,
-        lastPayment: t("bankAccounts.noPaymentsYet"),
-        transactions: 0,
       },
       ...prev,
     ]);
@@ -146,11 +141,6 @@ export default function BankAccounts() {
       <NavBarAdmin />
 
       <div className="ba-wrapper">
-        <nav className="ba-breadcrumb" aria-label="Breadcrumb">
-          <Link to="/HomeAdmin">{t("bankAccounts.breadcrumbAdmin")}</Link>
-          <FiChevronRight />
-          <span>{t("bankAccounts.title")}</span>
-        </nav>
 
         <div className="ba-header">
           <div>
@@ -209,19 +199,6 @@ export default function BankAccounts() {
                 </p>
                 <p className="ba-card-holder">{a.holderName}</p>
               </div>
-
-              <div className="ba-card-footer">
-                <div>
-                  <span>{t("bankAccounts.lastPayment")}</span>
-                  <span>{a.lastPayment}</span>
-                </div>
-                <div>
-                  <span>{t("bankAccounts.totalTransactions")}</span>
-                  <span>
-                    {t("bankAccounts.reservationsCount", { count: a.transactions })}
-                  </span>
-                </div>
-              </div>
             </div>
           ))}
         </div>
@@ -235,7 +212,7 @@ export default function BankAccounts() {
         </div>
       </div>
 
-      <Footer />
+      <FooterAdmin />
 
       {showAddModal && (
         <div className="ba-modal-overlay" onClick={closeAddModal}>
