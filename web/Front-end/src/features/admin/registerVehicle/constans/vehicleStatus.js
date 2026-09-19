@@ -4,3 +4,10 @@ export const VEHICLE_STATUS = {
     RENTED: 'RENTADO',
     MAINTENANCE: 'EN_MANTENIMIENTO',
 };
+
+export const VEHICLE_STATUS_LABEL = {
+    [VEHICLE_STATUS.AVAILABLE]: 'Disponible',
+    [VEHICLE_STATUS.IN_USE]: 'En uso',
+    [VEHICLE_STATUS.RENTED]: 'En uso',      
+    [VEHICLE_STATUS.MAINTENANCE]: 'Mantenimiento',
+};

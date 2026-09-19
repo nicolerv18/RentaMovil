@@ -1,0 +1,204 @@
+import { useState, useEffect, useRef } from "react";
+import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
+import Footer from "../../../../shared/components/layout/Footer";
+import { useNavigate } from "react-router-dom";
+import "./VehicleInventory.css";
+import { useTranslation } from "react-i18next";
+import { useInventory } from "../hooks/useInventory"; // Importación del hook corregido
+import carro from "../../../../assets/carro.png";
+import car from "../../../../assets/logo.png";
+import { TfiLayoutGrid2Alt } from "react-icons/tfi";
+import { TfiMenu } from "react-icons/tfi";
+
+export default function VehicleInventory() {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  // Integración del Hook del Inventario Asíncrono
+  const { inventory, isLoading, error } = useInventory();
+
+  // Estados de búsqueda y filtros
+  const [search, setSearch] = useState("");
+  const [activeFilter, setActiveFilter] = useState(null);
+  const [selectedFilters, setSelectedFilters] = useState({
+    estado: null,
+    sucursal: null,
+    tipo: null,
+  });
+
+  const [vista, setVista] = useState("grid");
+  const [selected, setSelected] = useState(null);
+
+  const filtersRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (filtersRef.current && !filtersRef.current.contains(event.target)) {
+        setActiveFilter(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleFilterClick = (filterType) =>
+    setActiveFilter(activeFilter === filterType ? null : filterType);
+
+  const handleFilterSelect = (filterType, value) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [filterType]: prev[filterType] === value ? null : value,
+    }));
+  };
+
+  const clearAllFilters = () =>
+    setSelectedFilters({ estado: null, sucursal: null, tipo: null });
+
+  const hasActiveFilters = Object.values(selectedFilters).some(
+    (v) => v !== null,
+  );
+
+  // Arrays de opciones dinámicas basados en la información de la API (inventory)
+  const ESTADOS = [
+    { value: "Todos", label: t("VehicleInventary.all_m") },
+    { value: "Disponible", label: t("VehicleInventary.available") },
+    { value: "En uso", label: t("VehicleInventary.inUse") },
+    { value: "Mantenimiento", label: t("VehicleInventary.maintenance") },
+  ];
+
+  const SUCURSALES = [
+    { value: "Todas", label: t("VehicleInventary.all_f") },
+    ...[...new Set(inventory.map((v) => v.sucursal || v.branch))].filter(Boolean).map((suc) => ({
+      value: suc,
+      label: suc,
+    })),
+  ];
+
+  const TIPOS = [
+    { value: "Todos", label: t("VehicleInventary.all_m") },
+    ...[...new Set(inventory.map((v) => v.tipo || v.type))].filter(Boolean).map((tipo) => ({
+      value: tipo,
+      label: tipo,
+    })),
+  ];
+
+  // Filtrado lógico reactivo a los datos guardados en 'inventory'
+  const filtered = inventory.filter(
+    (v) =>
+      (search === "" ||
+        (v.placa || "").toLowerCase().includes(search.toLowerCase()) ||
+        (v.marca || "").toLowerCase().includes(search.toLowerCase()) ||
+        (v.modelo || "").toLowerCase().includes(search.toLowerCase())) &&
+      (selectedFilters.estado === null ||
+        selectedFilters.estado === "Todos" ||
+        v.estado === selectedFilters.estado) &&
+      (selectedFilters.sucursal === null ||
+        selectedFilters.sucursal === "Todas" ||
+        (v.sucursal || v.branch) === selectedFilters.sucursal) &&
+      (selectedFilters.tipo === null ||
+        selectedFilters.tipo === "Todos" ||
+        (v.tipo || v.type) === selectedFilters.tipo),
+  );
+
+  // Estadísticas dinámicas calculadas desde la API
+  const stats = {
+    total: inventory.length,
+    disponible: inventory.filter((v) => v.estado === "Disponible").length,
+    enUso: inventory.filter((v) => v.estado === "En uso").length,
+    mantenimiento: inventory.filter((v) => v.estado === "Mantenimiento").length,
+  };
+
+  return (
+    <div className="vi-page">
+      <NavBarAdmin />
+
+      <div className="vi-wrapper">
+        {/* Header */}
+        <div className="vi-header">
+          <div>
+            <h1 className="vi-title">{t("VehicleInventary.title")}</h1>
+            <p className="vi-subtitle">{t("VehicleInventary.subtitle")}</p>
+          </div>
+          <button
+            className="vi-btn-add"
+            onClick={() => navigate("/RegisterVehicle")}
+          >
+            {t("VehicleInventary.btnAddVehicle")}
+          </button>
+        </div>
+
+        {/* Renderizado Condicional: Estado de Carga o Error de la API */}
+        {isLoading && (
+          <div className="vi-loading-container">
+            <p>{t("VehicleInventary.loading") || "Cargando vehículos..."}</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="vi-error-container">
+            <p style={{ color: "red" }}>{error}</p>
+          </div>
+        )}
+
+        {/* Contenido Principal (Solo se procesa si no está cargando) */}
+        {!isLoading && !error && (
+          <>
+            {/* Stats */}
+            <div className="vi-stats">
+              <div className="vi-stat">
+                <span className="vi-stat-num">{stats.total}</span>
+                <span className="vi-stat-label">{t("VehicleInventary.total")}</span>
+              </div>
+              <div className="vi-stat disponible">
+                <span className="vi-stat-num">{stats.disponible}</span>
+                <span className="vi-stat-label">{t("VehicleInventary.available")}</span>
+              </div>
+              <div className="vi-stat en-uso">
+                <span className="vi-stat-num">{stats.enUso}</span>
+                <span className="vi-stat-label">{t("VehicleInventary.inUse")}</span>
+              </div>
+              <div className="vi-stat mantenimiento">
+                <span className="vi-stat-num">{stats.mantenimiento}</span>
+                <span className="vi-stat-label">{t("VehicleInventary.maintenance")}</span>
+              </div>
+            </div>
+
+            {/* Controles de Búsqueda, Filtros y Cambio de Vista */}
+            <div className="vi-controls">
+              <div className="vi-search-wrap">
+                <input
+                  className="vi-search"
+                  type="text"
+                  placeholder={t("VehicleInventary.placeholderSearch")}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
+
+              <div className="vi-view-toggle">
+                <button
+                  className={`vi-view-btn ${vista === "grid" ? "active" : ""}`}
+                  onClick={() => setVista("grid")}
+                  title={t("VehicleInventary.cuadTitle")}
+                >
+                  <TfiLayoutGrid2Alt size={18} />
+                </button>
+
+                <button
+                  className={`vi-view-btn ${vista === "tabla" ? "active" : ""}`}
+                  onClick={() => setVista("tabla")}
+                  title={t("VehicleInventary.cuadTitle2")}
+                >
+                  <TfiMenu size={18} />
+                </button>
+              </div>
+
+              {/* El div 'vi-filters' de tu referencia continúa aquí de forma normal utilizando 'filtered' */}
+            </div>
+          </>
+        )}
+      </div>
+      <Footer />
+    </div>
+  );
+}

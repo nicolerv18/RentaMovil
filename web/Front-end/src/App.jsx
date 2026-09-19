@@ -9,7 +9,7 @@ import Count from './features/auth/pages/Count.jsx';
 import CountAdmin from './features/auth/pages/CountAdmin.jsx';
 import ChangePassword from './features/auth/pages/ChangePassword.jsx';
 
-import VehicleInventary from './features/admin/VehicleInventary/pages/VehicleInventary.jsx';
+import VehicleInventory from './features/admin/VehicleInventory/pages/VehicleInventory.jsx';
 // Vehicles
 import Home from './features/vehicles/pages/Home.jsx';
 import HomeS from './features/vehicles/pages/HomeS.jsx';
@@ -90,7 +90,7 @@ function App() {
         <Route path="/homeAdmin" element={<HomeAdmin />} />
         <Route path="/home-admin" element={<HomeAdmin />} />
         <Route path="/History" element={<History />} />
-        <Route path="/VehicleInventary" element={<VehicleInventary />} />
+        <Route path="/VehicleInventory" element={<VehicleInventory />} />
         <Route path="/Register" element={<RegisterForm />} />
         <Route path="/EmailVerification" element={<EmailVerification />} />
         <Route path="/CodeVerification" element={<CodeVerification />} />

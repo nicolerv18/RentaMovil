@@ -222,6 +222,21 @@
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789658431/260513_17h32m35s_screenshot_sfz8uq.png",
       "status": "EN_MANTENIMIENTO",
       "id": "bt8DJVZ_Ujk"
+    },
+    {
+      "plate": "ABC111",
+      "brand": "wol",
+      "model": "wdw",
+      "price": 10000,
+      "mileage": 1000,
+      "year": 2020,
+      "capacity": 2,
+      "vehicleType": "Sedán",
+      "fuelType": "Diésel",
+      "location": "swdasfergbs",
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789679543/260514_22h14m09s_screenshot_f9ekwm.png",
+      "status": "DISPONIBLE",
+      "id": "jWfp1_AvieU"
     }
   ],
   "maintenances": [
@@ -243,24 +258,26 @@
       "plate": "QQQ111",
       "brand": "Chevrolet",
       "model": "la que sierve",
-      "date": "2026-09-17",
+      "date": "2026-09-20",
       "cost": 120000,
       "maintenanceType": "4444",
       "observations": "dewfsrgdh",
       "image": "",
-      "id": "mei3xcEIr0Y"
+      "id": "mei3xcEIr0Y",
+      "status": "PENDIENTE"
     },
     {
       "vehicleId": "qxT3Ny_qwmo",
       "plate": "ACD234",
       "brand": "Hyundai",
       "model": "dasdas",
-      "date": "2026-09-17",
+      "date": "2026-09-26",
       "cost": 90000,
       "maintenanceType": "fghjkl",
       "observations": "",
       "image": "",
-      "id": "rtHWj5-ALHY"
+      "id": "rtHWj5-ALHY",
+      "status": "COMPLETADO"
     },
     {
       "vehicleId": "yYVqhFwN9uA",
