@@ -1,14 +1,14 @@
-    import { useState } from "react";
-    import { changePasswordService } from "../services/changePasswordService.js";
-    import { isPasswordValid } from "../utils/passWorrdValidation.js";
-    import {
+import { useState } from "react";
+import { authService } from "../../auth/services/authService"; // ajusta la ruta real
+import { isPasswordValid } from "../utils/passWorrdValidation.js";
+import {
     buildPasswordRules,
     getConfirmPasswordClassName,
     getCurrentPasswordClassName,
     getPasswordClassName,
-    } from "../utils/changePasswordUtils.js";
+} from "../utils/changePasswordUtils.js";
 
-    function useChangePassword(t) {
+function useChangePassword(t) {
     const [currentPassword, setCurrentPassword] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,49 +31,28 @@
         setLoading(true);
 
         try {
-        await changePasswordService(
-            {
-            currentPassword,
-            newPassword: password,
-            confirmPassword,
-            },
-            t("changePassword.errorPassword")
-        );
-
-        window.alert(t("changePassword.successPassword"));
-
-        setCurrentPassword("");
-        setPassword("");
-        setConfirmPassword("");
+            await authService.changePassword(currentPassword, password);
+            window.alert(t("changePassword.successPassword"));
+            setCurrentPassword("");
+            setPassword("");
+            setConfirmPassword("");
         } catch (err) {
-        setError(err.message || t("changePassword.errorRequest"));
-        console.error("Error:", err);
+            setError(err.message || t("changePassword.errorRequest"));
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 
     return {
-        currentPassword,
-        setCurrentPassword,
-        password,
-        setPassword,
-        confirmPassword,
-        setConfirmPassword,
-        showPassword,
-        setShowPassword,
-        showConfirm,
-        setShowConfirm,
-        loading,
-        error,
-        passwordsMatch,
-        isValid,
-        rules,
-        getCurrentPasswordClass,
-        getPasswordClass,
-        getConfirmClass,
+        currentPassword, setCurrentPassword,
+        password, setPassword,
+        confirmPassword, setConfirmPassword,
+        showPassword, setShowPassword,
+        showConfirm, setShowConfirm,
+        loading, error, passwordsMatch, isValid, rules,
+        getCurrentPasswordClass, getPasswordClass, getConfirmClass,
         handleChangePassword,
     };
-    }
+}
 
-    export default useChangePassword;
+export default useChangePassword;

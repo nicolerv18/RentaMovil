@@ -52,9 +52,13 @@ import CodeVerification from "./features/auth/pages/CodeVerification.jsx";
 
 import ChangePasswordLogin from './features/auth/pages/ChangePasswordLogin.jsx';
 
+//----------
+import { httpClient } from './shared/api/httpClient';
+import { tokenStore } from './shared/api/tokenStore.js';
 
 
 function App() {
+  const [isRestoring, setIsRestoring] = useState(true);
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "light"
   );
@@ -63,6 +67,28 @@ function App() {
     document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
+  
+  useEffect(() => {
+        async function restoreSession() {
+            const refreshToken = localStorage.getItem('rentamovil_refresh_token');
+                document.documentElement.className = theme;
+    localStorage.setItem("theme", theme);
+            if (!refreshToken) { setIsRestoring(false); return; }
+
+            try {
+                const data = await httpClient.post('/auth/refresh', { refreshToken });
+                tokenStore.setAccessToken(data.accessToken);
+            } catch {
+                localStorage.removeItem('rentamovil_refresh_token');
+            } finally {
+                setIsRestoring(false);
+            }
+        }
+        restoreSession();
+    }, [theme]);
+
+    if (isRestoring) return <p>Cargando sesión...</p>;
+
 
   return (
     <BrowserRouter>

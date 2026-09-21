@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import NavbarTwo from '../../../shared/components/layout/NavbarTwo';
 import Footer from '../../../shared/components/layout/Footer';
 import style from "../../auth/pages/CodeVerification.module.css";
+import { authService } from '../services/authService';
 
 function CodeVerification() {
+    const location = useLocation();
+    const email = location.state?.email;
     const CODE_LENGTH = 6;
     const [code, setCode] = useState(new Array(CODE_LENGTH).fill(''));
     const inputsRef = useRef([]);
@@ -54,16 +57,18 @@ function CodeVerification() {
         // permitir flechas, tab, etc. sin interferir
     };
 
-    const handleVerify = (e) => {
+    
+    const handleVerify = async (e) => {
         e.preventDefault();
         const joined = code.join('');
-        if (joined.length !== CODE_LENGTH || code.some((c) => c === '')) {
-            return;
-        }
+        if (joined.length !== CODE_LENGTH || code.some((c) => c === '')) return;
 
-        // AquA ira la verificacion contra backend.
-        // Por ahora navegamos a ChangePassword como en la interfaz original.
-        navigate('/ChangePasswordLogin');
+        try {
+            await authService.verifyCode(email, joined);
+            navigate('/ChangePasswordLogin', { state: { email, code: joined } });
+        } catch (err) {
+            console.error('Código inválido:', err);
+        }
     };
 
     return (

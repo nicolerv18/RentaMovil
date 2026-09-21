@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { authService } from "../../auth/services/authService"; // ajusta la ruta real
+import { authService } from "../services/authService";
 import { isPasswordValid } from "../utils/passWorrdValidation.js";
 import { buildPasswordRules, getConfirmPasswordClassName, getPasswordClassName } from "../utils/changePasswordUtils.js";
 
@@ -29,21 +29,16 @@ function useChangePasswordLogin(t) {
         setLoading(true);
         try {
             await authService.resetPassword({ email, code, newPassword: password });
-            window.alert(t("changePassword.successPassword"));
-            navigate('/'); // vuelve a login con la contraseña ya actualizada
+            window.alert(t('changePassword.successPassword'));
+            navigate('/Login');
         } catch (err) {
-            setError(err.message || t("changePassword.errorRequest"));
+            setError(err.message || t('changePassword.errorRequest'));
         } finally {
             setLoading(false);
         }
     };
 
-    return {
-        password, setPassword, confirmPassword, setConfirmPassword,
-        showPassword, setShowPassword, showConfirm, setShowConfirm,
-        loading, error, passwordsMatch, isValid, rules,
-        getPasswordClass, getConfirmClass, handleChangePassword,
-    };
+    return { password, setPassword, confirmPassword, setConfirmPassword, showPassword, setShowPassword, showConfirm, setShowConfirm, loading, error, passwordsMatch, isValid, rules, getPasswordClass, getConfirmClass, handleChangePassword };
 }
 
 export default useChangePasswordLogin;

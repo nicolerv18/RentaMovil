@@ -5,6 +5,8 @@ import { AiOutlineDashboard } from 'react-icons/ai';
 import NavbarTwo from "../../../shared/components/layout/NavbarTwo";
 import Footer from '../../../shared/components/layout/Footer';
 import { useForm } from 'react-hook-form';
+import { authService } from '../services/authService';
+
 
 function EmailVerification({ email }) {
     const { t } = useTranslation();
@@ -12,10 +14,16 @@ function EmailVerification({ email }) {
     const location = useLocation();
     const initialEmail = email || location.state?.email || '';
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    function insert(data) {
-        reset();
-        navigate('/CodeVerification');
+    async function insert(data) {
+        try {
+            await authService.forgotPassword(data.email);
+            reset();
+            navigate('/CodeVerification', { state: { email: data.email } });
+        } catch (err) {
+            console.error('Error al enviar el código:', err);
+        }
     }
+
     return (
         <>
             <NavbarTwo />
@@ -24,7 +32,7 @@ function EmailVerification({ email }) {
                 <form className={style['email-form']} onSubmit={handleSubmit(insert)}>
                     <label htmlFor="">Ingrese su correo electrónico</label>
                     <input
-                    className={style["input-email"]}
+                        className={style["input-email"]}
                         id="email"
                         type="email"
                         defaultValue={initialEmail}
@@ -45,9 +53,9 @@ function EmailVerification({ email }) {
                     )}
 
                     <button type="submit">Confirmar</button>
-        </form >
-        </div >
-        <Footer />
+                </form >
+            </div >
+            <Footer />
 
         </>
     );
