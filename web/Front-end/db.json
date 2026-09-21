@@ -13,7 +13,7 @@
       "fuelType": "Gasolina",
       "location": "Neiva, Huila",
       "image": "https://...",
-      "status": "EN_MANTENIMIENTO"
+      "status": "En mantenimiento"
     },
     {
       "plate": "ASD123",
@@ -55,7 +55,7 @@
       "fuelType": "Diésel",
       "location": "esta",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789573088/278294_imjjnc.jpg",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "1pMK8zWdNdM"
     },
     {
@@ -70,7 +70,7 @@
       "fuelType": "Gasolina",
       "location": "bogota-centro",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789574209/278294_sebwjx.jpg",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "gSjIN2LPF9o"
     },
     {
@@ -85,7 +85,7 @@
       "fuelType": "Diésel",
       "location": "cxfcc",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789587612/arch_jc8zdd.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "u9thP9uTnlE"
     },
     {
@@ -100,7 +100,7 @@
       "fuelType": "Diésel",
       "location": "centro",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789593278/260409_01h45m19s_screenshot_t0bag8.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "lGpIl2fJQAk"
     },
     {
@@ -115,7 +115,7 @@
       "fuelType": "Diésel",
       "location": "centro",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789593278/260409_01h45m19s_screenshot_t0bag8.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "lGpIl2fJQAk"
     },
     {
@@ -130,7 +130,7 @@
       "fuelType": "Gasolina",
       "location": "bogota-centro",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789594030/260514_22h22m14s_screenshot_js7tpp.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "WYBskz6Czk8"
     },
     {
@@ -145,7 +145,7 @@
       "fuelType": "Diésel",
       "location": "dexrvwas",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789595494/260409_01h45m19s_screenshot_jbszhw.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "qVi-Xs8zybM"
     },
     {
@@ -160,7 +160,7 @@
       "fuelType": "Gasolina",
       "location": "bogota-centro",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789596677/260514_14h13m38s_screenshot_fmxzqh.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "v6YIn2mCBa4"
     },
     {
@@ -175,7 +175,7 @@
       "fuelType": "Híbrido",
       "location": "bogota-centro",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789597816/260409_01h45m19s_screenshot_yrulcz.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "qxT3Ny_qwmo"
     },
     {
@@ -190,7 +190,7 @@
       "fuelType": "Eléctrico",
       "location": "dexrvwas",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789653651/260513_17h32m35s_screenshot_j4i7om.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "yYVqhFwN9uA"
     },
     {
@@ -205,7 +205,7 @@
       "fuelType": "Gasolina",
       "location": "bogota-centro",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789657595/260513_17h35m00s_screenshot_pnxzcv.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "myucfei0Fzc"
     },
     {
@@ -220,7 +220,7 @@
       "fuelType": "Gasolina",
       "location": "dwdw",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789658431/260513_17h32m35s_screenshot_sfz8uq.png",
-      "status": "EN_MANTENIMIENTO",
+      "status": "En mantenimiento",
       "id": "bt8DJVZ_Ujk"
     },
     {
@@ -235,7 +235,7 @@
       "fuelType": "Diésel",
       "location": "swdasfergbs",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789679543/260514_22h14m09s_screenshot_f9ekwm.png",
-      "status": "DISPONIBLE",
+      "status": "Disponible",
       "id": "jWfp1_AvieU"
     }
   ],

@@ -1,5 +1,6 @@
 export function toVehiclePayload(formData) {
     return {
+        id: formData.plate.toUpperCase(),
         plate: formData.plate,
         brand: formData.brand,
         model: formData.model,
@@ -11,6 +12,6 @@ export function toVehiclePayload(formData) {
         fuelType: formData.fuelType,
         location: formData.location,
         image: formData.image,
-        status: 'DISPONIBLE',              
+        status: 'Disponible',              
     };
 }

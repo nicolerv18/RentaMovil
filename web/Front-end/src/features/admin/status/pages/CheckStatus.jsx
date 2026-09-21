@@ -5,27 +5,29 @@ import Footer from '../../../../shared/components/layout/Footer';
 import CartVehiculeStatus from "../components/CartVehiculeStatus";
 import FiltrerStatus from "../components/FiltrerStatus";
 import FleetChart from "../components/FleetChart";
-import Animation from "../../../../shared/components/layout/Animation";
 import style from "../pages/CheckStatus.module.css";
 import FileDialog from "../../../../shared/components/layout/FileDialog";
 import { useForm } from "react-hook-form";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { CarsMock } from '../services/CarsMock.js';
-import { MdSupportAgent } from "react-icons/md";
 import { getValidVehicleYearRange, validateVehicleYear } from '../../../../shared/utils/calculateAge';
-
+import { useStatus } from "../hooks/useStatus.js";
+import { useDeleteStatus } from "../hooks/useDeleteStatus.js";
+import { useUpdateStatus } from "../hooks/useUpdateStatus.js";
+import { useImageUpload } from "../../../../shared/hooks/useImageUpload";
 
 function CheckStatus() {
     const { t } = useTranslation();
     const [query, setSearch] = useState("");
     const [filterState, setFilterState] = useState("all");
-    const { register, formState: { errors }, handleSubmit, reset, setError, clearErrors } = useForm();
-    const [isLoading, setIsLoading] = useState(false);
-    const [vehicles, setVehicles] = useState(CarsMock);
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [vehicleFile, setVehicleFile] = useState(null);
     const [selectedVehicle, setSelectedVehicle] = useState(null);
-    const { minYear, maxYear, currentYear } = getValidVehicleYearRange(1); // optiene el rango de los vehiclos permitidos
+    const { minYear, maxYear, currentYear } = getValidVehicleYearRange(1);
 
+    const { vehicles, refetch } = useStatus();
+    const { updateStatusVehicle, isLoading } = useUpdateStatus();
+    const { deleteStatusVehicle } = useDeleteStatus();
+    const { uploadImage, isUploading } = useImageUpload();
 
     const stateNameMap = {
         all: null,
@@ -41,7 +43,6 @@ function CheckStatus() {
             const vehicleName = [v.brandName, v.modelName].filter(Boolean).join(" ").toLowerCase();
             const plate = String(v.plate || "").toLowerCase();
             const searchTerm = query.toLowerCase();
-
             return vehicleName.includes(searchTerm) || plate.includes(searchTerm);
         });
 
@@ -51,7 +52,6 @@ function CheckStatus() {
 
     const openEditModal = (vehicle) => {
         setSelectedVehicle(vehicle);
-        // populate react-hook-form fields with the vehicle values
         reset({
             brandName: vehicle.brandName,
             plate: vehicle.plate,
@@ -74,42 +74,32 @@ function CheckStatus() {
         reset();
         setVehicleFile(null);
     };
-    const onSubmit = (data) => {
+
+    const onSubmit = async (data) => {
         if (!selectedVehicle) return;
-        setIsLoading(true);
 
-        const newImage =
-            vehicleFile instanceof File
-                ? URL.createObjectURL(vehicleFile)
-                : vehicleFile ?? selectedVehicle.imageUrl;
+        try {
+            let imageUrl = selectedVehicle.imageUrl;
+            if (vehicleFile instanceof File) {
+                imageUrl = await uploadImage(vehicleFile);
+            }
 
-        setVehicles((prev) =>
-            prev.map((vehicle) =>
-                vehicle.plate === selectedVehicle.plate
-                    ? {
-                        ...vehicle,
-                        brandName: data.brandName,
-                        plate: data.plate,
-                        modelName: data.model,
-                        status: data.state,
-                        branchName: data.branchName,
-                        description: data.description,
-                        imageUrl: newImage,
-                        mileage: data.mileage,
-                        age: data.age,
-                        dailyPrice: data.price,
-                        engineTypeName: data.fuelType,
-                        capacity: data.capacity,
-                        vehicleType: data.vehicleType,
-                    }
-                    : vehicle
-            )
-        );
+            await updateStatusVehicle(selectedVehicle.plate, { ...data, image: imageUrl });  
+            await refetch();
+            closeModal();
+        } catch (error) {
+            console.error('Error al actualizar el vehículo:', error);
+        }
+    };
 
-        closeModal();
-        setIsLoading(false);
-    }
-
+    const handleDelete = async (vehicle) => {
+        try {
+            await deleteStatusVehicle(vehicle.plate);
+            await refetch();
+        } catch (error) {
+            console.error('Error al eliminar el vehículo:', error);
+        }
+    };
 
     return (
         <>
@@ -142,25 +132,22 @@ function CheckStatus() {
                                 imageUrl={vehicle.imageUrl}
                                 description={vehicle.description}
                                 onVerMas={() => openEditModal(vehicle)}
+                                onDelete={() => handleDelete(vehicle)}
                             />
                         ))}
                     </div>
                 </div>
-
             </div>
+
             {selectedVehicle && (
                 <div className={style["modal-overlay"]} onClick={closeModal}>
                     <div className={style["modal-modal"]} onClick={(e) => e.stopPropagation()}>
                         <div className={style["modal-header"]}>
                             <h3 className={style["modal-title"]}>{t("CheckStatus.modal.title")}</h3>
-                            <button type="button" className={style["modal-closeButton"]} onClick={closeModal} aria-label={t("CheckStatus.modal.close")}>
-                                ×
-                            </button>
+                            <button type="button" className={style["modal-closeButton"]} onClick={closeModal} aria-label={t("CheckStatus.modal.close")}>×</button>
                         </div>
 
                         <div className={style.modalForm}>
-
-                            {/* ── Sección: Información general ── */}
                             <section className={style["modal-section"]}>
                                 <h4 className={style["modal-section-title"]}>{t("CheckStatus.modal.sections.general")}</h4>
                                 <div className={style.modalFields}>
@@ -176,9 +163,7 @@ function CheckStatus() {
                                                     pattern: { value: /^[A-Za-z0-9\s\-]{2,30}$/, message: t("CheckStatus.modal.formatInvalid") }
                                                 })}
                                             />
-                                            {errors.brandName && (
-                                                <p className={style['error-message']}><AiOutlineDashboard /> {errors.brandName.message}</p>
-                                            )}
+                                            {errors.brandName && <p className={style['error-message']}><AiOutlineDashboard /> {errors.brandName.message}</p>}
                                         </label>
                                     </div>
 
@@ -194,9 +179,7 @@ function CheckStatus() {
                                                 pattern: { value: /^[A-Za-z0-9\s\-]{2,30}$/, message: t('vehicleForm.invalidModel') }
                                             })}
                                         />
-                                        {errors.model && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.model.message}</p>
-                                        )}
+                                        {errors.model && <p className={style['error-message']}><AiOutlineDashboard /> {errors.model.message}</p>}
                                     </div>
 
                                     <div className={style['vehicle-form-input']}>
@@ -212,9 +195,7 @@ function CheckStatus() {
                                                     onChange: (e) => { e.target.value = e.target.value.toUpperCase() }
                                                 })}
                                             />
-                                            {errors.plate && (
-                                                <p className={style['error-message']}><AiOutlineDashboard /> {errors.plate.message}</p>
-                                            )}
+                                            {errors.plate && <p className={style['error-message']}><AiOutlineDashboard /> {errors.plate.message}</p>}
                                         </label>
                                     </div>
 
@@ -232,7 +213,6 @@ function CheckStatus() {
                                 </div>
                             </section>
 
-                            {/* ── Sección: Detalles técnicos ── */}
                             <section className={style["modal-section"]}>
                                 <h4 className={style["modal-section-title"]}>{t("CheckStatus.modal.sections.technical")}</h4>
                                 <div className={style.modalFields}>
@@ -249,9 +229,7 @@ function CheckStatus() {
                                                 max: { value: 100000000, message: t("vehicleForm.maxLenghtPrice") }
                                             })}
                                         />
-                                        {errors.price && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.price.message}</p>
-                                        )}
+                                        {errors.price && <p className={style['error-message']}><AiOutlineDashboard /> {errors.price.message}</p>}
                                     </div>
 
                                     <div className={style['vehicle-form-input']}>
@@ -267,9 +245,7 @@ function CheckStatus() {
                                                 max: { value: 1000000, message: t("vehicleForm.maxLenghtMileage") }
                                             })}
                                         />
-                                        {errors.mileage && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.mileage.message}</p>
-                                        )}
+                                        {errors.mileage && <p className={style['error-message']}><AiOutlineDashboard /> {errors.mileage.message}</p>}
                                     </div>
 
                                     <div className={style['vehicle-form-input']}>
@@ -290,9 +266,7 @@ function CheckStatus() {
                                                 }
                                             })}
                                         />
-                                        {errors.age && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.age.message}</p>
-                                        )}
+                                        {errors.age && <p className={style['error-message']}><AiOutlineDashboard /> {errors.age.message}</p>}
                                     </div>
 
                                     <div className={style['vehicle-form-input']}>
@@ -307,9 +281,7 @@ function CheckStatus() {
                                                 max: { value: 100, message: t('vehicleForm.maxLenghtCapacity') }
                                             })}
                                         />
-                                        {errors.capacity && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.capacity.message}</p>
-                                        )}
+                                        {errors.capacity && <p className={style['error-message']}><AiOutlineDashboard /> {errors.capacity.message}</p>}
                                     </div>
 
                                     <div className={style['vehicle-form-input']}>
@@ -336,9 +308,7 @@ function CheckStatus() {
                                                 <option value="Furgón">{t('vehicleForm.cargaType3')}</option>
                                             </optgroup>
                                         </select>
-                                        {errors.vehicleType && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.vehicleType.message}</p>
-                                        )}
+                                        {errors.vehicleType && <p className={style['error-message']}><AiOutlineDashboard /> {errors.vehicleType.message}</p>}
                                     </div>
 
                                     <div className={style['vehicle-form-input']}>
@@ -357,14 +327,11 @@ function CheckStatus() {
                                             <option value="Gas natural">{t('vehicleForm.fuelType5')}</option>
                                             <option value="Gas propano">{t('vehicleForm.fuelType6')}</option>
                                         </select>
-                                        {errors.fuelType && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.fuelType.message}</p>
-                                        )}
+                                        {errors.fuelType && <p className={style['error-message']}><AiOutlineDashboard /> {errors.fuelType.message}</p>}
                                     </div>
                                 </div>
                             </section>
 
-                            {/* ── Sección: Ubicación y descripción ── */}
                             <section className={style["modal-section"]}>
                                 <h4 className={style["modal-section-title"]}>{t("CheckStatus.modal.sections.location")}</h4>
                                 <div className={style.modalFields}>
@@ -380,9 +347,7 @@ function CheckStatus() {
                                                     pattern: { value: /^[A-Za-zÀ-ÿ0-9\s\.\,\#\-]{2,100}$/, message: t("CheckStatus.modal.formatInvalidUbication") }
                                                 })}
                                             />
-                                            {errors.branchName && (
-                                                <p className={style['error-message']}><AiOutlineDashboard /> {errors.branchName.message}</p>
-                                            )}
+                                            {errors.branchName && <p className={style['error-message']}><AiOutlineDashboard /> {errors.branchName.message}</p>}
                                         </label>
                                     </div>
 
@@ -399,9 +364,7 @@ function CheckStatus() {
                                                 e.target.style.height = e.target.scrollHeight + 'px';
                                             }}
                                         />
-                                        {errors.description && (
-                                            <p className={style['error-message']}><AiOutlineDashboard /> {errors.description.message}</p>
-                                        )}
+                                        {errors.description && <p className={style['error-message']}><AiOutlineDashboard /> {errors.description.message}</p>}
                                     </label>
                                 </div>
                             </section>
@@ -412,15 +375,14 @@ function CheckStatus() {
                                     <FileDialog className={style["modal-fileDialog"]} onFileChange={handleFileChange} file={vehicleFile} />
                                 </div>
                             </section>
-
                         </div>
 
                         <div className={style["modal-footer"]}>
                             <button type="button" className={style["modal-cancelButton"]} onClick={closeModal}>
                                 {t("CheckStatus.modal.cancel")}
                             </button>
-                            <button type="button" className={style["modal-submitButton"]} onClick={() => handleSubmit(onSubmit)()} disabled={isLoading}>
-                                {isLoading ? t("CheckStatus.actions.saving") : t("CheckStatus.actions.save")}
+                            <button type="button" className={style["modal-submitButton"]} onClick={() => handleSubmit(onSubmit)()} disabled={isLoading || isUploading}>
+                                {(isLoading || isUploading) ? t("CheckStatus.actions.saving") : t("CheckStatus.actions.save")}
                             </button>
                         </div>
                     </div>
