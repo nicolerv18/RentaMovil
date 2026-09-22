@@ -6,6 +6,7 @@ import { FaCar } from "react-icons/fa";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { FaTools } from "react-icons/fa";
 import { LiaFileContractSolid } from "react-icons/lia";
+import { FaUserShield } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 function AdminPanel({ open, onClose }) {
   const { t } = useTranslation();
@@ -81,6 +82,22 @@ function AdminPanel({ open, onClose }) {
             <div className="admin-subsection">
               <Link to="/Contract" className="admin-subitem" onClick={onClose}>• {t('adminPanel.con-new')}</Link>
               <Link to="/ContractHistory" className="admin-subitem" onClick={onClose}>• {t('adminPanel.con-history')}</Link>
+            </div>
+          )}
+        </div>
+
+        <div className="admin-section">
+          <div className="admin-item" onClick={() => toggleSection('superadmin')}>
+            <span className="admin-icon"><FaUserShield /></span>
+            <p>{t('adminPanel.superadmin')}</p>
+            <TiArrowSortedDown
+              className={`icono-flecha ${expandedSection === 'superadmin' ? 'rotated' : ''}`}
+            />
+          </div>
+          {expandedSection === 'superadmin' && (
+            <div className="admin-subsection">
+              <Link to="/admin/users" className="admin-subitem" onClick={onClose}>• {t('adminPanel.sa-users')}</Link>
+              <Link to="/admin/bank-accounts" className="admin-subitem" onClick={onClose}>• {t('adminPanel.sa-bank')}</Link>
             </div>
           )}
         </div>

@@ -178,7 +178,10 @@
     "man-history": "Historial de mantenimientos",
     "contracts": "Contratos",
     "con-new": "Nuevo contrato",
-    "con-history": "Historial de contratos"
+    "con-history": "Historial de contratos",
+    "superadmin": "Super Administración",
+    "sa-users": "Usuarios y roles",
+    "sa-bank": "Cuentas bancarias"
   },
   "changePassword": {
     "caracters": "Al menos 8 caracteres",
@@ -673,5 +676,88 @@
     "inProgress":"En progreso",
     "completed":"Completado",
     "cancel":"Cancelado"
-}
+},
+  "userManagement": {
+    "title": "Usuarios y roles",
+    "subtitle": "Administra las cuentas de acceso, asignación de permisos de flota y privilegios administrativos del sistema.",
+    "placeholderSearch": "Buscar por nombre o email...",
+    "kpiTotal": "Total de Usuarios",
+    "kpiTotalHint": "cuentas registradas en el sistema",
+    "kpiAdmins": "Admins y Super Admins",
+    "kpiAdminsHint": "con acceso activo al panel de gestión",
+    "kpiActive": "Cuentas Activas",
+    "kpiActiveHint": "nivel de operatividad de usuarios",
+    "chipAll": "Todos",
+    "chipClients": "Clientes",
+    "chipAdmins": "Administradores",
+    "chipSuperAdmins": "Super Admins",
+    "name": "Nombre Completo",
+    "email": "Email",
+    "role": "Rol Actual",
+    "status": "Estado",
+    "actions": "Acciones",
+    "registeredOn": "Registrado el {{date}}",
+    "changeRole": "Cambiar rol",
+    "notFound": "No se encontraron usuarios con esos criterios.",
+    "showingCount": "Mostrando {{count}} usuario",
+    "showingCount_other": "Mostrando {{count}} usuarios",
+    "roles": {
+      "CLIENT": "Cliente",
+      "ADMIN": "Administrador",
+      "SUPER_ADMIN": "Super Admin"
+    },
+    "roleDescClient": "Acceso estándar a reservas, comprobantes y perfil de alquiler.",
+    "roleDescAdmin": "Gestión de sucursales, vehículos, contratos y control de flota.",
+    "roleDescSuperAdmin": "Control total del sistema, seguridad, gestión de roles y configuración financiera.",
+    "statusLabel": {
+      "ACTIVE": "Activa",
+      "INACTIVE": "Inactiva",
+      "BLOCKED": "Bloqueada"
+    },
+    "modal": {
+      "title": "Modificar rol de usuario",
+      "close": "Cerrar",
+      "selectRole": "Selecciona el nuevo nivel de rol:",
+      "maxLevel": "Nivel Máximo",
+      "warningTitle": "Advertencia de seguridad:",
+      "warningText": "Este rol tiene acceso total al sistema, incluyendo gestión de cuentas bancarias, auditoría y privilegios de otros usuarios.",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar cambio de rol"
+    }
+  },
+  "bankAccounts": {
+    "title": "Cuentas bancarias",
+    "subtitle": "Administra las cuentas receptoras y códigos QR autorizados para los pagos por transferencia bancaria de la flota.",
+    "btnAdd": "Nueva cuenta bancaria",
+    "total": "Cuentas Registradas",
+    "active": "Cuentas Activas",
+    "inactive": "Cuentas Inactivas",
+    "badgeActive": "Activa",
+    "badgeInactive": "Inactiva",
+    "integrityTitle": "Nota de integridad contable:",
+    "integrityText": "Las cuentas bancarias no pueden eliminarse del sistema para no romper la trazabilidad histórica de los comprobantes de pago emitidos. Solo pueden activarse o desactivarse.",
+    "modal": {
+      "title": "Nueva cuenta bancaria",
+      "close": "Cerrar",
+      "bankName": "Nombre del banco",
+      "bankNamePlaceholder": "Ej. Bancolombia, Davivienda, Banco Popular...",
+      "holderName": "Titular de la cuenta",
+      "holderNamePlaceholder": "Ej. RentaMovil S.A.S. / NIT 901.482.109-4",
+      "accountNumber": "Número de cuenta / Identificador",
+      "accountNumberPlaceholder": "Ej. Ahorros 459-002194-12 o Línea QR 311 000 0000",
+      "qr": "Código QR de Recaudo",
+      "dropText": "Arrastra la imagen del QR aquí o examinar",
+      "dropActive": "Suelta la imagen aquí...",
+      "dropHint": "PNG, JPG o SVG (máx. 2MB)",
+      "qrRequired": "Debes adjuntar el código QR de la cuenta antes de guardar.",
+      "cancel": "Cancelar",
+      "save": "Guardar cuenta bancaria"
+    },
+    "confirm": {
+      "title": "¿Desactivar esta cuenta?",
+      "text": "Ya no aparecerá como opción de pago para nuevos clientes, pero los pagos anteriores que la usaron seguirán registrados.",
+      "cancel": "Cancelar",
+      "accept": "Desactivar cuenta"
+    }
+  }
 }

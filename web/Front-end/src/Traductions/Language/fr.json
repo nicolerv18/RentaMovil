@@ -172,7 +172,10 @@
     "man-history": "Historique des maintenances",
     "contracts": "Contrats",
     "con-new": "Nouveau contrat",
-    "con-history": "Historique des contrats"
+    "con-history": "Historique des contrats",
+    "superadmin": "Super Administration",
+    "sa-users": "Utilisateurs et rôles",
+    "sa-bank": "Comptes bancaires"
   },
   "changePassword": {
     "caracters": "Au moins 8 caractères",
@@ -648,5 +651,88 @@
     "inProgress": "En cours",
     "completed": "Terminé",
     "cancel": "Annulé"
+  },
+  "bankAccounts": {
+    "title": "Comptes bancaires",
+    "subtitle": "Gérez les comptes récepteurs et les codes QR autorisés pour les paiements par virement bancaire de la flotte.",
+    "btnAdd": "Nouveau compte bancaire",
+    "total": "Comptes enregistrés",
+    "active": "Comptes actifs",
+    "inactive": "Comptes inactifs",
+    "badgeActive": "Actif",
+    "badgeInactive": "Inactif",
+    "integrityTitle": "Note d'intégrité comptable :",
+    "integrityText": "Les comptes bancaires ne peuvent pas être supprimés du système afin de préserver la traçabilité historique des reçus de paiement émis. Ils peuvent seulement être activés ou désactivés.",
+    "modal": {
+      "title": "Nouveau compte bancaire",
+      "close": "Fermer",
+      "bankName": "Nom de la banque",
+      "bankNamePlaceholder": "Ex. Bancolombia, Davivienda, Banco Popular...",
+      "holderName": "Titulaire du compte",
+      "holderNamePlaceholder": "Ex. RentaMovil S.A.S. / NIT 901.482.109-4",
+      "accountNumber": "Numéro de compte / Identifiant",
+      "accountNumberPlaceholder": "Ex. Épargne 459-002194-12 ou ligne QR 311 000 0000",
+      "qr": "Code QR de recouvrement",
+      "dropText": "Glissez l'image du QR ici ou parcourir",
+      "dropActive": "Déposez l'image ici...",
+      "dropHint": "PNG, JPG ou SVG (max. 2 Mo)",
+      "qrRequired": "Tu dois joindre le code QR du compte avant d'enregistrer.",
+      "cancel": "Annuler",
+      "save": "Enregistrer le compte bancaire"
+    },
+    "confirm": {
+      "title": "Désactiver ce compte ?",
+      "text": "Il n'apparaîtra plus comme option de paiement pour les nouveaux clients, mais les paiements antérieurs qui l'ont utilisé resteront enregistrés.",
+      "cancel": "Annuler",
+      "accept": "Désactiver le compte"
+    }
+  },
+  "userManagement": {
+    "title": "Utilisateurs et rôles",
+    "subtitle": "Gérez les comptes d'accès, l'attribution des permissions de flotte et les privilèges administratifs du système.",
+    "placeholderSearch": "Rechercher par nom ou email...",
+    "kpiTotal": "Total des utilisateurs",
+    "kpiTotalHint": "comptes enregistrés dans le système",
+    "kpiAdmins": "Admins et Super Admins",
+    "kpiAdminsHint": "avec accès actif au panneau de gestion",
+    "kpiActive": "Comptes actifs",
+    "kpiActiveHint": "niveau d'opérabilité des utilisateurs",
+    "chipAll": "Tous",
+    "chipClients": "Clients",
+    "chipAdmins": "Administrateurs",
+    "chipSuperAdmins": "Super Admins",
+    "name": "Nom complet",
+    "email": "Email",
+    "role": "Rôle actuel",
+    "status": "Statut",
+    "actions": "Actions",
+    "registeredOn": "Inscrit le {{date}}",
+    "changeRole": "Changer le rôle",
+    "notFound": "Aucun utilisateur trouvé avec ces critères.",
+    "showingCount": "Affichage de {{count}} utilisateur",
+    "showingCount_other": "Affichage de {{count}} utilisateurs",
+    "roles": {
+      "CLIENT": "Client",
+      "ADMIN": "Administrateur",
+      "SUPER_ADMIN": "Super Admin"
+    },
+    "roleDescClient": "Accès standard aux réservations, reçus et profil de location.",
+    "roleDescAdmin": "Gestion des agences, véhicules, contrats et contrôle de la flotte.",
+    "roleDescSuperAdmin": "Contrôle total du système, sécurité, gestion des rôles et configuration financière.",
+    "statusLabel": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "BLOCKED": "Bloquée"
+    },
+    "modal": {
+      "title": "Modifier le rôle de l'utilisateur",
+      "close": "Fermer",
+      "selectRole": "Sélectionnez le nouveau niveau de rôle :",
+      "maxLevel": "Niveau Maximum",
+      "warningTitle": "Avertissement de sécurité :",
+      "warningText": "Ce rôle a un accès total au système, y compris la gestion des comptes bancaires, les audits et les privilèges des autres utilisateurs.",
+      "cancel": "Annuler",
+      "confirm": "Confirmer le changement de rôle"
+    }
   }
 }
