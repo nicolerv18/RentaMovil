@@ -1,12 +1,12 @@
 .file-dialog {
 font-family: inherit;
   background: var(--card-bg);
-  width: 90%;
+  width: 93%;
   max-width: 559px;
   aspect-ratio: 19 / 11;
   border: 2px dashed #bbb;
   margin: 0 auto;
-  margin-top: 130px;
+  margin-top: 3px;
 }
 .preview-container{
   display: flex;
