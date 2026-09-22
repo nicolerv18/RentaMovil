@@ -31,15 +31,13 @@ import RegisterVehicle from './features/admin/vehicles/pages/RegisterVehicle.jsx
 // Admin - Maintenance
 import Maintenance from './features/admin/maintenance/pages/Maintenance.jsx';
 
-// Admin - Status
-import CheckStatus from './features/admin/status/pages/CheckStatus.jsx';
-
-// Admin - Contract
-import Contract from './features/admin/Contract/Pages/Contract.jsx';
-import ContractHistory from './features/admin/Contract/Pages/ContractHistory.jsx';
-
 // Admin - HomeAdmin
 import HomeAdmin from './features/admin/HomeAdmin/Pages/HomeAdmin.jsx';
+
+import InsuranceTypes from './features/admin/insuranceTypes/pages/InsuranceTypes.jsx';
+import Branches from './features/admin/branches/pages/Branches.jsx';
+import ReservationsList from './features/admin/reservations/pages/ReservationsList.jsx';
+import ReservationDetail from './features/admin/reservations/pages/ReservationDetail.jsx';
 
 
 import History from './features/admin/historyMaintenance/pages/History.jsx';
@@ -87,9 +85,6 @@ function App() {
         <Route path="/notificationAdmin" element={<NotificationAdmin />} />
         <Route path="/RegisterVehicle" element={<RegisterVehicle />} />
         <Route path="/Maintenance" element={<Maintenance />} />
-        <Route path="/CheckStatus" element={<CheckStatus />} />
-        <Route path="/Contract" element={<Contract />} />
-        <Route path="/ContractHistory" element={<ContractHistory />} />
         <Route path="/HomeAdmin" element={<HomeAdmin />} />
         <Route path="/homeAdmin" element={<HomeAdmin />} />
         <Route path="/home-admin" element={<HomeAdmin />} />
@@ -101,6 +96,10 @@ function App() {
         <Route path="/ChangePasswordLogin" element={<ChangePasswordLogin />} />
         <Route path="/admin/users" element={<UserManagement />} />
         <Route path="/admin/bank-accounts" element={<BankAccounts />} />
+        <Route path="/insurance-types" element={<InsuranceTypes />} />
+        <Route path="/branches" element={<Branches />} />
+        <Route path="/reservations" element={<ReservationsList />} />
+        <Route path="/reservations/:id" element={<ReservationDetail />} />
 
       </Routes>
     </BrowserRouter>

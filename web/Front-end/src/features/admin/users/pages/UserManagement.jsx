@@ -174,8 +174,7 @@ export default function UserManagement() {
                 {filtered.map((u) => (
                   <tr key={u.id}>
                     <td>
-                      <div className="um-user-cell">
-                      
+                      <div className="um-user-cell">  
                         <div>
                           <div className="um-user-name">
                             {u.firstName} {u.lastName}
