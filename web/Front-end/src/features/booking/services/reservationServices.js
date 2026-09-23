@@ -11,6 +11,55 @@ export const cancelReservation = async (id) => {
     });
 };
 
+/**
+ * Actualiza la sucursal de devolución de una reserva.
+ *
+ * Regla de negocio real (src/types/reservation.ts — Reservation.returnBranchId,
+ * INV-013): "Can only be changed up to 3 days before endDate". La UI
+ * (HistoryReservationDetail.jsx) ya oculta la opción de editar cuando esa
+ * ventana se cerró, pero el servicio también valida acá — así, cuando esto
+ * se conecte a un backend real, el mismo chequeo que hará el servidor ya
+ * está modelado del lado del cliente y no hay que inventarlo de nuevo.
+ *
+ * Simulación: cuando exista backend, esto pasa a ser
+ * PATCH /api/reservations/:id/return-branch  body: { returnBranchId }
+ * devolviendo la Reservation actualizada.
+ */
+export const updateReturnBranch = async (reservationId, returnBranchId) => {
+    const reservation = reservationsMock.find((r) => r.id === reservationId);
+
+    if (!reservation) {
+        throw new Error("Reserva no encontrada.");
+    }
+
+    if (reservation.status !== "activa") {
+        throw new Error(
+            "Solo se puede modificar la sucursal de devolución de una reserva activa."
+        );
+    }
+
+    const endDate = new Date(reservation.tiempos.end_date);
+    const now = new Date();
+    const daysUntilEnd = (endDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
+
+    if (daysUntilEnd <= 3) {
+        throw new Error(
+            "La sucursal de devolución solo puede modificarse hasta 3 días antes de la fecha de devolución (INV-013)."
+        );
+    }
+
+    // Simulación: en el mock esto muta el registro en memoria para que
+    // getReservations() lo siga viendo consistente durante la sesión;
+    // el backend real simplemente persistiría el UPDATE.
+    reservation.returnBranchId = returnBranchId;
+
+    return Promise.resolve({
+        success: true,
+        reservationId,
+        returnBranchId,
+    });
+};
+
 export const createReservation = async (reservationRequest) => {
     console.log(
         "Simulando guardado en el servidor...",

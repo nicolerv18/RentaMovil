@@ -18,29 +18,33 @@ function Count({ theme, setTheme }) {
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showLangModal, setShowLangModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-const [user, setUser] = useState(() => {
-  const saved = localStorage.getItem("user");
-  return saved
-    ? JSON.parse(saved)
-    : {
-        nombre: "Sharik Rojas",
-        telefono: "3145556",
-        email: "sha@example.com",
-        password: "123456",
-      };
-});
 
-const [image, setImage] = useState(() => {
-  const saved = localStorage.getItem("user");
-  if (saved) {
-    const parsed = JSON.parse(saved);
-    return parsed.image || login;
-  }
-  return login;
-});
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem("user");
+    return saved
+      ? JSON.parse(saved)
+      : {
+          nombre: "Sharik Rojas",
+          telefono: "3145556",
+          email: "sha@example.com",
+          password: "123456",
+        };
+  });
+
+  const [savedUser, setSavedUser] = useState(user);
+
+  const [image, setImage] = useState(() => {
+    const saved = localStorage.getItem("user");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return parsed.image || login;
+    }
+    return login;
+  });
 
   const handleSave = () => {
     localStorage.setItem("user", JSON.stringify(user));
+    setSavedUser(user);
     setIsEditing(false);
   };
 
@@ -53,6 +57,7 @@ const [image, setImage] = useState(() => {
         setImage(base64);
         const updatedUser = { ...user, image: base64 };
         setUser(updatedUser);
+        setSavedUser(updatedUser);
         localStorage.setItem("user", JSON.stringify(updatedUser));
       };
       reader.readAsDataURL(file);
@@ -65,6 +70,15 @@ const [image, setImage] = useState(() => {
     setShowLangModal(false);
   };
 
+  const hasPendingChanges = JSON.stringify(user) !== JSON.stringify(savedUser);
+
+  const getStatusText = () => {
+    if (isEditing) {
+      return hasPendingChanges ? t("count.modoEdicion") : t("count.perfilActualizado");
+    }
+    return t("count.perfilActualizado");
+  };
+
   return (
     <>
       <Navbar />
@@ -72,6 +86,9 @@ const [image, setImage] = useState(() => {
         <div className="cardC">
           <div className="header-page">
             <ButtonBack onClick={() => navigate(-1)} variant="overlay" />
+            <p className={`status2 ${isEditing && hasPendingChanges ? "pending" : ""}`}>
+            {getStatusText()}
+          </p>
           </div>
           <div className="actions">
             <button
@@ -137,11 +154,11 @@ const [image, setImage] = useState(() => {
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
                 disabled={!isEditing}
               />
-                <div className="accountLink">
+              <div className="accountLink">
                 <Link to="/ChangeEmail" className="linkC">
-                {t("count.modificarCorreo")}
-              </Link>
-                </div>
+                  {t("count.modificarCorreo")}
+                </Link>
+              </div>
             </div>
 
             <div className="form-groupC">
@@ -154,15 +171,12 @@ const [image, setImage] = useState(() => {
               />
               <div className="accountLink">
                 <Link to="/ChangePassword" className="linkC">
-                {t("count.modificarPassword")}
-              </Link>
+                  {t("count.modificarPassword")}
+                </Link>
               </div>
             </div>
           </div>
         </div>
-        <p className="status2">
-              {isEditing ? t("count.modoEdicion") : t("count.perfilActualizado")}
-            </p>
       </div>
 
       {showThemeModal && (
