@@ -8,6 +8,7 @@
       "plate": "DEQ123",
       "brand": "Chevrolet",
       "model": "sendero",
+      "branchId": "1",
       "price": 100000,
       "mileage": 2000,
       "year": 2023,
@@ -18,6 +19,66 @@
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789593278/260409_01h45m19s_screenshot_t0bag8.png",
       "status": "En mantenimiento",
       "id": "lGpIl2fJQAk"
+    },
+    {
+      "id": "QQQ111",
+      "plate": "QQQ111",
+      "brand": "Chevrolet",
+      "model": "Corolla",
+      "branchId": "1",
+      "vehicleType": "Sedán",
+      "fuelType": "Gasolina",
+      "capacity": 5,
+      "year": 2022,
+      "mileage": 15000,
+      "price": 120000,
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789593278/260409_01h45m19s_screenshot_t0bag8.png",
+      "status": "DISPONIBLE"
+    },
+    {
+      "id": "ABC111",
+      "plate": "ABC111",
+      "brand": "Renault",
+      "model": "ix2020",
+      "price": 10000,
+      "mileage": 2000,
+      "year": 2023,
+      "capacity": 4,
+      "vehicleType": "Sedán",
+      "fuelType": "Eléctrico",
+      "branchId": "1",
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1790185034/278294_rcdeps.jpg",
+      "status": "Disponible"
+    },
+    {
+      "id": "QQQ444",
+      "plate": "QQQ444",
+      "brand": "Toyota",
+      "model": "toyima",
+      "price": 100000,
+      "mileage": 10000,
+      "year": 2020,
+      "capacity": 4,
+      "vehicleType": "Van",
+      "fuelType": "Gasolina",
+      "branchId": "EJHGhRa",
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1790192026/images_gdrmsb.jpg",
+      "status": "Disponible"
+    },
+    {
+      "id": "CAR234",
+      "plate": "CAR234",
+      "brand": "Mercedes-Benz",
+      "model": "volsks",
+      "price": 100000,
+      "mileage": 10000,
+      "year": 2024,
+      "capacity": 2,
+      "vehicleType": "Furgón",
+      "fuelType": "Diésel",
+      "branchId": "Uykw9pm",
+      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1790192380/images_phxdko.jpg",
+      "status": "Disponible"
     }
   ],
   "maintenances": [
@@ -31,7 +92,7 @@
       "maintenanceType": "Oil change",
       "observations": "sysf fg",
       "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789657671/260409_01h45m19s_screenshot_t6wtkn.png",
-      "status": "PENDIENTE",
+      "status": "COMPLETADO",
       "id": "xnaq2IQCDg0"
     }
   ],
@@ -83,5 +144,124 @@
       "revoked": false
     }
   ],
-  "verificationCodes": []
+  "verificationCodes": [],
+  "branches": [
+    {
+      "id": "1",
+      "name": "Neiva Centro",
+      "city": "Neiva",
+      "phone": "6081234567",
+      "address": "Calle 10 # 5-20",
+      "schedule": [
+        {
+          "id": "mon",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": false
+        }
+      ]
+    },
+    {
+      "name": "federi",
+      "city": "grgrgr",
+      "phone": "3242335445",
+      "address": "calle 10 #30 32",
+      "schedule": [
+        {
+          "id": "mon",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": false
+        },
+        {
+          "id": "tue",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": true
+        },
+        {
+          "id": "wed",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": true
+        },
+        {
+          "id": "thu",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": true
+        },
+        {
+          "id": "fri",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": false
+        },
+        {
+          "id": "sat",
+          "open": "08:00",
+          "close": "13:00",
+          "closed": false
+        },
+        {
+          "id": "sun",
+          "open": "09:00",
+          "close": "13:00",
+          "closed": true
+        }
+      ],
+      "id": "EJHGhRa"
+    },
+    {
+      "name": "new",
+      "city": "pereira",
+      "phone": "3554554354",
+      "address": "calle 100 #30 33",
+      "schedule": [
+        {
+          "id": "mon",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": true
+        },
+        {
+          "id": "tue",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": true
+        },
+        {
+          "id": "wed",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": true
+        },
+        {
+          "id": "thu",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": true
+        },
+        {
+          "id": "fri",
+          "open": "08:00",
+          "close": "18:00",
+          "closed": false
+        },
+        {
+          "id": "sat",
+          "open": "08:00",
+          "close": "13:00",
+          "closed": false
+        },
+        {
+          "id": "sun",
+          "open": "09:00",
+          "close": "13:00",
+          "closed": true
+        }
+      ],
+      "id": "Uykw9pm"
+    }
+  ]
 }

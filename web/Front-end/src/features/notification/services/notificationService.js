@@ -1,11 +1,11 @@
-import { getCars } from "../../vehicles/Services/carsService.js";
+import { useCars } from "../../vehicles/hooks/useVehicles.js";
 import { notificationsMock } from "../data/mocks/notificationsMock.js";
 import { attachVehicleToNotifications } from "../utils/notificationsUtils.js";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const getMockNotifications = async () => {
-  const vehicles = await getCars();
+  const vehicles = await useCars();
   return attachVehicleToNotifications(notificationsMock, vehicles);
 };
 

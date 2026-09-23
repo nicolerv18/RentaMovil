@@ -11,7 +11,12 @@ import {
 import { FaBuilding, FaCar } from "react-icons/fa";
 import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
 import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
-import { BranchesMock, createDefaultSchedule } from "../services/BranchesMock";
+import { createDefaultSchedule } from "../services/BranchesMock"; // solo el util de horario default
+import { useBranches } from "../hooks/useBranch";
+import { useCreateBranch } from "../hooks/useCreateBranch";
+import { useUpdateBranch } from "../hooks/useUpdateBranch";
+import { useDeleteBranch } from "../hooks/useDeleteBranch";
+import { useCars } from "../../../vehicles/hooks/useVehicles";
 import "./Branches.css";
 
 function formatHour(time) {
@@ -51,14 +56,21 @@ function formatSchedule(schedule, t) {
 export default function Branches() {
   const { t } = useTranslation();
 
-  const [branches, setBranches] = useState(BranchesMock);
+  const { branches, isLoading, error, refetch } = useBranches();
+  const { cars } = useCars();
+  const { createBranch, isLoading: isCreating } = useCreateBranch();
+  const { updateBranch, isLoading: isUpdating } = useUpdateBranch();
+  const { deleteBranch, isLoading: isDeleting } = useDeleteBranch();
+
   const [search, setSearch] = useState("");
   const [editingItem, setEditingItem] = useState(undefined);
   const [scheduleDraft, setScheduleDraft] = useState([]);
   const [deletingItem, setDeletingItem] = useState(null);
+  const [formError, setFormError] = useState(null);
 
   const isModalOpen = editingItem !== undefined;
   const isDeleteModalOpen = deletingItem !== null;
+  const isSaving = isCreating || isUpdating;
 
   useEffect(() => {
     document.body.style.overflow = isModalOpen || isDeleteModalOpen ? "hidden" : "";
@@ -67,25 +79,37 @@ export default function Branches() {
     };
   }, [isModalOpen, isDeleteModalOpen]);
 
-  const totalVehicles = branches.reduce((sum, b) => sum + b.vehiclesAssigned, 0);
+  // El conteo real de vehículos por sucursal, cruzando con /vehicles en vez de un campo fijo
+  const branchesWithCount = useMemo(
+    () =>
+      branches.map((branch) => ({
+        ...branch,
+        vehiclesAssigned: cars.filter((car) => car.branchId === branch.id).length,
+      })),
+    [branches, cars]
+  );
+
+  const totalVehicles = branchesWithCount.reduce((sum, b) => sum + b.vehiclesAssigned, 0);
 
   const filteredBranches = useMemo(() => {
     const query = search.trim().toLowerCase();
-    if (!query) return branches;
-    return branches.filter(
+    if (!query) return branchesWithCount;
+    return branchesWithCount.filter(
       (b) =>
         b.name.toLowerCase().includes(query) ||
         b.city.toLowerCase().includes(query) ||
         b.address.toLowerCase().includes(query)
     );
-  }, [branches, search]);
+  }, [branchesWithCount, search]);
 
   const openCreateModal = () => {
+    setFormError(null);
     setScheduleDraft(createDefaultSchedule());
     setEditingItem(null);
   };
 
   const openEditModal = (item) => {
+    setFormError(null);
     setScheduleDraft(item.schedule.map((d) => ({ ...d })));
     setEditingItem(item);
   };
@@ -104,37 +128,30 @@ export default function Branches() {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const name = data.get("name");
-    const city = data.get("city");
-    const phone = data.get("phone");
-    const address = data.get("address");
+    setFormError(null);
 
-    if (editingItem) {
-      setBranches((prev) =>
-        prev.map((b) =>
-          b.id === editingItem.id
-            ? { ...b, name, city, phone, address, schedule: scheduleDraft }
-            : b
-        )
-      );
-    } else {
-      setBranches((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          name,
-          city,
-          phone,
-          address,
-          vehiclesAssigned: 0,
-          schedule: scheduleDraft,
-        },
-      ]);
+    const data = new FormData(e.target);
+    const formData = {
+      name: data.get("name"),
+      city: data.get("city"),
+      phone: data.get("phone"),
+      address: data.get("address"),
+      schedule: scheduleDraft,
+    };
+
+    try {
+      if (editingItem) {
+        await updateBranch(editingItem.id, formData);
+      } else {
+        await createBranch(formData);
+      }
+      await refetch();
+      closeModal();
+    } catch (err) {
+      setFormError(err.message || t("branches.modal.saveError", { defaultValue: "No se pudo guardar la sucursal." }));
     }
-    closeModal();
   };
 
   const openDeleteModal = (item) => {
@@ -143,9 +160,15 @@ export default function Branches() {
   };
   const closeDeleteModal = () => setDeletingItem(null);
 
-  const handleConfirmDelete = () => {
-    setBranches((prev) => prev.filter((b) => b.id !== deletingItem.id));
-    closeDeleteModal();
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteBranch(deletingItem.id);
+      await refetch();
+      closeDeleteModal();
+    } catch (err) {
+      console.error("Error al eliminar la sucursal:", err);
+      closeDeleteModal();
+    }
   };
 
   return (
@@ -171,7 +194,7 @@ export default function Branches() {
             <div>
               <p className="br-metric-label">{t("branches.metricBranches")}</p>
               <p className="br-metric-value">
-                {t("branches.metricBranchesValue", { count: branches.length })}
+                {t("branches.metricBranchesValue", { count: branchesWithCount.length })}
               </p>
             </div>
           </div>
@@ -204,83 +227,88 @@ export default function Branches() {
             </span>
           </div>
 
-          <div className="br-table-wrap">
-            <table className="br-table">
-              <thead>
-                <tr>
-                  <th>{t("branches.colName")}</th>
-                  <th>{t("branches.colAddress")}</th>
-                  <th>{t("branches.colCity")}</th>
-                  <th>{t("branches.colPhone")}</th>
-                  <th>{t("branches.colSchedule")}</th>
-                  <th className="right">{t("branches.colActions")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredBranches.map((branch) => {
-                  const isOpening = branch.vehiclesAssigned === 0;
-                  return (
-                    <tr key={branch.id}>
-                      <td>
-                        <div className="br-name">
-                          <span className={`br-dot ${isOpening ? "gray" : "green"}`} />
-                          {branch.name}
-                        </div>
-                      </td>
-                      <td className="br-address">{branch.address}</td>
-                      <td>
-                        <span className="br-city-badge">{branch.city}</span>
-                      </td>
-                      <td className="br-phone">{branch.phone}</td>
-                      <td>
-                        <div className="br-schedule-text">
-                          {formatSchedule(branch.schedule, t)}
-                        </div>
-                        <button
-                          type="button"
-                          className="br-link-btn"
-                          onClick={() => openEditModal(branch)}
-                        >
-                          {t("branches.viewSchedule")}
-                        </button>
-                      </td>
-                      <td className="right">
-                        <div className="br-actions">
+          {isLoading && <p className="br-empty">{t("branches.loading", { defaultValue: "Cargando sucursales..." })}</p>}
+          {!isLoading && error && <p className="br-empty">{error}</p>}
+
+          {!isLoading && !error && (
+            <div className="br-table-wrap">
+              <table className="br-table">
+                <thead>
+                  <tr>
+                    <th>{t("branches.colName")}</th>
+                    <th>{t("branches.colAddress")}</th>
+                    <th>{t("branches.colCity")}</th>
+                    <th>{t("branches.colPhone")}</th>
+                    <th>{t("branches.colSchedule")}</th>
+                    <th className="right">{t("branches.colActions")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredBranches.map((branch) => {
+                    const isOpening = branch.vehiclesAssigned === 0;
+                    return (
+                      <tr key={branch.id}>
+                        <td>
+                          <div className="br-name">
+                            <span className={`br-dot ${isOpening ? "gray" : "green"}`} />
+                            {branch.name}
+                          </div>
+                        </td>
+                        <td className="br-address">{branch.address}</td>
+                        <td>
+                          <span className="br-city-badge">{branch.city}</span>
+                        </td>
+                        <td className="br-phone">{branch.phone}</td>
+                        <td>
+                          <div className="br-schedule-text">
+                            {formatSchedule(branch.schedule, t)}
+                          </div>
                           <button
-                            className="br-btn-edit"
-                            aria-label={t("branches.editAria", { name: branch.name })}
+                            type="button"
+                            className="br-link-btn"
                             onClick={() => openEditModal(branch)}
                           >
-                            <FiEdit2 />
+                            {t("branches.viewSchedule")}
                           </button>
-                          {branch.vehiclesAssigned > 0 ? (
-                            <span className="br-tooltip-wrap">
-                              <button className="br-btn-delete" disabled>
+                        </td>
+                        <td className="right">
+                          <div className="br-actions">
+                            <button
+                              className="br-btn-edit"
+                              aria-label={t("branches.editAria", { name: branch.name })}
+                              onClick={() => openEditModal(branch)}
+                            >
+                              <FiEdit2 />
+                            </button>
+                            {branch.vehiclesAssigned > 0 ? (
+                              <span className="br-tooltip-wrap">
+                                <button className="br-btn-delete" disabled>
+                                  <FiTrash2 />
+                                </button>
+                                <span className="br-tooltip">
+                                  {t("branches.deleteBlockedTooltip")}
+                                </span>
+                              </span>
+                            ) : (
+                              <button
+                                className="br-btn-delete"
+                                aria-label={t("branches.deleteAria", { name: branch.name })}
+                                onClick={() => openDeleteModal(branch)}
+                              >
                                 <FiTrash2 />
                               </button>
-                              <span className="br-tooltip">
-                                {t("branches.deleteBlockedTooltip")}
-                              </span>
-                            </span>
-                          ) : (
-                            <button
-                              className="br-btn-delete"
-                              aria-label={t("branches.deleteAria", { name: branch.name })}
-                              onClick={() => openDeleteModal(branch)}
-                            >
-                              <FiTrash2 />
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
 
-          {filteredBranches.length === 0 && (
+          {!isLoading && !error && filteredBranches.length === 0 && (
             <div className="br-empty">{t("branches.emptyState")}</div>
           )}
         </div>
@@ -392,14 +420,20 @@ export default function Branches() {
                   ))}
                 </div>
               </div>
+
+              {formError && (
+                <p className="br-delete-text" style={{ color: "#c0392b" }}>
+                  {formError}
+                </p>
+              )}
             </form>
 
             <div className="br-modal-footer">
-              <button type="button" className="br-btn-secondary" onClick={closeModal}>
+              <button type="button" className="br-btn-secondary" onClick={closeModal} disabled={isSaving}>
                 {t("branches.modal.cancel")}
               </button>
-              <button type="submit" form="branchForm" className="br-btn-primary">
-                {t("branches.modal.save")}
+              <button type="submit" form="branchForm" className="br-btn-primary" disabled={isSaving}>
+                {isSaving ? t("branches.modal.saving", { defaultValue: "Guardando..." }) : t("branches.modal.save")}
               </button>
             </div>
           </div>
@@ -431,11 +465,11 @@ export default function Branches() {
             </div>
 
             <div className="br-modal-footer">
-              <button type="button" className="br-btn-secondary" onClick={closeDeleteModal}>
+              <button type="button" className="br-btn-secondary" onClick={closeDeleteModal} disabled={isDeleting}>
                 {t("branches.modal.cancel")}
               </button>
-              <button type="button" className="br-btn-danger" onClick={handleConfirmDelete}>
-                {t("branches.deleteModal.confirm")}
+              <button type="button" className="br-btn-danger" onClick={handleConfirmDelete} disabled={isDeleting}>
+                {isDeleting ? t("branches.modal.saving", { defaultValue: "Eliminando..." }) : t("branches.deleteModal.confirm")}
               </button>
             </div>
           </div>

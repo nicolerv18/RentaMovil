@@ -1,6 +1,6 @@
 import "./Filtrer.css";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
-import { useState } from "react";
+import { useMemo,useState } from "react";
 import { useTranslation } from "react-i18next";
 
 function FiltrerType({ cars = [], onFilter }) {

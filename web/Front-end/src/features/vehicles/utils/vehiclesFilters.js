@@ -1,3 +1,5 @@
+
+import { VEHICLE_STATUS } from "../../admin/registerVehicle/constans/vehicleStatus";
 export const filterVehicles = (cars, { brand, type, category, model, price }) => {
     return cars
         .filter((car) => (!brand ? true : car.brandName === brand))
@@ -8,3 +10,8 @@ export const filterVehicles = (cars, { brand, type, category, model, price }) =>
             price ? car.dailyPrice >= price.min && car.dailyPrice <= price.max : true
         );
 };
+export function filterAvailableByBranch(cars, branch) {
+    return cars.filter(
+        (car) => car.status === VEHICLE_STATUS.AVAILABLE && car.branchId === branch?.id
+    );
+}

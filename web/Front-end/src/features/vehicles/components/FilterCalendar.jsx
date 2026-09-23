@@ -8,8 +8,7 @@ import {
 
 import "./FilterCalendar.css";
 import { useTranslation } from "react-i18next";
-import { branches } from "../../../shared/mocks/branches.js";
-
+import { useBranches } from "../../admin/branches/hooks/useBranch.js";
 const FilterCalendar = forwardRef(
   (
     {
@@ -41,7 +40,7 @@ const FilterCalendar = forwardRef(
     const [query, setQuery] = useState("");
     const [sugerencias, setSugerencias] = useState([]);
     const [seleccionado, setSeleccionado] = useState(null);
-
+    const {branches} = useBranches();
     const [hora, setHora] = useState(getCurrentTime());
     const [returnhora, setReturnHora] = useState(getCurrentTime());
 

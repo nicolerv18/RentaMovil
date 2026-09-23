@@ -1,4 +1,4 @@
-export function toClientVehicleViewModel(vehicle) {
+export function toClientVehicleViewModel(vehicle, branchesById = {}) {
     return {
         id: vehicle.id,
         plate: vehicle.plate,
@@ -7,7 +7,8 @@ export function toClientVehicleViewModel(vehicle) {
         name: [vehicle.brand, vehicle.model].filter(Boolean).join(' '),
         categoryName: vehicle.vehicleType,
         engineTypeName: vehicle.fuelType,
-        branchName: vehicle.location,
+        branchId: vehicle.branchId,
+        branchName: branchesById[vehicle.branchId]?.name || 'Sucursal no disponible',
         capacity: vehicle.capacity,
         year: vehicle.year,
         mileage: vehicle.mileage,

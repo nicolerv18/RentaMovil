@@ -1,8 +1,7 @@
 import "./Filtrer.css";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
-import { useState } from "react";
+import { useMemo,useState } from "react";
 import { useTranslation } from "react-i18next";
-import { vehicleModelsMock } from "../data/mocks/vehicle_model.js";
 
 function FiltrerModel({ cars = [], onFilter }) {
   const { t } = useTranslation();

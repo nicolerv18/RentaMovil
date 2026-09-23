@@ -1,25 +1,31 @@
-import { useCallback,useEffect,useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { carsService } from "../Services/carsService";
 import { toClientVehicleViewModel } from "../Services/carsMapper";
+import { branchService } from "../../admin/branches/services/branchService";
 
-export function useCars(){
-    const [isLoading,setIsLoading ] = useState(false)
+export function useCars() {
+    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const [cars, setCars] = useState([])
 
-    const fetchVehicle = useCallback( async () => {
+    const fetchVehicle = useCallback(async () => {
         setIsLoading(true)
         setError(null)
 
-        try{
-            const response = await carsService.getAll()
-            setCars(response.map(toClientVehicleViewModel))
-        }catch (err){
-            setError(err.message || "no se pueden cargar los carritos")
-        } finally{
-            setIsLoading(false)
+        try {
+            const [vehiclesResponse, branchesResponse] = await Promise.all([
+                carsService.getAll(),
+                branchService.getAll(),
+            ]);
+            const branchesById = Object.fromEntries(branchesResponse.map((b) => [b.id, b]));
+        } catch (err) {
+            setError(err.message || "No fue posible cargar los vehículos.");
+        } finally {
+            setIsLoading(false);
         }
-    },[])
-    useEffect(() => {fetchVehicle()},[fetchVehicle])
-    return {cars,isLoading,error,refetch:fetchVehicle}
+    }, []);
+
+    useEffect(() => { fetchVehicle(); }, [fetchVehicle]);
+
+    return { cars, isLoading, error, refetch: fetchVehicle };
 }

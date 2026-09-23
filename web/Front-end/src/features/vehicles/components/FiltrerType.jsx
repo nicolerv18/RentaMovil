@@ -2,7 +2,6 @@ import "./Filtrer.css";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { categoriesMock } from "../data/mocks/category.js";
 
 function FiltreCategory({ cars = [], onFilter }) {
   const { t } = useTranslation();

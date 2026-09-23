@@ -8,9 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { getValidVehicleYearRange, validateVehicleYear } from '../../../../shared/utils/calculateAge';
 import { useCreateVehicle } from '../hooks/useCreateVehicle';
 import { useImageUpload } from '../../../../shared/hooks/useImageUpload';
+import { useBranches } from '../../branches/hooks/useBranch';
 
 function VehicleForm() {
     const { t } = useTranslation();
+    const { branches } = useBranches()
     const { register, formState: { errors }, handleSubmit, reset, setError, clearErrors } = useForm();
     const [mos, setmos] = useState(false);
     const [vehicleFile, setVehicleFile] = useState(null); // esto verificará el estado del fileDialog
@@ -285,23 +287,21 @@ function VehicleForm() {
                                 )}
                             </div>
                             <div className={style['vehicle-form-input']}>
-                                <label htmlFor="location">{t('vehicleForm.location')}</label>
-                                <input
-                                    type="text"
-                                    placeholder={t('vehicleForm.placeholderLocation')}
-                                    {...register("location", {
-                                        required: t('vehicleForm.requiredLocation'),
-                                        minLength: { value: 2, message: t('vehicleForm.minLenghtLocation') },
-                                        maxLength: { value: 100, message: t('vehicleForm.maxLenghtLocation') },
-                                        pattern: {
-                                            value: /^[A-Za-zÀ-ÿ0-9\s\.\,\#\-]{2,100}$/,
-                                            message: t('vehicleForm.invalidLocation')
-                                        }
+                                <label htmlFor="branchId">{t('vehicleForm.branch')}</label>
+                                <select
+                                    {...register("branchId", {
+                                        required: t('vehicleForm.requiredBranch'),
+                                        validate: value => value !== "" || t('vehicleForm.requiredBranch')
                                     })}
-                                />
-                                {errors.location && (
+                                    defaultValue="">
+                                    <option value="" disabled>{t('vehicleForm.disabledBranch')}</option>
+                                    {branches.map((branch) => (
+                                        <option key={branch.id} value={branch.id}>{branch.name}</option>
+                                    ))}
+                                </select>
+                                {errors.branchId && (
                                     <p className={style['error-message']}>
-                                        <AiOutlineDashboard /> {errors.location.message}
+                                        <AiOutlineDashboard /> {errors.branchId.message}
                                     </p>
                                 )}
                             </div>
