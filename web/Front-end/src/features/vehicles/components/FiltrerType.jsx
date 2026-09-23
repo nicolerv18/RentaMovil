@@ -9,19 +9,10 @@ function FiltreCategory({ cars = [], onFilter }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const types = [
-    ...new Set(
-      cars
-        .map((car) => {
-          const category = categoriesMock.find(
-            (item) => String(item.category_id) === String(car.category_id)
-          );
-
-          return category?.name;
-        })
-        .filter(Boolean)
-    ),
-  ].sort();
+  const types = useMemo(() => {
+    return [...new Set(cars.map((car) => car.categoryName).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b));
+  }, [cars]);
 
   const handleSelect = (type) => {
     const newSelected = selected === type ? "" : type;

@@ -15,14 +15,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProcessSteps from "../components/CardsInfo.jsx";
 import FilterCalendar from "../components/FilterCalendar.jsx";
 import { useState, useEffect, useRef } from "react";
-import { getCars } from "../Services/carsService.js";
+import { useCars } from "../hooks/useVehicles.js";
 import { useIsMobile } from "../../../shared/hooks/useIsMobile.js";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { filterAvailableVehicles } from "../utils/filterAvilableCars.js";
 import { filterVehicles } from "../utils/vehiclesFilters.js";
 
 function Home() {
-  const [cars, setCars] = useState([]);
+  const { cars, isLoading: loading, error } = useCars();
   const [hasSearchedCars, setHasSearchedCars] = useState(false);
   const [carsFiltered, setCarsFiltered] = useState([]);
   const location = useLocation();
@@ -32,83 +32,40 @@ function Home() {
   const [typeFilter, setTypeFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [modelFilter, setModelFilter] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const [showFiltersModal, setShowFiltersModal] = useState(false);
   const filterCalendarRef = useRef(null);
 
   const isMobile = useIsMobile();
 
-  useEffect(() => {
-    const loadCars = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await getCars();
-        setCars(data);
-      } catch (err) {
-        console.error("Error cargando vehículos:", err);
-        setError("No fue posible cargar los vehículos.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadCars();
-  }, []);
+  const [searchData, setSearchData] = useState({
+    branch: null,
+    startDate: "",
+    endDate: ""
+  });
 
   useEffect(() => {
     if (location.state?.triggerSearch && location.state?.rentalSearch && cars.length > 0) {
-        const { branch, startDate, endDate } = location.state.rentalSearch;
+      const { branch, startDate, endDate } = location.state.rentalSearch;
 
-        // 1. Rellenamos el calendario del Home con las nuevas fechas
-        setSearchData({ branch, startDate, endDate });
+      setSearchData({ branch, startDate, endDate });
 
-        // 2. Ejecutamos tu función de filtrado nativa
-        const disponibles = filterAvailableVehicles(cars, branch, startDate, endDate);
-        setCarsFiltered(disponibles);
-        setHasSearchedCars(true);
+      const disponibles = filterAvailableVehicles(cars, branch, startDate, endDate);
+      setCarsFiltered(disponibles);
+      setHasSearchedCars(true);
 
-        // 3. Limpiamos el estado de la ruta para que no se repita el filtro al recargar la web
-        navigate(location.pathname, { replace: true, state: {} });
+      navigate(location.pathname, { replace: true, state: {} });
     }
-}, [location.state, cars, navigate]);
+  }, [location.state, cars, navigate]);
 
-const handleSearch = async ({ branch, startDate, endDate }) => {
-  try {
-    setLoading(true);
-    setError(null);
-
-    const newSearchData = {
-      branch,
-      startDate,
-      endDate
-    };
-
+  const handleSearch = ({ branch, startDate, endDate }) => {
+    const newSearchData = { branch, startDate, endDate };
     setSearchData(newSearchData);
 
-    const disponibles = filterAvailableVehicles(
-      cars,
-      branch,
-      startDate,
-      endDate
-    );
-
+    const disponibles = filterAvailableVehicles(cars, branch, startDate, endDate);
     setCarsFiltered(disponibles);
     setHasSearchedCars(true);
-
-  } catch (err) {
-    console.error("Error buscando vehículos:", err);
-
-    setCarsFiltered([]);
-    setHasSearchedCars(false);
-
-    setError("No fue posible realizar la búsqueda.");
-
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   const handleClearFilters = () => {
     setBrandFilter("");
@@ -118,11 +75,6 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
     setCategoryFilter("");
   };
 
-  const [searchData, setSearchData] = useState({
-    branch: null,
-    startDate: "",
-    endDate: ""
-});
   const visibleCars = filterVehicles(carsFiltered, {
     brand: brandFilter,
     type: typeFilter,
@@ -135,7 +87,6 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
     <>
       <Navbar />
 
-      {/* 1. SECCIÓN INICIAL: Banner y Calendario de búsqueda (Siempre visibles arriba) */}
       <div className="banner-wrapper">
         <div className="banner-container">
           <Banner imgs={[img1, img2, img3]} />
@@ -148,14 +99,10 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
         </div>
       </div>
 
-      {/* 2. PASOS HORIZONTALES: Solo se renderizan si NO se ha realizado una búsqueda */}
       {!hasSearchedCars && <ProcessSteps />}
 
-      {/* 3. SECCIÓN DE RESULTADOS: Solo aparece cuando hasSearchedCars es true */}
       {hasSearchedCars && (
         <section className="catalog-layout-container">
-          
-          {/* BARRA LATERAL IZQUIERDA (Filtros estables de ancho fijo) */}
           {!isMobile && (
             <aside className="catalog-sidebar">
               <div className="sidebar-sticky-content">
@@ -174,7 +121,6 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
             </aside>
           )}
 
-          {/* COLUMNA DERECHA (Mensajes de carga, errores y tarjetas de vehículos) */}
           <div className="catalog-main-content">
             {isMobile && (
               <div className="filters-mobile-header">
@@ -187,7 +133,7 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
             <div className="card-vehicule-container">
               {loading && <p className="search-message">Buscando vehículos...</p>}
               {!loading && error && <p className="notFound">{error}</p>}
-              
+
               {!loading && !error && visibleCars.length === 0 && (
                 <p className="notFound">
                   No hay vehículos disponibles con esos filtros <FaSearch />
@@ -197,7 +143,7 @@ const handleSearch = async ({ branch, startDate, endDate }) => {
               {!loading && !error && visibleCars.length > 0 &&
                 visibleCars.map((car) => (
                   <CartVehicule
-                    key={car.vehicle_id}
+                    key={car.id}
                     vehicle={car}
                     rentalSearch={searchData}
                   />

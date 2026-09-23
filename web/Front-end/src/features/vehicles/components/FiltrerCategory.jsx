@@ -1,27 +1,16 @@
 import "./Filtrer.css";
 import { FaCar, FaArrowAltCircleDown } from "react-icons/fa";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { categoriesMock } from "../data/mocks/category.js";
 
 function FiltreCategory({ cars = [], onFilter }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const types = [
-    ...new Set(
-      cars
-        .map((car) => {
-          const category = categoriesMock.find(
-            (item) => String(item.category_id) === String(car.category_id)
-          );
-
-          return category?.name;
-        })
-        .filter(Boolean)
-    ),
-  ].sort();
+  const types = useMemo(()=>{
+    return [...new Set(cars.map((car) => car.categoryName).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+  },[cars])
 
   const handleSelect = (type) => {
     const newSelected = selected === type ? "" : type;

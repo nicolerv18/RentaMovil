@@ -12,7 +12,7 @@ import img2 from "../../../../assets/img/img2.jpg";
 import img3 from "../../../../assets/img/img3.webp";
 import FilterCalendar from '../../../vehicles/components/FilterCalendar.jsx';
 import { useState, useEffect } from 'react';
-import { getCars } from '../../../vehicles/Services/carsService.js';
+import { useCars } from "../../../vehicles/hooks/useVehicles.js";
 import { FaSearch, FaSearchengin, FaSearchPlus } from 'react-icons/fa';
 
 function Home() {
@@ -24,7 +24,7 @@ function Home() {
   const [modelFilter, setModelFilter]   = useState(null);
 
   useEffect(() => {
-    getCars().then(data => {
+    useCars().then(data => {
       setCars(data);
       setCarsFiltered(data);
     });

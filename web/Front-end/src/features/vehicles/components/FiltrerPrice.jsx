@@ -11,9 +11,7 @@ function FiltrerPrice({ cars = [], onFilter }) {
   const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState("");
 
-  const prices = cars
-    .map((car) => Number(car.daily_price))
-    .filter((price) => Number.isFinite(price));
+ const prices = cars.map((car) => car.dailyPrice).filter((price) => Number.isFinite(price));
 
   const minPriceData = prices.length ? Math.min(...prices) : 0;
   const maxPriceData = prices.length ? Math.max(...prices) : 0;

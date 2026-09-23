@@ -338,9 +338,8 @@ const FilterCalendar = forwardRef(
       <div className="filter-wrapper">
 
         <form
-          className={`filter ${variant} ${
-            showFilters ? "open" : ""
-          }`}
+          className={`filter ${variant} ${showFilters ? "open" : ""
+            }`}
           onSubmit={(e) => {
 
             e.preventDefault();
@@ -361,11 +360,10 @@ const FilterCalendar = forwardRef(
             </label>
 
             <input
-              className={`input-container ${
-                errorSucursal
+              className={`input-container ${errorSucursal
                   ? "inputInvalid"
                   : ""
-              }`}
+                }`}
               value={query}
               onChange={handleChange}
               placeholder="Ej: Bogotá..."
@@ -414,11 +412,10 @@ const FilterCalendar = forwardRef(
 
             <input
               type="date"
-              className={`input-container ${
-                errorFecha
+              className={`input-container ${errorFecha
                   ? "inputInvalid"
                   : ""
-              }`}
+                }`}
               min={today}
               value={date}
               onChange={(e) =>
@@ -443,11 +440,10 @@ const FilterCalendar = forwardRef(
 
             <input
               type="time"
-              className={`input-container ${
-                errorHora
+              className={`input-container ${errorHora
                   ? "inputInvalid"
                   : ""
-              }`}
+                }`}
               value={hora}
               onChange={(e) => {
 
@@ -493,11 +489,10 @@ const FilterCalendar = forwardRef(
 
             <input
               type="time"
-              className={`input-container ${
-                errorReturnHora
+              className={`input-container ${errorReturnHora
                   ? "inputInvalid"
                   : ""
-              }`}
+                }`}
               value={returnhora}
               onChange={(e) => {
 
