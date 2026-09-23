@@ -1,8 +1,22 @@
 
-export function calculateInvoiceTotal(days, vehicle, selectedInsurance) {
-    const vehicleTotal = days * vehicle.price;
+export function calculateInvoiceTotal(
+    days,
+    vehicle,
+    selectedInsurance
+) {
+    const vehicleSubtotal =
+        days * Number(vehicle?.price ?? 0);
 
-    const insuranceTotal = selectedInsurance?.price ?? 0;
+    const insuranceSubtotal =
+        Number(selectedInsurance?.price ?? 0);
 
-    return vehicleTotal + insuranceTotal;
+    const totalAmount =
+        vehicleSubtotal + insuranceSubtotal;
+
+    return {
+        vehicleSubtotal,
+        insuranceSubtotal,
+        totalAmount,
+    };
 }
+

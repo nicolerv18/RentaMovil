@@ -33,6 +33,12 @@
 
   text-decoration: none;
 }
+.logo-container2 {
+  color: var(--accent);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -.5px;
+}
 
 .logo-icon {
   color: var(--accent);

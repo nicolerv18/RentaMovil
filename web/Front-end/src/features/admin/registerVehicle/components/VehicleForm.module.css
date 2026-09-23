@@ -35,7 +35,7 @@
 }
  
 .vechicle-containerfor h2 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--heading);
     font-size: 19px;
     font-weight: 700;
     color: var(--primary, #2D7FF9);
@@ -58,7 +58,7 @@
 }
  
 .vehicle-form-input {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--sans);
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -76,7 +76,7 @@
  
 .vehicle-form input,
 .vehicle-form select {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--sans);
     font-size: 14px;
     color: var(--text);
     background: var(--input, #f4f4f4);
@@ -115,7 +115,7 @@
 }
  
 .error-message {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--sans);
     color: #ef4444;
     font-size: 12px;
     font-weight: 500;
@@ -151,7 +151,7 @@
    border: none;
   padding: 8px 10px;
   border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--sans);
   transition: 0.2s, color 0.2s;
   background-color: var(--button);
   margin-left: 10px;
@@ -193,7 +193,7 @@
    border: none;
   padding: 8px 10px;
   border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--sans);
   transition: 0.2s, color 0.2s;
   background-color: var(--button);
   margin-left: 10px;

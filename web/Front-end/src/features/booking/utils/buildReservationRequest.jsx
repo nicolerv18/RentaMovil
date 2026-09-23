@@ -1,30 +1,32 @@
-// @ts-nocheck
 export function buildReservationRequest(
     reservation,
-    driver,
-    paymentMethod,
-    amount,
-    transactionId
+    vehicleSubtotal,
+    insuranceSubtotal,
+    totalAmount
 ) {
     if (
-        !reservation.vehicle ||
-        !reservation.pickupBranch ||
-        !reservation.returnBranch ||
-        !reservation.pickupDate ||
-        !reservation.returnDate
+        !reservation?.vehicle?.vehicleId ||
+        !reservation?.pickupBranch?.id ||
+        !reservation?.returnBranch?.id ||
+        !reservation?.pickupDate ||
+        !reservation?.returnDate
     ) {
         throw new Error("La reserva está incompleta");
     }
 
     return {
-        vehicleId: reservation.vehicle.id,
+        vehicleId: reservation.vehicle.vehicleId,
         pickupBranchId: reservation.pickupBranch.id,
         returnBranchId: reservation.returnBranch.id,
-        pickupDate: reservation.pickupDate.toISOString(),
-        returnDate: reservation.returnDate.toISOString(),
-        insuranceId: reservation.insuranceId,
-        paymentMethodId: paymentMethod.id,
-        amount,
-        transactionId,
+        insuranceId: reservation.insuranceId ?? null,
+
+        startDate: new Date(reservation.pickupDate).toISOString(),
+        endDate: new Date(reservation.returnDate).toISOString(),
+
+        vehicleSubtotal,
+        insuranceSubtotal,
+        totalAmount,
+
+        status: "PENDING_PAYMENT",
     };
 }

@@ -1,0 +1,259 @@
+/* Contenido interno del selector de cuenta bancaria. El
+   contenedor (fondo, borde, radio, encabezado) lo aporta
+   .pay-card / .pay-card-header, compartidos en Payment.css. */
+
+/* Grid de Tarjetas */
+.bank-account-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Tarjeta (Button reset) */
+.bank-account-card {
+    background: var(--card-bg);
+    border: 2px solid var(--bordercard);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.bank-account-card:hover {
+    border-color: var(--accent);
+}
+
+/* Estado Seleccionado */
+.bank-account-card.bank-account-selected {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+}
+
+/* Header de la Tarjeta */
+.bank-account-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.bank-account-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bank-account-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: var(--accent-bg);
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bank-account-info strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-h);
+}
+
+.bank-account-info small {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--placeholder);
+}
+
+/* Radio Button */
+.bank-account-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--bordercard);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.bank-account-radio.active {
+    border-color: var(--accent);
+}
+
+.bank-account-radio-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--accent);
+}
+
+/* Titular */
+.bank-account-holder {
+    background-color: var(--input);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.8rem;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.bank-account-holder strong {
+    color: var(--text-h);
+}
+
+/* Número de cuenta */
+.bank-account-number-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.bank-account-number-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--placeholder);
+}
+
+.bank-account-number-value {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-h);
+}
+
+.bank-account-copy-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border: 1px solid var(--bordercard);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-h);
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.bank-account-copy-btn:hover {
+    background: var(--hover);
+    border-color: var(--accent);
+}
+
+/* Insignia de Recomendado */
+.bank-account-badge-recommended {
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background: var(--accent);
+    color: var(--text-btn);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+}
+
+/* Sección QR */
+.bank-account-qr {
+    background-color: var(--card-brand);
+    border: 1px solid var(--bordercard);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+/* Si está seleccionada, el recuadro del QR toma un tinte suave */
+.bank-account-selected .bank-account-qr {
+    background-color: var(--accent-bg);
+    border-color: var(--accent-border);
+}
+
+.bank-account-qr-title {
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--text-h);
+}
+
+.bank-account-qr-frame {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 12px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bank-account-qr-frame img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+}
+
+.bank-account-qr-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--placeholder);
+    margin-top: 8px;
+}
+
+.bank-account-qr-subtitle strong {
+    color: var(--text-h);
+}
+
+.bank-account-qr-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.bank-account-download-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.bank-account-download-link:hover {
+    text-decoration: underline;
+}
+
+.bank-account-dot-separator {
+    color: var(--placeholder);
+    font-size: 0.75rem;
+}
+
+.bank-account-tag-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--success);
+}
