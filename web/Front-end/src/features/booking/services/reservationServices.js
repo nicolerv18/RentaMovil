@@ -1,6 +1,5 @@
 import { reservationsMock } from "../data/mocks/reservationsMocks.js";
 
-// 🟢 Mantiene tus funciones existentes
 export const getReservations = async () => {
     return Promise.resolve(reservationsMock);
 };
@@ -12,14 +11,24 @@ export const cancelReservation = async (id) => {
     });
 };
 
-// 🟢 SOLUCIÓN: Agregamos la función que le falta a tu formulario de pago
 export const createReservation = async (reservationRequest) => {
-    console.log("Simulando guardado en el servidor...", reservationRequest);
-    
-    // Retornamos una respuesta simulada exitosa idéntica a la que espera tu backend
+    console.log(
+        "Simulando guardado en el servidor...",
+        reservationRequest
+    );
+
+    // Devuelve la Reservation "plana" (ver types/reservation.ts:
+    // reservationId a nivel raíz de la entidad), tal como la consume
+    // usePaymentForm.jsx (reservationResponse.reservationId). Antes iba
+    // envuelto en { success, message, data: { reservationId, ... } } y
+    // reservationResponse.reservationId siempre llegaba undefined, lo que
+    // hacía fallar submitPayment con "No se recibió el ID de la reserva."
+    // reservationRequest ya trae status: "PENDING_PAYMENT" (ver
+    // buildReservationRequest.jsx); aquí solo se agregan los campos que
+    // le corresponden al backend/simulación: reservationId y reservationDate.
     return Promise.resolve({
-        success: true,
-        message: "Reserva creada con éxito",
-        data: reservationRequest
+        reservationId: crypto.randomUUID(),
+        reservationDate: new Date().toISOString(),
+        ...reservationRequest,
     });
 };

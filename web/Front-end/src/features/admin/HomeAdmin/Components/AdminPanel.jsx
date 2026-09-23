@@ -6,6 +6,7 @@ import { FaCar } from "react-icons/fa";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { FaTools } from "react-icons/fa";
 import { LiaFileContractSolid } from "react-icons/lia";
+import { FaUserShield, FaShieldAlt, FaBuilding, FaClipboardList } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 function AdminPanel({ open, onClose }) {
   const { t } = useTranslation();
@@ -31,7 +32,6 @@ function AdminPanel({ open, onClose }) {
           {expandedSection === 'vehiculo' && (
             <div className="admin-subsection">
               <Link to="/RegisterVehicle" className="admin-subitem" onClick={onClose}>• {t('adminPanel.ve-agg')}</Link>
-              <Link to="/CheckStatus" className="admin-subitem" onClick={onClose}>• {t('adminPanel.ve-state')}</Link>
               <Link to="/VehicleInvento1ry" className="admin-subitem" onClick={onClose}>• {t('adminPanel.ve-inventory')}</Link>
             </div>
           )}
@@ -54,6 +54,36 @@ function AdminPanel({ open, onClose }) {
         </div>
 
         <div className="admin-section">
+          <div className="admin-item" onClick={() => toggleSection('sucursales')}>
+            <span className="admin-icon"><FaBuilding /></span>
+            <p>{t('adminPanel.branches')}</p>
+            <TiArrowSortedDown
+              className={`icono-flecha ${expandedSection === 'sucursales' ? 'rotated' : ''}`}
+            />
+          </div>
+          {expandedSection === 'sucursales' && (
+            <div className="admin-subsection">
+              <Link to="/branches" className="admin-subitem" onClick={onClose}>• {t('adminPanel.br-manage')}</Link>
+            </div>
+          )}
+        </div>
+
+        <div className="admin-section">
+          <div className="admin-item" onClick={() => toggleSection('reservas')}>
+            <span className="admin-icon"><FaClipboardList /></span>
+            <p>{t('adminPanel.reservations')}</p>
+            <TiArrowSortedDown
+              className={`icono-flecha ${expandedSection === 'reservas' ? 'rotated' : ''}`}
+            />
+          </div>
+          {expandedSection === 'reservas' && (
+            <div className="admin-subsection">
+              <Link to="/reservations" className="admin-subitem" onClick={onClose}>• {t('adminPanel.res-all')}</Link>
+            </div>
+          )}
+        </div>
+
+        <div className="admin-section">
           <div className="admin-item" onClick={() => toggleSection('mantenimiento')}>
             <span className="admin-icon"><FaTools /></span>
             <p>{t('adminPanel.maintenance')}</p>
@@ -69,18 +99,35 @@ function AdminPanel({ open, onClose }) {
           )}
         </div>
 
+        
+
         <div className="admin-section">
-          <div className="admin-item" onClick={() => toggleSection('contratos')}>
-            <span className="admin-icon"><LiaFileContractSolid /></span>
-            <p>{t('adminPanel.contracts')}</p>
+          <div className="admin-item" onClick={() => toggleSection('seguros')}>
+            <span className="admin-icon"><FaShieldAlt /></span>
+            <p>{t('adminPanel.insurance')}</p>
             <TiArrowSortedDown
-              className={`icono-flecha ${expandedSection === 'contratos' ? 'rotated' : ''}`}
+              className={`icono-flecha ${expandedSection === 'seguros' ? 'rotated' : ''}`}
             />
           </div>
-          {expandedSection === 'contratos' && (
+          {expandedSection === 'seguros' && (
             <div className="admin-subsection">
-              <Link to="/Contract" className="admin-subitem" onClick={onClose}>• {t('adminPanel.con-new')}</Link>
-              <Link to="/ContractHistory" className="admin-subitem" onClick={onClose}>• {t('adminPanel.con-history')}</Link>
+              <Link to="/insurance-types" className="admin-subitem" onClick={onClose}>• {t('adminPanel.ins-types')}</Link>
+            </div>
+          )}
+        </div>
+
+        <div className="admin-section">
+          <div className="admin-item" onClick={() => toggleSection('superadmin')}>
+            <span className="admin-icon"><FaUserShield /></span>
+            <p>{t('adminPanel.superadmin')}</p>
+            <TiArrowSortedDown
+              className={`icono-flecha ${expandedSection === 'superadmin' ? 'rotated' : ''}`}
+            />
+          </div>
+          {expandedSection === 'superadmin' && (
+            <div className="admin-subsection">
+              <Link to="/admin/users" className="admin-subitem" onClick={onClose}>• {t('adminPanel.sa-users')}</Link>
+              <Link to="/admin/bank-accounts" className="admin-subitem" onClick={onClose}>• {t('adminPanel.sa-bank')}</Link>
             </div>
           )}
         </div>

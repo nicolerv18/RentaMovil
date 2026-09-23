@@ -14,8 +14,8 @@ import { useTranslation } from "react-i18next";
         <div className="navbar-content">
 
             <Link to="/Home" className="logo-container">
-            <span className="logo-text">RentaMovil</span>
             <FaCar className="logo-icon" />
+            <span className="logo-text">Renta<span className="logo-container2">Movil</span></span>
             </Link>
 
         <nav className={`nav-links ${open ? "active" : ""}`}>

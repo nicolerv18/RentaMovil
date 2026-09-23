@@ -1,50 +1,135 @@
-.pay-card{
-    color: var(--text-h);
-    background: var(--card-bg);
-    padding: 20px 15px;
-    border-radius: 20px;
-    margin-bottom: 20px;
+/* Contenido interno del resumen de factura. El contenedor
+   (fondo, borde, radio, encabezado) lo aporta .pay-card /
+   .pay-card-header, compartidos en Payment.css. */
+
+.pay-invoice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.pay-card-header{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 16px;
+/* Filas de Desglose */
+.pay-resumen-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.pay-card-dot{
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--navbar);
+.pay-resumen-label {
+  font-size: 15px;
+  color: var(--text-h);
+  opacity: 0.85;
 }
 
-.pay-card-body{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.pay-resumen-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-h);
 }
 
-.pay-form-row{
-    display:grid;
-    gap:12px;
+/* Badge "Seleccionado" */
+.pay-insurance-label-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.pay-card-body label{
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+.pay-badge-selected {
+  background-color: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
 }
 
-.pay-card-body input{
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--bg);
-    color: var(--text-h);
+/* Separador punteado */
+.pay-divider {
+  border-top: 1px dashed var(--bordercard);
+  margin: 4px 0;
+}
+
+/* Fila Total */
+.pay-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pay-total-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pay-total-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--placeholder);
+}
+
+.pay-total-amount {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-h);
+  line-height: 1;
+}
+
+.pay-currency {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--placeholder);
+}
+
+/* Badge Estado "Monto exacto requerido" */
+.pay-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--accent-bg);
+  border: 1px solid var(--success);
+  color: var(--success);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.pay-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--success);
+}
+
+/* Warning Callout Box */
+.pay-warning-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 8px;
+}
+
+.pay-warning-icon {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.pay-warning-text {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.pay-warning-text u {
+  text-decoration-color: currentColor;
 }

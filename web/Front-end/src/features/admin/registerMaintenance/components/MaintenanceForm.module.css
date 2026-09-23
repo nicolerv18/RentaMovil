@@ -46,7 +46,7 @@ width: 100%;
 
 .maintenance-form-input{
     color: #1f2937;
-    font-family: 'poppins', sans-serif;
+    font-family: var(--sans);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -55,7 +55,7 @@ width: 100%;
      max-width: 100%;
 }
 .maintenance-form-input select{
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--sans);
     font-size: 14px;
     color: var(--text);
     background: var(--input, #f4f4f4);
@@ -79,7 +79,7 @@ width: 100%;
     margin-bottom: 10px;
     color: #000;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-family: var(--sans);
     font-size: 14px;
     resize: none;               /* desactiva el resize manual del navegador */
     overflow: hidden;           /* oculta el scrollbar mientras crece */
@@ -91,7 +91,7 @@ width: 100%;
     margin-top: auto;
 }
 .maintenance-container h2 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--heading);
     font-size: 19px;
     font-weight: 700;
     color: var(--primary, #2D7FF9);
@@ -130,7 +130,7 @@ font-size: 15px;
   border: none;
   padding: 8px 10px;
   border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--sans);
   transition: 0.2s, color 0.2s;
   background-color: var(--button);
   margin-left: 10px;
@@ -138,7 +138,7 @@ font-size: 15px;
   cursor: pointer;
 }
 .error-message {
-font-family: 'Plus Jakarta Sans', sans-serif;
+font-family: var(--sans);
   color: #ef4444;
   font-size: 12px;
   font-weight: 500;
@@ -158,7 +158,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     margin-bottom: 16px;
 }
 .panel-header h3{
-font-family: 'Plus Jakarta Sans', sans-serif;
+font-family: var(--heading);
     font-size: 19px;
     font-weight: 700;
     color: var(--primary, #2D7FF9);
@@ -179,7 +179,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     flex-shrink: 0;
 }
 .panel-header p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--sans);
     font-size: 18px;
     color: var(--text, #6B7280);
     margin: 0;

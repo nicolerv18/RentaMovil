@@ -19,7 +19,9 @@
   flex-wrap: wrap;
 }
 .vi-title {
-  font: 800 26px var(--font-family, inherit);
+  font-size: 26px;
+  font-weight: 800;
+  font-family: var(--heading);
   color: var(--text-h);
   margin: 0 0 4px;
   letter-spacing: -0.4px;
