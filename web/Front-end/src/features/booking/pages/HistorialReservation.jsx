@@ -25,7 +25,6 @@ function HistorialReservation() {
   return (
     <>
       <Navbar />
-
       <div className="historial-page">
         <div className="cards-container">
           
