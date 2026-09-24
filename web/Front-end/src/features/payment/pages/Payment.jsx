@@ -14,6 +14,7 @@ import TransferDetails from "../components/TransferDetails";
 // Hooks de lógica de negocio
 import { usePaymentForm } from "../hooks/usePaymentForm";
 import { useReservation } from "../../booking/context/ReservationContext";
+import { isValidTermsAcceptance } from "../../booking/data/rentalTerms";
 import { usePayment } from "../context/PaymentContext";
 
 import "./Payment.css";
@@ -55,6 +56,7 @@ export default function PaymentPage() {
 
     const {
         canSubmit,
+        canCreateReservation,
         isProcessing,
         handlePayment,
         days,
@@ -94,15 +96,30 @@ export default function PaymentPage() {
         navigate("/home");
     };
 
-    // No se puede acceder al pago si no existe
-    // una reserva con vehículo seleccionado.
-    if (!reservation?.vehicle && !submitted) {
+    const hasValidTermsAcceptance = isValidTermsAcceptance(
+        reservation?.termsAcceptance
+    );
+
+    // No se puede acceder al pago si no existe una reserva completa,
+    // incluida la aceptación de los términos vigentes.
+    if (
+        (
+            !reservation?.vehicle ||
+            !hasValidTermsAcceptance ||
+            !canCreateReservation
+        ) &&
+        !submitted
+    ) {
         return (
             <>
                 <Navbar />
                 <div className="pay-page-container">
                     <p className="pay-empty-state">
-                        No hay reserva disponible.
+                        {!reservation?.vehicle
+                            ? "No hay reserva disponible."
+                            : !hasValidTermsAcceptance
+                                ? "Debes aceptar los términos y condiciones antes de continuar al pago."
+                                : "La reserva está incompleta. Regresa y completa los datos antes de pagar."}
                     </p>
                 </div>
                 <Footer />
