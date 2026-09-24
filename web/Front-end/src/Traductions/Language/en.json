@@ -12,7 +12,7 @@
     "description": "© 2026 RentaMovil - All rights reserved",
     "linkInit": "Home",
     "linkNotifications": "Notifications",
-    "linkCount": "Account"
+    "linkAccount": "Account"
   },
   "filterCalendar": {
     "branch1": "Bogotá - Downtown",
@@ -124,7 +124,7 @@
     "quote6": "Rent easily, travel happily with Rentamovil.",
     "quote7": "Your trip, your style. Rentamovil makes it possible."
   },
-  "count": {
+  "account": {
     "nombre": "Name",
     "telefono": "Phone",
     "correo": "Email",
