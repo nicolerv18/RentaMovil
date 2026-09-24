@@ -13,6 +13,7 @@ import img3 from "../../../../assets/img/img3.webp";
 import FilterCalendar from '../../../vehicles/components/FilterCalendar.jsx';
 import { useState, useEffect } from 'react';
 import { useCars } from "../../../vehicles/hooks/useVehicles.js";
+
 import { FaSearch, FaSearchengin, FaSearchPlus } from 'react-icons/fa';
 
 function Home() {

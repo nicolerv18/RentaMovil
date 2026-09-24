@@ -1,17 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  FiSearch,
-  FiPlus,
-  FiEdit2,
-  FiTrash2,
-  FiX,
-  FiAlertCircle,
-} from "react-icons/fi";
+import {FiSearch,FiPlus,FiEdit2,FiTrash2,FiX,FiAlertCircle,} from "react-icons/fi";
+
 import { FaBuilding, FaCar } from "react-icons/fa";
 import NavBarAdmin from "../../../../shared/components/layout/NavBarAdmin";
 import FooterAdmin from "../../../../shared/components/layout/FooterAdmin";
-import { createDefaultSchedule } from "../services/BranchesMock"; // solo el util de horario default
 import { useBranches } from "../hooks/useBranch";
 import { useCreateBranch } from "../hooks/useCreateBranch";
 import { useUpdateBranch } from "../hooks/useUpdateBranch";
@@ -104,7 +97,7 @@ export default function Branches() {
 
   const openCreateModal = () => {
     setFormError(null);
-    setScheduleDraft(createDefaultSchedule());
+    setScheduleDraft( formatSchedule);
     setEditingItem(null);
   };
 

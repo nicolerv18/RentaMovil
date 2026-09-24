@@ -81,21 +81,7 @@
       "status": "Disponible"
     }
   ],
-  "maintenances": [
-    {
-      "vehicleId": "myucfei0Fzc",
-      "plate": "ABC111",
-      "brand": "Nissan",
-      "model": "dada",
-      "date": "2026-10-09",
-      "cost": 10000,
-      "maintenanceType": "Oil change",
-      "observations": "sysf fg",
-      "image": "https://res.cloudinary.com/dz6ohgjub/image/upload/v1789657671/260409_01h45m19s_screenshot_t6wtkn.png",
-      "status": "COMPLETADO",
-      "id": "xnaq2IQCDg0"
-    }
-  ],
+  "maintenances": [],
   "users": [
     {
       "id": "1",
@@ -262,6 +248,14 @@
         }
       ],
       "id": "Uykw9pm"
+    }
+  ],
+  "insuranceTypes": [
+    {
+      "name": "Creando nuevo ",
+      "coverage_details": "este es este es okpkpkpk",
+      "daily_cost": 10000,
+      "id": 1
     }
   ]
 }
