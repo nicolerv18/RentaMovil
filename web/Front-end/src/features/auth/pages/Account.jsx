@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./Count.css";
+import "./Account.css";
 import login from "../../../assets/login.png";
 import { FaEdit, FaMoon, FaGlobe, FaSave, FaTimes } from "react-icons/fa";
 import Navbar from "../../../shared/components/layout/Navbar";
@@ -12,7 +12,7 @@ import english from "../../../assets/img/eeuu.png";
 import french from "../../../assets/img/francia2.png";
 import portuguese from "../../../assets/img/portugal.png";
 
-function Count({ theme, setTheme }) {
+function Account({ theme, setTheme }) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [showThemeModal, setShowThemeModal] = useState(false);
@@ -74,9 +74,9 @@ function Count({ theme, setTheme }) {
 
   const getStatusText = () => {
     if (isEditing) {
-      return hasPendingChanges ? t("count.modoEdicion") : t("count.perfilActualizado");
+      return hasPendingChanges ? t("account.modoEdicion") : t("account.perfilActualizado");
     }
-    return t("count.perfilActualizado");
+    return t("account.perfilActualizado");
   };
 
   return (
@@ -112,7 +112,7 @@ function Count({ theme, setTheme }) {
               <label>
                 <img className="imgPerfile" src={image} alt="preview" />
                 <p className={`edit ${isEditing ? "editingText" : ""}`}>
-                  {t("count.cambiarFoto")}
+                  {t("account.cambiarFoto")}
                 </p>
                 <input
                   type="file"
@@ -124,7 +124,7 @@ function Count({ theme, setTheme }) {
             </div>
 
             <div className="form-groupC">
-              <label className="form-labelC">{t("count.nombre")}:</label>
+              <label className="form-labelC">{t("account.nombre")}:</label>
               <input
                 className={`inputC ${isEditing ? "editing" : ""}`}
                 type="text"
@@ -135,7 +135,7 @@ function Count({ theme, setTheme }) {
             </div>
 
             <div className="form-groupC">
-              <label className="form-labelC">{t("count.telefono")}:</label>
+              <label className="form-labelC">{t("account.telefono")}:</label>
               <input
                 className={`inputC ${isEditing ? "editing" : ""}`}
                 type="text"
@@ -146,7 +146,7 @@ function Count({ theme, setTheme }) {
             </div>
 
             <div className="form-groupC">
-              <label className="form-labelC">{t("count.correo")}:</label>
+              <label className="form-labelC">{t("account.correo")}:</label>
               <input
                 className={`inputC ${isEditing ? "editing" : ""}`}
                 type="email"
@@ -156,13 +156,13 @@ function Count({ theme, setTheme }) {
               />
               <div className="accountLink">
                 <Link to="/ChangeEmail" className="linkC">
-                  {t("count.modificarCorreo")}
+                  {t("account.modificarCorreo")}
                 </Link>
               </div>
             </div>
 
             <div className="form-groupC">
-              <label className="form-labelC">{t("count.password")}:</label>
+              <label className="form-labelC">{t("account.password")}:</label>
               <input
                 className="inputC"
                 type="password"
@@ -171,7 +171,7 @@ function Count({ theme, setTheme }) {
               />
               <div className="accountLink">
                 <Link to="/ChangePassword" className="linkC">
-                  {t("count.modificarPassword")}
+                  {t("account.modificarPassword")}
                 </Link>
               </div>
             </div>
@@ -182,7 +182,7 @@ function Count({ theme, setTheme }) {
       {showThemeModal && (
         <div className="modal-overlay" onClick={() => setShowThemeModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <p className="modal-title">{t("count.seleccionaTema")}</p>
+            <p className="modal-title">{t("account.seleccionaTema")}</p>
             <div className="theme-grid">
               {[
                 { id: "skylight", label: "Modo azul claro",     desc: "Fondo blanco, texto oscuro" },
@@ -206,7 +206,7 @@ function Count({ theme, setTheme }) {
             </div>
             <div className="modal-actions">
               <button className="close-btn" onClick={() => setShowThemeModal(false)}>
-                {t("count.cancelar")}
+                {t("account.cancelar")}
               </button>
               <button className="btn-times" onClick={() => setShowThemeModal(false)}>
                 <FaTimes />
@@ -219,7 +219,7 @@ function Count({ theme, setTheme }) {
       {showLangModal && (
         <div className="modal-overlay" onClick={() => setShowLangModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <p className="modal-title">{t("count.seleccionaIdioma")}</p>
+            <p className="modal-title">{t("account.seleccionaIdioma")}</p>
             <div className="theme-grid">
               {[
                 { id: "es", label: "Español",   flag: espanish,   desc: "Spanish"   },
@@ -245,7 +245,7 @@ function Count({ theme, setTheme }) {
             </div>
             <div className="modal-actions">
               <button className="close-btn" onClick={() => setShowLangModal(false)}>
-                {t("count.cancelar")}
+                {t("account.cancelar")}
               </button>
               <button className="btn-times" onClick={() => setShowLangModal(false)}>
                 <FaTimes />
@@ -260,4 +260,4 @@ function Count({ theme, setTheme }) {
   );
 }
 
-export default Count;
+export default Account;

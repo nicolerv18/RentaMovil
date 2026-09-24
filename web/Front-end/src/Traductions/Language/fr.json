@@ -12,7 +12,7 @@
     "description": "© 2026 RentaMovil - Tous droits réservés",
     "linkInit": "Accueil",
     "linkNotifications": "Notifications",
-    "linkCount": "Compte"
+    "linkAccount": "Compte"
   },
   "filterCalendar": {
     "branch1": "Bogotá - Centre",
@@ -124,7 +124,7 @@
     "quote6": "Louez facilement, voyagez heureux avec Rentamovil.",
     "quote7": "Votre voyage, votre style. Rentamovil le rend possible."
   },
-  "count": {
+  "account": {
     "nombre": "Nom",
     "telefono": "Téléphone",
     "correo": "Email",
