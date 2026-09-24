@@ -19,10 +19,11 @@
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(4px);
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    background: rgba(75, 75, 75, 0.5);
+    z-index: 3000;
     padding: 20px;
     box-sizing: border-box;
+    overflow: scroll;
 }
 
 /* .modal-content ya define fondo/color/borde/radio/padding base
