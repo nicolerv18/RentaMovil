@@ -220,10 +220,12 @@ function Reservation() {
                         />
 
                         <div className="card-location">
-
-                            <p className="title-brand">
-                                Cambie la sucursal de recogida:
-                            </p>
+                            <div className="reservation-section-header">
+                                <span className="reservation-section-dot" aria-hidden="true" />
+                                <h3 className="reservation-section-title">
+                                    Cambie la sucursal de recogida:
+                                </h3>
+                            </div>
 
                             <div className="info-location">
 
@@ -314,9 +316,12 @@ function Reservation() {
                                 }}
                             >
 
-                                <h3>
-                                    {t("reservation.summary")}
-                                </h3>
+                                <div className="reservation-section-header">
+                                    <span className="reservation-section-dot" aria-hidden="true" />
+                                    <h3 className="reservation-section-title">
+                                        {t("reservation.summary")}
+                                    </h3>
+                                </div>
 
                                 <p>
                                     {days} {t("reservation.days")} × ${price}

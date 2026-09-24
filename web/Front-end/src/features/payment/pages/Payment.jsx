@@ -149,67 +149,71 @@ export default function PaymentPage() {
             <div className="pay-page-container">
 
                 {/* Vehículo seleccionado */}
-                <VehicleReservationCard
-                    vehicle={reservation.vehicle}
-                />
+                <div className="pay-layout">
+                    <div className="pay-main-column">
+                        <section className="pay-card pay-vehicle-section">
+                            <PaySectionHeader title="Detalles del vehículo" />
+                            <VehicleReservationCard vehicle={reservation.vehicle} />
+                        </section>
 
-                {/* Resumen de la reserva */}
-                <section className="pay-card">
-                    <PaySectionHeader title="Resumen de factura" />
-                    <InvoiceCard
-                        days={days}
-                        total={total}
-                        vehicle={reservation.vehicle}
-                    />
-                </section>
+                        <section className="pay-card">
+                            <PaySectionHeader
+                                title="Selecciona tu cuenta bancaria destino"
+                                subtitle="💡 Escanea el código QR directamente desde la app de tu banco."
+                            />
+                            <BankAccountSelector />
+                        </section>
 
-                {/* Selección de cuenta bancaria */}
-                <section className="pay-card">
-                    <PaySectionHeader
-                        title="Selecciona tu cuenta bancaria destino"
-                        subtitle="💡 Escanea el código QR directamente desde la app de tu banco."
-                    />
-                    <BankAccountSelector />
-                </section>
+                        <section className="pay-card">
+                            <PaySectionHeader
+                                title="Registrar transferencia"
+                                subtitle="Ingresa los datos correspondientes a la transferencia realizada."
+                            />
+                            <TransferDetails />
+                        </section>
 
-                {/* Registro de la transferencia */}
-                <section className="pay-card">
-                    <PaySectionHeader
-                        title="Registrar transferencia"
-                        subtitle="Ingresa los datos correspondientes a la transferencia realizada."
-                    />
-                    <TransferDetails />
-                </section>
-
-                {/* Comprobante de pago */}
-                <section className="pay-card">
-                    <PaySectionHeader
-                        title="Comprobante de pago"
-                        subtitle="Adjunta el comprobante correspondiente a la transferencia realizada."
-                        badge="Obligatorio"
-                    />
-                    <PaymentReceiptUpload />
-                </section>
-
-                {submitError && (
-                    <p className="pay-error-banner" role="alert">
-                        {submitError}
-                    </p>
-                )}
-
-                {/* Acción para completar la reserva */}
-                {isProcessing ? (
-                    <div className="pay-loading">
-                        <span className="pay-spinner" aria-hidden="true" />
-                        Procesando tu pago...
+                        <section className="pay-card">
+                            <PaySectionHeader
+                                title="Comprobante de pago"
+                                subtitle="Adjunta el comprobante correspondiente a la transferencia realizada."
+                                badge="Obligatorio"
+                            />
+                            <PaymentReceiptUpload />
+                        </section>
                     </div>
-                ) : (
-                    <ContinueButton
-                        title="Reservar"
-                        onPress={handleSubmit}
-                        disabled={!canSubmit}
-                    />
-                )}
+
+                    <aside className="pay-side-column">
+                        <section className="pay-card pay-invoice-card">
+                            <PaySectionHeader title="Resumen de factura" />
+                            <InvoiceCard
+                                days={days}
+                                total={total}
+                                vehicle={reservation.vehicle}
+                            />
+                        </section>
+
+                        <div className="pay-submit-panel">
+                            {submitError && (
+                                <p className="pay-error-banner" role="alert">
+                                    {submitError}
+                                </p>
+                            )}
+
+                            {isProcessing ? (
+                                <div className="pay-loading">
+                                    <span className="pay-spinner" aria-hidden="true" />
+                                    Procesando tu pago...
+                                </div>
+                            ) : (
+                                <ContinueButton
+                                    title="Reservar"
+                                    onPress={handleSubmit}
+                                    disabled={!canSubmit}
+                                />
+                            )}
+                        </div>
+                    </aside>
+                </div>
 
             </div>
 
