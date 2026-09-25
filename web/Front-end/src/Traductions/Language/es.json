@@ -158,10 +158,15 @@
     "modificarPassword": "Modificar Contraseña",
     "modoEdicion": "Modo edición activado",
     "perfilActualizado": "Perfil actualizado",
+    "profileStatus": "Perfil sincronizado",
+    "profileImage": "Foto de perfil",
     "cambiarFoto": "Cambiar foto",
     "seleccionaTema": "Selecciona un tema",
     "seleccionaIdioma": "Selecciona un idioma",
-    "cancelar": "Cancelar"
+    "cancelar": "Cancelar",
+    "retry": "Reintentar",
+    "signIn": "Iniciar sesión",
+    "logout": "Cerrar sesión"
   },
   "payment": {
     "payTitle": "Confirmar Pago",

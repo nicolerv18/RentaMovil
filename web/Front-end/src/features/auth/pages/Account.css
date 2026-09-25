@@ -321,6 +321,37 @@
     }
 
 
+    .route-loading {
+        min-height: 40vh;
+        display: grid;
+        place-items: center;
+        color: var(--text-h);
+        font-family: var(--sans);
+    }
+
+    .account-error {
+        margin: 16px 0;
+        padding: 12px 14px;
+        border: 1px solid color-mix(in srgb, var(--cancel, #ef4444) 35%, transparent);
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--cancel, #ef4444) 10%, transparent);
+        color: var(--cancel, #ef4444);
+        font-family: var(--sans);
+        text-align: center;
+    }
+
+    .account-actions-fallback {
+        position: static;
+        justify-content: center;
+        margin-top: 18px;
+    }
+
+    .form-image-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     @media (max-width: 700px) {
     .cardC {
         padding: 90px 24px 35px 24px;

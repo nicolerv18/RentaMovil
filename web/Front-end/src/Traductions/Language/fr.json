@@ -151,10 +151,15 @@
     "modificarPassword": "Modifier le mot de passe",
     "modoEdicion": "Mode édition activé",
     "perfilActualizado": "Profil mis à jour",
+    "profileStatus": "Profil synchronisé",
+    "profileImage": "Photo de profil",
     "cambiarFoto": "Changer la photo",
     "seleccionaTema": "Sélectionnez un thème",
     "seleccionaIdioma": "Sélectionnez une langue",
-    "cancelar": "Annuler"
+    "cancelar": "Annuler",
+    "retry": "Réessayer",
+    "signIn": "Se connecter",
+    "logout": "Se déconnecter"
   },
   "payment": {
     "payTitle": "Confirmer le paiement",

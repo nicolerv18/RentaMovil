@@ -59,6 +59,18 @@
       "role": "CLIENT",
       "status": "ACTIVE",
       "last_login": "2026-09-21T16:33:51.789Z"
+    },
+    {
+      "id": "91b8db78-090a-4021-90de-73b3b19fe967",
+      "first_name": "Nicole Dayana",
+      "last_name": "Ramirez Vargas",
+      "email": "nicolerv18007@gmail.com",
+      "phone": "3164763160",
+      "username": "niki",
+      "password_hash": "$2b$12$LKHgIaWsZpRmy7s6q8SytuqnAbSwJK5u8VZiYgTaSerJGpwE3rENy",
+      "role": "CLIENT",
+      "status": "ACTIVE",
+      "last_login": "2026-09-25T02:46:46.297Z"
     }
   ],
   "sessions": [
@@ -80,6 +92,26 @@
       "expires_at": "2026-09-28T16:33:51.790Z",
       "ip_address": "::ffff:127.0.0.1",
       "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:156.0) Gecko/20100101 Firefox/156.0",
+      "revoked": false
+    },
+    {
+      "id": "2a1882e9-6088-408e-93ab-73d74ad2951a",
+      "user_id": "91b8db78-090a-4021-90de-73b3b19fe967",
+      "refresh_token": "921b7568-35ee-4849-89ec-2da97598cddf",
+      "created_at": "2026-09-25T02:46:00.663Z",
+      "expires_at": "2026-10-02T02:46:00.663Z",
+      "ip_address": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+      "revoked": false
+    },
+    {
+      "id": "8ff9ca95-eb0f-49b7-8bc6-a43ef0821c85",
+      "user_id": "91b8db78-090a-4021-90de-73b3b19fe967",
+      "refresh_token": "463e4fc5-0ea0-4a79-ae11-daf659bb6b87",
+      "created_at": "2026-09-25T02:46:46.301Z",
+      "expires_at": "2026-10-02T02:46:46.301Z",
+      "ip_address": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
       "revoked": false
     }
   ],
