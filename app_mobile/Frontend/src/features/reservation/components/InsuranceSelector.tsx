@@ -1,0 +1,80 @@
+    import { Text, TouchableOpacity, View } from "react-native";
+
+    import AppCard from "../../../shared/components/AppCard/AppCard";
+
+    import { useReservation } from "../context/ReservationContext";
+
+    import { createStyles } from "./InsuranceSelector.styles";
+
+    import { themes } from "../../../theme/themes";
+    import { useTheme } from "../../../theme/useTheme";
+    import { InsuranceType } from "../../../types";
+
+    type Props = {
+    readonly options: InsuranceType[];
+    };
+
+    export default function InsuranceSelector({
+    options,
+    }: Props) {
+    const { reservation, updateInsurance } = useReservation();
+
+    const selectedInsurance =
+        reservation?.insuranceTypeId ?? null;
+
+    const { themeName } = useTheme();
+    const colors = themes[themeName as keyof typeof themes];
+    const styles = createStyles(colors);
+
+    return (
+        <AppCard>
+
+        <Text style={styles.title}>
+            Seguro
+        </Text>
+
+        {options.map(option => {
+
+            const selected =
+            selectedInsurance === option.id;
+
+            return (
+
+            <TouchableOpacity
+                key={option.id}
+                style={[
+                styles.option,
+                selected && styles.selected
+                ]}
+                onPress={() => updateInsurance(option.id)}
+            >
+
+                <View style={{ flex: 1 }}>
+
+                <Text style={styles.optionTitle}>
+                    {option.name}
+                </Text>
+
+                <Text style={styles.description}>
+                    {option.description}
+                </Text>
+
+                <Text style={styles.description}>
+                    {option.price}
+                </Text>
+
+                </View>
+
+                <Text style={styles.radio}>
+                {selected ? "●" : "○"}
+                </Text>
+
+            </TouchableOpacity>
+
+            );
+
+        })}
+
+        </AppCard>
+    );
+    }

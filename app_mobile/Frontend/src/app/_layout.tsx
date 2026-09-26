@@ -1,0 +1,201 @@
+import { ThemeProvider } from "../theme/themeContext";
+import { themes } from "../theme/themes";
+import { useTheme } from "../theme/useTheme";
+
+import {
+    DefaultTheme,
+    ThemeProvider as NavigationThemeProvider,
+} from "@react-navigation/native";
+
+import { Stack, useRouter } from "expo-router";
+
+import * as SplashScreen from "expo-splash-screen";
+
+import { useEffect } from "react";
+
+import "react-native-reanimated";
+
+import { ReservationProvider } from "../features/reservation/context/ReservationContext";
+
+import "../translation/i18n";
+
+import { AuthProvider, useAuth } from "../features/auth/context/AuthContext";
+
+import { PaymentProvider } from "../features/payment/context/PaymentContext";
+
+
+export { ErrorBoundary } from "expo-router";
+
+
+SplashScreen.preventAutoHideAsync();
+
+
+export default function RootLayout() {
+
+    useEffect(() => {
+
+        SplashScreen.hideAsync();
+
+    }, []);
+
+
+    return (
+
+        <ThemeProvider>
+
+            <AuthProvider>
+
+                <ReservationProvider>
+
+                    <PaymentProvider>
+
+                        <InnerNav />
+
+                    </PaymentProvider>
+
+                </ReservationProvider>
+
+            </AuthProvider>
+
+        </ThemeProvider>
+
+    );
+
+}
+
+
+function InnerNav() {
+
+    const router = useRouter();
+
+
+    const {
+        isAuthenticated,
+        isLoading,
+    } = useAuth();
+
+
+    const {
+        themeName,
+    } = useTheme();
+
+
+    const currentTheme =
+        themes[themeName];
+
+
+    const navigationTheme = {
+
+        ...DefaultTheme,
+
+        colors: {
+
+            ...DefaultTheme.colors,
+
+            background:
+                currentTheme.background,
+
+            card:
+                currentTheme.card,
+
+            text:
+                currentTheme.text,
+
+            border:
+                currentTheme.border,
+
+            primary:
+                currentTheme.primary,
+
+        },
+
+    };
+
+
+    useEffect(() => {
+
+        if (isLoading) {
+
+            return;
+
+        }
+
+
+        if (isAuthenticated) {
+
+            router.replace("/(tabs)");
+
+        } else {
+
+            router.replace("/auth/login");
+
+        }
+
+    }, [
+        isLoading,
+        isAuthenticated,
+    ]);
+
+
+    if (isLoading) {
+
+        return null;
+
+    }
+
+
+    return (
+
+        <NavigationThemeProvider
+            value={navigationTheme}
+        >
+
+            <Stack
+
+                screenOptions={{
+
+                    title: "Renta Móvil",
+
+                    headerStyle: {
+
+                        backgroundColor:
+                            currentTheme.background,
+
+                    },
+
+                    headerTintColor:
+                        currentTheme.text,
+
+                }}
+
+            >
+
+                <Stack.Screen
+
+                    name="auth/login"
+
+                    options={{
+                        headerShown: false,
+                    }}
+
+                />
+
+
+                <Stack.Screen
+
+                    name="(tabs)"
+
+                    options={{
+                        headerShown: false,
+                    }}
+
+                />
+
+
+            </Stack>
+
+        </NavigationThemeProvider>
+
+    );
+
+}
